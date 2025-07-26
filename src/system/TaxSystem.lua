@@ -68,6 +68,7 @@ function TaxSystem:saveToXmlFile()
 end
 
 function TaxSystem.periodChanged()
+    local taxSystem = g_currentMission.RedTape.TaxSystem
     local period = g_currentMission.environment.currentPeriod
     if period == TaxSystem.TAX_PERIOD then
         -- Trigger tax calculation or any other logic needed for the tax period

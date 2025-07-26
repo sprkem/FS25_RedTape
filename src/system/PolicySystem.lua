@@ -15,7 +15,7 @@ function PolicySystem.new()
     self.policies = {}
     self.points = 0
     self.facts = {}
-    -- self.grade = PolicySystem.COMPLIANCE_LEVEL.C
+    self.infoGatherer = InfoGatherer.new()
 
     g_messageCenter:subscribe(MessageType.HOUR_CHANGED, PolicySystem.hourChanged)
     g_messageCenter:subscribe(MessageType.PERIOD_CHANGED, PolicySystem.periodChanged)
@@ -78,22 +78,30 @@ function PolicySystem:saveToXmlFile()
 end
 
 function PolicySystem:hourChanged()
+    local self = g_currentMission.RedTape.PolicySystem
     -- self:gatherFacts()
 end
 
 function PolicySystem:periodChanged()
-    self:gatherFacts()
+    local policySystem = g_currentMission.RedTape.PolicySystem
+    policySystem.infoGatherer:gatherData(policySystem.info)
 
-    if #self.policies < PolicySystem.DESIRED_POLICY_COUNT then
+    if #policySystem.policies < PolicySystem.DESIRED_POLICY_COUNT then
+        print("Generating new policies...")
         -- generate new policies if needed
-        for i = #self.policies + 1, PolicySystem.DESIRED_POLICY_COUNT do
+        for i = #policySystem.policies + 1, PolicySystem.DESIRED_POLICY_COUNT do
+            print("Creating policy " .. i)
             local policy = Policy.new()
-            policy.policyIndex = PolicyIds.CROP_ROTATION -- Example, should be randomized or chosen based on facts
-            table.insert(self.policies, policy)
+            policy.policyIndex = policySystem:getNextPolicyIndex()
+            if policy.policyIndex == nil then
+                print("No more policies available, stopping generation.")
+                break
+            end
+            table.insert(policySystem.policies, policy)
         end
     end
 
-    for key, policy in pairs(self.policies) do
+    for key, policy in pairs(policySystem.policies) do
         policy:evaluate()
     end
 end
@@ -106,23 +114,44 @@ function PolicySystem:getNextPolicyIndex()
         end
     end
 
-    for name, id in pairs(PolicyIds) do
+    local availablePolicies = {}
+    for id, policy in pairs(Policies) do
         if not inUse[id] then
-            return index
+            table.insert(availablePolicies, policy)
         end
     end
-end
 
-function PolicySystem:gatherFacts()
-    local facts = {}
+    if #availablePolicies == 0 then
+        return nil
+    end
 
-    -- gather everything we need to evaluate the policies
+    print("Available policies: " .. #availablePolicies)
 
-    -- get list of fields and the crops
+    -- sum the probabilities of available policies
+    local totalProbability = 0
+    for _, policy in pairs(availablePolicies) do
+        totalProbability = totalProbability + policy.probability
+    end
 
-    
+    print("Total probability: " .. totalProbability)
 
-    return facts
+    if totalProbability == 0 then
+        return nil -- No available policies to choose from
+    end
+  
+    -- Choose a random policy based on their probabilities
+    local randomValue = math.random() * totalProbability
+    local cumulativeProbability = 0
+    for _, policy in pairs(availablePolicies) do
+        cumulativeProbability = cumulativeProbability + policy.probability
+        if randomValue <= cumulativeProbability then
+            print("Selected policy: " .. policy.name)
+            return policy.id -- Return the ID of the selected policy
+        end
+    end
+    print("No policy selected, returning nil")
+
+    return nil
 end
 
 function PolicySystem:applyPoints(policy, points)

@@ -35,6 +35,8 @@ Un mod qui ajoute des programmes gouvernementaux, des subventions et des taxes.
         <sourceFile filename="src/system/TaxSystem.lua"/>
         <sourceFile filename="src/system/SchemeSystem.lua"/>
         <sourceFile filename="src/system/PolicySystem.lua"/>
+        <sourceFile filename="src/system/PolicyList.lua"/>
+        <sourceFile filename="src/system/InfoGatherer.lua"/>
         <sourceFile filename="src/instances/Scheme.lua"/>
         <sourceFile filename="src/instances/Policy.lua"/>
         <sourceFile filename="src/instances/TaxLineItem.lua"/>

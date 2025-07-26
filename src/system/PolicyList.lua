@@ -4,8 +4,10 @@ PolicyIds = {
 
 Policies = {
     [PolicyIds.CROP_ROTATION] = {
+        id = PolicyIds.CROP_ROTATION,
         name = "Crop Rotation",
         description = "Encourages farmers to rotate crops to maintain soil health.",
+        probability = 0.8,
         reward = 100,
         penalty = -50,
         evaluate = function(policy)
