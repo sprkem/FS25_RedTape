@@ -7,5 +7,6 @@
 		<text name="rt_header_schemes" text="Schemes"/>
 		<text name="rt_header_tax" text="Tax"/>
 		<text name="rt_notify_active_policy" text="A new policy has been activated: %s"/>
+		<text name="rt_policy_croprotation" text="Crop rotation"/>
 	</texts>
 </l10n>

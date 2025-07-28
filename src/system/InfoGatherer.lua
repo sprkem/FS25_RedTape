@@ -74,7 +74,13 @@ function InfoGatherer:getFarmlands(data)
             local x, z = field:getCenterOfFieldWorldPosition()
             local fruitTypeIndexPos, growthState = FSDensityMapUtil.getFruitTypeIndexAtWorldPos(x, z)
             local currentFruit = g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndexPos)
-            farmlandData.fruit = currentFruit.fillType.title
+
+            if currentFruit == nil then
+                print("No fruit found for farmland ID: " .. farmland.id)
+                farmlandData.fruit = nil
+            else
+                farmlandData.fruit = currentFruit.fillType.title
+            end
             farmlandData.areaHa = field:getAreaHa()
         end
     end

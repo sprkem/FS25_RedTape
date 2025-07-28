@@ -155,7 +155,7 @@ function PolicySystem:getNextPolicyIndex()
     for _, policy in pairs(availablePolicies) do
         cumulativeProbability = cumulativeProbability + policy.probability
         if randomValue <= cumulativeProbability then
-            print("Selected policy: " .. policy.name)
+            print("Selected policy: " .. g_i18n:getText(policy.name))
             return policy.id -- Return the ID of the selected policy
         end
     end

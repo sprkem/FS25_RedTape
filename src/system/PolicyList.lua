@@ -5,13 +5,13 @@ PolicyIds = {
 Policies = {
     [PolicyIds.CROP_ROTATION] = {
         id = PolicyIds.CROP_ROTATION,
-        -- name = "Crop Rotation",
+        name = "rt_policy_croprotation",
         -- description = "Encourages farmers to rotate crops to maintain soil health.",
         probability = 0.8,
         periodicReward = 100,
         periodicPenalty = -200,
         completeReward = 0,
-        evaluationInterval = 12,
+        evaluationInterval = 2, -- TODO revert to 12
         maxEvaluationCount = 3,
         activate = function(policyInfo, policy)
             print("Activating Crop Rotation policy...")
@@ -23,26 +23,33 @@ Policies = {
 
             local totalHa = 0
             local nonCompliantHa = 0
+
+            if farmId == 1 then
+                print("on farm 1")
+            end
+
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId and farmland.field ~= nil then
                     local previousFruit = data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod - 1][farmland.id].fruit
                     local currentFruit = data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id].fruit
 
                     totalHa = totalHa + data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id].areaHa
-                    if previousFruit ~= currentFruit then
+                    if previousFruit == currentFruit then
                         nonCompliantHa = nonCompliantHa +
-                        data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id].areaHa
+                            data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id].areaHa
                     end
                 end
             end
 
             -- Return reward if fully compliant or a proportional penalty if not
             if nonCompliantHa == 0 then
-                print("All farmlands compliant with Crop Rotation policy.")
+                print("Farm " .. farmId .. ": All farmlands compliant with Crop Rotation policy.")
                 return policyInfo.periodicReward
             else
-                local complianceRate = nonCompliantHa / totalHa
-                return policyInfo.periodicPenalty * complianceRate
+                local nonCompliantProportion = nonCompliantHa / totalHa
+                print("Farm " .. farmId .. ": Non-compliant area: " .. nonCompliantHa .. " ha, Total area: " ..
+                    totalHa .. " ha, Compliance rate: " .. nonCompliantProportion)
+                return policyInfo.periodicPenalty * nonCompliantProportion
             end
         end,
         complete = function(policyInfo, policy)

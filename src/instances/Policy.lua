@@ -14,8 +14,11 @@ function Policy.new()
 
     self.policyIndex = nil
     self.nextEvaluationPeriod = nil
+    self.nextEvaluationYear = nil
     self.evaluationCount = 0
+    self.skipNextEvaluation = false
     self.policySystem = g_currentMission.RedTape.PolicySystem
+    self.complete = false
 
     return self
 end
@@ -35,6 +38,11 @@ function Policy:activate()
 
     if policyInfo.evaluationInterval > 0 then
         self.nextEvaluationPeriod = g_currentMission.environment.currentPeriod + policyInfo.evaluationInterval
+        if self.nextEvaluationPeriod > 12 then
+            self.nextEvaluationPeriod = self.nextEvaluationPeriod - 12
+        end
+        -- If the evaluation interval is 12, we skip the first evaluation as it loops back to evaluate immediately otherwise
+        if policyInfo.evaluationInterval == 12 then self.skipNextEvaluation = true end
     end
 
     policyInfo.activate(policyInfo, self)
@@ -47,15 +55,22 @@ function Policy:activate()
 end
 
 function Policy:evaluate()
-    local policyInfo = Policies[self.policyIndex]
-    local currentPeriod = g_currentMission.environment.currentPeriod
-    if currentPeriod ~= self.nextEvaluationPeriod then
+    if self.skipNextEvaluation then
+        self.skipNextEvaluation = false
         return 0, false
     end
 
-    for _, farm in pairs(g_farmManager.getFarms()) do
-        local points = policyInfo.evaluate(policyInfo, self, farm.id)
-        if points ~= 0 then self.policySystem:applyPoints(self, points, farm.id) end
+    local policyInfo = Policies[self.policyIndex]
+    local currentPeriod = g_currentMission.environment.currentPeriod
+    if currentPeriod ~= self.nextEvaluationPeriod then
+        print("Policy not ready for evaluation. Current period: " .. currentPeriod ..
+            ", Next evaluation period: " .. self.nextEvaluationPeriod)
+        return 0, false
+    end
+
+    for farmId, farm in pairs(g_farmManager.farmIdToFarm) do
+        local points = policyInfo.evaluate(policyInfo, self, farm.farmId)
+        if points ~= 0 then self.policySystem:applyPoints(self, points, farm.farmId) end
     end
 
     self.evaluationCount = self.evaluationCount + 1
