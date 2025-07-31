@@ -5,6 +5,8 @@ source(RedTape.dir .. "src/gui/MenuRedTape.lua")
 
 function RedTape:loadMap()
     self.leaseDeals = {}
+    self.updateIntervalMs = 1000
+	self.updateTime = 5000
 
     -- g_gui:loadProfiles(RedTape.dir .. "src/gui/guiProfiles.xml")
 
@@ -26,6 +28,15 @@ function RedTape:loadMap()
     g_currentMission.RedTape = self
 end
 
+function RedTape:update(dt)
+    if self.updateTime > 0 then
+		self.updateTime = self.updateTime - dt
+	else
+		self.InfoGatherer:runConstantChecks()
+        self.updateTime = self.updateIntervalMs
+	end
+end
+
 function RedTape:makeCheckEnabledPredicate()
     return function() return true end
 end
@@ -37,7 +48,7 @@ end
 function RedTape:periodChanged()
     if (not g_currentMission:getIsServer()) then return end
     local rt = g_currentMission.RedTape
-    rt.InfoGatherer:gatherData(rt.data)
+    rt.InfoGatherer:gatherData()
     rt.PolicySystem:periodChanged()
     rt.SchemeSystem:periodChanged()
     rt.TaxSystem:periodChanged()
@@ -107,6 +118,23 @@ function RedTape.addIngameMenuPage(frame, pageName, uvs, predicateFunc, insertAf
     end
 
     g_inGameMenu:rebuildTabList()
+end
+
+function RedTape.periodToMonth(period)
+    period = period + 2
+    if period > 12 then
+        period = period - 12
+    end
+    return period
+end
+
+function RedTape:tableHasValue(tab, val)
+    for _, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+    return false
 end
 
 FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame, RedTape.saveToXmlFile)

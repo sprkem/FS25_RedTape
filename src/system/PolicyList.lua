@@ -17,9 +17,8 @@ Policies = {
             print("Activating Crop Rotation policy...")
         end,
         evaluate = function(policyInfo, policy, farmId)
-            local data = g_currentMission.RedTape.data
-            local currentPeriod = g_currentMission.environment.currentPeriod
-            local currentYear = g_currentMission.environment.currentYear
+            local data = g_currentMission.RedTape.InfoGatherer.data
+            local fruitsToSkip = { FruitType.GRASS, FruitType.MEADOW, FruitType.OILSEEDRADISH }
 
             local totalHa = 0
             local nonCompliantHa = 0
@@ -30,13 +29,29 @@ Policies = {
 
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId and farmland.field ~= nil then
-                    local previousFruit = data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod - 1][farmland.id].fruit
-                    local currentFruit = data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id].fruit
+                    local farmLandData = data[INFO_KEYS.FARMLANDS][farmland.id]
+                    local mostRecentFruit = farmLandData.mostRecentFruit
+                    local previousFruit = farmLandData.previousFruit
 
-                    totalHa = totalHa + data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id].areaHa
-                    if previousFruit == currentFruit then
-                        nonCompliantHa = nonCompliantHa +
-                            data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id].areaHa
+                    if farmLandData.fallowMonths > 10 then
+                        print("Skipping farmland " ..
+                        farmland.id .. " due to fallow months: " .. farmLandData.fallowMonths)
+                        continue
+                    end
+
+                    if mostRecentFruit and not RedTape:tableHasValue(fruitsToSkip, mostRecentFruit) then
+                        print("Skipping farmland " .. farmland.id .. " with fruit " .. mostRecentFruit)
+                        continue
+                    end
+
+                    if previousFruit == nil then
+                        print("Skipping farmland " .. farmland.id .. " due to no previous fruit.")
+                        continue
+                    end
+
+                    totalHa = totalHa + farmLandData.areaHa
+                    if previousFruit == mostRecentFruit then
+                        nonCompliantHa = nonCompliantHa + farmLandData.areaHa
                     end
                 end
             end

@@ -78,6 +78,9 @@ function Policy:evaluate()
 
     if not self.complete then
         self.nextEvaluationPeriod = currentPeriod + policyInfo.evaluationInterval
+        if self.nextEvaluationPeriod > 12 then
+            self.nextEvaluationPeriod = self.nextEvaluationPeriod - 12
+        end
     end
 end
 

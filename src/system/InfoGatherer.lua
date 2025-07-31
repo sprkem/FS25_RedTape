@@ -10,7 +10,40 @@ INFO_KEYS = {
 function InfoGatherer.new()
     local self = {}
     setmetatable(self, InfoGatherer_mt)
+
+    self.data = self:initData()
+    self.turnedOnSprayers = {}
+
     return self
+end
+
+function InfoGatherer:runConstantChecks()
+    print("Running constant checks...")
+    self:checkSprayers()
+end
+
+function InfoGatherer:checkSprayers()
+    local checkFillTypes = { FillType.FERTILIZER }
+    for uniqueId, sprayer in pairs(self.turnedOnSprayers) do
+        local sprayType = sprayer:getActiveSprayType()
+        if sprayType == nil then
+            continue
+        end
+
+        local fillUnitIndex = sprayer:getSprayerFillUnitIndex()
+        local fillType = sprayer:getFillUnitFillType(fillUnitIndex)
+
+        if not RedTape:tableHasValue(checkFillTypes, fillType) then
+            continue
+        end
+
+        local workingWidth = sprayer:getWorkAreaWidth(sprayer.spec_sprayer.usageScale.workingWidth)
+
+        print(workingWidth)
+        print(fillType)
+
+        -- sprayType.usageScale.workingWidth
+    end
 end
 
 function InfoGatherer:initData()
@@ -27,48 +60,50 @@ function InfoGatherer:getPreviousPeriod()
     return previousPeriod
 end
 
-function InfoGatherer:gatherData(data)
+function InfoGatherer:gatherData()
     print("Gathering data for policies...")
-    self:getFarmlands(data)
+    local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+    --self:stubCurrentMonth(data, g_currentMission.environment.currentYear, currentMonth)
+
+    self:getFarmlands()
 
 
-    self:removeOldData(data)
-    DebugUtil.printTableRecursively(data)
-    return data
+    -- self:removeOldData(data)
+    return
 end
 
-function InfoGatherer:removeOldData(data)
-    local currentYear = g_currentMission.environment.currentYear
+-- function InfoGatherer:removeOldData(data)
+--     local currentYear = g_currentMission.environment.currentYear
 
-    for _, value in pairs(INFO_KEYS) do
-        for year, _ in pairs(data[value]) do
-            if year < currentYear - InfoGatherer.RETENTION_YEARS then
-                data[value][year] = nil
-            end
-        end
-    end
-end
+--     for _, value in pairs(INFO_KEYS) do
+--         for year, _ in pairs(data[value]) do
+--             if year < currentYear - InfoGatherer.RETENTION_YEARS then
+--                 data[value][year] = nil
+--             end
+--         end
+--     end
+-- end
 
-function InfoGatherer:getFarmlands(data)
+-- function InfoGatherer:stubCurrentMonth(data, year, month)
+--     for _, value in pairs(INFO_KEYS) do
+--         if data[value][year] == nil then
+--             data[value][year] = {}
+--         end
+--         if data[value][year][month] == nil then
+--             data[value][year][month] = {}
+--         end
+--     end
+-- end
+
+function InfoGatherer:getFarmlands()
     print("Gathering farmlands data...")
-    local currentPeriod = g_currentMission.environment.currentPeriod
-    local currentYear = g_currentMission.environment.currentYear
-
-    if data[INFO_KEYS.FARMLANDS][currentYear] == nil then
-        data[INFO_KEYS.FARMLANDS][currentYear] = {}
-    end
-
-    if data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod] == nil then
-        data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod] = {}
-    end
-
     for _, farmland in pairs(g_farmlandManager.farmlands) do
         if farmland.showOnFarmlandsScreen and farmland.field ~= nil then
-            if data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id] == nil then
-                data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id] = {}
+            if self.data[INFO_KEYS.FARMLANDS][farmland.id] == nil then
+                self.data[INFO_KEYS.FARMLANDS][farmland.id] = { fallowMonths = 0 }
             end
 
-            local farmlandData = data[INFO_KEYS.FARMLANDS][currentYear][currentPeriod][farmland.id]
+            local farmlandData = self.data[INFO_KEYS.FARMLANDS][farmland.id]
 
             local field = farmland.field
             local x, z = field:getCenterOfFieldWorldPosition()
@@ -76,10 +111,19 @@ function InfoGatherer:getFarmlands(data)
             local currentFruit = g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndexPos)
 
             if currentFruit == nil then
-                print("No fruit found for farmland ID: " .. farmland.id)
-                farmlandData.fruit = nil
+                farmlandData.fallowMonths = farmlandData.fallowMonths + 1
+                if farmlandData.mostRecentFruit ~= nil then
+                    farmlandData.previousFruit = farmlandData.mostRecentFruit
+                end
+                farmlandData.mostRecentFruit = nil
             else
-                farmlandData.fruit = currentFruit.fillType.title
+                farmlandData.fallowMonths = 0
+
+                -- if there is a fruit and it different from the previous one, update it
+                if farmlandData.mostRecentFruit ~= nil and farmlandData.mostRecentFruit ~= fruitTypeIndexPos then
+                    farmlandData.previousFruit = farmlandData.mostRecentFruit
+                end
+                farmlandData.mostRecentFruit = fruitTypeIndexPos
             end
             farmlandData.areaHa = field:getAreaHa()
         end
