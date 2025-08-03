@@ -27,10 +27,10 @@ function InfoGatherer:checkSprayers()
     local checkRadius = 10
 
     for uniqueId, sprayer in pairs(self.turnedOnSprayers) do
-        local sprayType = sprayer:getActiveSprayType()
-        if sprayType == nil then
-            continue
-        end
+        -- if not sprayer.spec_sprayer.workAreaParameters.isActive then
+        --     print("Sprayer " .. uniqueId .. " is not active, skipping.")
+        --     continue
+        -- end
 
         local fillUnitIndex = sprayer:getSprayerFillUnitIndex()
         local fillType = sprayer:getFillUnitFillType(fillUnitIndex)
@@ -48,26 +48,44 @@ function InfoGatherer:checkSprayers()
             workingWidth = self:getWorkAreaWidth(usageScale.workAreaIndex)
         end
 
-        self:checkWaterByRaycast(sprayer, workingWidth + checkRadius)
+        self:checkWaterByRaycast(sprayer)
+        self:checkCreekByOverlap(sprayer, workingWidth)
     end
 end
 
-function InfoGatherer:checkWaterByRaycast(sprayer, length)
+function InfoGatherer:checkWaterByRaycast(sprayer)
+    local length = 30
     local raycastResult = {
         raycastCallback = function(self, hitObjectId, x, y, z, distance, nx, ny, nz, subShapeIndex, shapeId, isLast)
             local mask = getCollisionFilterGroup(hitObjectId)
             if mask == CollisionFlag.WATER then
                 self.foundWater = true
+            elseif mask == CollisionFlag.STATIC_OBJECT then
+                print("Static object hit: ")
             end
         end
     }
 
-    local x, y, z = localToWorld(sprayer.rootNode, 0, sprayer.size.height + 1, 0)
-    local dx, dy, dz = localDirectionToWorld(sprayer.rootNode, 0, -0.5, -1)
+    local x, y, z = localToWorld(sprayer.rootNode, 0, sprayer.size.height, 0)
 
-    drawDebugArrow(x, y, z, dx * length, dy * length, dz * length, 0.3, 0.3, 0.3, 0.8, 0, 0, true)
-    raycastClosest(x, y, z, dx, dy, dz, length, "raycastCallback", raycastResult,
-        CollisionFlag.WATER + CollisionFlag.TERRAIN)
+    local yAngles = {
+        -0.3,
+        -0.5,
+        -0.8
+    }
+    local zAngles = {
+        0,
+        -2,
+        2
+    }
+    for _, yAngle in ipairs(yAngles) do
+        for _, zAngle in ipairs(zAngles) do
+            local dx, dy, dz = localDirectionToWorld(sprayer.rootNode, zAngle, yAngle, -1)
+            drawDebugArrow(x, y, z, dx * length, dy * length, dz * length, 0.3, 0.3, 0.3, 0.8, 0, 0, true)
+            raycastClosest(x, y, z, dx, dy, dz, length, "raycastCallback", raycastResult,
+                CollisionFlag.WATER + CollisionFlag.TERRAIN)
+        end
+    end
 
     if raycastResult.foundWater then
         print("Water found for sprayer " .. sprayer:getName())
@@ -76,22 +94,90 @@ function InfoGatherer:checkWaterByRaycast(sprayer, length)
     end
 end
 
--- function InfoGatherer:checkWaterOverlap(sprayer, workingWidth)
---     local sizeX, sizeY, sizeZ = workingWidth / 2, 10, workingWidth / 2
---     local x, y, z = localToWorld(sprayer.rootNode, 0, sprayer.size.height * 0.5, 0)
---     local rx, ry, rz = getWorldRotation(sprayer.rootNode)
---     local dx, dy, dz = localDirectionToWorld(sprayer.rootNode, 0, 0, 0)
---     local hitCount = overlapBox(x + dx, y + dy, z + dz, rx, ry, rz, sizeX, sizeY, sizeZ, "onWaterRaycastCallback",
---         self, CollisionFlag.WATER, true, true, true, true)
+function InfoGatherer:checkCreekByOverlap(sprayer, workingWidth)
+    local overlapResult = {
+        overlapCallback = function(self, hitObjectId, x, y, z, distance)
+            if not entityExists(hitObjectId) then
+                return
+            end
 
---     DebugUtil.drawOverlapBox(x + dx, y + dy, z + dz, rx, ry, rz, sizeX, sizeY, sizeZ)
---     print(hitCount)
--- end
+            local name = getName(hitObjectId)
+            if string.find(name, "creek") then
+                self.foundWater = true
+            end
 
-function InfoGatherer:onWaterRaycastCallback(hitObjectId, x, y, z, distance)
-    print("water hit")
-    return false
+            local maxTraverse = 3
+            for i = 1, maxTraverse, 1 do
+                hitObjectId = getParent(hitObjectId)
+                name = getName(hitObjectId)
+                if string.find(name, "creek") then
+                    self.foundWater = true
+                end
+            end
+        end
+    }
+
+
+    local sizeX, sizeY, sizeZ = workingWidth / 2, 10, workingWidth / 2
+    local x, y, z = localToWorld(sprayer.rootNode, 0, sprayer.size.height * 0.5, 0)
+    local rx, ry, rz = getWorldRotation(sprayer.rootNode)
+    local dx, dy, dz = localDirectionToWorld(sprayer.rootNode, 0, 0, 0)
+    overlapBox(x + dx, y + dy, z + dz, rx, ry, rz, sizeX, sizeY, sizeZ, "overlapCallback",
+        overlapResult, CollisionFlag.STATIC_OBJECT, true, true, true, true)
+
+    DebugUtil.drawOverlapBox(x + dx, y + dy, z + dz, rx, ry, rz, sizeX, sizeY, sizeZ)
+    -- print(hitCount)
+
+    if overlapResult.foundWater then
+        print("Creek found for sprayer " .. sprayer:getName())
+    else
+        print("No creek found for sprayer " .. sprayer:getName())
+    end
 end
+
+-- function InfoGatherer:onCreekOverlap(hitObjectId, x, y, z, distance)
+--     if not entityExists(hitObjectId) then
+--         return
+--     end
+
+--     local name = getName(hitObjectId)
+--     if string.find(name, "creek") then
+--         print("The word creek was found.")
+--         return
+--     end
+
+--     local maxTraverse = 3
+--     for i = 1, maxTraverse, 1 do
+--         hitObjectId = getParent(hitObjectId)
+--         name = getName(hitObjectId)
+--         if string.find(name, "creek") then
+--             print("The word creek was found at index: " .. i)
+--             return
+--         end
+--     end
+
+--     -- while true do
+--     --     local hitObjectId = getParent(hitObjectId)
+--     --     if hitObjectId == nil then break end
+--     --     -- parent = getParent(parent)
+--     --     local obj = g_currentMission:getNodeObject(hitObjectId)
+--     --     if obj ~= nil then
+--     --         print(obj)
+--     --     end
+--     --     -- local name = getName(parent)
+--     --     -- print("Parent name: " .. name)
+--     -- end
+
+--     -- local segment = self:getSegmentFromNode(hitObjectId)
+--     -- while getParent(hitObjectId) ~= segment.root do
+--     --     hitObjectId = getParent(hitObjectId)
+--     -- end
+
+--     -- print("static object hit")
+--     -- local name = getName(hitObjectId)
+--     -- print("Object name: " .. name)
+--     -- return false
+-- end
 
 function InfoGatherer:initData()
     local data = {}
