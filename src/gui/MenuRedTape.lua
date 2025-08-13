@@ -43,6 +43,20 @@ function MenuRedTape:onGuiSetupFinished()
     self.farmEventsTable:setDelegate(self.eventLogRenderer)
 end
 
+function MenuRedTape:initialize()
+    MenuRedTape:superClass().initialize(self)
+    for i, tab in pairs(self.subCategoryTabs) do
+        tab:getDescendantByName("background").getIsSelected = function()
+            -- upvalues: (copy) v_u_21_, (copy) self
+            return i == self.subCategoryPaging:getState()
+        end
+        function tab.getIsSelected()
+            -- upvalues: (copy) v_u_21_, (copy) self
+            return i == self.subCategoryPaging:getState()
+        end
+    end
+end
+
 function MenuRedTape:onFrameOpen(element)
     local isMultiplayer = g_currentMission.missionDynamicInfo.isMultiplayer
     -- local v46_ = not isMultiplayer or g_localPlayer.farmId ~= FarmManager.SPECTATOR_FARM_ID
@@ -52,9 +66,20 @@ function MenuRedTape:onFrameOpen(element)
         table.insert(texts, tostring(k))
     end
     self.subCategoryPaging:setTexts(texts)
+    self.subCategoryBox:invalidateLayout()
 
     self:onMoneyChange()
     g_messageCenter:subscribe(MessageType.MONEY_CHANGED, self.onMoneyChange, self)
+
+    g_messageCenter:subscribe(MessageType.EVENT_LOG_UPDATED, function(menu)
+        self:updateContent()
+    end, self)
+    self:updateContent()
+end
+
+function MenuRedTape:onFrameClose()
+    MenuRedTape:superClass().onFrameClose(self)
+    g_messageCenter:unsubscribeAll(self)
 end
 
 function MenuRedTape:onClickOverview()
@@ -78,19 +103,27 @@ function MenuRedTape:onClickEventLog()
 end
 
 function MenuRedTape:updateSubCategoryPages(subCategoryIndex)
-    for k, v in pairs(self.subCategoryPages) do
-        v:setVisible(k == subCategoryIndex)
-    end
-    self.categoryHeaderIcon:setImageSlice(nil, MenuRedTape.HEADER_SLICES[subCategoryIndex])
-    self.categoryHeaderText:setText(g_i18n:getText(MenuRedTape.HEADER_TITLES[subCategoryIndex]))
+    self:updateContent()
+    -- FocusManager:setFocus(self.subCategoryPaging)
+end
 
-    if subCategoryIndex == MenuRedTape.SUB_CATEGORY.OVERVIEW then
+function MenuRedTape:updateContent()
+    local state = self.subCategoryPaging:getState()
+
+    self.categoryHeaderIcon:setImageSlice(nil, MenuRedTape.HEADER_SLICES[state])
+    self.categoryHeaderText:setText(g_i18n:getText(MenuRedTape.HEADER_TITLES[state]))
+
+    for k, v in pairs(self.subCategoryPages) do
+        v:setVisible(k == state)
+    end
+
+    if state == MenuRedTape.SUB_CATEGORY.OVERVIEW then
         print("Overview sub-category selected")
-    elseif subCategoryIndex == MenuRedTape.SUB_CATEGORY.POLICIES then
+    elseif state == MenuRedTape.SUB_CATEGORY.POLICIES then
         print("Policies sub-category selected")
-    elseif subCategoryIndex == MenuRedTape.SUB_CATEGORY.SCHEMES then
+    elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
         print("Schemes sub-category selected")
-    elseif subCategoryIndex == MenuRedTape.SUB_CATEGORY.EVENTLOG then
+    elseif state == MenuRedTape.SUB_CATEGORY.EVENTLOG then
         local farmEvents = g_currentMission.RedTape.EventLog:getEventsForCurrentFarm()
 
         if #farmEvents == 0 then
@@ -106,22 +139,6 @@ function MenuRedTape:updateSubCategoryPages(subCategoryIndex)
         self.farmEventsTable:reloadData()
     end
 
-    -- if subCategoryIndex == MenuRedTape.SUB_CATEGORY.OVERVIEW then
-    --     -- self.statisticsSliderBox:setVisible(false)
-    -- elseif subCategoryIndex == MenuRedTape.SUB_CATEGORY.POLICIES then
-    --     -- self.statisticsSliderBox:setVisible(true)
-    --     -- self.statisticsSlider:setDataElement(self.vehiclesList)
-    -- elseif subCategoryIndex == MenuRedTape.SUB_CATEGORY.SCHEMES then
-    --     -- self.statisticsSliderBox:setVisible(true)
-    --     -- self.statisticsSlider:setDataElement(self.handToolsList)
-    -- elseif subCategoryIndex == MenuRedTape.SUB_CATEGORY.FINANCES then
-    --     -- self.statisticsSliderBox:setVisible(true)
-    --     -- self.statisticsSlider:setDataElement(self.financesList)
-    --     -- self:updateFinances()
-    -- else
-    --     -- self.statisticsSliderBox:setVisible(false)
-    -- end
-    FocusManager:setFocus(self.subCategoryPaging)
     self:updateMenuButtons()
 end
 

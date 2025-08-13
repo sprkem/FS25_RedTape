@@ -69,10 +69,6 @@ Policies = {
         end,
         complete = function(policyInfo, policy, farmId)
             print("Crop Rotation policy completed.")
-
-            -- Custom Logic to handle policy completion
-
-
             return policyInfo.completeReward
         end,
     },
@@ -82,8 +78,9 @@ Policies = {
         -- description = "Penalizes farms for excessive spraying violations.",
         probability = 0.5,
         periodicReward = 0,
-        periodicPenalty = -10,
-        completeReward = 500,
+        penaltyPerSprayViolation = 10,
+        deductionPerViolationOnComplete = 1,
+        maxCompleteReward = 500,
         evaluationInterval = 1,
         maxEvaluationCount = 12,
         activate = function(policyInfo, policy, farmId)
@@ -96,11 +93,11 @@ Policies = {
 
             if pendingSprayViolations > forgiveness then
                 print("Farm " .. farmId .. ": Spray violations detected: " .. pendingSprayViolations)
-                local reward = policyInfo.periodicPenalty * pendingSprayViolations
+                local pointsLost = policyInfo.penaltyPerSprayViolation * pendingSprayViolations
                 farmData.sprayViolationsInCurrentPolicyWindow = farmData.sprayViolationsInCurrentPolicyWindow +
                 pendingSprayViolations
                 farmData.pendingSprayViolations = 0
-                return reward
+                return -pointsLost
             else
                 print("Farm " .. farmId .. ": No spray violations. Violations ignored: " .. farmData.pendingSprayViolations)
                 farmData.pendingSprayViolations = 0
@@ -113,7 +110,7 @@ Policies = {
             local farmData = ig:getFarmData(farmId)
             local sprayViolationsInCurrentPolicyWindow = farmData.sprayViolationsInCurrentPolicyWindow or 0
             local reward = math.max(
-                policyInfo.completeReward - (sprayViolationsInCurrentPolicyWindow * math.abs(policyInfo.periodicPenalty)),
+                policyInfo.maxCompleteReward - (sprayViolationsInCurrentPolicyWindow * math.abs(policyInfo.deductionPerViolationOnComplete)),
                 0)
             farmData.sprayViolationsInCurrentPolicyWindow = 0
             return reward

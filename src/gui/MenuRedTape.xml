@@ -242,12 +242,12 @@
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[5]">
             <GuiElement id="farmEventsContainer">
                 <GuiElement profile="fs25_statisticsHeaderBox">
-                    <Button profile="rtTableHeader" position="60px -60px" text="$l10n_rt_tableheader_timestamp" handleFocus="false" />
-                    <Button profile="rtTableHeader" position="240px -60px" text="$l10n_rt_tableheader_eventtype" handleFocus="false" />
-                    <Button profile="rtTableHeader" position="490px -60px" text="$l10n_rt_tableheader_detail" handleFocus="false" />
+                    <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_timestamp" handleFocus="false" />
+                    <Button profile="rtTableHeader" position="200px -20px" text="$l10n_rt_tableheader_eventtype" handleFocus="false" />
+                    <Button profile="rtTableHeader" position="450px -20px" text="$l10n_rt_tableheader_detail" handleFocus="false" />
                 </GuiElement>
 
-                <SmoothList id="farmEventsTable" profile="rt_table" position="40px -95px" size="1480px 290px">
+                <SmoothList id="farmEventsTable" profile="rt_table" position="0px -50px" size="1480px 670px">
                     <ListItem profile="rtTableListItem">
                         <Text profile="rtListRowCellLeft" position="20px 0px" size="180px 32px" name="timestamp"/>
                         <Text profile="rtListRowCellLeft" position="200px 0px" size="250px 32px" name="eventType"/>
@@ -255,7 +255,7 @@
                     </ListItem>
                 </SmoothList>
 
-                <ThreePartBitmap profile="rt_slider_box" position="0px -90px" size="6px 290px">
+                <ThreePartBitmap profile="rt_slider_box" position="0px -50px" size="6px 670px">
                     <Slider profile="fs25_listSlider" dataElementId="farmEventsTable" />
                 </ThreePartBitmap>
             </GuiElement>

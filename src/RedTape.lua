@@ -4,6 +4,8 @@ RedTape.dir = g_currentModDirectory
 source(RedTape.dir .. "src/gui/MenuRedTape.lua")
 
 function RedTape:loadMap()
+    MessageType.EVENT_LOG_UPDATED = nextMessageTypeId()
+
     self.leaseDeals = {}
     self.updateIntervalMs = 2000      -- interval for constant checks
     self.updateTime = 5000            -- initial interval post load
@@ -17,6 +19,7 @@ function RedTape:loadMap()
 
     RedTape.addIngameMenuPage(guiRedTape, "menuRedTape", { 0, 0, 1024, 1024 },
         RedTape:makeCheckEnabledPredicate(), "pageSettings")
+    guiRedTape:initialize()
 
     self.TaxSystem = TaxSystem.new()
     self.SchemeSystem = SchemeSystem.new()

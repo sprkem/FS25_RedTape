@@ -1,6 +1,14 @@
 EventLog = {}
 EventLog_mt = Class(EventLog)
 
+EventLog.sortAgeDescendingFunction = function(a, b)
+    if a.year ~= b.year then
+        return a.year > b.year
+    else
+        return a.month > b.month
+    end
+end
+
 function EventLog.new()
     local self = {}
     setmetatable(self, EventLog_mt)
@@ -25,6 +33,7 @@ function EventLog:addEvent(farmId, eventType, detail, sendNotification)
     if sendNotification then
         g_currentMission:addIngameNotification(FSBaseMission.INGAME_NOTIFICATION_CRITICAL, detail)
     end
+    g_messageCenter:publish(MessageType.EVENT_LOG_UPDATED)
 end
 
 function EventLog:pruneOld()
@@ -52,6 +61,7 @@ function EventLog:getEventsForCurrentFarm()
             table.insert(farmEvents, event)
         end
     end
+    table.sort(farmEvents, EventLog.sortAgeDescendingFunction)
 
     return farmEvents
 end
