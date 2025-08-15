@@ -7,7 +7,7 @@ Policies = {
     [PolicyIds.CROP_ROTATION] = {
         id = PolicyIds.CROP_ROTATION,
         name = "rt_policy_croprotation",
-        -- description = "Encourages farmers to rotate crops to maintain soil health.",
+        description = "rt_policy_description_croprotation",
         probability = 0.8,
         periodicReward = 100,
         periodicPenalty = -200,
@@ -18,6 +18,7 @@ Policies = {
         end,
         evaluate = function(policyInfo, policy, farmId)
             local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
             local fruitsToSkip = { FruitType.GRASS, FruitType.MEADOW, FruitType.OILSEEDRADISH }
 
             local totalHa = 0
@@ -29,7 +30,7 @@ Policies = {
 
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId and farmland.field ~= nil then
-                    local farmLandData = ig:getFarmlandData(farmland.id)
+                    local farmLandData = gatherer:getFarmlandData(farmland.id)
                     local mostRecentFruit = farmLandData.mostRecentFruit
                     local previousFruit = farmLandData.previousFruit
 
@@ -75,7 +76,7 @@ Policies = {
     [PolicyIds.SPRAY_VIOLATION] = {
         id = PolicyIds.SPRAY_VIOLATION,
         name = "rt_policy_sprayviolation",
-        -- description = "Penalizes farms for excessive spraying violations.",
+        description = "rt_policy_description_sprayviolation",
         probability = 0.5,
         periodicReward = 0,
         penaltyPerSprayViolation = 10,
@@ -87,7 +88,8 @@ Policies = {
         end,
         evaluate = function(policyInfo, policy, farmId)
             local ig = g_currentMission.RedTape.InfoGatherer
-            local farmData = ig:getFarmData(farmId)
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
             local pendingSprayViolations = farmData.pendingSprayViolations or 0
             local forgiveness = math.random(0, 3)
 

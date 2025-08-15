@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuContracts">
+    <ThreePartBitmap profile="fs25_subCategoryContainerBg">
+        <Bitmap profile="fs25_subCategoryContainerArrow"/>
+    </ThreePartBitmap>
+    <Bitmap profile="fs25_subCategoryContainer">
+        <MultiTextOption profile="fs25_subCategorySelector" id="subCategorySelector" onClick="onChangeSubCategory" focusInit="onOpen"/>
+        <BoxLayout profile="fs25_subCategorySelectorBox" id="subCategoryDotBox"/>
+        <RoundCorner profile="fs25_subCategorySelectorDot" id="subCategoryDotTemplate"/>
+        <GuiElement profile="fs25_subCategoryListContainer" id="contractsListBox">
+            <Bitmap profile="fs25_subCategoryStartClipper" name="startClipper"/>
+            <Bitmap profile="fs25_subCategoryStopClipper" name="endClipper"/>
+            <SmoothList profile="fs25_subCategoryList" id="contractsList" listSectionHeader="section" startClipperElementName="startClipper" endClipperElementName="endClipper" emptyIndicatorId="noContractsText">
+                <ListItem profile="fs25_subCategoryListItem">
+                    <Bitmap profile="fs25_subCategoryListItemIcon" name="icon" imageSize="512 512"/>
+                    <Text profile="fs25_subCategoryListItemName" name="field"/>
+                    <Text profile="fs25_contractsListItemTime" name="time"/>
+                    <Text profile="fs25_contractsListItemReward" name="reward"/>
+                    <Text profile="fs25_contractsListItemIndicator" name="indicatorFinished" text="$l10n_contract_finished"/>
+                    <Text profile="fs25_contractsListItemIndicator" name="indicatorFailed" text="$l10n_contract_failed"/>
+                    <Text profile="fs25_contractsListItemIndicator" name="indicatorTimedOut" text="$l10n_contract_timedOut"/>
+                    <Text profile="fs25_contractsListItemIndicator" name="indicatorCanceled" text="$l10n_contract_canceled"/>
+                </ListItem>
+                <ListItem profile="fs25_subCategoryListSectionHeader" name="section">
+                    <Text profile="fs25_subCategoryListSectionHeaderTitle" name="title" text="Contracts Title"/>
+                </ListItem>
+            </SmoothList>
+            <ThreePartBitmap profile="fs25_subCategoryListSliderBox">
+                <Slider profile="fs25_listSlider" dataElementId="contractsList"/>
+            </ThreePartBitmap>
+        </GuiElement>
+    </Bitmap>
+    <GuiElement profile="fs25_menuContentContainer">
+        <Text profile="fs25_contractsEmptyText" id="noContractsText" text="$l10n_contract_noContractsAvailable"/>
+    </GuiElement>
+    <GuiElement profile="fs25_menuContentContainer" id="contentContainer">
+        <ThreePartBitmap profile="fs25_contractsContentSeparator"/>
+        <GuiElement profile="fs25_menuHeaderPanel" position="0px 74px">
+            <Bitmap profile="fs25_menuHeaderIconBg">
+                <Bitmap profile="fs25_menuHeaderIcon" imageSliceId="gui.icon_ingameMenu_contracts"/>
+            </Bitmap>
+            <Text profile="fs25_menuHeaderTitle" text="$l10n_ui_contracts"/>
+        </GuiElement>
+        <GuiElement profile="fs25_contractsFarmerBox" id="farmerBox">
+            <Bitmap profile="fs25_contractsFarmerImageGradient"/>
+            <Bitmap profile="fs25_contractsFarmerImage" id="farmerImage"/>
+            <Text profile="fs25_contractsFarmerName" id="farmerName"/>
+        </GuiElement>
+        <GuiElement profile="fs25_contractsContractBox" id="contractBox">
+            <Text profile="fs25_contractsContractTitle" id="titleText"/>
+            <Text profile="fs25_contractsContractInfoTitle" text="$l10n_ui_contractsInfo"/>
+            <Text profile="fs25_contractsContractInfo" id="contractDescriptionText"/>
+            <SmoothList profile="fs25_contractsDetailsList" id="detailsList">
+                <ListItem profile="fs25_contractsDetailsListItem">
+                    <Text profile="fs25_contractsDetailsListTitle" name="title"/>
+                    <Text profile="fs25_contractsDetailsListInfo" name="info"/>
+                </ListItem>
+            </SmoothList>
+            <Text profile="fs25_contractsContractReward" id="rewardTitle" text="$l10n_contract_reward:"/>
+            <ThreePartBitmap profile="fs25_contractsContractRewardSeparator"/>
+            <Text profile="fs25_contractsContractRewardValue" id="rewardText"/>
+        </GuiElement>
+        <GuiElement profile="fs25_contractsMapBox" id="mapBox">
+            <Text profile="fs25_contractsContentTitle" text="$l10n_contract_position:" position="0px -30px"/>
+            <InGameMapPreview profile="fs25_contractsIngameMap" id="ingameMap" onDrawPostIngameMapHotspots="onDrawPostIngameMapHotspots"/>
+        </GuiElement>
+        <GuiElement profile="fs25_contractsCollectRewardsBox" id="collectRewardsBox"/>
+        <GuiElement profile="fs25_contractsProgressBox" id="progressBox">
+            <Text profile="fs25_contractsContentTitle" text="$l10n_contract_progress:"/>
+            <Text profile="fs25_contractsContentExtraText" id="extraProgressText"/>
+            <Text profile="fs25_contractsContentValue" id="progressText"/>
+            <ThreePartBitmap profile="fs25_contractsProgressBarBg" id="progressBarBg">
+                <ThreePartBitmap profile="fs25_contractsProgressBar" id="progressBar"/>
+            </ThreePartBitmap>
+        </GuiElement>
+        <GuiElement profile="fs25_contractsProgressBox" id="equipmentBox">
+            <Text profile="fs25_contractsContentTitle" text="$l10n_ui_ingameMissionSpecs:"/>
+            <Text profile="fs25_contractsContentText" id="useOwnEquipementText"/>
+            <Bitmap profile="fs25_contractsVehiclesItem" id="vehicleTemplate"/>
+            <GuiElement profile="fs25_contractsVehiclesBoxMarquee">
+                <BoxLayout profile="fs25_contractsVehiclesBox" id="vehiclesBox"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+    <GUIProfiles>
+        <Profile name="fs25_contractsContentSeparator" extends="fs25_lineSeparatorLeft">
+            <width value="1dp"/>
+            <position value="470px 0px"/>
+            <absoluteSizeOffset value="0px 60px"/>
+            <imageColor value="$preset_fs25_colorGrey"/>
+        </Profile>
+        <Profile name="fs25_contractsListItemTime" extends="fs25_textDarkHighlight" with="anchorBottomRight">
+            <position value="-38px 30px"/>
+            <textAlignment value="right"/>
+        </Profile>
+        <Profile name="fs25_contractsListItemReward" extends="fs25_textDarkHighlight" with="anchorBottomLeft">
+            <position value="100px 30px"/>
+            <textSize value="26px"/>
+            <textVerticalAlignment value="bottom"/>
+            <textColor value="$preset_fs25_colorMainHighlight"/>
+            <textFocusedColor value="$preset_fs25_colorMainLight"/>
+            <textHighlightedColor value="$preset_fs25_colorMainHighlight"/>
+        </Profile>
+        <Profile name="fs25_contractsListItemIndicator" extends="fs25_contractsListItemReward"/>
+        <Profile name="fs25_contractsFarmerBox" extends="emptyPanel" with="anchorTopLeft">
+            <size value="470px 346px"/>
+        </Profile>
+        <Profile name="fs25_contractsFarmerImageGradient" extends="baseReference" with="anchorTopCenter">
+            <size value="340px 340px"/>
+            <position value="0px -25px"/>
+            <imageSliceId value="gui.grey_gradient"/>
+        </Profile>
+        <Profile name="fs25_contractsFarmerImage" extends="baseReference" with="anchorTopCenter">
+            <size value="280px 280px"/>
+            <position value="0px -25px"/>
+            <imageSliceId value="noSlice"/>
+            <imageUVs value="0 0 1 1"/>
+            <imageSize value="512 512"/>
+        </Profile>
+        <Profile name="fs25_contractsFarmerName" extends="fs25_textDefault" with="anchorBottomStretchingX">
+            <size value="100% 26px"/>
+            <absoluteSizeOffset value="40px 0px"/>
+            <textSize value="26px"/>
+            <textBold value="false"/>
+            <textUpperCase value="true"/>
+            <textAlignment value="center"/>
+        </Profile>
+        <Profile name="fs25_contractsContractBox" extends="emptyPanel" with="anchorStretchingYLeft pivotTopLeft">
+            <width value="470px"/>
+            <absoluteSizeOffset value="0px 346px"/>
+            <position value="0px -346px"/>
+        </Profile>
+        <Profile name="fs25_contractsContractTitle" extends="fs25_textDefault" with="anchorTopStretchingX">
+            <size value="100% 40px"/>
+            <textSize value="32px"/>
+            <textBold value="true"/>
+            <textUpperCase value="true"/>
+            <textAlignment value="center"/>
+            <textColor value="$preset_fs25_colorMainHighlight"/>
+        </Profile>
+        <Profile name="fs25_contractsContractInfoTitle" extends="fs25_textDefault" with="anchorTopStretchingX">
+            <width value="100%"/>
+            <absoluteSizeOffset value="80px 0px"/>
+            <position value="0px -80px"/>
+            <textUpperCase value="true"/>
+        </Profile>
+        <Profile name="fs25_contractsContractInfo" extends="fs25_textGrey" with="anchorTopStretchingX">
+            <size value="100% 60px"/>
+            <absoluteSizeOffset value="80px 0px"/>
+            <position value="0px -110px"/>
+            <textMaxNumLines value="4"/>
+            <textVerticalAlignment value="top"/>
+        </Profile>
+        <Profile name="fs25_contractsContractReward" extends="fs25_textDefault" with="anchorTopCenter">
+            <position value="0px -440px"/>
+            <textBold value="true"/>
+            <textUpperCase value="true"/>
+            <textAlignment value="center"/>
+        </Profile>
+        <Profile name="fs25_contractsContractRewardSeparator" extends="fs25_lineSeparatorTop">
+            <height value="1dp"/>
+            <absoluteSizeOffset value="60px 0px"/>
+            <position value="0px -462px"/>
+            <imageColor value="$preset_fs25_colorGrey"/>
+        </Profile>
+        <Profile name="fs25_contractsContractRewardValue" extends="fs25_textDefault" with="anchorTopCenter">
+            <size value="400px 40px"/>
+            <position value="0px -460px"/>
+            <textSize value="32px"/>
+            <textBold value="true"/>
+            <textAlignment value="center"/>
+            <textColor value="$preset_fs25_colorMainHighlight"/>
+        </Profile>
+        <Profile name="fs25_contractsContractRewardValueNegative" extends="fs25_contractsContractRewardValue">
+            <textColor value="$preset_fs25_colorOrangeDark"/>
+        </Profile>
+        <Profile name="fs25_contractsDetailsList" extends="emptyPanel" with="anchorTopCenter">
+            <size value="100% 216px"/>
+            <absoluteSizeOffset value="80px 0px"/>
+            <position value="0px -200px"/>
+            <handleFocus value="false"/>
+        </Profile>
+        <Profile name="fs25_contractsDetailsListItem" extends="baseReference" with="anchorTopStretchingX alternating">
+            <height value="32px"/>
+            <imageColor value="$preset_fs25_colorGrey"/>
+            <alternateBackgroundColor value="$preset_fs25_colorGreyDark_50"/>
+        </Profile>
+        <Profile name="fs25_contractsDetailsListTitle" extends="fs25_textDefault" with="anchorTopLeft">
+            <height value="32px"/>
+            <textOffset value="10px 0px"/>
+        </Profile>
+        <Profile name="fs25_contractsDetailsListInfo" extends="fs25_textDefault" with="anchorTopRight">
+            <height value="32px"/>
+            <textBold value="true"/>
+            <textAlignment value="right"/>
+            <textOffset value="-10px 0px"/>
+        </Profile>
+        <Profile name="fs25_contractsEmptyText" extends="fs25_textDefault" with="anchorMiddleCenter">
+            <size value="500px 100px"/>
+            <position value="0px 57px"/>
+            <textSize value="26px"/>
+            <textAlignment value="center"/>
+            <textWrapWidth value="475px"/>
+            <textMaxNumLines value="4"/>
+        </Profile>
+        <Profile name="fs25_contractsMapBox" extends="emptyPanel" with="anchorTopLeft">
+            <size value="760px 600px"/>
+            <position value="490px 0px"/>
+        </Profile>
+        <Profile name="fs25_contractsIngameMap" extends="baseReference" with="anchorMiddleCenter">
+            <size value="720px 510px"/>
+            <position value="0px -20px"/>
+        </Profile>
+        <Profile name="fs25_contractsCollectRewardsBox" extends="emptyPanel" with="anchorTopLeft">
+            <size value="760px 850px"/>
+            <position value="500px 0px"/>
+        </Profile>
+        <Profile name="fs25_contractsProgressBox" extends="emptyPanel" with="anchorTopLeft">
+            <size value="760px 250px"/>
+            <position value="490px -600px"/>
+        </Profile>
+        <Profile name="fs25_contractsContentTitle" extends="fs25_textDefault" with="anchorTopStretchingX">
+            <width value="100%"/>
+            <absoluteSizeOffset value="40px 0px"/>
+            <textBold value="true"/>
+            <textUpperCase value="true"/>
+        </Profile>
+        <Profile name="fs25_contractsContentExtraText" extends="fs25_textGrey" with="anchorTopStretchingX">
+            <size value="100% 80px"/>
+            <absoluteSizeOffset value="40px 0px"/>
+            <position value="0px -90px"/>
+            <textAlignment value="center"/>
+            <textMaxNumLines value="4"/>
+        </Profile>
+        <Profile name="fs25_contractsContentValue" extends="fs25_textDefault" with="anchorTopRight">
+            <position value="-20px -15px"/>
+            <textBold value="true"/>
+            <textAlignment value="right"/>
+            <textColor value="$preset_fs25_colorMainHighlight"/>
+        </Profile>
+        <Profile name="fs25_contractsProgressBarBg" extends="emptyPanel" with="anchorTopCenter">
+            <size value="720px 33px"/>
+            <position value="0px -40px"/>
+            <imageColor value="$preset_fs25_colorGrey"/>
+            <imageSliceId value="gui.contracts_progressbar_background_middle"/>
+            <startImageSize value="8px 0"/>
+            <startImageSliceId value="gui.contracts_progressbar_background_left"/>
+            <endImageSize value="8px 0"/>
+            <endImageSliceId value="gui.contracts_progressbar_background_right"/>
+        </Profile>
+        <Profile name="fs25_contractsProgressBar" extends="baseReference" with="anchorMiddleLeft">
+            <size value="712px 25px"/>
+            <position value="4px 0px"/>
+            <imageColor value="$preset_fs25_colorMainHighlight"/>
+            <imageSliceId value="gui.button_middle"/>
+            <startImageSize value="6px 0"/>
+            <startImageSliceId value="gui.button_left"/>
+            <endImageSize value="6px 0"/>
+            <endImageSliceId value="gui.button_right"/>
+        </Profile>
+        <Profile name="fs25_contractsContentText" extends="fs25_textDefault" with="anchorTopStretchingX">
+            <size value="100% 80px"/>
+            <absoluteSizeOffset value="40px 0px"/>
+            <textMaxNumLines value="4"/>
+        </Profile>
+        <Profile name="fs25_contractsVehiclesItem" extends="baseReference">
+            <size value="190px 190px"/>
+            <margin value="5px 0 5px 0px"/>
+            <imageSliceId value="noSlice"/>
+            <imageFilename value="data/store/store_empty.png"/>
+        </Profile>
+        <Profile name="fs25_contractsVehiclesBoxMarquee" extends="baseReference" with="anchorBottomStretchingX">
+            <height value="190px"/>
+            <position value="0px 10px"/>
+            <clipping value="true"/>
+        </Profile>
+        <Profile name="fs25_contractsVehiclesBox" extends="emptyPanel" with="anchorStretchingYStretchingX">
+            <alignmentX value="center"/>
+            <alignmentY value="bottom"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

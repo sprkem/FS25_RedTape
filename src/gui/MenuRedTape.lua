@@ -32,6 +32,7 @@ function MenuRedTape.new(i18n, messageCenter)
     self.messageCenter = messageCenter
 
     self.eventLogRenderer = EventLogRenderer.new(self)
+    self.activePoliciesRenderer = ActivePoliciesRenderer.new(self)
 
     return self
 end
@@ -41,32 +42,38 @@ function MenuRedTape:onGuiSetupFinished()
 
     self.farmEventsTable:setDataSource(self.eventLogRenderer)
     self.farmEventsTable:setDelegate(self.eventLogRenderer)
+
+    self.activePoliciesTable:setDataSource(self.activePoliciesRenderer)
+    self.activePoliciesTable:setDelegate(self.activePoliciesRenderer)
 end
 
 function MenuRedTape:initialize()
     MenuRedTape:superClass().initialize(self)
     for i, tab in pairs(self.subCategoryTabs) do
         tab:getDescendantByName("background").getIsSelected = function()
-            -- upvalues: (copy) v_u_21_, (copy) self
             return i == self.subCategoryPaging:getState()
         end
         function tab.getIsSelected()
-            -- upvalues: (copy) v_u_21_, (copy) self
             return i == self.subCategoryPaging:getState()
         end
     end
 end
 
-function MenuRedTape:onFrameOpen(element)
-    local isMultiplayer = g_currentMission.missionDynamicInfo.isMultiplayer
+function MenuRedTape:onFrameOpen()
+    local xmlFile = loadXMLFile("Temp", "dataS/gui/InGameMenuContractsFrame.xml")
+    saveXMLFileTo(xmlFile, g_currentMission.missionInfo.savegameDirectory .. "/InGameMenuContractsFrame.xml")
+    delete(xmlFile);
+
+    -- local isMultiplayer = g_currentMission.missionDynamicInfo.isMultiplayer
     -- local v46_ = not isMultiplayer or g_localPlayer.farmId ~= FarmManager.SPECTATOR_FARM_ID
     local texts = {}
     for k, tab in pairs(self.subCategoryTabs) do
         tab:setVisible(true)
         table.insert(texts, tostring(k))
     end
-    self.subCategoryPaging:setTexts(texts)
     self.subCategoryBox:invalidateLayout()
+    self.subCategoryPaging:setTexts(texts)
+    self.subCategoryPaging:setSize(self.subCategoryBox.maxFlowSize + 140 * g_pixelSizeScaledX)
 
     self:onMoneyChange()
     g_messageCenter:subscribe(MessageType.MONEY_CHANGED, self.onMoneyChange, self)
@@ -75,6 +82,7 @@ function MenuRedTape:onFrameOpen(element)
         self:updateContent()
     end, self)
     self:updateContent()
+    FocusManager:setFocus(self.subCategoryPaging)
 end
 
 function MenuRedTape:onFrameClose()
@@ -104,7 +112,7 @@ end
 
 function MenuRedTape:updateSubCategoryPages(subCategoryIndex)
     self:updateContent()
-    -- FocusManager:setFocus(self.subCategoryPaging)
+    FocusManager:setFocus(self.subCategoryPaging)
 end
 
 function MenuRedTape:updateContent()
@@ -120,7 +128,19 @@ function MenuRedTape:updateContent()
     if state == MenuRedTape.SUB_CATEGORY.OVERVIEW then
         print("Overview sub-category selected")
     elseif state == MenuRedTape.SUB_CATEGORY.POLICIES then
-        print("Policies sub-category selected")
+        local activePolicies = g_currentMission.RedTape.PolicySystem.policies
+
+        if #activePolicies == 0 then
+            self.activePoliciesContainer:setVisible(false)
+            self.noActivePoliciesContainer:setVisible(true)
+            return
+        end
+
+        self.activePoliciesContainer:setVisible(true)
+        self.noActivePoliciesContainer:setVisible(false)
+
+        self.activePoliciesRenderer:setData(activePolicies)
+        self.activePoliciesTable:reloadData()
     elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
         print("Schemes sub-category selected")
     elseif state == MenuRedTape.SUB_CATEGORY.EVENTLOG then

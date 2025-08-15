@@ -4,6 +4,8 @@
 	<texts>
 		<text name="rt_misc_year" text="Year"/>
 		
+
+		<text name="rt_label_active_policies" text="Active Policies"/>
 		<text name="rt_header_overview" text="Overview"/>
 		<text name="rt_header_policies" text="Policies"/>
 		<text name="rt_header_schemes" text="Schemes"/>
@@ -18,11 +20,17 @@
 		<text name="rt_tableheader_timestamp" text="Timestamp"/>
 		<text name="rt_tableheader_eventtype" text="Event Type"/>
 		<text name="rt_tableheader_detail" text="Detail"/>
+		<text name="rt_tableheader_name" text="Name"/>
+		<text name="rt_tableheader_description" text="Description"/>
+		<text name="rt_tableheader_next" text="Next"/>
 
 		<text name="rt_notify_active_policy" text="A new policy has been activated: %s"/>
 		
 		<text name="rt_policy_croprotation" text="Crop rotation"/>
 		<text name="rt_policy_sprayviolation" text="Avoid spraying near water"/>
+
+		<text name="rt_policy_description_croprotation" text="Mandates crop rotation"/>
+		<text name="rt_policy_description_sprayviolation" text="Penalizes farms for spraying near water"/>
 
 		<text name="rt_policy_reason_evaluation" text="%s points awarded during evaluation of policy %s"/>
 		<text name="rt_policy_reason_completion" text="%s points awarded during completion of policy %s"/>

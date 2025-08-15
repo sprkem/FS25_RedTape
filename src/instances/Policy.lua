@@ -73,6 +73,16 @@ function Policy:getName()
     return g_i18n:getText(policyInfo.name)
 end
 
+function Policy:getDescription()
+    if self.policyIndex == nil then
+        return nil
+    end
+
+    local policyInfo = Policies[self.policyIndex]
+
+    return g_i18n:getText(policyInfo.description)
+end
+
 function Policy:activate()
     local policyInfo = Policies[self.policyIndex]
 

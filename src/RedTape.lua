@@ -26,7 +26,6 @@ function RedTape:loadMap()
     self.PolicySystem = PolicySystem.new()
     self.InfoGatherer = InfoGatherer.new()
     self.EventLog = EventLog.new()
-    self.data = self.InfoGatherer:initData()
 
     g_messageCenter:subscribe(MessageType.HOUR_CHANGED, RedTape.hourChanged)
     g_messageCenter:subscribe(MessageType.PERIOD_CHANGED, RedTape.periodChanged)
@@ -67,6 +66,7 @@ function RedTape:saveToXmlFile()
     g_currentMission.RedTape.SchemeSystem:saveToXmlFile()
     g_currentMission.RedTape.TaxSystem:saveToXmlFile()
     g_currentMission.RedTape.EventLog:saveToXmlFile()
+    g_currentMission.RedTape.InfoGatherer:saveToXmlFile()
 end
 
 -- from Courseplay

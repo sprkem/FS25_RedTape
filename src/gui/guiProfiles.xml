@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <GUIProfiles>
+    <Profile name="rtLabelTopLeft" extends="fs25_statisticsHeaderText" with="anchorTopLeft" />
     <Profile name="rtTableHeader" extends="baseReference">
         <imageColor value="0 0 0 0" />
         <textFocusedColor value="$preset_fs25_colorMainHighlight" />

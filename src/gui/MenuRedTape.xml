@@ -88,83 +88,41 @@
             </GuiElement>
         </GuiElement>
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[2]">
-            <GuiElement profile="fs25_statisticsHeaderBox">
-                <Button profile="fs25_vehiclesHeaderName" text="$l10n_ui_vehicle" onClick="onClickButtonSortByName" onCreate="onCreateButtonSortByName">
-                    <Bitmap profile="fs25_vehiclesHeaderIconSortAscending" position="10.5px 0px" name="iconAscending"/>
-                    <Bitmap profile="fs25_vehiclesHeaderIconSortDescending" position="10.5px 0px" name="iconDescending"/>
-                </Button>
-                <GuiElement profile="fs25_vehiclesHeaderTextContainer" position="440px 0px">
-                    <Button profile="fs25_vehiclesHeaderText" text="$l10n_ui_licensePlate" handleFocus="false"/>
+
+            <GuiElement position="0 -20px">
+                <Text profile="rtLabelTopLeft" text="$l10n_rt_label_active_policies" position="0px 20px"/>
+                <GuiElement id="activePoliciesContainer">
+                    <GuiElement profile="fs25_statisticsHeaderBox">
+                        <Button profile="rtTableHeader" position="40px -20px" text="$l10n_rt_tableheader_name" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="250px -20px" text="$l10n_rt_tableheader_description" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="550px -20px" text="$l10n_rt_tableheader_next" handleFocus="false" />
+                    </GuiElement>
+
+                    <SmoothList id="activePoliciesTable" profile="rt_table" position="20px -50px" size="1480px 290px">
+                        <ListItem profile="rtTableListItem">
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
+                            <Text profile="rtListRowCellLeft" position="230px 0px" size="300px 32px" name="description"/>
+                            <Text profile="rtListRowCellLeft" position="530px 0px" size="150px 32px" name="next"/>
+                        </ListItem>
+                    </SmoothList>
+
+                    <ThreePartBitmap profile="rt_slider_box" position="0px -50px" size="6px 290px">
+                        <Slider profile="fs25_listSlider" dataElementId="activePoliciesTable" />
+                    </ThreePartBitmap>
                 </GuiElement>
-                <GuiElement profile="fs25_vehiclesHeaderTextContainer" position="620px 0px">
-                    <Button profile="fs25_vehiclesHeaderText" text="$l10n_ui_age" onClick="onClickButtonSortByAge" onCreate="onCreateButtonSortByAge">
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortAscending" name="iconAscending"/>
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortDescending" name="iconDescending"/>
-                    </Button>
+
+                <GuiElement id="noActivePoliciesContainer">
+                    <Text profile="rt_no_events" text="$l10n_ui_noShopItems" position="0px -60px" width="350px" />
                 </GuiElement>
-                <GuiElement profile="fs25_vehiclesHeaderTextContainer" position="800px 0px">
-                    <Button profile="fs25_vehiclesHeaderText" text="$l10n_ui_workingHours" onClick="onClickButtonSortByHours" onCreate="onCreateButtonSortByHours">
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortAscending" name="iconAscending"/>
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortDescending" name="iconDescending"/>
-                    </Button>
-                </GuiElement>
-                <GuiElement profile="fs25_vehiclesHeaderTextContainer" position="980px 0px">
-                    <Button profile="fs25_vehiclesHeaderText" text="$l10n_ui_condition" onClick="onClickButtonSortByDamage" onCreate="onCreateButtonSortByDamage">
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortAscending" name="iconAscending"/>
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortDescending" name="iconDescending"/>
-                    </Button>
-                </GuiElement>
-                <GuiElement profile="fs25_vehiclesHeaderTextContainer" position="1160px 0px">
-                    <Button profile="fs25_vehiclesHeaderText" text="$l10n_ui_leasingCost" onClick="onClickButtonSortByLeasing" onCreate="onCreateButtonSortByLeasing">
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortAscending" name="iconAscending"/>
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortDescending" name="iconDescending"/>
-                    </Button>
-                </GuiElement>
-                <GuiElement profile="fs25_vehiclesHeaderTextContainer" position="1340px 0px">
-                    <Button profile="fs25_vehiclesHeaderText" text="$l10n_ui_sellValue" onClick="onClickButtonSortByValue" onCreate="onCreateButtonSortByValue">
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortAscending" name="iconAscending"/>
-                        <Bitmap profile="fs25_vehiclesHeaderIconSortDescending" name="iconDescending"/>
-                    </Button>
-                </GuiElement>
-                <ThreePartBitmap profile="fs25_lineSeparatorBottom" position="0px -2dp"/>
+
             </GuiElement>
-            <SmoothList profile="fs25_vehiclesList" id="vehiclesList">
-                <ListItem profile="fs25_vehiclesListItem" name="rowTemplate">
-                    <ThreePartBitmap profile="fs25_vehiclesListItemBg" name="alternating"/>
-                    <Text profile="fs25_vehiclesListItemName" name="name"/>
-                    <Text profile="fs25_vehiclesListItemInfo" position="440px 0px" name="licensePlate"/>
-                    <Text profile="fs25_vehiclesListItemInfo" position="620px 0px" name="age"/>
-                    <Text profile="fs25_vehiclesListItemInfo" position="800px 0px" name="operatingHours"/>
-                    <Text profile="fs25_vehiclesListItemInfo" position="980px 0px" name="damage"/>
-                    <Text profile="fs25_vehiclesListItemInfo" position="1160px 0px" name="leasing"/>
-                    <Text profile="fs25_vehiclesListItemInfo" position="1340px 0px" name="value"/>
-                </ListItem>
-            </SmoothList>
-            <GuiElement profile="fs25_shopItemsDetailsContainer" id="detailBox">
-                <Bitmap profile="fs25_stopClipper" name="startClipper" position="-2px 215px"/>
-                <Bitmap profile="fs25_vehiclesDetailsImageBg">
-                    <Bitmap profile="fs25_vehiclesDetailsImage" id="itemDetailsImage"/>
-                </Bitmap>
-                <Text profile="fs25_vehiclesDetailsName" id="itemDetailsName"/>
-                <Bitmap profile="fs25_itemDetailsFruitIcon" id="fruitIconTemplate" visible="false"/>
-                <BoxLayout profile="fs25_vehiclesDetailsInfoBox" id="attributesLayout">
-                    <GuiElement profile="fs25_itemDetailsTemplateBox" name="detailTemplate">
-                        <Bitmap profile="fs25_itemDetailsIcon" name="icon"/>
-                        <Text profile="fs25_itemDetailsText" text="Default" name="text"/>
-                    </GuiElement>
-                    <GuiElement profile="fs25_itemDetailsTemplateBox" name="valueTemplate">
-                        <Bitmap profile="shopListAttributeIconPrice" name="icon"/>
-                        <Text profile="fs25_itemDetailsText" text="Dummy" name="text"/>
-                    </GuiElement>
-                    <GuiElement profile="fs25_itemDetailsFillTypeTemplateBox" name="fillTypesTemplate">
-                        <Bitmap profile="fs25_itemDetailsFillTypeSeparator"/>
-                        <Bitmap profile="fs25_itemDetailsIcon" name="icon"/>
-                        <GuiElement profile="fs25_itemDetailsIconsLayoutBox">
-                            <BoxLayout profile="fs25_itemDetailsIconsLayout" name="iconsLayout"/>
-                        </GuiElement>
-                    </GuiElement>
-                </BoxLayout>
+
+            <ThreePartBitmap profile="fs25_lineSeparatorTop" position="0px -340px" />
+
+            <GuiElement position="0 -320px">
+                <Text profile="rt_no_events" text="TEMP TEXT" position="0px -60px" width="350px" />
             </GuiElement>
+
         </GuiElement>
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[3]">
             <BoxLayout profile="fs25_statisticsHeaderBox" numFlows="2">

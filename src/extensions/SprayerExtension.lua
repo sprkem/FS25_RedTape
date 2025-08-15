@@ -48,7 +48,7 @@ function SprayerExtension:processSprayerArea(superFunc, workArea, dt)
         end
     end
 
-    g_currentMission.RedTape.InfoGatherer:storeSprayAreaCoords(self.uniqueId, coords)
+    rt.InfoGatherer.gatherers[INFO_KEYS.FARMS]:storeSprayAreaCoords(self.uniqueId, coords)
 
     return superFunc(self, workArea, dt)
 end
