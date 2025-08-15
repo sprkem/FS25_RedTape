@@ -53,12 +53,15 @@ function FarmlandGatherer:getFarmlandData(farmlandId)
 end
 
 function FarmlandGatherer:saveToXmlFile(xmlFile, key)
-    for k, farmlandId in self.data do
-        local farmlandKey = string.format("%s.farmlands.farmland(%d)", key, farmlandId)
-        setXMLInt(xmlFile, farmlandKey .. "#fallowMonths", farmlandId.fallowMonths)
-        setXMLInt(xmlFile, farmlandKey .. "#mostRecentFruit", farmlandId.mostRecentFruit)
-        setXMLInt(xmlFile, farmlandKey .. "#previousFruit", farmlandId.previousFruit)
-        setXMLInt(xmlFile, farmlandKey .. "#areaHa", farmlandId.areaHa)
+    local i = 0
+    for farmlandId, farmlandData in pairs(self.data) do
+        local farmlandKey = string.format("%s.farmlands.farmland(%d)", key, i)
+        setXMLInt(xmlFile, farmlandKey .. "#id", farmlandId)
+        setXMLInt(xmlFile, farmlandKey .. "#fallowMonths", farmlandData.fallowMonths)
+        setXMLInt(xmlFile, farmlandKey .. "#mostRecentFruit", farmlandData.mostRecentFruit)
+        setXMLInt(xmlFile, farmlandKey .. "#previousFruit", farmlandData.previousFruit)
+        setXMLInt(xmlFile, farmlandKey .. "#areaHa", farmlandData.areaHa)
+        i = i + 1
     end
 end
 

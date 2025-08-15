@@ -29,10 +29,13 @@ function FarmGatherer:getFarmData(farmId)
 end
 
 function FarmGatherer:saveToXmlFile(xmlFile, key)
-    for k, farmId in self.data do
-        local farmKey = string.format("%s.farms.farm(%d)", key, farmId)
-        setXMLInt(xmlFile, farmKey .. "#pendingSprayViolations", self.data[farmId].pendingSprayViolations)
-        setXMLInt(xmlFile, farmKey .. "#sprayViolationsInCurrentPolicyWindow", self.data[farmId].sprayViolationsInCurrentPolicyWindow)
+    local i = 0
+    for farmId, farmData in pairs(self.data) do
+        local farmKey = string.format("%s.farms.farm(%d)", key, i)
+        setXMLInt(xmlFile, farmKey .. "#id", farmId)
+        setXMLInt(xmlFile, farmKey .. "#pendingSprayViolations", farmData.pendingSprayViolations)
+        setXMLInt(xmlFile, farmKey .. "#sprayViolationsInCurrentPolicyWindow", farmData.sprayViolationsInCurrentPolicyWindow)
+        i = i + 1
     end
 end
 
@@ -90,7 +93,6 @@ function FarmGatherer:checkSprayers()
             local farmId = 1
             local farmData = self:getFarmData(farmId)
             farmData.pendingSprayViolations = farmData.pendingSprayViolations + 1
-            farmData.sprayViolationsInCurrentPolicyWindow = farmData.sprayViolationsInCurrentPolicyWindow + 1
         else
             print("No water found for sprayer " .. sprayer:getName())
         end

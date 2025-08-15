@@ -2,13 +2,13 @@ SprayerExtension = {}
 
 function SprayerExtension:onTurnedOn()
     print("Sprayer turned on: " .. self:getName())
-    g_currentMission.RedTape.InfoGatherer.turnedOnSprayers[self.uniqueId] = self
+    g_currentMission.RedTape.InfoGatherer.gatherers[INFO_KEYS.FARMS].turnedOnSprayers[self.uniqueId] = self
 end
 
 function SprayerExtension:onTurnedOff()
     print("Sprayer turned off: " .. self:getName())
-    g_currentMission.RedTape.InfoGatherer.turnedOnSprayers[self.uniqueId] = nil
-    g_currentMission.RedTape.InfoGatherer.sprayCoords[self.uniqueId] = nil
+    g_currentMission.RedTape.InfoGatherer.gatherers[INFO_KEYS.FARMS].turnedOnSprayers[self.uniqueId] = nil
+    g_currentMission.RedTape.InfoGatherer.gatherers[INFO_KEYS.FARMS].sprayCoords[self.uniqueId] = nil
 end
 
 Sprayer.onTurnedOn = Utils.appendedFunction(Sprayer.onTurnedOn, SprayerExtension.onTurnedOn)

@@ -85,6 +85,11 @@ Policies = {
         evaluationInterval = 1,
         maxEvaluationCount = 12,
         activate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            farmData.pendingSprayViolations = 0
+            farmData.sprayViolationsInCurrentPolicyWindow = 0
         end,
         evaluate = function(policyInfo, policy, farmId)
             local ig = g_currentMission.RedTape.InfoGatherer
@@ -97,11 +102,12 @@ Policies = {
                 print("Farm " .. farmId .. ": Spray violations detected: " .. pendingSprayViolations)
                 local pointsLost = policyInfo.penaltyPerSprayViolation * pendingSprayViolations
                 farmData.sprayViolationsInCurrentPolicyWindow = farmData.sprayViolationsInCurrentPolicyWindow +
-                pendingSprayViolations
+                    pendingSprayViolations
                 farmData.pendingSprayViolations = 0
                 return -pointsLost
             else
-                print("Farm " .. farmId .. ": No spray violations. Violations ignored: " .. farmData.pendingSprayViolations)
+                print("Farm " ..
+                farmId .. ": No spray violations. Violations ignored: " .. farmData.pendingSprayViolations)
                 farmData.pendingSprayViolations = 0
                 return policyInfo.periodicReward
             end
@@ -112,7 +118,8 @@ Policies = {
             local farmData = ig:getFarmData(farmId)
             local sprayViolationsInCurrentPolicyWindow = farmData.sprayViolationsInCurrentPolicyWindow or 0
             local reward = math.max(
-                policyInfo.maxCompleteReward - (sprayViolationsInCurrentPolicyWindow * math.abs(policyInfo.deductionPerViolationOnComplete)),
+            policyInfo.maxCompleteReward -
+                (sprayViolationsInCurrentPolicyWindow * math.abs(policyInfo.deductionPerViolationOnComplete)),
                 0)
             farmData.sprayViolationsInCurrentPolicyWindow = 0
             return reward
