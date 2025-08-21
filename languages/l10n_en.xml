@@ -4,7 +4,6 @@
 	<texts>
 		<text name="rt_misc_year" text="Year"/>
 		
-
 		<text name="rt_label_active_policies" text="Active Policies"/>
 		<text name="rt_header_overview" text="Overview"/>
 		<text name="rt_header_policies" text="Policies"/>
@@ -31,12 +30,18 @@
 		<text name="rt_policy_empty_food" text="Animal food levels"/>
 		<text name="rt_policy_empty_straw" text="Animal straw levels"/>
 		<text name="rt_policy_full_slurry" text="Keep slurry tanks not full."/>
+		<text name="rt_policy_animal_productivity" text="Animal conditions"/>
+		<text name="rt_policy_animal_space" text="Animal space requirements"/>
+		<text name="rt_policy_manure_spreading" text="Manure spreading compliance"/>
 
 		<text name="rt_policy_description_croprotation" text="Mandates crop rotation"/>
 		<text name="rt_policy_description_sprayviolation" text="Penalizes farms for spraying near water"/>
 		<text name="rt_policy_description_empty_food" text="Requires food to be present in animal pens."/>
 		<text name="rt_policy_description_empty_straw" text="Requires straw to be present in animal pens."/>
 		<text name="rt_policy_description_full_slurry" text="Requires slurry tanks not to be full."/>
+		<text name="rt_policy_description_animal_productivity" text="Requires animals to be kept in good conditions."/>
+		<text name="rt_policy_description_animal_space" text="Requires sufficient space for animals."/>
+		<text name="rt_policy_description_manure_spreading" text="Requires compliance with manure spreading regulations."/>
 
 		<text name="rt_policy_reason_evaluation" text="%s points awarded during evaluation of policy %s"/>
 		<text name="rt_policy_reason_completion" text="%s points awarded during completion of policy %s"/>

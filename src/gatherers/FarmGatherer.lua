@@ -49,6 +49,7 @@ function FarmGatherer:hourChanged()
 end
 
 function FarmGatherer:periodChanged()
+    self:updateManureLevels()
 end
 
 function FarmGatherer:getFarmData(farmId)
@@ -65,7 +66,10 @@ function FarmGatherer:getFarmData(farmId)
             pendingLowProductivityHusbandry = 0,
             totalLowProductivityHusbandry = 0,
             pendingAnimalSpaceViolations = 0,
-            totalAnimalSpaceViolations = 0
+            totalAnimalSpaceViolations = 0,
+            currentManureLevel = 0,
+            rollingAverageManureLevel = 0,
+            pendingManureSpread = 0
         }
     end
     return self.data[farmId]
@@ -119,7 +123,7 @@ function FarmGatherer:storeSprayAreaCoords(uniqueId, coords)
 end
 
 function FarmGatherer:checkSprayers()
-    local checkFillTypes = { FillType.FERTILIZER }
+    local checkFillTypes = { FillType.FERTILIZER, FillType.SLURRY, FillType.LIME, FillType.MANURE }
 
     for uniqueId, sprayer in pairs(self.turnedOnSprayers) do
         if not sprayer.spec_sprayer.workAreaParameters.isActive then
@@ -333,12 +337,52 @@ function FarmGatherer:getDesirableSpace(animalType)
     if animalType == AnimalType.CHICKEN then
         return 1
     elseif animalType == AnimalType.COW then
-        return 10
+        return 12
     elseif animalType == AnimalType.HORSE then
-        return 15
+        return 17
     elseif animalType == AnimalType.PIG then
-        return 5
-    elseif animalType == AnimalType.SHEEP then
         return 7
+    elseif animalType == AnimalType.SHEEP then
+        return 9
+    end
+end
+
+function FarmGatherer:updateManureLevels()
+
+    for _, farmData in pairs(self.data) do
+        farmData.currentManureLevel = 0
+    end
+
+    local placeables = g_currentMission.placeableSystem.placeables
+    for _, placeable in pairs(placeables) do
+        if placeable.spec_manureHeap ~= nil then
+            for fillTypeIndex, fillLevel in pairs(placeable.spec_manureHeap.manureHeap.fillLevels) do
+                if fillTypeIndex ~= FillType.MANURE then
+                    continue
+                end
+                if fillLevel > 0 and fillTypeIndex ~= nil then
+                    local farmData = self:getFarmData(placeable:getOwnerFarmId())
+                    farmData.currentManureLevel = farmData.currentManureLevel + fillLevel
+                end
+            end
+        end
+
+        if placeable.spec_husbandry ~= nil then
+            for fillTypeIndex, fillLevel in pairs(placeable.spec_husbandry.storage.fillLevels) do
+                if fillTypeIndex ~= FillType.MANURE then
+                    continue
+                end
+                if fillLevel > 0 and fillTypeIndex ~= nil then
+                    local farmData = self:getFarmData(placeable:getOwnerFarmId())
+                    farmData.currentManureLevel = farmData.currentManureLevel + fillLevel
+                end
+            end
+        end
+    end
+
+    local averagingWindow = 6
+    for _, farmData in pairs(self.data) do
+        local oldAverage = farmData.rollingAverageManureLevel
+        farmData.rollingAverageManureLevel = (oldAverage * (averagingWindow - 1) + farmData.currentManureLevel) / averagingWindow
     end
 end

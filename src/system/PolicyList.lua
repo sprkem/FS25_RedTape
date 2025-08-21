@@ -5,7 +5,8 @@ PolicyIds = {
     FULL_SLURRY = 4,
     EMPTY_FOOD = 5,
     ANIMAL_SPACE = 6,
-    ANIMAL_PRODUCTIVITY = 7
+    ANIMAL_PRODUCTIVITY = 7,
+    MANURE_SPREADING = 8,
 }
 
 Policies = {
@@ -29,10 +30,6 @@ Policies = {
 
             local totalHa = 0
             local nonCompliantHa = 0
-
-            if farmId == 1 then
-                print("on farm 1")
-            end
 
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId and farmland.field ~= nil then
@@ -138,7 +135,7 @@ Policies = {
         description = "rt_policy_description_empty_straw",
         probability = 0.6,
         periodicReward = 5,
-        periodicPenaltyPerViolation = -10,
+        periodicPenaltyPerViolation = -2,
         deductionPerViolationOnComplete = 5,
         maxCompleteReward = 500,
         evaluationInterval = 1,
@@ -186,7 +183,7 @@ Policies = {
         description = "rt_policy_description_full_slurry",
         probability = 0.5,
         periodicReward = 5,
-        periodicPenaltyPerViolation = -10,
+        periodicPenaltyPerViolation = -3,
         deductionPerViolationOnComplete = 5,
         maxCompleteReward = 500,
         evaluationInterval = 1,
@@ -234,7 +231,7 @@ Policies = {
         description = "rt_policy_description_empty_food",
         probability = 0.7,
         periodicReward = 5,
-        periodicPenaltyPerViolation = -10,
+        periodicPenaltyPerViolation = -3,
         deductionPerViolationOnComplete = 5,
         maxCompleteReward = 500,
         evaluationInterval = 1,
@@ -273,6 +270,142 @@ Policies = {
                 0)
             farmData.totalEmptyFoodCount = 0
             return reward
+        end,
+    },
+
+    [PolicyIds.ANIMAL_SPACE] = {
+        id = PolicyIds.ANIMAL_SPACE,
+        name = "rt_policy_animal_space",
+        description = "rt_policy_description_animal_space",
+        probability = 0.6,
+        periodicReward = 10,
+        periodicPenaltyPerViolation = -1,
+        deductionPerViolationOnComplete = 10,
+        maxCompleteReward = 300,
+        evaluationInterval = 1,
+        maxEvaluationCount = 12,
+        activate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            farmData.pendingAnimalSpaceViolations = 0
+            farmData.totalAnimalSpaceViolations = 0
+        end,
+        evaluate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            local pendingViolations = farmData.pendingAnimalSpaceViolations or 0
+            local reward = 0
+            if pendingViolations > 0 then
+                reward = policyInfo.periodicPenaltyPerViolation * pendingViolations
+                farmData.totalAnimalSpaceViolations = farmData.totalAnimalSpaceViolations + pendingViolations
+            else
+                reward = policyInfo.periodicReward
+            end
+            farmData.pendingAnimalSpaceViolations = 0
+            return reward
+        end,
+        complete = function(policyInfo, policy, farmId)
+            print("Animal Space policy completed.")
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            local totalViolations = farmData.totalAnimalSpaceViolations or 0
+            local reward = math.max(
+                policyInfo.maxCompleteReward -
+                (totalViolations * math.abs(policyInfo.deductionPerViolationOnComplete)),
+                0)
+            farmData.totalAnimalSpaceViolations = 0
+            return reward
+        end,
+    },
+
+    [PolicyIds.ANIMAL_PRODUCTIVITY] = {
+        id = PolicyIds.ANIMAL_PRODUCTIVITY,
+        name = "rt_policy_animal_productivity",
+        description = "rt_policy_description_animal_productivity",
+        probability = 0.3,
+        periodicReward = 15,
+        periodicPenaltyPerViolation = -1,
+        deductionPerViolationOnComplete = 15,
+        maxCompleteReward = 400,
+        evaluationInterval = 1,
+        maxEvaluationCount = 12,
+        activate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            farmData.pendingLowProductivityHusbandry = 0
+            farmData.totalLowProductivityHusbandry = 0
+        end,
+        evaluate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            local pendingViolations = farmData.pendingLowProductivityHusbandry or 0
+            local reward = 0
+            if pendingViolations > 0 then
+                reward = policyInfo.periodicPenaltyPerViolation * pendingViolations
+                farmData.totalLowProductivityHusbandry = farmData.totalLowProductivityHusbandry + pendingViolations
+            else
+                reward = policyInfo.periodicReward
+            end
+            farmData.pendingLowProductivityHusbandry = 0
+            return reward
+        end,
+        complete = function(policyInfo, policy, farmId)
+            print("Animal Productivity policy completed.")
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            local totalViolations = farmData.totalLowProductivityHusbandry or 0
+            local reward = math.max(
+                policyInfo.maxCompleteReward -
+                (totalViolations * math.abs(policyInfo.deductionPerViolationOnComplete)),
+                0)
+            farmData.totalLowProductivityHusbandry = 0
+            return reward
+        end,
+    },
+
+    [PolicyIds.MANURE_SPREADING] = {
+        id = PolicyIds.MANURE_SPREADING,
+        name = "rt_policy_manure_spreading",
+        description = "rt_policy_description_manure_spreading",
+        probability = 0.4,
+        periodicReward = 50,
+        periodicPenalty = -100,
+        completeReward = 0,
+        evaluationInterval = 6,
+        maxEvaluationCount = 4,
+        activate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            farmData.pendingManureSpread = 0
+        end,
+        evaluate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            local expectedSpread = farmData.rollingAverageManureLevel * 0.5
+
+            local reward = 0
+            if farmData.pendingManureSpread < expectedSpread then
+                reward = policyInfo.periodicPenaltyPerViolation
+            else
+                reward = policyInfo.periodicReward
+            end
+            farmData.pendingManureSpread = 0
+            return reward
+        end,
+        complete = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            farmData.pendingManureSpread = 0
+            return policyInfo.completeReward
         end,
     },
 }

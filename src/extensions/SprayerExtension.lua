@@ -15,6 +15,7 @@ Sprayer.onTurnedOn = Utils.appendedFunction(Sprayer.onTurnedOn, SprayerExtension
 Sprayer.onTurnedOff = Utils.appendedFunction(Sprayer.onTurnedOff, SprayerExtension.onTurnedOff)
 
 function SprayerExtension:processSprayerArea(superFunc, workArea, dt)
+    if (not g_currentMission:getIsServer()) then return end
     local rt = g_currentMission.RedTape
 
     -- Gate to perform spray area calculations much less frequently
@@ -54,3 +55,25 @@ function SprayerExtension:processSprayerArea(superFunc, workArea, dt)
 end
 
 Sprayer.processSprayerArea = Utils.overwrittenFunction(Sprayer.processSprayerArea, SprayerExtension.processSprayerArea)
+
+function SprayerExtension:onEndWorkAreaProcessing(dt, hasProcessed)
+    if (not g_currentMission:getIsServer()) then return end
+
+    local rt = g_currentMission.RedTape
+    local spec = self.spec_sprayer
+    if spec.workAreaParameters.isActive then
+        local sprayVehicle = spec.workAreaParameters.sprayVehicle
+
+        if sprayVehicle ~= nil then
+            local sprayFillType = spec.workAreaParameters.sprayFillType
+            if sprayFillType ~= nil and sprayFillType == FillType.MANURE then
+                local usage = spec.workAreaParameters.usage
+                local farmData = rt.InfoGatherer.gatherers[INFO_KEYS.FARMS]:getFarmData(sprayVehicle:getOwnerFarmId())
+                farmData.pendingManureSpread = farmData.pendingManureSpread + usage
+            end
+        end
+    end
+end
+
+Sprayer.onEndWorkAreaProcessing = Utils.appendedFunction(Sprayer.onEndWorkAreaProcessing,
+    SprayerExtension.onEndWorkAreaProcessing)
