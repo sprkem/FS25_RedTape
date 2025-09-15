@@ -39,7 +39,7 @@ Un mod qui ajoute des programmes gouvernementaux, des subventions et des taxes.
         <sourceFile filename="src/gatherers/FarmGatherer.lua"/>
         <sourceFile filename="src/gatherers/FarmlandGatherer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/ActivePoliciesRenderer.lua"/>
-        <sourceFile filename="src/gui/tableRenderers/AvailableSchemesRenderer.lua"/>
+        <sourceFile filename="src/gui/tableRenderers/SchemesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/EventLogRenderer.lua"/>
         <sourceFile filename="src/instances/EventLogItem.lua"/>
         <sourceFile filename="src/instances/Policy.lua"/>
@@ -49,6 +49,7 @@ Un mod qui ajoute des programmes gouvernementaux, des subventions et des taxes.
         <sourceFile filename="src/system/InfoGatherer.lua"/>
         <sourceFile filename="src/system/PolicyList.lua"/>
         <sourceFile filename="src/system/PolicySystem.lua"/>
+        <sourceFile filename="src/system/SchemeList.lua"/>
         <sourceFile filename="src/system/SchemeSystem.lua"/>
         <sourceFile filename="src/system/TaxSystem.lua"/>
         <sourceFile filename="src/RedTape.lua"/>

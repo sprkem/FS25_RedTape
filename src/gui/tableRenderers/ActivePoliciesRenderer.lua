@@ -1,10 +1,9 @@
 ActivePoliciesRenderer = {}
 ActivePoliciesRenderer_mt = Class(ActivePoliciesRenderer)
 
-function ActivePoliciesRenderer:new(parent)
+function ActivePoliciesRenderer:new()
     local self = {}
     setmetatable(self, ActivePoliciesRenderer_mt)
-    self.parent = parent
     self.data = nil
     self.selectedRow = -1;
 

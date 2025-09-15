@@ -74,24 +74,25 @@
         </GuiElement>
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[3]">
             <GuiElement position="0px -20px">
-                <Text profile="rtLabelTopLeft" text="$l10n_rt_label_availableSchemes" position="0px 20px"/>
-                <GuiElement id="availableSchemesContainer">
+                <MultiTextOption profile="rt_scheme_display_switcher" id="schemeDisplaySwitcher" onClick="onSwitchSchemeDisplay" size="400px 32px" position="0px 10px"/>
+                <!-- <Text profile="rtLabelTopLeft" text="$l10n_rt_label_available_schemes" position="0px 20px"/> -->
+                <GuiElement id="schemesContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox">
                         <Button profile="rtTableHeader" position="40px -20px" text="$l10n_rt_tableheader_name" handleFocus="false" />
                     </GuiElement>
 
-                    <SmoothList id="availableSchemesTable" profile="rt_table" position="20px -50px" size="400px 670px">
+                    <SmoothList id="schemesTable" profile="rt_table" position="20px -50px" size="400px 670px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
                         </ListItem>
                     </SmoothList>
 
                     <ThreePartBitmap profile="rt_slider_box_left" position="440px -20px" size="6px 670px">
-                        <Slider profile="fs25_listSlider" dataElementId="availableSchemesTable" />
+                        <Slider profile="fs25_listSlider" dataElementId="schemesTable" />
                     </ThreePartBitmap>
                 </GuiElement>
 
-                <GuiElement id="noAvailableSchemesContainer">
+                <GuiElement id="noSchemesContainer">
                     <Text profile="rt_header_top_left" text="$l10n_ui_noShopItems" position="0px -60px" width="350px" />
                     <ThreePartBitmap profile="fs25_contractsContentSeparator"/>
                 </GuiElement>

@@ -1,10 +1,9 @@
 EventLogRenderer = {}
 EventLogRenderer_mt = Class(EventLogRenderer)
 
-function EventLogRenderer:new(parent)
+function EventLogRenderer:new()
     local self = {}
     setmetatable(self, EventLogRenderer_mt)
-    self.parent = parent
     self.data = nil
     self.selectedRow = -1;
 

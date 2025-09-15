@@ -34,4 +34,5 @@
     <Profile name="rt_table" extends="emptyPanel" with="anchorStretchingYLeft pivotTopLeft" />
     <Profile name="rt_slider_box" extends="fs25_listSliderBox" with="anchorTopRight" />
     <Profile name="rt_slider_box_left" extends="fs25_listSliderBox" with="anchorTopLeft" />
+    <Profile name="rt_scheme_display_switcher" extends="fs25_subCategorySelector" with="anchorTopLeft" />
 </GUIProfiles>

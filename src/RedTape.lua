@@ -29,6 +29,7 @@ function RedTape:loadMap()
     self.PolicySystem = PolicySystem.new()
     self.InfoGatherer = InfoGatherer.new()
     self.EventLog = EventLog.new()
+    self.RedTapeMenu = guiRedTape
 
     g_messageCenter:subscribe(MessageType.HOUR_CHANGED, RedTape.hourChanged)
     g_messageCenter:subscribe(MessageType.PERIOD_CHANGED, RedTape.periodChanged)
@@ -141,7 +142,7 @@ function RedTape.addIngameMenuPage(frame, pageName, uvs, predicateFunc, insertAf
 
     g_inGameMenu:registerPage(g_inGameMenu[pageName], nil, predicateFunc)
 
-    local iconFileName = Utils.getFilename('images/possible-new-icon.dds', RedTape.dir)
+    local iconFileName = Utils.getFilename('images/menuIcon.dds', RedTape.dir)
     g_inGameMenu:addPageTab(g_inGameMenu[pageName], iconFileName, GuiUtils.getUVs(uvs))
 
     for i = 1, #g_inGameMenu.pageFrames do

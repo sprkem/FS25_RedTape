@@ -3,19 +3,25 @@ MenuRedTape.currentTasks = {}
 MenuRedTape._mt = Class(MenuRedTape, TabbedMenuFrameElement)
 
 MenuRedTape.SUB_CATEGORY = {
-    ["OVERVIEW"] = 1,
-    ["POLICIES"] = 2,
-    ["SCHEMES"] = 3,
-    ["TAX"] = 4,
-    ["EVENTLOG"] = 5
+    OVERVIEW = 1,
+    POLICIES = 2,
+    SCHEMES = 3,
+    TAX = 4,
+    EVENTLOG = 5
 }
 
+MenuRedTape.SCHEME_LIST_TYPE = {
+    AVAILABLE = 1,
+    ACTIVE = 2
+}
+MenuRedTape.SCHEME_STATE_TEXTS = { "ui_contractsNew", "ui_contractsActive" }
+
 MenuRedTape.HEADER_SLICES = {
-    [MenuRedTape.SUB_CATEGORY.OVERVIEW] = "gui.icon_ingameMenu_prices",
-    [MenuRedTape.SUB_CATEGORY.POLICIES] = "gui.icon_vehicleDealer_machines",
-    [MenuRedTape.SUB_CATEGORY.SCHEMES] = "gui.icon_ingameMenu_handToolsOverview",
-    [MenuRedTape.SUB_CATEGORY.TAX] = "gui.icon_ingameMenu_finances",
-    [MenuRedTape.SUB_CATEGORY.EVENTLOG] = "gui.icon_ingameMenu_finances",
+    [MenuRedTape.SUB_CATEGORY.OVERVIEW] = "gui.icon_ingameMenu_contracts",
+    [MenuRedTape.SUB_CATEGORY.POLICIES] = "gui.icon_ingameMenu_finances",
+    [MenuRedTape.SUB_CATEGORY.SCHEMES] = "gui.icon_ingameMenu_finances",
+    [MenuRedTape.SUB_CATEGORY.TAX] = "gui.icon_ingameMenu_prices",
+    [MenuRedTape.SUB_CATEGORY.EVENTLOG] = "gui.icon_ingameMenu_contracts",
 }
 MenuRedTape.HEADER_TITLES = {
     [MenuRedTape.SUB_CATEGORY.OVERVIEW] = "rt_header_overview",
@@ -30,10 +36,11 @@ function MenuRedTape.new(i18n, messageCenter)
     self.name = "MenuRedTape"
     self.i18n = i18n
     self.messageCenter = messageCenter
+    self.menuButtonInfo = {}
 
-    self.eventLogRenderer = EventLogRenderer.new(self)
-    self.activePoliciesRenderer = ActivePoliciesRenderer.new(self)
-    self.availableSchemesRenderer = AvailableSchemesRenderer.new(self)
+    self.eventLogRenderer = EventLogRenderer.new()
+    self.activePoliciesRenderer = ActivePoliciesRenderer.new()
+    self.schemesRenderer = SchemesRenderer.new()
 
     return self
 end
@@ -46,6 +53,9 @@ function MenuRedTape:onGuiSetupFinished()
 
     self.activePoliciesTable:setDataSource(self.activePoliciesRenderer)
     self.activePoliciesTable:setDelegate(self.activePoliciesRenderer)
+
+    self.schemesTable:setDataSource(self.schemesRenderer)
+    self.schemesTable:setDelegate(self.schemesRenderer)
 end
 
 function MenuRedTape:initialize()
@@ -58,6 +68,52 @@ function MenuRedTape:initialize()
             return i == self.subCategoryPaging:getState()
         end
     end
+
+    -- Set the available/active scheme switcher texts
+    local schemeSwitcherTexts = {}
+    for k, v in pairs(MenuRedTape.SCHEME_STATE_TEXTS) do
+        table.insert(schemeSwitcherTexts, g_i18n:getText(v))
+    end
+    self.schemeDisplaySwitcher:setTexts(schemeSwitcherTexts)
+
+    self.btnBack = {
+        inputAction = InputAction.MENU_BACK
+    }
+    self.btnNextPage = {
+        inputAction = InputAction.MENU_PAGE_NEXT,
+        text = g_i18n:getText("ui_ingameMenuNext"),
+        callback = self.onPageNext
+    }
+    self.btnPrevPage = {
+        inputAction = InputAction.MENU_PAGE_PREV,
+        text = g_i18n:getText("ui_ingameMenuPrev"),
+        callback = self.onPagePrevious
+    }
+
+    self.menuButtonInfoDefault = { self.btnBack, self.btnNextPage, self.btnPrevPage }
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.EVENTLOG] = self.menuButtonInfoDefault
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.OVERVIEW] = self.menuButtonInfoDefault
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.POLICIES] = self.menuButtonInfoDefault
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.TAX] = self.menuButtonInfoDefault
+
+    self.btnSelectSchemeForFarm = {
+        inputAction = InputAction.MENU_ACTIVATE,
+        text = g_i18n:getText("rt_btn_select_scheme"),
+        callback = function()
+            -- upvalues: (copy) self
+            print('hello from select scheme button')
+        end
+    }
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.SCHEMES] = {
+        self.btnSelectSchemeForFarm,
+        self.btnBack,
+        self.btnNextPage,
+        self.btnPrevPage
+    }
+end
+
+function MenuRedTape:getMenuButtonInfo()
+    return self.menuButtonInfo[self.subCategoryPaging:getState()]
 end
 
 function MenuRedTape:onFrameOpen()
@@ -65,8 +121,6 @@ function MenuRedTape:onFrameOpen()
     saveXMLFileTo(xmlFile, g_currentMission.missionInfo.savegameDirectory .. "/InGameMenuContractsFrame.xml")
     delete(xmlFile);
 
-    -- local isMultiplayer = g_currentMission.missionDynamicInfo.isMultiplayer
-    -- local v46_ = not isMultiplayer or g_localPlayer.farmId ~= FarmManager.SPECTATOR_FARM_ID
     local texts = {}
     for k, tab in pairs(self.subCategoryTabs) do
         tab:setVisible(true)
@@ -78,11 +132,9 @@ function MenuRedTape:onFrameOpen()
 
     self:onMoneyChange()
     g_messageCenter:subscribe(MessageType.MONEY_CHANGED, self.onMoneyChange, self)
-
-    g_messageCenter:subscribe(MessageType.EVENT_LOG_UPDATED, function(menu)
-        self:updateContent()
-    end, self)
+    g_messageCenter:subscribe(MessageType.EVENT_LOG_UPDATED, self.updateContent, self)
     self:updateContent()
+    self:setMenuButtonInfoDirty()
     -- FocusManager:setFocus(self.subCategoryPaging)
 end
 
@@ -113,7 +165,15 @@ end
 
 function MenuRedTape:updateSubCategoryPages(subCategoryIndex)
     self:updateContent()
+    self:setMenuButtonInfoDirty()
     -- FocusManager:setFocus(self.subCategoryPaging)
+end
+
+function MenuRedTape:onSwitchSchemeDisplay()
+    self.schemesTable:reloadData()
+    self.schemesContainer:setVisible(self.schemesTable:getItemCount() > 0)
+    self.noSchemesContainer:setVisible(self.schemesTable:getItemCount() == 0)
+    -- self:updateDetailContents(self.contractsList:getSelectedPath())
 end
 
 function MenuRedTape:updateContent()
@@ -152,24 +212,21 @@ function MenuRedTape:updateContent()
 
         self.activePoliciesRenderer:setData(activePolicies)
         self.activePoliciesTable:reloadData()
-
-        -- FocusManager:linkElements(self.activePoliciesTable, FocusManager.TOP, self.subCategoryPaging)
-        -- FocusManager:linkElements(self.subCategoryPaging, FocusManager.BOTTOM, self.activePoliciesTable)
     elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
         local schemeSystem = g_currentMission.RedTape.SchemeSystem
         local availableSchemes = schemeSystem:getAvailableSchemesForCurrentFarm()
+        local activeSchemes = schemeSystem:getActiveSchemesForFarm(g_currentMission:getFarmId())
 
-        if #availableSchemes == 0 then
-            self.availableSchemesContainer:setVisible(false)
-            self.noAvailableSchemesContainer:setVisible(true)
-            return
-        end
+        local renderData = {
+            [MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE] = availableSchemes,
+            [MenuRedTape.SCHEME_LIST_TYPE.ACTIVE] = activeSchemes
+        }
 
-        self.availableSchemesContainer:setVisible(true)
-        self.noAvailableSchemesContainer:setVisible(false)
+        self.schemesRenderer:setData(renderData)
+        self.schemesTable:reloadData()
 
-        self.availableSchemesRenderer:setData(availableSchemes)
-        self.availableSchemesTable:reloadData()
+        self.schemesContainer:setVisible(self.schemesTable:getItemCount() > 0)
+        self.noSchemesContainer:setVisible(self.schemesTable:getItemCount() == 0)
     elseif state == MenuRedTape.SUB_CATEGORY.EVENTLOG then
         local farmEvents = g_currentMission.RedTape.EventLog:getEventsForCurrentFarm()
 

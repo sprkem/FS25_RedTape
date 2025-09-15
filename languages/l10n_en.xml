@@ -50,5 +50,7 @@
 		<text name="rt_policy_description_manure_spreading" text="Requires compliance with manure spreading regulations."/>
 
 		<text name="rt_scheme_delayed_mowing" text="Avoid Mowing During Spring"/>
+
+		<text name="rt_btn_select_scheme" text="Select Scheme"/>
 	</texts>
 </l10n>

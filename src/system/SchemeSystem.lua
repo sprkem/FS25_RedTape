@@ -78,8 +78,10 @@ end
 function SchemeSystem:periodChanged()
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
 
-    for _, scheme in pairs(schemeSystem.activeSchemesByFarm) do
-        scheme:evaluate()
+    for farm, schemes in pairs(schemeSystem.activeSchemesByFarm) do
+        for _, scheme in pairs(schemes) do
+            scheme:evaluate()
+        end
     end
 
     schemeSystem:generateSchemes()
@@ -168,7 +170,6 @@ function SchemeSystem:getActiveSchemesForFarm(farmId)
 
     return self.activeSchemesByFarm[farmId]
 end
-
 
 function SchemeSystem:getAvailableSchemesForCurrentFarm()
     local availableForFarm = {}
