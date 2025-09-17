@@ -100,8 +100,7 @@ function MenuRedTape:initialize()
         inputAction = InputAction.MENU_ACTIVATE,
         text = g_i18n:getText("rt_btn_select_scheme"),
         callback = function()
-            -- upvalues: (copy) self
-            print('hello from select scheme button')
+            self:onSelectScheme()
         end
     }
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.SCHEMES] = {
@@ -133,6 +132,7 @@ function MenuRedTape:onFrameOpen()
     self:onMoneyChange()
     g_messageCenter:subscribe(MessageType.MONEY_CHANGED, self.onMoneyChange, self)
     g_messageCenter:subscribe(MessageType.EVENT_LOG_UPDATED, self.updateContent, self)
+    g_messageCenter:subscribe(MessageType.SCHEMES_UPDATED, self.updateContent, self)
     self:updateContent()
     self:setMenuButtonInfoDirty()
     -- FocusManager:setFocus(self.subCategoryPaging)
@@ -145,6 +145,8 @@ end
 
 function MenuRedTape:onClickOverview()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.OVERVIEW, true)
+    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
+    self:setMenuButtonInfoDirty()
 end
 
 function MenuRedTape:onClickPolicies()
@@ -173,7 +175,8 @@ function MenuRedTape:onSwitchSchemeDisplay()
     self.schemesTable:reloadData()
     self.schemesContainer:setVisible(self.schemesTable:getItemCount() > 0)
     self.noSchemesContainer:setVisible(self.schemesTable:getItemCount() == 0)
-    -- self:updateDetailContents(self.contractsList:getSelectedPath())
+    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
+    self:setMenuButtonInfoDirty()
 end
 
 function MenuRedTape:updateContent()
@@ -248,7 +251,6 @@ end
 
 function MenuRedTape:updateMenuButtons()
     local state = self.subCategoryPaging:getState()
-    -- local v213_ = g_currentMission
 
     if state == MenuRedTape.SUB_CATEGORY.OVERVIEW then
         print("Overview sub-category selected")
@@ -276,4 +278,18 @@ function MenuRedTape:onMoneyChange()
             self.shopMoneyBoxBg:setSize(self.shopMoneyBox.flowSizes[1] + 60 * g_pixelSizeScaledX)
         end
     end
+end
+
+function MenuRedTape:onSelectScheme()
+    if self.schemesRenderer.selectedRow == -1 then
+        return
+    end
+
+    if self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE then
+        return
+    end
+
+    local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE][self.schemesRenderer.selectedRow]
+    local farmId = g_currentMission:getFarmId()
+    g_client:getServerConnection():sendEvent(SchemeSelectedEvent.new(scheme, farmId))
 end

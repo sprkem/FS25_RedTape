@@ -116,7 +116,7 @@ function SchemeSystem:getNextSchemeIndex(tier)
     local rt = g_currentMission.RedTape
     local currentSchemeDupeKeys = {}
     for _, scheme in pairs(self.availableSchemes[tier]) do
-        table.insert(currentSchemeDupeKeys, scheme.duplicationKey)
+        table.insert(currentSchemeDupeKeys, Schemes[scheme.schemeIndex].duplicationKey)
     end
 
     local availableSchemes = {}
@@ -153,6 +153,7 @@ function SchemeSystem:registerActivatedScheme(scheme)
     local available = scheme:availableForCurrentFarm()
     g_currentMission.RedTape.EventLog:addEvent(nil, EventLogItem.EVENT_TYPE.SCHEME_ACTIVATED,
         string.format(g_i18n:getText("rt_notify_active_scheme"), scheme:getName()), available)
+    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
 end
 
 -- Called by SchemeSelectedEvent, runs on Client and Server
@@ -161,6 +162,7 @@ function SchemeSystem:registerSelectedScheme(scheme, farmId)
 
     local schemeForFarm = scheme:createFarmScheme(farmId)
     table.insert(activeSchemes, schemeForFarm)
+    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
 end
 
 function SchemeSystem:getActiveSchemesForFarm(farmId)

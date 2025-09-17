@@ -35,6 +35,7 @@ Un mod qui ajoute des programmes gouvernementaux, des subventions et des taxes.
         <sourceFile filename="src/events/PolicyCompletedEvent.lua"/>
         <sourceFile filename="src/events/PolicyPointsEvent.lua"/>
         <sourceFile filename="src/events/SchemeActivatedEvent.lua"/>
+        <sourceFile filename="src/events/SchemeSelectedEvent.lua"/>
         <sourceFile filename="src/extensions/SprayerExtension.lua"/>
         <sourceFile filename="src/gatherers/FarmGatherer.lua"/>
         <sourceFile filename="src/gatherers/FarmlandGatherer.lua"/>

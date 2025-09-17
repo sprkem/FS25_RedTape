@@ -5,6 +5,7 @@ source(RedTape.dir .. "src/gui/MenuRedTape.lua")
 
 function RedTape:loadMap()
     MessageType.EVENT_LOG_UPDATED = nextMessageTypeId()
+    MessageType.SCHEMES_UPDATED = nextMessageTypeId()
 
     self.leaseDeals = {}
     self.constantChecksUpdateIntervalMs = 2000      -- interval for constant checks
