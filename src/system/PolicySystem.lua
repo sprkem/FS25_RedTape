@@ -47,7 +47,7 @@ function PolicySystem:loadFromXMLFile(xmlFile)
 
         local policy = Policy.new()
         policy:loadFromXMLFile(xmlFile, policyKey)
-        g_client:getServerConnection():sendEvent(PolicyActivatedEvent.new(policy))
+        self:registerActivatedPolicy(policy, true)
         i = i + 1
     end
 
@@ -166,11 +166,14 @@ function PolicySystem:getNextPolicyIndex()
     return nil
 end
 
--- Called from PolicyActivatedEvent, runs on client and server
-function PolicySystem:registerActivatedPolicy(policy)
+-- Called from PolicyActivatedEvent or on loadFromXMLFile, runs on client and server
+function PolicySystem:registerActivatedPolicy(policy, isLoading)
     table.insert(self.policies, policy)
-    g_currentMission.RedTape.EventLog:addEvent(policy.farmId, EventLogItem.EVENT_TYPE.POLICY_ACTIVATED,
-        string.format(g_i18n:getText("rt_notify_active_policy"), policy:getName()), true)
+
+    if not isLoading then
+        g_currentMission.RedTape.EventLog:addEvent(policy.farmId, EventLogItem.EVENT_TYPE.POLICY_ACTIVATED,
+            string.format(g_i18n:getText("rt_notify_active_policy"), policy:getName()), true)
+    end
 end
 
 -- Called from PolicyPointsEvent, runs on client and server

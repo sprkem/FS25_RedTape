@@ -38,17 +38,14 @@
             <GuiElement position="0px -20px">
                 <Text profile="rtLabelTopLeft" text="$l10n_rt_label_active_policies" position="0px 20px"/>
                 <GuiElement id="activePoliciesContainer">
-                    <GuiElement profile="fs25_statisticsHeaderBox">
-                        <Button profile="rtTableHeader" position="40px -20px" text="$l10n_rt_tableheader_name" handleFocus="false" />
-                    </GuiElement>
 
-                    <SmoothList id="activePoliciesTable" profile="rt_table" position="20px -50px" size="400px 670px">
+                    <SmoothList id="activePoliciesTable" profile="rt_table" position="20px -30px" size="400px 690px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
                         </ListItem>
                     </SmoothList>
 
-                    <ThreePartBitmap profile="rt_slider_box_left" position="440px -20px" size="6px 670px">
+                    <ThreePartBitmap profile="rt_slider_box_left" position="440px -20px" size="6px 690px">
                         <Slider profile="fs25_listSlider" dataElementId="activePoliciesTable" />
                     </ThreePartBitmap>
                 </GuiElement>
@@ -67,8 +64,11 @@
                     </ThreePartBitmap>
                 </GuiElement>
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_compliance" position="460px -240px" width="500px" />
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -270px" width="500px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_information" position="460px -200px" width="500px" />
+                <Text id="noSelectedPolicyText" profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -230px" width="500px" />
+                
+                <GuiElement id="policyInfoContainer">
+                </GuiElement>
 
             </GuiElement>
         </GuiElement>
@@ -77,17 +77,14 @@
                 <MultiTextOption profile="rt_scheme_display_switcher" id="schemeDisplaySwitcher" onClick="onSwitchSchemeDisplay" size="400px 32px" position="0px 10px"/>
                 <!-- <Text profile="rtLabelTopLeft" text="$l10n_rt_label_available_schemes" position="0px 20px"/> -->
                 <GuiElement id="schemesContainer">
-                    <GuiElement profile="fs25_statisticsHeaderBox">
-                        <Button profile="rtTableHeader" position="40px -20px" text="$l10n_rt_tableheader_name" handleFocus="false" />
-                    </GuiElement>
 
-                    <SmoothList id="schemesTable" profile="rt_table" position="20px -50px" size="400px 670px">
+                    <SmoothList id="schemesTable" profile="rt_table" position="20px -30px" size="400px 690px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
                         </ListItem>
                     </SmoothList>
 
-                    <ThreePartBitmap profile="rt_slider_box_left" position="440px -20px" size="6px 670px">
+                    <ThreePartBitmap profile="rt_slider_box_left" position="440px -20px" size="6px 690px">
                         <Slider profile="fs25_listSlider" dataElementId="schemesTable" />
                     </ThreePartBitmap>
                 </GuiElement>
@@ -106,7 +103,7 @@
                     </ThreePartBitmap>
                 </GuiElement>
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_compliance" position="460px -240px" width="500px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_information" position="460px -240px" width="500px" />
                 <Text profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -270px" width="500px" /> -->
 
             </GuiElement>

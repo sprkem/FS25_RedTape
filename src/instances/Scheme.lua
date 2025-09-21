@@ -14,6 +14,8 @@ function Scheme.new()
     -- Set when a farm chooses a scheme
     self.activatedTier = -1
 
+    self.lastEvaluationReport = {}
+
     return self
 end
 
@@ -21,24 +23,59 @@ function Scheme:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.schemeIndex)
     streamWriteInt32(streamId, self.farmId)
     streamWriteInt32(streamId, self.activatedTier)
+
+    streamWriteInt32(streamId, #self.lastEvaluationReport)
+    for i, report in ipairs(self.lastEvaluationReport) do
+        streamWriteString(streamId, report.name)
+        streamWriteString(streamId, report.value)
+    end
 end
 
 function Scheme:readStream(streamId, connection)
     self.schemeIndex = streamReadInt32(streamId)
     self.farmId = streamReadInt32(streamId)
     self.activatedTier = streamReadInt32(streamId)
+
+    local reportCount = streamReadInt32(streamId)
+    for i = 1, reportCount do
+        local report = {
+            name = streamReadString(streamId),
+            value = streamReadString(streamId)
+        }
+        table.insert(self.lastEvaluationReport, report)
+    end
 end
 
 function Scheme:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#schemeIndex", self.schemeIndex)
     setXMLInt(xmlFile, key .. "#farmId", self.farmId)
     setXMLInt(xmlFile, key .. "#activatedTier", self.activatedTier)
+
+    for i, report in ipairs(self.lastEvaluationReport) do
+        local reportKey = string.format("%s#report(%d)", key, i)
+        setXMLString(xmlFile, reportKey .. "#name", report.name)
+        setXMLString(xmlFile, reportKey .. "#value", report.value)
+    end
 end
 
 function Scheme:loadFromXMLFile(xmlFile, key)
     self.schemeIndex = getXMLInt(xmlFile, key .. "#schemeIndex")
     self.farmId = getXMLInt(xmlFile, key .. "#farmId")
     self.activatedTier = getXMLInt(xmlFile, key .. "#activatedTier")
+
+    local i = 0
+    while true do
+        local reportKey = string.format("%s#report(%d)", key, i)
+        if not hasXMLProperty(xmlFile, reportKey) then
+            break
+        end
+        local report = {
+            name = getXMLString(xmlFile, reportKey .. "#name"),
+            value = getXMLString(xmlFile, reportKey .. "#value")
+        }
+        table.insert(self.lastEvaluationReport, report)
+        i = i + 1
+    end
 end
 
 -- Called by the SchemeSystem when generating schemes
@@ -84,7 +121,13 @@ end
 
 function Scheme:evaluate()
     local schemeInfo = Schemes[self.schemeIndex]
-    schemeInfo.evaluate(schemeInfo, self, self.activatedTier)
+    local report = schemeInfo.evaluate(schemeInfo, self, self.activatedTier)
+    self.lastEvaluationReport = report or {}
+
+    -- Ensure all report values are strings
+    for _, report in ipairs(self.lastEvaluationReport) do
+        report.value = tostring(report.value)
+    end
 end
 
 function Scheme:selected()

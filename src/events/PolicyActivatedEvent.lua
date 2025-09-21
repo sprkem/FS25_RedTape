@@ -31,5 +31,5 @@ function PolicyActivatedEvent:run(connection)
     end
 
     local policySystem = g_currentMission.RedTape.PolicySystem
-    policySystem:registerActivatedPolicy(self.policy)
+    policySystem:registerActivatedPolicy(self.policy, false)
 end

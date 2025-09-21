@@ -4,10 +4,10 @@
 
 SchemeIds = {
     DELAYED_MOWING_WILDLIFE = 1, -- SFI, or just only cut twice for a payout
-    BALES_OVER_FORAGING = 2,        -- He also got paid for hay making. Basically, he chose to make hay and not silage in some fields. Reasons are less plastic use from wrapping, and the seeds from the wildflowers and grass get spread when baling and loading, and moving the bales.
-    NATURAL_GRAZING = 3,            -- Promotes natural grazing practices and biodiversity
-    NATURAL_FERTILISER = 4,         -- Encourages the use of natural fertilizers to improve soil health
-    CROP_PROMOTION = 5,             -- promotes growing specific crops. possibly split this by tier, and give equipment or cash bonuses
+    BALES_OVER_FORAGING = 2,     -- He also got paid for hay making. Basically, he chose to make hay and not silage in some fields. Reasons are less plastic use from wrapping, and the seeds from the wildflowers and grass get spread when baling and loading, and moving the bales.
+    NATURAL_GRAZING = 3,         -- Promotes natural grazing practices and biodiversity
+    NATURAL_FERTILISER = 4,      -- Encourages the use of natural fertilizers to improve soil health
+    CROP_PROMOTION = 5,          -- promotes growing specific crops. possibly split this by tier, and give equipment or cash bonuses
 }
 
 
@@ -36,7 +36,7 @@ Schemes = {
             -- Init of an available scheme, prior to selection by a farm
         end,
         selected = function(schemeInfo, scheme)
-            -- Any action when applying the scheme to a farm, e.g. initial payout or equipment            
+            -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
         end,
         evaluate = function(schemeInfo, scheme, tier)
             local rt = g_currentMission.RedTape
@@ -48,6 +48,7 @@ Schemes = {
             local farmId = scheme.farmId
             local invalidMonths = { 4, 5, 6 }
 
+            local report = {}
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId then
                     local farmlandData = gatherer:getFarmlandData(farmland.id)
@@ -60,10 +61,21 @@ Schemes = {
                     if farmlandData.retainedSpringGrass and not didHarvest then
                         local bonusPerHa = schemeInfo.tiers[tier].bonusPerHa
                         local payout = farmlandData.areaHa * bonusPerHa
+                        table.insert(report, {
+                            name = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                            value = g_i18n:getText("rt_report_value_true")
+                        })
                         g_client:getServerConnection():sendEvent(SchemePayoutEvent.new(scheme, farmId, payout))
+                    else
+                        table.insert(report, {
+                            name = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                            value = g_i18n:getText("rt_report_value_false")
+                        })
                     end
                 end
             end
+
+            return report
         end
     }
 

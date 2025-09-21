@@ -212,6 +212,8 @@ function MenuRedTape:updateContent()
 
         self.activePoliciesContainer:setVisible(true)
         self.noActivePoliciesContainer:setVisible(false)
+        self.noSelectedPolicyText:setVisible(self.activePoliciesRenderer.selectedRow == -1)
+        self.policyInfoContainer:setVisible(self.activePoliciesRenderer.selectedRow ~= -1)
 
         self.activePoliciesRenderer:setData(activePolicies)
         self.activePoliciesTable:reloadData()

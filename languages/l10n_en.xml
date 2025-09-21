@@ -17,8 +17,8 @@
 		<text name="rt_header_eventlog" text="Event Log"/>
 		<text name="rt_header_current_tier" text="Current Tier: %s"/>
 		<text name="rt_header_compliance_tier" text="Compliance Performance"/>
-		<text name="rt_header_policy_compliance" text="Policy Performance"/>
-		<text name="rt_header_no_selected_policy" text="Policy Performance"/>
+		<text name="rt_header_policy_information" text="Policy Performance"/>
+		<text name="rt_header_no_selected_policy" text="Select an active policy to see relevant information"/>
 
 		<text name="rt_event_type_none" text="-"/>
 		<text name="rt_event_type_policypoints" text="Policy Points"/>
@@ -50,6 +50,11 @@
 		<text name="rt_policy_description_animal_productivity" text="Requires animals to be kept in good conditions."/>
 		<text name="rt_policy_description_animal_space" text="Requires sufficient space for animals."/>
 		<text name="rt_policy_description_manure_spreading" text="Requires compliance with manure spreading regulations."/>
+
+		<text name="rt_report_name_farmland" text="Farmland %s"/>
+		
+		<text name="rt_report_value_true" text="True"/>
+		<text name="rt_report_value_false" text="False"/>
 
 		<text name="rt_scheme_delayed_mowing" text="Avoid Mowing During Spring"/>
 
