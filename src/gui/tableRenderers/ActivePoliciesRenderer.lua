@@ -1,11 +1,12 @@
 ActivePoliciesRenderer = {}
 ActivePoliciesRenderer_mt = Class(ActivePoliciesRenderer)
 
-function ActivePoliciesRenderer:new()
+function ActivePoliciesRenderer.new()
     local self = {}
     setmetatable(self, ActivePoliciesRenderer_mt)
     self.data = nil
     self.selectedRow = -1;
+    self.indexChangedCallback = nil
 
     return self
 end
@@ -39,4 +40,7 @@ end
 
 function ActivePoliciesRenderer:onListSelectionChanged(list, section, index)
     self.selectedRow = index
+    if self.indexChangedCallback ~= nil then
+        self.indexChangedCallback(index)
+    end
 end

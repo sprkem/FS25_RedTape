@@ -41,8 +41,59 @@ function MenuRedTape.new(i18n, messageCenter)
     self.eventLogRenderer = EventLogRenderer.new()
     self.activePoliciesRenderer = ActivePoliciesRenderer.new()
     self.schemesRenderer = SchemesRenderer.new()
+    self.schemeReportRenderer = ReportRenderer.new()
+    self.policyReportRenderer = ReportRenderer.new()
 
     return self
+end
+
+function MenuRedTape:displaySelectedPolicy()
+    local index = self.activePoliciesTable.selectedIndex
+    self.noSelectedPolicyText:setVisible(index == -1)
+    self.policyInfoContainer:setVisible(index ~= -1)
+
+    if index ~= -1 then
+        local policy = self.activePoliciesRenderer.data[index]
+
+        if policy ~= nil then
+            self.selectedPolicyName:setText(policy:getName())
+            self.selectedPolicyDescription:setText(policy:getDescription())
+            self.policyReportRenderer:setData(policy.lastEvaluationReport)
+            self.policyReportTable:reloadData()
+        end
+    end
+end
+
+function MenuRedTape:displaySelectedScheme()
+    print("Displaying selected scheme")
+    local index = self.schemesTable.selectedIndex
+    local rt = g_currentMission.RedTape
+
+    if index ~= -1 then
+        local selection = self.schemeDisplaySwitcher:getState()
+        local scheme = self.schemesRenderer.data[selection][index]
+
+        if scheme ~= nil then            
+            self.schemeInfoContainer:setVisible(true)
+            self.noSelectedSchemeText:setVisible(false)
+            self.selectedSchemeName:setText(scheme:getName())
+            self.selectedSchemeDescription:setText(scheme:getDescription())
+
+            if rt:tableCount(scheme.lastEvaluationReport) == 0 then
+                self.schemeReportContainer:setVisible(false)
+                self.noSchemeReportContainer:setVisible(true)
+            else
+                self.schemeReportContainer:setVisible(true)
+                self.noSchemeReportContainer:setVisible(false)
+                self.schemeReportRenderer:setData(scheme.lastEvaluationReport)
+                self.schemeReportTable:reloadData()
+            end
+        else
+            print("Scheme is nil")
+            self.schemeInfoContainer:setVisible(false)
+            self.noSelectedSchemeText:setVisible(true)
+        end
+    end
 end
 
 function MenuRedTape:onGuiSetupFinished()
@@ -54,8 +105,30 @@ function MenuRedTape:onGuiSetupFinished()
     self.activePoliciesTable:setDataSource(self.activePoliciesRenderer)
     self.activePoliciesTable:setDelegate(self.activePoliciesRenderer)
 
+    self.activePoliciesRenderer.indexChangedCallback = function(index)
+        self:displaySelectedPolicy()
+    end
+
     self.schemesTable:setDataSource(self.schemesRenderer)
     self.schemesTable:setDelegate(self.schemesRenderer)
+
+    self.schemesRenderer.indexChangedCallback = function(index)
+        self.noSelectedSchemeText:setVisible(index == -1)
+        self.schemeInfoContainer:setVisible(index ~= -1)
+
+        if index ~= -1 then
+            local selection = self.schemeDisplaySwitcher:getState()
+            local scheme = self.schemesRenderer.data[selection][index]
+            self.schemeReportRenderer:setData(scheme.lastEvaluationReport)
+            self.schemeReportTable:reloadData()
+        end
+    end
+
+    self.schemeReportTable:setDataSource(self.schemeReportRenderer)
+    self.schemeReportTable:setDelegate(self.schemeReportRenderer)
+
+    self.policyReportTable:setDataSource(self.policyReportRenderer)
+    self.policyReportTable:setDelegate(self.policyReportRenderer)
 end
 
 function MenuRedTape:initialize()
@@ -145,7 +218,8 @@ end
 
 function MenuRedTape:onClickOverview()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.OVERVIEW, true)
-    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
+    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~=
+        MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
     self:setMenuButtonInfoDirty()
 end
 
@@ -173,9 +247,15 @@ end
 
 function MenuRedTape:onSwitchSchemeDisplay()
     self.schemesTable:reloadData()
-    self.schemesContainer:setVisible(self.schemesTable:getItemCount() > 0)
-    self.noSchemesContainer:setVisible(self.schemesTable:getItemCount() == 0)
-    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
+    local hasItem = self.schemesTable:getItemCount() > 0
+    self.schemesContainer:setVisible(hasItem)
+    self.noSchemesContainer:setVisible(not hasItem)
+    if hasItem then
+        self.schemesTable:setSelectedIndex(1)
+    end
+    self:displaySelectedScheme()
+    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~=
+        MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
     self:setMenuButtonInfoDirty()
 end
 
@@ -204,19 +284,13 @@ function MenuRedTape:updateContent()
         local progressBarRatio = math.max(progress.points / progress.nextTierPoints, minProgressBarWidthRatio)
         self.progressBar:setSize(fullWidth * math.min(progressBarRatio, 1), nil)
 
-        if #activePolicies == 0 then
-            self.activePoliciesContainer:setVisible(false)
-            self.noActivePoliciesContainer:setVisible(true)
-            return
-        end
-
-        self.activePoliciesContainer:setVisible(true)
-        self.noActivePoliciesContainer:setVisible(false)
-        self.noSelectedPolicyText:setVisible(self.activePoliciesRenderer.selectedRow == -1)
-        self.policyInfoContainer:setVisible(self.activePoliciesRenderer.selectedRow ~= -1)
-
         self.activePoliciesRenderer:setData(activePolicies)
         self.activePoliciesTable:reloadData()
+
+        self:displaySelectedPolicy()
+
+        self.activePoliciesContainer:setVisible(self.activePoliciesTable:getItemCount() > 0)
+        self.noActivePoliciesContainer:setVisible(self.activePoliciesTable:getItemCount() == 0)
     elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
         local schemeSystem = g_currentMission.RedTape.SchemeSystem
         local availableSchemes = schemeSystem:getAvailableSchemesForCurrentFarm()
@@ -229,6 +303,8 @@ function MenuRedTape:updateContent()
 
         self.schemesRenderer:setData(renderData)
         self.schemesTable:reloadData()
+
+        self:displaySelectedScheme()
 
         self.schemesContainer:setVisible(self.schemesTable:getItemCount() > 0)
         self.noSchemesContainer:setVisible(self.schemesTable:getItemCount() == 0)

@@ -17,8 +17,11 @@
 		<text name="rt_header_eventlog" text="Event Log"/>
 		<text name="rt_header_current_tier" text="Current Tier: %s"/>
 		<text name="rt_header_compliance_tier" text="Compliance Performance"/>
-		<text name="rt_header_policy_information" text="Policy Performance"/>
+		<text name="rt_header_policy_information" text="Policy Information"/>
+		<text name="rt_header_scheme_information" text="Scheme Information"/>
+		<text name="rt_header_latest_report" text="Latest Report"/>
 		<text name="rt_header_no_selected_policy" text="Select an active policy to see relevant information"/>
+		<text name="rt_header_no_report_information" text="There is no report information available. Check back later."/>
 
 		<text name="rt_event_type_none" text="-"/>
 		<text name="rt_event_type_policypoints" text="Policy Points"/>
@@ -57,6 +60,8 @@
 		<text name="rt_report_value_false" text="False"/>
 
 		<text name="rt_scheme_delayed_mowing" text="Avoid Mowing During Spring"/>
+		<text name="rt_scheme_desc_delayed_mowing" text="Do not cut your grass during the spring months (March to June) to protect wildlife. In July, you will be compensated for any unharvested grass."/>
+		
 
 		<text name="rt_btn_select_scheme" text="Select Scheme"/>
 

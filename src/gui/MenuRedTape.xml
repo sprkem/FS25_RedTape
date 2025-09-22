@@ -64,10 +64,23 @@
                     </ThreePartBitmap>
                 </GuiElement>
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_information" position="460px -200px" width="500px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_information" position="460px -160px" width="500px" />
                 <Text id="noSelectedPolicyText" profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -230px" width="500px" />
-                
-                <GuiElement id="policyInfoContainer">
+
+                <GuiElement id="policyInfoContainer" position="460px -200px">
+                    <Text profile="rt_header_top_left" id="selectedPolicyName" position="0px 0px" width="500px" />
+                    <Text profile="rt_scheme_policy_info" id="selectedPolicyDescription" position="20px -40px" size="800px 400px" />
+                    <Text profile="rt_header_top_left" text="$l10n_rt_header_latest_report" position="0px -120px" width="500px" />
+                    <SmoothList id="policyReportTable" profile="rt_table" position="400px -300px" size="300px 400px">
+                        <ListItem profile="rtTableListItem">
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="value"/>
+                        </ListItem>
+                    </SmoothList>
+
+                    <ThreePartBitmap profile="rt_slider_box_left" position="440px -20px" size="6px 690px">
+                        <Slider profile="fs25_listSlider" dataElementId="policyReportTable" />
+                    </ThreePartBitmap>
                 </GuiElement>
 
             </GuiElement>
@@ -78,13 +91,13 @@
                 <!-- <Text profile="rtLabelTopLeft" text="$l10n_rt_label_available_schemes" position="0px 20px"/> -->
                 <GuiElement id="schemesContainer">
 
-                    <SmoothList id="schemesTable" profile="rt_table" position="20px -30px" size="400px 690px">
+                    <SmoothList id="schemesTable" profile="rt_table" position="20px -40px" size="400px 690px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
                         </ListItem>
                     </SmoothList>
 
-                    <ThreePartBitmap profile="rt_slider_box_left" position="440px -20px" size="6px 690px">
+                    <ThreePartBitmap profile="rt_slider_box_left" position="440px -40px" size="6px 690px">
                         <Slider profile="fs25_listSlider" dataElementId="schemesTable" />
                     </ThreePartBitmap>
                 </GuiElement>
@@ -94,17 +107,28 @@
                     <ThreePartBitmap profile="fs25_contractsContentSeparator"/>
                 </GuiElement>
 
-                <!-- <Text profile="rt_header_top_left" text="$l10n_rt_header_compliance_tier" position="460px 20px" width="500px" />
-                <GuiElement profile="fs25_contractsProgressBox" id="progressBox" position="480px -50px">
-                    <Text profile="fs25_contractsContentTitle" id="complianceTier"/>
-                    <Text profile="fs25_contractsContentValue" id="progressText"/>
-                    <ThreePartBitmap profile="fs25_contractsProgressBarBg" id="progressBarBg">
-                        <ThreePartBitmap profile="fs25_contractsProgressBar" id="progressBar"/>
-                    </ThreePartBitmap>
-                </GuiElement>
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_scheme_information" position="460px 20px" width="500px" />
+                <Text id="noSelectedSchemeText" profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -230px" width="500px" />
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_information" position="460px -240px" width="500px" />
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -270px" width="500px" /> -->
+                <GuiElement id="schemeInfoContainer" position="460px -40px">
+                    <Text profile="rt_header_top_left" id="selectedSchemeName" position="0px 0px" width="500px" />
+                    <Text profile="rt_scheme_policy_info" id="selectedSchemeDescription" position="40px -40px" size="800px 400px" />
+                    <Text profile="rt_header_top_left" text="$l10n_rt_header_latest_report" position="0px -140px" width="500px" />
+                    <GuiElement id="schemeReportContainer">
+                        <SmoothList id="schemeReportTable" profile="rt_table" position="0px -180px" size="300px 400px">
+                            <ListItem profile="rtTableListItem">
+                                <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
+                                <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="value"/>
+                            </ListItem>
+                        </SmoothList>
+                        <ThreePartBitmap profile="rt_slider_box_left" position="740px -20px" size="6px 690px">
+                            <Slider profile="fs25_listSlider" dataElementId="schemeReportTable" />
+                        </ThreePartBitmap>
+                    </GuiElement>
+                    <GuiElement id="noSchemeReportContainer">
+                        <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_no_report_information" position="40px -180px" width="800px" />
+                    </GuiElement>
+                </GuiElement>
 
             </GuiElement>
         </GuiElement>

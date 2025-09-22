@@ -16,6 +16,7 @@ Schemes = {
     [SchemeIds.DELAYED_MOWING_WILDLIFE] = {
         id = SchemeIds.DELAYED_MOWING_WILDLIFE,
         name = "rt_scheme_delayed_mowing",
+        description = "rt_scheme_desc_delayed_mowing",
         duplicationKey = "DELAYED_HARVEST",
         tiers = {
             [PolicySystem.TIER.A] = {

@@ -1,11 +1,12 @@
 EventLogRenderer = {}
 EventLogRenderer_mt = Class(EventLogRenderer)
 
-function EventLogRenderer:new()
+function EventLogRenderer.new()
     local self = {}
     setmetatable(self, EventLogRenderer_mt)
     self.data = nil
     self.selectedRow = -1;
+    self.indexChangedCallback = nil
 
     return self
 end
@@ -36,4 +37,7 @@ end
 
 function EventLogRenderer:onListSelectionChanged(list, section, index)
     self.selectedRow = index
+    if self.indexChangedCallback ~= nil then
+        self.indexChangedCallback(index)
+    end
 end

@@ -35,4 +35,8 @@
     <Profile name="rt_slider_box" extends="fs25_listSliderBox" with="anchorTopRight" />
     <Profile name="rt_slider_box_left" extends="fs25_listSliderBox" with="anchorTopLeft" />
     <Profile name="rt_scheme_display_switcher" extends="fs25_subCategorySelector" with="anchorTopLeft" />
+    <Profile name="rt_scheme_policy_info" extends="fs25_textGrey" with="anchorTopLeft">        
+        <textMaxNumLines value="4"/>
+        <textVerticalAlignment value="top"/>
+    </Profile>
 </GUIProfiles>

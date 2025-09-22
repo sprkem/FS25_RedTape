@@ -94,6 +94,16 @@ function Scheme:getName()
     return g_i18n:getText(schemeInfo.name)
 end
 
+function Scheme:getDescription()
+    if self.schemeIndex == -1 then
+        return nil
+    end
+
+    local schemeInfo = Schemes[self.schemeIndex]
+
+    return g_i18n:getText(schemeInfo.description)
+end
+
 function Scheme:availableForCurrentFarm()
     local rt = g_currentMission.RedTape
     local schemeSystem = g_currentMission.RedTape.SchemeSystem

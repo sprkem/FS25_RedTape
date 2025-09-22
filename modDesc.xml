@@ -43,6 +43,7 @@ Un mod qui ajoute des programmes gouvernementaux, des subventions et des taxes.
         <sourceFile filename="src/gui/tableRenderers/ActivePoliciesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/SchemesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/EventLogRenderer.lua"/>
+        <sourceFile filename="src/gui/tableRenderers/ReportRenderer.lua"/>
         <sourceFile filename="src/instances/EventLogItem.lua"/>
         <sourceFile filename="src/instances/Policy.lua"/>
         <sourceFile filename="src/instances/Scheme.lua"/>

@@ -1,11 +1,12 @@
 SchemesRenderer = {}
 SchemesRenderer_mt = Class(SchemesRenderer)
 
-function SchemesRenderer:new()
+function SchemesRenderer.new()
     local self = {}
     setmetatable(self, SchemesRenderer_mt)
     self.data = nil
     self.selectedRow = -1;
+    self.indexChangedCallback = nil
 
     return self
 end
@@ -39,4 +40,7 @@ end
 
 function SchemesRenderer:onListSelectionChanged(list, section, index)
     self.selectedRow = index
+    if self.indexChangedCallback ~= nil then
+        self.indexChangedCallback(index)
+    end
 end
