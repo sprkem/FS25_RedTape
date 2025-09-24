@@ -15,6 +15,8 @@ EventLogItem.EVENT_TYPE_LABELS = {
     [EventLogItem.EVENT_TYPE.POLICY_POINTS] = "rt_event_type_policypoints",
     [EventLogItem.EVENT_TYPE.POLICY_ACTIVATED] = "rt_event_type_policyactivated",
     [EventLogItem.EVENT_TYPE.POLICY_COMPLETED] = "rt_event_type_policycompleted",
+    [EventLogItem.EVENT_TYPE.SCHEME_ACTIVATED] = "rt_event_type_schemeactivated",
+    [EventLogItem.EVENT_TYPE.SCHEME_PAYOUT] = "rt_event_type_schemepayout"
 }
 
 function EventLogItem.new()

@@ -61,16 +61,17 @@ Schemes = {
                     local didHarvest = rt:tableHasValue(invalidMonths, lastHarvestMonth)
                     if farmlandData.retainedSpringGrass and not didHarvest then
                         local bonusPerHa = schemeInfo.tiers[tier].bonusPerHa
-                        local payout = farmlandData.areaHa * bonusPerHa
+                        print("Payout multiplier: " .. tostring(EconomyManager.getPriceMultiplier()))
+                        local payout = farmlandData.areaHa * bonusPerHa * EconomyManager.getPriceMultiplier()
                         table.insert(report, {
-                            name = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
-                            value = g_i18n:getText("rt_report_value_true")
+                            cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                            cell2 = g_i18n:formatMoney(payout, 0, true, true)
                         })
                         g_client:getServerConnection():sendEvent(SchemePayoutEvent.new(scheme, farmId, payout))
                     else
                         table.insert(report, {
-                            name = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
-                            value = g_i18n:getText("rt_report_value_false")
+                            cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                            cell2 = g_i18n:formatMoney(0, 0, true, true),
                         })
                     end
                 end

@@ -14,7 +14,7 @@ function SchemePayoutEvent.new(scheme, farmId, amount)
     local self = SchemePayoutEvent.emptyNew()
     self.scheme = scheme
     self.farmId = farmId
-    self.amount = amount * EconomyManager.getPriceMultiplier()
+    self.amount = amount
     return self
 end
 
@@ -28,7 +28,7 @@ function SchemePayoutEvent:readStream(streamId, connection)
     self.scheme = Scheme.new()
     self.scheme:readStream(streamId, connection)
     self.farmId = streamReadInt32(streamId)
-    self.amount = streamReadFloat32(streamId) -- This amount should not be modified for economic difficulty
+    self.amount = streamReadFloat32(streamId)
     self:run(connection)
 end
 

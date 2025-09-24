@@ -132,6 +132,7 @@ function Policy:activate()
 end
 
 function Policy:evaluate()
+    local rt = g_currentMission.RedTape
     if self.skipNextEvaluation then
         self.skipNextEvaluation = false
         return
@@ -147,11 +148,15 @@ function Policy:evaluate()
 
     for _, farm in pairs(g_farmManager.farmIdToFarm) do
         local points, report = policyInfo.evaluate(policyInfo, self, farm.farmId)
-        self.lastEvaluationReport = report or {}
+        if rt:tableCount(report) > 0 then
+            self.lastEvaluationReport = report or {}
 
-        -- Ensure all report values are strings
-        for _, report in ipairs(self.lastEvaluationReport) do
-            report.value = tostring(report.value)
+            -- Ensure all report values are strings
+            for _, report in ipairs(self.lastEvaluationReport) do
+                report.cell1 = tostring(report.cell1 or "")
+                report.cell2 = tostring(report.cell2 or "")
+                report.cell3 = tostring(report.cell3 or "")
+            end
         end
 
         -- TODO move this to within the policyInfo as per schemes

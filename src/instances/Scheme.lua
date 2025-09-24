@@ -130,13 +130,19 @@ function Scheme:availableForCurrentFarm()
 end
 
 function Scheme:evaluate()
+    local rt = g_currentMission.RedTape
     local schemeInfo = Schemes[self.schemeIndex]
     local report = schemeInfo.evaluate(schemeInfo, self, self.activatedTier)
-    self.lastEvaluationReport = report or {}
 
-    -- Ensure all report values are strings
-    for _, report in ipairs(self.lastEvaluationReport) do
-        report.value = tostring(report.value)
+    if rt:tableCount(report) > 0 then
+        self.lastEvaluationReport = report or {}
+
+        -- Ensure all report values are strings
+        for _, report in ipairs(self.lastEvaluationReport) do
+            report.cell1 = tostring(report.cell1 or "")
+            report.cell2 = tostring(report.cell2 or "")
+            report.cell3 = tostring(report.cell3 or "")
+        end
     end
 end
 

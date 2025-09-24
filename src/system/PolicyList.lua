@@ -74,8 +74,8 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { name = "Total Area (ha)", value = g_i18n:formatArea(totalHa, 2) })
-            table.insert(report, { name = "Non-Compliant Area (ha)", value = g_i18n:formatArea(nonCompliantHa, 2) })
+            table.insert(report, { cell1 = "Total Area (ha)", cell2 = g_i18n:formatArea(totalHa, 2) })
+            table.insert(report, { cell1 = "Non-Compliant Area (ha)", cell2 = g_i18n:formatArea(nonCompliantHa, 2) })
             return reward, report
         end,
     },
@@ -109,7 +109,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { name = "Spray Violations", value = pendingSprayViolations })
+            table.insert(report, { cell1 = "Spray Violations", cell2 = pendingSprayViolations })
             farmData.pendingSprayViolations = 0
             return reward, report
         end,
@@ -142,7 +142,7 @@ Policies = {
                 reward = policyInfo.periodicReward
             end
             local report = {}
-            table.insert(report, { name = "Hours without straw", value = pendingEmptyStrawCount })
+            table.insert(report, { cell1 = "Hours without straw", cell2 = pendingEmptyStrawCount })
 
             farmData.pendingEmptyStrawCount = 0
             return reward, report
@@ -177,7 +177,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { name = "Hours with full slurry tank", value = pendingFullSlurryCount })
+            table.insert(report, { cell1 = "Hours with full slurry tank", cell2 = pendingFullSlurryCount })
 
             farmData.pendingFullSlurryCount = 0
             return reward, report
@@ -214,7 +214,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { name = "Hours without food", value = pendingEmptyFoodCount })
+            table.insert(report, { cell1 = "Hours without food", cell2 = pendingEmptyFoodCount })
 
             farmData.pendingEmptyFoodCount = 0
             return reward, report
@@ -249,7 +249,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { name = "Animal Space Violations", value = pendingViolations })
+            table.insert(report, { cell1 = "Animal Space Violations", cell2 = pendingViolations })
 
             farmData.pendingAnimalSpaceViolations = 0
             return reward, report
@@ -284,7 +284,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { name = "Low Productivity Hours", value = pendingViolations })
+            table.insert(report, { cell1 = "Low Productivity Hours", cell2 = pendingViolations })
 
             farmData.pendingLowProductivityHusbandry = 0
             return reward, report
@@ -327,12 +327,12 @@ Policies = {
 
             local report = {}
             table.insert(report,
-                { name = "Actual manure spread", value = g_i18n:formatVolume(farmData.pendingManureSpread, 0) })
-            table.insert(report, { name = "Expected manure spread", value = g_i18n:formatVolume(expectedSpread, 0) })
+                { cell1 = "Actual manure spread", cell2 = g_i18n:formatVolume(farmData.pendingManureSpread, 0) })
+            table.insert(report, { cell1 = "Expected manure spread", cell2 = g_i18n:formatVolume(expectedSpread, 0) })
             table.insert(report,
                 {
-                    name = "Rolling average manure level",
-                    value = g_i18n:formatVolume(farmData.rollingAverageManureLevel, 0)
+                    cell1 = "Rolling average manure level",
+                    cell2 = g_i18n:formatVolume(farmData.rollingAverageManureLevel, 0)
                 })
 
             farmData.pendingManureSpread = 0

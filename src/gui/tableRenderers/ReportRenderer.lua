@@ -29,8 +29,9 @@ end
 
 function ReportRenderer:populateCellForItemInSection(list, section, index, cell)
     local reportItem = self.data[index]
-    cell:getAttribute("name"):setText(reportItem.name)
-    cell:getAttribute("value"):setText(reportItem.value)
+    cell:getAttribute("cell1"):setText(reportItem.cell1)
+    cell:getAttribute("cell2"):setText(reportItem.cell2)
+    cell:getAttribute("cell3"):setText(reportItem.cell3)
 end
 
 function ReportRenderer:onListSelectionChanged(list, section, index)
