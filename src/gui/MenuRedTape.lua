@@ -49,23 +49,37 @@ end
 
 function MenuRedTape:displaySelectedPolicy()
     local index = self.activePoliciesTable.selectedIndex
-    self.noSelectedPolicyText:setVisible(index == -1)
-    self.policyInfoContainer:setVisible(index ~= -1)
+    local rt = g_currentMission.RedTape
 
     if index ~= -1 then
         local policy = self.activePoliciesRenderer.data[index]
 
         if policy ~= nil then
+            self.policyInfoContainer:setVisible(true)
+            self.noSelectedPolicyText:setVisible(false)
             self.selectedPolicyName:setText(policy:getName())
             self.selectedPolicyDescription:setText(policy:getDescription())
-            self.policyReportRenderer:setData(policy.lastEvaluationReport)
-            self.policyReportTable:reloadData()
+
+            if rt.tableCount(policy.lastEvaluationReport) == 0 then
+                self.policyReportContainer:setVisible(false)
+                self.noPolicyReportContainer:setVisible(true)
+                self.selectedPolicyReportDescription:setVisible(false)
+            else
+                self.policyReportContainer:setVisible(true)
+                self.noPolicyReportContainer:setVisible(false)
+                self.policyReportRenderer:setData(policy.lastEvaluationReport)
+                self.selectedPolicyReportDescription:setVisible(true)
+                self.selectedPolicyReportDescription:setText(policy:getReportDescription())
+                self.policyReportTable:reloadData()
+            end
+        else
+            self.policyInfoContainer:setVisible(false)
+            self.noSelectedPolicyText:setVisible(true)
         end
     end
 end
 
 function MenuRedTape:displaySelectedScheme()
-    print("Displaying selected scheme")
     local index = self.schemesTable.selectedIndex
     local rt = g_currentMission.RedTape
 
@@ -78,7 +92,7 @@ function MenuRedTape:displaySelectedScheme()
             self.noSelectedSchemeText:setVisible(false)
             self.selectedSchemeName:setText(scheme:getName())
             self.selectedSchemeDescription:setText(scheme:getDescription())
-            
+
             if rt.tableCount(scheme.lastEvaluationReport) == 0 then
                 self.schemeReportContainer:setVisible(false)
                 self.noSchemeReportContainer:setVisible(true)
