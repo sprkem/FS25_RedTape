@@ -45,6 +45,7 @@
 		<text name="rt_policy_animal_productivity" text="Animal Conditions"/>
 		<text name="rt_policy_animal_space" text="Animal Spacing"/>
 		<text name="rt_policy_manure_spreading" text="Manure Management"/>
+		<text name="rt_policy_restricted_slurry" text="Restricted Slurry Application"/>
 
 		<text name="rt_policy_description_croprotation" text="Mandates crop rotation"/>
 		<text name="rt_policy_description_sprayviolation" text="Penalizes farms for spraying near water"/>
@@ -54,6 +55,7 @@
 		<text name="rt_policy_description_animal_productivity" text="Requires animals to be kept in good conditions."/>
 		<text name="rt_policy_description_animal_space" text="Requires sufficient space for animals."/>
 		<text name="rt_policy_description_manure_spreading" text="You should not let manure sit idle indefinitely. Ensure you spread at least 50% of the manure you produce on a rolling basis. If you do not produce manure you will not be affected by this policy."/>
+		<text name="rt_policy_description_restricted_slurry" text="You are not allowed to apply slurry during the months of September to December. You will be penalized for each violation."/>
 
 		<text name="rt_policy_report_description_croprotation" text="The report shows totals for compliant and non-compliant land."/>
 		<text name="rt_policy_report_description_sprayviolation" text="The report shows how many spraying violations occurred in the last month."/>
@@ -63,8 +65,21 @@
 		<text name="rt_policy_report_description_animal_productivity" text="The report shows how many combined hours animals were unproductive."/>
 		<text name="rt_policy_report_description_animal_space" text="The report shows how many times insufficient space for animals was recorded."/>
 		<text name="rt_policy_report_description_manure_spreading" text="The report shows how actual vs expected manure spreading compliance rates."/>
+		<text name="rt_policy_report_description_restricted_slurry" text="The report shows how many times slurry was applied during the restricted months."/>
 
 		<text name="rt_report_name_farmland" text="Farmland %s"/>
+		<text name="rt_report_name_total_area_ha" text="Total Area (ha)"/>
+		<text name="rt_report_name_non_compliant_area_ha" text="Non-Compliant Area (ha)"/>
+		<text name="rt_report_name_spray_violations" text="Spray Violations"/>
+		<text name="rt_report_name_empty_food" text="Hours without food"/>
+		<text name="rt_report_name_empty_straw" text="Hours without straw"/>
+		<text name="rt_report_name_full_slurry" text="Hours with full slurry"/>
+		<text name="rt_report_name_low_productivity_hours" text="Hours with low productivity"/>
+		<text name="rt_report_name_animal_space_violations" text="Animal Space Violations"/>
+		<text name="rt_report_name_manure_spread_expected" text="Expected manure spread"/>
+		<text name="rt_report_name_manure_spread" text="Actual manure spread"/>
+		<text name="rt_report_name_manure_spread_rolling_average" text="Rolling average manure level"/>
+		<text name="rt_report_name_restricted_slurry_violations" text="Restricted slurry violations"/>
 				
 		<text name="rt_report_value_true" text="True"/>
 		<text name="rt_report_value_false" text="False"/>

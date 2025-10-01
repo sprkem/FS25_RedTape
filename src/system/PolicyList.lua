@@ -7,6 +7,7 @@ PolicyIds = {
     ANIMAL_SPACE = 6,
     ANIMAL_PRODUCTIVITY = 7,
     MANURE_SPREADING = 8,
+    RESTRICTED_SLURRY = 9
 }
 
 Policies = {
@@ -75,8 +76,8 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { cell1 = "Total Area (ha)", cell2 = g_i18n:formatArea(totalHa, 2) })
-            table.insert(report, { cell1 = "Non-Compliant Area (ha)", cell2 = g_i18n:formatArea(nonCompliantHa, 2) })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_total_area_ha"), cell2 = g_i18n:formatArea(totalHa, 2) })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_non_compliant_area_ha"), cell2 = g_i18n:formatArea(nonCompliantHa, 2) })
             return reward, report
         end,
     },
@@ -111,7 +112,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { cell1 = "Spray Violations", cell2 = pendingSprayViolations })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_spray_violations"), cell2 = pendingSprayViolations })
             farmData.pendingSprayViolations = 0
 
             if reward ~= 0 then
@@ -150,7 +151,7 @@ Policies = {
                 reward = policyInfo.periodicReward
             end
             local report = {}
-            table.insert(report, { cell1 = "Hours without straw", cell2 = pendingEmptyStrawCount })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_empty_straw"), cell2 = pendingEmptyStrawCount })
 
             farmData.pendingEmptyStrawCount = 0
 
@@ -191,7 +192,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { cell1 = "Hours with full slurry tank", cell2 = pendingFullSlurryCount })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_full_slurry"), cell2 = pendingFullSlurryCount })
 
             farmData.pendingFullSlurryCount = 0
 
@@ -234,7 +235,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { cell1 = "Hours without food", cell2 = pendingEmptyFoodCount })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_empty_food"), cell2 = pendingEmptyFoodCount })
 
             farmData.pendingEmptyFoodCount = 0
 
@@ -275,7 +276,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { cell1 = "Animal Space Violations", cell2 = pendingViolations })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_animal_space_violations"), cell2 = pendingViolations })
 
             farmData.pendingAnimalSpaceViolations = 0
 
@@ -316,7 +317,7 @@ Policies = {
             end
 
             local report = {}
-            table.insert(report, { cell1 = "Low Productivity Hours", cell2 = pendingViolations })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_low_productivity_hours"), cell2 = pendingViolations })
 
             farmData.pendingLowProductivityHusbandry = 0
 
@@ -365,11 +366,11 @@ Policies = {
 
             local report = {}
             table.insert(report,
-                { cell1 = "Actual manure spread", cell2 = g_i18n:formatVolume(farmData.pendingManureSpread, 0) })
-            table.insert(report, { cell1 = "Expected manure spread", cell2 = g_i18n:formatVolume(expectedSpread, 0) })
+                { cell1 = g_i18n:getText("rt_report_name_manure_spread"), cell2 = g_i18n:formatVolume(farmData.pendingManureSpread, 0) })
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_manure_spread_expected"), cell2 = g_i18n:formatVolume(expectedSpread, 0) })
             table.insert(report,
                 {
-                    cell1 = "Rolling average manure level",
+                    cell1 = g_i18n:getText("rt_report_name_manure_spread_rolling_average"),
                     cell2 = g_i18n:formatVolume(farmData.rollingAverageManureLevel, 0)
                 })
 
@@ -381,5 +382,46 @@ Policies = {
 
             return report
         end
+    },
+
+    [PolicyIds.RESTRICTED_SLURRY] = {
+        id = PolicyIds.RESTRICTED_SLURRY,
+        name = "rt_policy_restricted_slurry",
+        description = "rt_policy_description_restricted_slurry",
+        report_description = "rt_policy_report_description_restricted_slurry",
+        probability = 0.4,
+        periodicReward = 20,
+        periodicPenaltyPerViolation = -5,
+        evaluationInterval = 1,
+        minEvaluationCount = 12,
+        activate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            farmData.restrictedSlurryViolations = 0
+        end,
+        evaluate = function(policyInfo, policy, farmId)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(farmId)
+            local pendingViolations = farmData.restrictedSlurryViolations or 0
+            local reward = 0
+            if pendingViolations > 0 then
+                reward = policyInfo.periodicPenaltyPerViolation * pendingViolations
+            else
+                reward = policyInfo.periodicReward
+            end
+
+            local report = {}
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_restricted_slurry_violations"), cell2 = pendingViolations })
+
+            farmData.restrictedSlurryViolations = 0
+
+            if reward ~= 0 then
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
+            end
+
+            return report
+        end,
     },
 }

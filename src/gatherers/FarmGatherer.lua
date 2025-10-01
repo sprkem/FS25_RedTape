@@ -63,7 +63,8 @@ function FarmGatherer:getFarmData(farmId)
             pendingAnimalSpaceViolations = 0,
             currentManureLevel = 0,
             rollingAverageManureLevel = 0,
-            pendingManureSpread = 0
+            pendingManureSpread = 0,
+            restrictedSlurryViolations = 0
         }
     end
     return self.data[farmId]
@@ -83,6 +84,7 @@ function FarmGatherer:saveToXmlFile(xmlFile, key)
         setXMLInt(xmlFile, farmKey .. "#currentManureLevel", farmData.currentManureLevel)
         setXMLInt(xmlFile, farmKey .. "#rollingAverageManureLevel", farmData.rollingAverageManureLevel)
         setXMLInt(xmlFile, farmKey .. "#pendingManureSpread", farmData.pendingManureSpread)
+        setXMLInt(xmlFile, farmKey .. "#restrictedSlurryViolations", farmData.restrictedSlurryViolations)
         i = i + 1
     end
 end
@@ -105,7 +107,8 @@ function FarmGatherer:loadFromXMLFile(xmlFile, key)
             pendingAnimalSpaceViolations = getXMLInt(xmlFile, farmKey .. "#pendingAnimalSpaceViolations"),
             currentManureLevel = getXMLInt(xmlFile, farmKey .. "#currentManureLevel"),
             rollingAverageManureLevel = getXMLInt(xmlFile, farmKey .. "#rollingAverageManureLevel"),
-            pendingManureSpread = getXMLInt(xmlFile, farmKey .. "#pendingManureSpread")
+            pendingManureSpread = getXMLInt(xmlFile, farmKey .. "#pendingManureSpread"),
+            restrictedSlurryViolations = getXMLInt(xmlFile, farmKey .. "#restrictedSlurryViolations")
         }
         i = i + 1
     end
@@ -117,8 +120,12 @@ end
 
 function FarmGatherer:checkSprayers()
     local checkFillTypes = { FillType.FERTILIZER, FillType.SLURRY, FillType.LIME, FillType.MANURE }
+    local restrictedSlurryPeriods = { 11, 12, 1, 2 } -- September to December
 
     for uniqueId, sprayer in pairs(self.turnedOnSprayers) do
+        local sprayerFarmId = sprayer:getOwnerFarmId()
+        local farmData = self:getFarmData(sprayerFarmId)
+
         if not sprayer.spec_sprayer.workAreaParameters.isActive then
             print("Sprayer " .. uniqueId .. " is not active, skipping.")
             continue
@@ -127,29 +134,30 @@ function FarmGatherer:checkSprayers()
         local fillUnitIndex = sprayer:getSprayerFillUnitIndex()
         local fillType = sprayer:getFillUnitFillType(fillUnitIndex)
 
-        if not RedTape.tableHasValue(checkFillTypes, fillType) then
-            print("Ignoring sprayer fill type " .. fillType)
-            continue
+        if RedTape.tableHasValue(restrictedSlurryPeriods, g_currentMission.environment.currentPeriod) and fillType == FillType.SLURRY then
+            print("Slurry spraying is restricted during this period. Sprayer " ..
+                sprayer:getName() .. " is violating policy.")
+            farmData.restrictedSlurryViolations = farmData.restrictedSlurryViolations + 1
         end
 
-        local usageScale = sprayer.spec_sprayer.usageScale
-        local workingWidth
-        if usageScale.workAreaIndex == nil then
-            workingWidth = usageScale.workingWidth
-        else
-            workingWidth = sprayer:getWorkAreaWidth(usageScale.workAreaIndex)
-        end
+        if RedTape.tableHasValue(checkFillTypes, fillType) then
+            local usageScale = sprayer.spec_sprayer.usageScale
+            local workingWidth
+            if usageScale.workAreaIndex == nil then
+                workingWidth = usageScale.workingWidth
+            else
+                workingWidth = sprayer:getWorkAreaWidth(usageScale.workAreaIndex)
+            end
 
-        local raycastHit = self:checkWaterByRaycast(sprayer, workingWidth)
-        local overlapHit = self:checkCreekByOverlap(sprayer, workingWidth)
+            local raycastHit = self:checkWaterByRaycast(sprayer, workingWidth)
+            local overlapHit = self:checkCreekByOverlap(sprayer, workingWidth)
 
-        if raycastHit or overlapHit then
-            print("Water found for sprayer " .. sprayer:getName())
-            local farmId = 1
-            local farmData = self:getFarmData(farmId)
-            farmData.pendingSprayViolations = farmData.pendingSprayViolations + 1
-        else
-            print("No water found for sprayer " .. sprayer:getName())
+            if raycastHit or overlapHit then
+                print("Water found for sprayer " .. sprayer:getName())
+                farmData.pendingSprayViolations = farmData.pendingSprayViolations + 1
+            else
+                print("No water found for sprayer " .. sprayer:getName())
+            end
         end
     end
 end
@@ -341,7 +349,6 @@ function FarmGatherer:getDesirableSpace(animalType)
 end
 
 function FarmGatherer:updateManureLevels()
-
     for _, farmData in pairs(self.data) do
         farmData.currentManureLevel = 0
     end
@@ -376,6 +383,7 @@ function FarmGatherer:updateManureLevels()
     local averagingWindow = 6
     for _, farmData in pairs(self.data) do
         local oldAverage = farmData.rollingAverageManureLevel
-        farmData.rollingAverageManureLevel = (oldAverage * (averagingWindow - 1) + farmData.currentManureLevel) / averagingWindow
+        farmData.rollingAverageManureLevel = (oldAverage * (averagingWindow - 1) + farmData.currentManureLevel) /
+            averagingWindow
     end
 end
