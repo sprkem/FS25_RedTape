@@ -206,9 +206,9 @@ function MenuRedTape:getMenuButtonInfo()
 end
 
 function MenuRedTape:onFrameOpen()
-    local xmlFile = loadXMLFile("Temp", "dataS/gui/InGameMenuContractsFrame.xml")
-    saveXMLFileTo(xmlFile, g_currentMission.missionInfo.savegameDirectory .. "/InGameMenuContractsFrame.xml")
-    delete(xmlFile);
+    -- local xmlFile = loadXMLFile("Temp", "dataS/gui/InGameMenuContractsFrame.xml")
+    -- saveXMLFileTo(xmlFile, g_currentMission.missionInfo.savegameDirectory .. "/InGameMenuContractsFrame.xml")
+    -- delete(xmlFile);
 
     local texts = {}
     for k, tab in pairs(self.subCategoryTabs) do

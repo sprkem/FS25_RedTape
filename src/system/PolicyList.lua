@@ -115,7 +115,7 @@ Policies = {
             farmData.pendingSprayViolations = 0
 
             if reward ~= 0 then
-                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy))
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
             return report
@@ -155,7 +155,7 @@ Policies = {
             farmData.pendingEmptyStrawCount = 0
 
             if reward ~= 0 then
-                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy))
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
             return report
@@ -196,7 +196,7 @@ Policies = {
             farmData.pendingFullSlurryCount = 0
 
             if reward ~= 0 then
-                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy))
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
             return report
@@ -239,7 +239,7 @@ Policies = {
             farmData.pendingEmptyFoodCount = 0
 
             if reward ~= 0 then
-                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy))
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
             return report
@@ -280,7 +280,7 @@ Policies = {
             farmData.pendingAnimalSpaceViolations = 0
 
             if reward ~= 0 then
-                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy))
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
             return report
@@ -321,7 +321,7 @@ Policies = {
             farmData.pendingLowProductivityHusbandry = 0
 
             if reward ~= 0 then
-                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy))
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
             return report
@@ -376,7 +376,7 @@ Policies = {
             farmData.pendingManureSpread = 0
 
             if reward ~= 0 then
-                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy))
+                g_client:getServerConnection():sendEvent(PolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
             return report

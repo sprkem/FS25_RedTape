@@ -67,20 +67,20 @@
                 <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_information" position="460px -160px" width="500px" />
                 <Text id="noSelectedPolicyText" profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -230px" width="500px" />
 
-                <GuiElement id="policyInfoContainer" position="460px -210px">
+                <GuiElement id="policyInfoContainer" position="460px -190px">
                     <Text profile="rt_header_top_left" id="selectedPolicyName" position="0px 0px" width="500px" />
                     <Text profile="rt_scheme_policy_info" id="selectedPolicyDescription" position="40px -40px" size="800px 400px" />
                     <Text profile="rt_header_top_left" text="$l10n_rt_header_latest_report" position="0px -140px" width="500px" />
                     <Text profile="rt_scheme_policy_info" id="selectedPolicyReportDescription" position="40px -180px" size="800px 100px" />
                     <GuiElement id="policyReportContainer">
-                        <SmoothList id="policyReportTable" profile="rt_table" position="40px -250px" size="700px 400px">
+                        <SmoothList id="policyReportTable" profile="rt_table" position="40px -240px" size="700px 300px">
                             <ListItem profile="rtTableListItem">
                                 <Text profile="rtListRowCellLeft" position="20px 0px" size="300px 32px" name="cell1"/>
                                 <Text profile="rtListRowCellLeft" position="320px 0px" size="300px 32px" name="cell2"/>
                                 <Text profile="rtListRowCellLeft" position="620px 0px" size="300px 32px" name="cell3"/>
                             </ListItem>
                         </SmoothList>
-                        <ThreePartBitmap profile="rt_slider_box_left" position="760px -250px" size="6px 400px">
+                        <ThreePartBitmap profile="rt_slider_box_left" position="760px -240px" size="6px 300px">
                             <Slider profile="fs25_listSlider" dataElementId="policyReportTable" />
                         </ThreePartBitmap>
                     </GuiElement>
@@ -120,14 +120,14 @@
                     <Text profile="rt_header_top_left" text="$l10n_rt_header_latest_report" position="0px -140px" width="500px" />
                     <Text profile="rt_scheme_policy_info" id="selectedSchemeReportDescription" position="40px -180px" size="800px 100px" />
                     <GuiElement id="schemeReportContainer">
-                        <SmoothList id="schemeReportTable" profile="rt_table" position="40px -250px" size="700px 400px">
+                        <SmoothList id="schemeReportTable" profile="rt_table" position="40px -240px" size="700px 400px">
                             <ListItem profile="rtTableListItem">
                                 <Text profile="rtListRowCellLeft" position="20px 0px" size="300px 32px" name="cell1"/>
                                 <Text profile="rtListRowCellLeft" position="320px 0px" size="300px 32px" name="cell2"/>
                                 <Text profile="rtListRowCellLeft" position="620px 0px" size="300px 32px" name="cell3"/>
                             </ListItem>
                         </SmoothList>
-                        <ThreePartBitmap profile="rt_slider_box_left" position="760px -250px" size="6px 400px">
+                        <ThreePartBitmap profile="rt_slider_box_left" position="760px -240px" size="6px 400px">
                             <Slider profile="fs25_listSlider" dataElementId="schemeReportTable" />
                         </ThreePartBitmap>
                     </GuiElement>
