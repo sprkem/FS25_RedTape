@@ -271,9 +271,9 @@ function Scheme:spawnVehicles()
     end
 
     local schemeInfo = Schemes[self.schemeIndex]
-    local vehicles = schemeInfo.getSchemeVehicles(self)
+    local vehicleGroup = schemeInfo.getSchemeVehicles(self)
 
-    for _, info in ipairs(vehicles) do
+    for _, info in ipairs(vehicleGroup.vehicles) do
         local data = VehicleLoadingData.new()
         data:setFilename(info.filename)
         if data.isValid then
@@ -291,7 +291,7 @@ function Scheme:spawnVehicles()
         end
     end
 
-    self.spawnedVehicles = #vehicles > 0
+    self.spawnedVehicles = #vehicleGroup.vehicles > 0
     g_messageCenter:subscribe(MessageType.VEHICLE_RESET, self.onVehicleReset, self)
 end
 

@@ -104,11 +104,12 @@ Schemes = {
         probability = 1,
         descriptionFunction = function(schemeInfo, scheme)
             local fruitType = tonumber(scheme.props['fruitType'])
-            local title = g_fruitTypeManager.fruitTypes[fruitType].title
+            local title = g_fruitTypeManager.fruitTypes[fruitType].fillType.title
             return string.format(g_i18n:getText("rt_scheme_desc_crop_promotion"), title)
         end,
         getSchemeVehicles = function(scheme)
-            return g_missionManager.missionVehicles["harvestMission"][scheme.props['size']][scheme.props['vehicleGroup']]
+            return g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
+                [scheme.props['vehicleGroup']]
         end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
@@ -137,18 +138,7 @@ Schemes = {
         end,
         selected = function(schemeInfo, scheme, tier)
             -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
-            local schemeSystem = g_currentMission.RedTape.SchemeSystem
-            local vehicleGroup = schemeInfo.getSchemeVehicles(scheme)
-
-            -- TODO move this to the UI when selecting the scheme
-            -- if not schemeSystem.isSpawnSpaceAvailable(vehicleGroup) then
-            --     print("Not enough space to spawn vehicles for crop promotion scheme")
-            --     return false
-            -- end
-            print("Selected vehicles for crop promotion scheme:")
-            -- TODO spawn vehicles
-
-            return true
+            scheme:spawnVehicles()
         end,
         evaluate = function(schemeInfo, scheme, tier)
         end
