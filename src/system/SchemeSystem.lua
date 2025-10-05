@@ -209,29 +209,80 @@ function SchemeSystem:getAvailableSchemesForCurrentFarm()
     return availableForFarm
 end
 
-function SchemeSystem:getVehicleGroup(size, variant)
-    local sizes = { "small", "medium", "large" }
-    local vehicles = g_missionManager:getRandomVehicleGroup("harvestMission", size, variant)
+function SchemeSystem.getAvailableEquipmentSize(variant)
+    local groups = g_missionManager.missionVehicles["harvestMission"]
+    local sizes = { "medium", "small", "large" }
+    local chosenSize = nil
+    local sized = nil
 
-    -- if vehicles is nil, try the next bigger size up to large or return nil and print an errors
-    if vehicles == nil then
-        local found = false
-        for i, s in ipairs(sizes) do
-            if s == size then
-                found = true
-            elseif found then
-                print("Trying next size up: " .. s)
-                vehicles = g_missionManager:getRandomVehicleGroup("harvestMission", s, variant)
-                if vehicles ~= nil then
-                    break
-                end
-                if s == "large" then
-                    print("No vehicles found for any size up to large for variant " .. variant)
-                    return nil
-                end
-            end
+    for _, s in ipairs(sizes) do
+        sized = groups[s]
+        if sized ~= nil then
+            chosenSize = s
+            break
+        else
+            print("Trying next size: " .. s)
         end
     end
 
-    return vehicles
+    if sized == nil then
+        print("No vehicle groups found for any size for variant " .. variant)
+        return nil
+    end
+
+    return chosenSize
+end
+
+-- function SchemeSystem.getVehicleGroup(size, variant)
+--     local sizes = { "small", "medium", "large" }
+--     local vehicles = g_missionManager:getRandomVehicleGroup("harvestMission", size, variant)
+
+--     -- if vehicles is nil, try the next bigger size up to large or return nil and print an errors
+--     if vehicles == nil then
+--         local found = false
+--         for i, s in ipairs(sizes) do
+--             if s == size then
+--                 found = true
+--             elseif found then
+--                 print("Trying next size up: " .. s)
+--                 vehicles = g_missionManager:getRandomVehicleGroup("harvestMission", s, variant)
+--                 if vehicles ~= nil then
+--                     break
+--                 end
+--                 if s == "large" then
+--                     print("No vehicles found for any size up to large for variant " .. variant)
+--                     return nil
+--                 end
+--             end
+--         end
+--     end
+
+--     return vehicles
+-- end
+
+function SchemeSystem.isSpawnSpaceAvailable(vehicles)
+    local usedStorePlaces = g_currentMission.usedStorePlaces
+    local placesFilled = {}
+    local result = true
+    for _, v in ipairs(vehicles) do
+        local storeItem = g_storeManager:getItemByXMLFilename(v.filename)
+        local size = StoreItemUtil.getSizeValues(v.filename, "vehicle", storeItem.rotation, v.configurations)
+        local x = size.width
+        size.width = math.max(x, VehicleLoadingData.MIN_SPAWN_PLACE_WIDTH)
+        size.length = math.max(size.length, VehicleLoadingData.MIN_SPAWN_PLACE_LENGTH)
+        size.height = math.max(size.height, VehicleLoadingData.MIN_SPAWN_PLACE_HEIGHT)
+        size.width = size.width + VehicleLoadingData.SPAWN_WIDTH_OFFSET
+        local adjustedX, _, _, place, width, _ = PlacementUtil.getPlace(g_currentMission.storeSpawnPlaces, size,
+            usedStorePlaces)
+        if adjustedX == nil then
+            result = false
+            break
+        end
+        PlacementUtil.markPlaceUsed(usedStorePlaces, place, width)
+        table.insert(placesFilled, place)
+    end
+    for _, v172_ in ipairs(placesFilled) do
+        PlacementUtil.unmarkPlaceUsed(usedStorePlaces, v172_)
+    end
+    return result
 end

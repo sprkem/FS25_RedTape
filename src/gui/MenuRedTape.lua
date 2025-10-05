@@ -386,6 +386,15 @@ function MenuRedTape:onSelectScheme()
     end
 
     local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE][self.schemesRenderer.selectedRow]
+    local schemeInfo = Schemes[scheme.schemeIndex]
+    local vehicles = schemeInfo.getSchemeVehicles(scheme)
+    local schemeSystem = g_currentMission.RedTape.SchemeSystem
+
+    if not schemeSystem.isSpawnSpaceAvailable(vehicles) then
+        InfoDialog.show(g_i18n:getText("rt_no_vehicle_room"))
+        return
+    end
+
     local farmId = g_currentMission:getFarmId()
     g_client:getServerConnection():sendEvent(SchemeSelectedEvent.new(scheme, farmId))
 end

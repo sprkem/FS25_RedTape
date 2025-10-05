@@ -18,13 +18,35 @@ function Scheme.new()
 
     self.props = {}
 
+    self.spawnedVehicles = false
+    self.vehicles = {}
+    self.pendingVehicleLoadingData = {} -- temp, not to be saved
+    self.failedToLoadVehicles = false -- temp, not to be saved
+
     return self
+end
+
+function Scheme:update(dt)
+    if self.pendingVehicleUniqueIds ~= nil then
+		for i = #self.pendingVehicleUniqueIds, 1, -1 do
+			local uniqueId = self.pendingVehicleUniqueIds[i]
+			local vehicle = g_currentMission.vehicleSystem:getVehicleByUniqueId(uniqueId)
+			if vehicle ~= nil then
+				table.remove(self.pendingVehicleUniqueIds, i)
+				table.insert(self.vehicles, vehicle)
+			end
+		end
+		if #self.pendingVehicleUniqueIds == 0 then
+			self.pendingVehicleUniqueIds = nil
+		end
+	end
 end
 
 function Scheme:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.schemeIndex)
     streamWriteInt32(streamId, self.farmId)
     streamWriteInt32(streamId, self.activatedTier)
+    streamWriteBool(streamId, self.spawnedVehicles)
 
     streamWriteInt32(streamId, #self.lastEvaluationReport)
     for i, report in ipairs(self.lastEvaluationReport) do
@@ -44,6 +66,7 @@ function Scheme:readStream(streamId, connection)
     self.schemeIndex = streamReadInt32(streamId)
     self.farmId = streamReadInt32(streamId)
     self.activatedTier = streamReadInt32(streamId)
+    self.spawnedVehicles = streamReadBool(streamId)
 
     local reportCount = streamReadInt32(streamId)
     for i = 1, reportCount do
@@ -67,6 +90,7 @@ function Scheme:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#schemeIndex", self.schemeIndex)
     setXMLInt(xmlFile, key .. "#farmId", self.farmId)
     setXMLInt(xmlFile, key .. "#activatedTier", self.activatedTier)
+    setXMLBool(xmlFile, key .. "#spawnedVehicles", self.spawnedVehicles)
 
     for i, report in ipairs(self.lastEvaluationReport) do
         local reportKey = string.format("%s.reportItems.item(%d)", key, i)
@@ -82,12 +106,21 @@ function Scheme:saveToXmlFile(xmlFile, key)
         setXMLString(xmlFile, propKey .. "#value", value)
         i = i + 1
     end
+
+    for i, vehicle in ipairs(self.vehicles) do
+        xmlFile:setValue(string.format(key .. ".vehicles.vehicle(%d)#uniqueId", i - 1), vehicle.uniqueId)
+    end
 end
 
 function Scheme:loadFromXMLFile(xmlFile, key)
     self.schemeIndex = getXMLInt(xmlFile, key .. "#schemeIndex")
     self.farmId = getXMLInt(xmlFile, key .. "#farmId")
     self.activatedTier = getXMLInt(xmlFile, key .. "#activatedTier")
+    self.spawnedVehicles = getXMLBool(xmlFile, key .. "#spawnedVehicles")
+
+    if self.spawnedVehicles then
+        g_messageCenter:subscribe(MessageType.VEHICLE_RESET, self.onVehicleReset, self)
+    end
 
     local i = 0
     while true do
@@ -115,6 +148,14 @@ function Scheme:loadFromXMLFile(xmlFile, key)
         self.props[propKeyName] = propValue
         j = j + 1
     end
+
+    for _, vehicleKey in xmlFile:iterator(key .. ".vehicles.vehicle") do
+		local vehicleUniqueId = xmlFile:getValue(vehicleKey .. "#uniqueId")
+		if self.pendingVehicleUniqueIds == nil then
+			self.pendingVehicleUniqueIds = {}
+		end
+		table.insert(self.pendingVehicleUniqueIds, vehicleUniqueId)
+	end
 end
 
 -- Called by the SchemeSystem when generating schemes
@@ -199,15 +240,7 @@ function Scheme:evaluate()
     end
 end
 
-function Scheme:selected()
-    if not g_currentMission:getIsServer() then
-        return
-    end
-
-    local schemeInfo = Schemes[self.schemeIndex]
-    schemeInfo.selected(schemeInfo, self, self.activatedTier)
-end
-
+-- Called by SchemeSelectedEvent, runs on client and server
 -- Creates a new farm specific scheme from
 function Scheme:createFarmScheme(farmId)
     local policySystem = g_currentMission.RedTape.PolicySystem
@@ -220,4 +253,99 @@ function Scheme:createFarmScheme(farmId)
         farmScheme.props[key] = value
     end
     return farmScheme
+end
+
+-- Called by SchemeSelectedEvent, runs on server only
+function Scheme:selected()
+    if not g_currentMission:getIsServer() then
+        return
+    end
+
+    local schemeInfo = Schemes[self.schemeIndex]
+    schemeInfo.selected(schemeInfo, self, self.activatedTier)
+end
+
+function Scheme:spawnVehicles()
+    if not g_currentMission:getIsServer() then
+        return
+    end
+
+    local schemeInfo = Schemes[self.schemeIndex]
+    local vehicles = schemeInfo.getSchemeVehicles(self)
+
+    for _, info in ipairs(vehicles) do
+        local data = VehicleLoadingData.new()
+        data:setFilename(info.filename)
+        if data.isValid then
+            if info.configurations ~= nil then
+                data:setConfigurations(info.configurations)
+            end
+            data:setLoadingPlace(g_currentMission.storeSpawnPlaces, g_currentMission.usedStorePlaces)
+            data:setPropertyState(VehiclePropertyState.MISSION)
+            data:setOwnerFarmId(self.farmId)
+            table.insert(self.pendingVehicleLoadingData, data)
+            data:load(self.onSpawnedVehicle, self, {
+                ["loadingData"] = data,
+                ["vehicleInfo"] = info
+            })
+        end
+    end
+
+    self.spawnedVehicles = #vehicles > 0
+    g_messageCenter:subscribe(MessageType.VEHICLE_RESET, self.onVehicleReset, self)
+end
+
+function Scheme:onSpawnedVehicle(vehicles, vehicleLoadState, loadingInfo)
+	table.removeElement(self.pendingVehicleLoadingData, loadingInfo.loadingData)
+	if self.failedToLoadVehicles then
+		for _, vehicle in ipairs(vehicles) do
+			vehicle:delete()
+		end
+		return
+	elseif vehicleLoadState == VehicleLoadingState.OK then
+		for _, vehicle in ipairs(vehicles) do
+			vehicle:addWearAmount(math.random() * 0.3 + 0.1)
+			vehicle:setOperatingTime(3600000 * (math.random() * 40 + 30))
+			table.insert(self.vehicles, vehicle)
+		end
+	else
+		self.failedToLoadVehicles = true
+		for _, vehicle in ipairs(vehicles) do
+			vehicle:delete()
+		end
+		for _, loadingData in ipairs(self.pendingVehicleLoadingData) do
+			loadingData:cancelLoading()
+		end
+		table.clear(self.pendingVehicleLoadingData)
+		table.clear(self.vehiclesToLoad)
+		self.spawnedVehicles = false
+		for _, vehicle in ipairs(self.vehicles) do
+			vehicle:delete()
+		end
+		table.clear(self.vehicles)
+	end
+end
+
+function Scheme:onVehicleReset(oldVehicle, newVehicle)
+	if g_currentMission:getIsServer() and table.removeElement(self.vehicles, oldVehicle) then
+		table.addElement(self.vehicles, newVehicle)
+	end
+end
+
+function Scheme:removeAccess()
+	if g_currentMission:getIsServer() then
+		self:calculateReimbursement()
+		for _, vehicle in ipairs(self.vehicles) do
+			if not vehicle:getIsBeingDeleted() then
+				vehicle:delete()
+			end
+		end
+		self.vehicles = {}
+	end
+end
+
+-- Must be called when the scheme ends
+function Scheme:endScheme()
+    self:removeAccess()
+    g_messageCenter:unsubscribeAll(self)
 end

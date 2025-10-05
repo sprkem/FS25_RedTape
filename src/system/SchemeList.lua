@@ -89,20 +89,16 @@ Schemes = {
         duplicationKey = "CROP_PROMOTION",
         tiers = {
             [PolicySystem.TIER.A] = {
-                variants = { "SUGARBEET", "POTATO" },
-                size = "large",
+                -- variants = { "SUGARBEET", "POTATO" },
             },
             [PolicySystem.TIER.B] = {
-                variants = { "SUGARBEET", "POTATO" },
-                size = "medium",
+                -- variants = { "SUGARBEET", "POTATO" },
             },
             [PolicySystem.TIER.C] = {
-                variants = { "SUGARBEET", "POTATO" },
-                size = "small",
+                -- variants = { "SUGARBEET", "POTATO" },
             },
             [PolicySystem.TIER.D] = {
-                variants = { "SUGARBEET", "POTATO" },
-                size = "small",
+                -- variants = { "SUGARBEET", "POTATO" },
             },
         },
         probability = 1,
@@ -110,6 +106,9 @@ Schemes = {
             local fruitType = tonumber(scheme.props['fruitType'])
             local title = g_fruitTypeManager.fruitTypes[fruitType].title
             return string.format(g_i18n:getText("rt_scheme_desc_crop_promotion"), title)
+        end,
+        getSchemeVehicles = function(scheme)
+            return g_missionManager.missionVehicles["harvestMission"][scheme.props['size']][scheme.props['vehicleGroup']]
         end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
@@ -124,21 +123,32 @@ Schemes = {
             }
             local chosenIndex = math.random(1, RedTape.tableCount(fruitTypes))
             local i = 1
-            for fruitType, fruitName in pairs(fruitTypes) do
+            for fruitType, variant in pairs(fruitTypes) do
                 if i == chosenIndex then
                     scheme.props['fruitType'] = tostring(fruitType)
-                    scheme.props['variant'] = fruitName
+                    scheme.props['variant'] = variant
                     break
                 end
                 i = i + 1
             end
+            scheme.props['size'] = SchemeSystem.getAvailableEquipmentSize(scheme.props['variant'])
+            local vehicles = g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
+            scheme.props['vehicleGroup'] = math.random(1, RedTape.tableCount(vehicles))
         end,
         selected = function(schemeInfo, scheme, tier)
             -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
-            local farmId = scheme.farmId
-            local vehicles = g_currentMission.RedTape.SchemeSystem:getVehicleGroup(schemeInfo.tiers[tier].size,
-                scheme.props['variant'])
+            local schemeSystem = g_currentMission.RedTape.SchemeSystem
+            local vehicleGroup = schemeInfo.getSchemeVehicles(scheme)
+
+            -- TODO move this to the UI when selecting the scheme
+            -- if not schemeSystem.isSpawnSpaceAvailable(vehicleGroup) then
+            --     print("Not enough space to spawn vehicles for crop promotion scheme")
+            --     return false
+            -- end
             print("Selected vehicles for crop promotion scheme:")
+            -- TODO spawn vehicles
+
+            return true
         end,
         evaluate = function(schemeInfo, scheme, tier)
         end
