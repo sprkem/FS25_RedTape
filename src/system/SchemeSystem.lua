@@ -92,7 +92,8 @@ function SchemeSystem:hourChanged()
 end
 
 function SchemeSystem:periodChanged()
-    local schemeSystem = g_currentMission.RedTape.SchemeSystem
+    local rt = g_currentMission.RedTape
+    local schemeSystem = rt.SchemeSystem
 
     for farm, schemes in pairs(schemeSystem.activeSchemesByFarm) do
         for _, scheme in pairs(schemes) do
@@ -100,14 +101,27 @@ function SchemeSystem:periodChanged()
         end
     end
 
+    local currentMonth = rt.periodToMonth(g_currentMission.environment.currentPeriod)
+    local expired = {}
+    for tier, schemes in pairs(self.availableSchemes) do
+        for _, scheme in pairs(schemes) do
+            local schemeInfo = Schemes[scheme.schemeIndex]
+            if schemeInfo.offerMonths ~= nil and not rt.tableHasValue(schemeInfo.offerMonths, currentMonth) then
+                table.insert(expired, scheme)
+            end
+        end
+    end
+
+    for _, scheme in pairs(expired) do
+        g_client:getServerConnection():sendEvent(SchemeNoLongerAvailableEvent.new(scheme.id))
+    end
+
     schemeSystem:generateSchemes()
 end
 
 function SchemeSystem:generateSchemes()
-    local rt = g_currentMission.RedTape
-
     for tier, schemes in pairs(self.availableSchemes) do
-        local existingCount = rt.tableCount(schemes)
+        local existingCount = RedTape.tableCount(schemes)
         if existingCount < SchemeSystem.OPEN_SCHEMES_PER_TIER then
             print("Generating new schemes for tier " .. tier)
             local toCreate = SchemeSystem.OPEN_SCHEMES_PER_TIER - existingCount
@@ -131,6 +145,7 @@ end
 
 function SchemeSystem:getNextSchemeIndex(tier)
     local rt = g_currentMission.RedTape
+    local currentMonth = rt.periodToMonth(g_currentMission.environment.currentPeriod)
     local currentSchemeDupeKeys = {}
     for _, scheme in pairs(self.availableSchemes[tier]) do
         table.insert(currentSchemeDupeKeys, Schemes[scheme.schemeIndex].duplicationKey)
@@ -139,7 +154,9 @@ function SchemeSystem:getNextSchemeIndex(tier)
     local availableSchemes = {}
     for _, schemeInfo in pairs(Schemes) do
         if rt.tableHasKey(schemeInfo.tiers, tier) and not rt.tableHasValue(currentSchemeDupeKeys, schemeInfo.duplicationKey) then
-            table.insert(availableSchemes, schemeInfo)
+            if schemeInfo.offerMonths == nil or rt.tableHasValue(schemeInfo.offerMonths, currentMonth) then
+                table.insert(availableSchemes, schemeInfo)
+            end
         end
     end
 
@@ -187,6 +204,19 @@ function SchemeSystem:registerSelectedScheme(scheme, farmId)
     g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
 end
 
+-- Called by SchemeNoLongerAvailableEvent, runs on Client and Server
+function SchemeSystem:removeAvailableScheme(id)
+    for tier, schemes in pairs(self.availableSchemes) do
+        for i, scheme in pairs(schemes) do
+            if scheme.id == id then
+                table.remove(schemes, i)
+                g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+                return
+            end
+        end
+    end
+end
+
 function SchemeSystem:getActiveSchemesForFarm(farmId)
     if self.activeSchemesByFarm[farmId] == nil then
         self.activeSchemesByFarm[farmId] = {}
@@ -209,6 +239,16 @@ function SchemeSystem:getAvailableSchemesForCurrentFarm()
     return availableForFarm
 end
 
+function SchemeSystem:getIsSchemeVehicle(farmId, vehicle)
+    local activeSchemes = self:getActiveSchemesForFarm(farmId)
+    for _, scheme in pairs(activeSchemes) do
+        if scheme:isSchemeVehicle(vehicle) then
+            return true
+        end
+    end
+    return false
+end
+
 function SchemeSystem.getAvailableEquipmentSize(variant)
     local groups = g_missionManager.missionVehicles["harvestMission"]
     local sizes = { "medium", "small", "large" }
@@ -218,10 +258,12 @@ function SchemeSystem.getAvailableEquipmentSize(variant)
     for _, s in ipairs(sizes) do
         sized = groups[s]
         if sized ~= nil then
-            chosenSize = s
-            break
-        else
-            print("Trying next size: " .. s)
+            for _, g in pairs(sized) do
+                if g.variant == variant then
+                    chosenSize = s
+                    break
+                end
+            end
         end
     end
 
@@ -232,33 +274,6 @@ function SchemeSystem.getAvailableEquipmentSize(variant)
 
     return chosenSize
 end
-
--- function SchemeSystem.getVehicleGroup(size, variant)
---     local sizes = { "small", "medium", "large" }
---     local vehicles = g_missionManager:getRandomVehicleGroup("harvestMission", size, variant)
-
---     -- if vehicles is nil, try the next bigger size up to large or return nil and print an errors
---     if vehicles == nil then
---         local found = false
---         for i, s in ipairs(sizes) do
---             if s == size then
---                 found = true
---             elseif found then
---                 print("Trying next size up: " .. s)
---                 vehicles = g_missionManager:getRandomVehicleGroup("harvestMission", s, variant)
---                 if vehicles ~= nil then
---                     break
---                 end
---                 if s == "large" then
---                     print("No vehicles found for any size up to large for variant " .. variant)
---                     return nil
---                 end
---             end
---         end
---     end
-
---     return vehicles
--- end
 
 function SchemeSystem.isSpawnSpaceAvailable(vehicles)
     local usedStorePlaces = g_currentMission.usedStorePlaces

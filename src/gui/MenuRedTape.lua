@@ -131,15 +131,6 @@ function MenuRedTape:onGuiSetupFinished()
 
     self.schemesRenderer.indexChangedCallback = function(index)
         self:displaySelectedScheme()
-        -- self.noSelectedSchemeText:setVisible(index == -1)
-        -- self.schemeInfoContainer:setVisible(index ~= -1)
-
-        -- if index ~= -1 then
-        --     local selection = self.schemeDisplaySwitcher:getState()
-        --     local scheme = self.schemesRenderer.data[selection][index]
-        --     self.schemeReportRenderer:setData(scheme.lastEvaluationReport)
-        --     self.schemeReportTable:reloadData()
-        -- end
     end
 
     self.schemeReportTable:setDataSource(self.schemeReportRenderer)
@@ -397,4 +388,6 @@ function MenuRedTape:onSelectScheme()
 
     local farmId = g_currentMission:getFarmId()
     g_client:getServerConnection():sendEvent(SchemeSelectedEvent.new(scheme, farmId))
+
+    InfoDialog.show(g_i18n:getText("rt_info_scheme_selected"))
 end

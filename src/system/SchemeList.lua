@@ -41,8 +41,7 @@ Schemes = {
             -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
         end,
         evaluate = function(schemeInfo, scheme, tier)
-            local rt = g_currentMission.RedTape
-            local currentMonth = rt.periodToMonth(g_currentMission.environment.currentPeriod)
+            local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
             if currentMonth ~= 7 then return end -- Only evaluate in July
 
             local ig = g_currentMission.RedTape.InfoGatherer
@@ -54,12 +53,12 @@ Schemes = {
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId then
                     local farmlandData = gatherer:getFarmlandData(farmland.id)
-                    local lastHarvestMonth = rt.periodToMonth(farmlandData.lastHarvestPeriod)
+                    local lastHarvestMonth = RedTape.periodToMonth(farmlandData.lastHarvestPeriod)
                     if farmlandData.lastHarvestPeriod == -1 then
                         lastHarvestMonth = -1
                     end
 
-                    local didHarvest = rt.tableHasValue(invalidMonths, lastHarvestMonth)
+                    local didHarvest = RedTape.tableHasValue(invalidMonths, lastHarvestMonth)
                     if farmlandData.retainedSpringGrass and not didHarvest then
                         local bonusPerHa = schemeInfo.tiers[tier].bonusPerHa
                         print("Payout multiplier: " .. tostring(EconomyManager.getPriceMultiplier()))
@@ -87,6 +86,7 @@ Schemes = {
         name = "rt_scheme_crop_promotion",
         report_description = "rt_scheme_report_desc_crop_promotion",
         duplicationKey = "CROP_PROMOTION",
+        offerMonths = { 7, 8 },
         tiers = {
             [PolicySystem.TIER.A] = {
                 -- variants = { "SUGARBEET", "POTATO" },
@@ -109,7 +109,7 @@ Schemes = {
         end,
         getSchemeVehicles = function(scheme)
             return g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
-                [scheme.props['vehicleGroup']]
+                [tonumber(scheme.props['vehicleGroup'])]
         end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
@@ -126,21 +126,45 @@ Schemes = {
             local i = 1
             for fruitType, variant in pairs(fruitTypes) do
                 if i == chosenIndex then
-                    scheme.props['fruitType'] = tostring(fruitType)
-                    scheme.props['variant'] = variant
+                    scheme:setProp('fruitType', fruitType)
+                    scheme:setProp('variant', variant)
                     break
                 end
                 i = i + 1
             end
-            scheme.props['size'] = SchemeSystem.getAvailableEquipmentSize(scheme.props['variant'])
-            local vehicles = g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
-            scheme.props['vehicleGroup'] = math.random(1, RedTape.tableCount(vehicles))
+            scheme:setProp('size', SchemeSystem.getAvailableEquipmentSize(scheme.props['variant']))
+            local sizedVehicles = g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
+            local variantIndices = {}
+            for groupIndex, group in pairs(sizedVehicles) do
+                if group.variant == scheme.props['variant'] then
+                    table.insert(variantIndices, groupIndex)
+                end
+            end
+            local chosenGroupIndex = math.random(1, #variantIndices)
+            scheme:setProp('vehicleGroup', variantIndices[chosenGroupIndex])
         end,
         selected = function(schemeInfo, scheme, tier)
             -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
             scheme:spawnVehicles()
+            scheme:setProp('evaluationYear', g_currentMission.environment.currentYear + 1)
+            scheme:setProp('evaluationMonth', 12)
         end,
         evaluate = function(schemeInfo, scheme, tier)
+            local evaluationYear = tonumber(scheme.props['evaluationYear'])
+            local evaluationMonth = tonumber(scheme.props['evaluationMonth'])
+            local currentYear = g_currentMission.environment.currentYear
+            local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+
+            if currentYear ~= evaluationYear or currentMonth ~= evaluationMonth then
+                return
+            end
+
+            local report = {}
+            -- todo: call endScheme on scheme
+            -- todo: calculate payout based on area harvested of the chosen crop
+
+
+            return report
         end
     }
 

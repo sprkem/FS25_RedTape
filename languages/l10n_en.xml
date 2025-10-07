@@ -98,5 +98,6 @@
 		<text name="rt_ui_schemePayout" text="Scheme Payout"/>
 		<text name="finance_schemePayout" text="Scheme Payout"/>
 		<text name="rt_no_vehicle_room" text="Not enough space for deliver vehicles for the scheme. Make some room and try again."/>
+		<text name="rt_info_scheme_selected" text="You have signed up for the scheme. Collect any vehicles from the shop."/>
 	</texts>
 </l10n>
