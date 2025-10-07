@@ -108,8 +108,17 @@ Schemes = {
             return string.format(g_i18n:getText("rt_scheme_desc_crop_promotion"), title)
         end,
         getSchemeVehicles = function(scheme)
-            return g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
+            local vehicles = {}
+
+            local groupVehicles = g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
                 [tonumber(scheme.props['vehicleGroup'])]
+
+            for _, vehicleInfo in pairs(groupVehicles.vehicles) do
+                -- TODO -- filter to remove tractors and trailers
+                table.insert(vehicles, vehicleInfo)
+            end
+
+            return vehicles
         end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm

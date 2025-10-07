@@ -280,9 +280,9 @@ function Scheme:spawnVehicles()
     end
 
     local schemeInfo = Schemes[self.schemeIndex]
-    local vehicleGroup = schemeInfo.getSchemeVehicles(self)
+    local vehicles = schemeInfo.getSchemeVehicles(self)
 
-    for _, info in ipairs(vehicleGroup.vehicles) do
+    for _, info in ipairs(vehicles) do
         local data = VehicleLoadingData.new()
         data:setFilename(info.filename)
         if data.isValid then

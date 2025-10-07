@@ -44,6 +44,8 @@ function MenuRedTape.new(i18n, messageCenter)
     self.schemeReportRenderer = ReportRenderer.new()
     self.policyReportRenderer = ReportRenderer.new()
 
+    self.vehicleElements = {}
+
     return self
 end
 
@@ -93,17 +95,24 @@ function MenuRedTape:displaySelectedScheme()
             self.selectedSchemeName:setText(scheme:getName())
             self.selectedSchemeDescription:setText(scheme:getDescription())
 
-            if rt.tableCount(scheme.lastEvaluationReport) == 0 then
-                self.schemeReportContainer:setVisible(false)
-                self.noSchemeReportContainer:setVisible(true)
-                self.selectedSchemeReportDescription:setVisible(false)
-            else
-                self.schemeReportContainer:setVisible(true)
-                self.noSchemeReportContainer:setVisible(false)
-                self.schemeReportRenderer:setData(scheme.lastEvaluationReport)
-                self.selectedSchemeReportDescription:setVisible(true)
-                self.selectedSchemeReportDescription:setText(scheme:getReportDescription())
-                self.schemeReportTable:reloadData()
+            if selection == MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE then
+                self.activeSchemeInfo:setVisible(false)
+                self:updateSchemeEquipmentBox(scheme)
+            elseif selection == MenuRedTape.SCHEME_LIST_TYPE.ACTIVE then
+                self.activeSchemeInfo:setVisible(true)
+                self.schemeEquipmentBox:setVisible(false)
+                if rt.tableCount(scheme.lastEvaluationReport) == 0 then
+                    self.schemeReportContainer:setVisible(false)
+                    self.noSchemeReportContainer:setVisible(true)
+                    self.selectedSchemeReportDescription:setVisible(false)
+                else
+                    self.schemeReportContainer:setVisible(true)
+                    self.noSchemeReportContainer:setVisible(false)
+                    self.schemeReportRenderer:setData(scheme.lastEvaluationReport)
+                    self.selectedSchemeReportDescription:setVisible(true)
+                    self.selectedSchemeReportDescription:setText(scheme:getReportDescription())
+                    self.schemeReportTable:reloadData()
+                end
             end
         else
             print("Scheme is nil")
@@ -111,6 +120,61 @@ function MenuRedTape:displaySelectedScheme()
             self.noSelectedSchemeText:setVisible(true)
         end
     end
+end
+
+function MenuRedTape:updateSchemeEquipmentBox(scheme)
+    for _, v in pairs(self.vehicleElements) do
+        v:delete()
+    end
+    self.vehicleElements = {}
+    self.schemeVehiclesBox:invalidateLayout()
+    local schemeInfo = Schemes[scheme.schemeIndex]
+
+    if schemeInfo.getSchemeVehicles == nil then
+        self.schemeEquipmentBox:setVisible(false)
+        return
+    end
+
+    local vehicles = Schemes[scheme.schemeIndex].getSchemeVehicles(scheme)
+
+    if vehicles == nil or #vehicles == 0 then
+        self.schemeEquipmentBox:setVisible(false)
+        return
+    end
+
+    local totalWidth = 0
+    for _, vehicle in ipairs(vehicles) do
+        local storeItem = g_storeManager:getItemByXMLFilename(vehicle.filename)
+        -- if storeItem == nil then
+        --     Logging.error("Mission uses non-existent vehicle at \'%s\'", v77_.filename)
+        -- end
+        local vehicleImage = storeItem.imageFilename
+        if vehicle.configurations ~= nil and storeItem.configurations ~= nil then
+            for k, _ in pairs(storeItem.configurations) do
+                local configId = vehicle.configurations[k]
+                local config = storeItem.configurations[k][configId]
+                if config ~= nil and (config.vehicleIcon ~= nil and config.vehicleIcon ~= "") then
+                    vehicleImage = config.vehicleIcon
+                    break
+                end
+            end
+        end
+        local newElement = self.vehicleTemplate:clone(self.schemeVehiclesBox)
+        newElement:setImageFilename(vehicleImage)
+        newElement:setImageColor(nil, nil, nil, nil, 1)
+        totalWidth = totalWidth + newElement.absSize[1] + newElement.margin[1] + newElement.margin[3]
+        table.insert(self.vehicleElements, newElement)
+    end
+    self.schemeVehiclesBox:setSize(totalWidth)
+    self.schemeVehiclesBox:invalidateLayout()
+    if self.schemeVehiclesBox.maxFlowSize > self.schemeVehiclesBox.parent.absSize[1] and self.schemeVehiclesBox.pivot[1] ~= 0 then
+        self.schemeVehiclesBox:setPivot(0, 0.5)
+    elseif self.schemeVehiclesBox.maxFlowSize <= self.schemeVehiclesBox.parent.absSize[1] and self.schemeVehiclesBox.pivot[1] ~= 0.5 then
+        self.schemeVehiclesBox:setPivot(0.5, 0.5)
+    end
+    self.schemeVehiclesBox:setPosition(0)
+
+    self.schemeEquipmentBox:setVisible(true)
 end
 
 function MenuRedTape:onGuiSetupFinished()
@@ -191,6 +255,8 @@ function MenuRedTape:initialize()
         self.btnNextPage,
         self.btnPrevPage
     }
+
+    self.vehicleTemplate:unlinkElement()
 end
 
 function MenuRedTape:getMenuButtonInfo()
@@ -381,6 +447,7 @@ function MenuRedTape:onSelectScheme()
     local vehicles = schemeInfo.getSchemeVehicles(scheme)
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
 
+    -- TODO test full shop
     if not schemeSystem.isSpawnSpaceAvailable(vehicles) then
         InfoDialog.show(g_i18n:getText("rt_no_vehicle_room"))
         return
