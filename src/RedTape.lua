@@ -260,6 +260,12 @@ function RedTape.generateId()
     end))
 end
 
+function RedTape.getCumulativePeriod()
+    local period = g_currentMission.environment.currentPeriod
+    local year = g_currentMission.environment.currentYear - 1
+    return (year * 12) + period
+end
+
 FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame, RedTape.saveToXmlFile)
 
 addModEventListener(RedTape)

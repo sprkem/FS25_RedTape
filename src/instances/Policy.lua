@@ -1,15 +1,6 @@
 Policy = {}
 Policy_mt = Class(Policy)
 
--- Policy.EVALUATION_RESULT = {
---     COMPLIANT = 1,
---     NON_COMPLIANT = 2,
---     NO_RESULT = 3,
---     COMPLETE = 4
--- }
-
--- Policy.FORCE_EVALUATE_ALL = true -- TODO once testing complete
-
 function Policy.new()
     local self = {}
     setmetatable(self, Policy_mt)
@@ -17,7 +8,6 @@ function Policy.new()
     self.policyIndex = -1
     self.nextEvaluationPeriod = -1
     self.evaluationCount = 0
-    self.skipNextEvaluation = false
     self.policySystem = g_currentMission.RedTape.PolicySystem
     self.lastEvaluationReport = {}
 
@@ -28,7 +18,6 @@ function Policy:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.policyIndex)
     streamWriteInt32(streamId, self.nextEvaluationPeriod)
     streamWriteInt32(streamId, self.evaluationCount)
-    streamWriteBool(streamId, self.skipNextEvaluation)
 
     streamWriteInt32(streamId, #self.lastEvaluationReport)
     for i, report in ipairs(self.lastEvaluationReport) do
@@ -42,7 +31,6 @@ function Policy:readStream(streamId, connection)
     self.policyIndex = streamReadInt32(streamId)
     self.nextEvaluationPeriod = streamReadInt32(streamId)
     self.evaluationCount = streamReadInt32(streamId)
-    self.skipNextEvaluation = streamReadBool(streamId)
 
     local reportCount = streamReadInt32(streamId)
     for i = 1, reportCount do
@@ -59,7 +47,6 @@ function Policy:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#policyIndex", self.policyIndex)
     setXMLInt(xmlFile, key .. "#nextEvaluationPeriod", self.nextEvaluationPeriod)
     setXMLInt(xmlFile, key .. "#evaluationCount", self.evaluationCount)
-    setXMLBool(xmlFile, key .. "#skipNextEvaluation", self.skipNextEvaluation)
 
     for i, report in ipairs(self.lastEvaluationReport) do
         local reportKey = string.format("%s.reportItems.item(%d)", key, i)
@@ -73,7 +60,6 @@ function Policy:loadFromXMLFile(xmlFile, key)
     self.policyIndex = getXMLInt(xmlFile, key .. "#policyIndex")
     self.nextEvaluationPeriod = getXMLInt(xmlFile, key .. "#nextEvaluationPeriod")
     self.evaluationCount = getXMLInt(xmlFile, key .. "#evaluationCount")
-    self.skipNextEvaluation = getXMLBool(xmlFile, key .. "#skipNextEvaluation")
 
     local i = 0
     while true do
@@ -130,12 +116,10 @@ function Policy:activate()
     end
 
     if policyInfo.evaluationInterval > 0 then
-        self.nextEvaluationPeriod = g_currentMission.environment.currentPeriod + policyInfo.evaluationInterval
+        self.nextEvaluationPeriod = RedTape.getCumulativePeriod() + policyInfo.evaluationInterval
         if self.nextEvaluationPeriod > 12 then
             self.nextEvaluationPeriod = self.nextEvaluationPeriod - 12
         end
-        -- If the evaluation interval is 12, we skip the first evaluation as it loops back to evaluate immediately otherwise
-        if policyInfo.evaluationInterval == 12 then self.skipNextEvaluation = true end
     end
 
     for _, farm in pairs(g_farmManager.farmIdToFarm) do
@@ -147,15 +131,11 @@ end
 
 function Policy:evaluate()
     local rt = g_currentMission.RedTape
-    if self.skipNextEvaluation then
-        self.skipNextEvaluation = false
-        return
-    end
 
     local policyInfo = Policies[self.policyIndex]
-    local currentPeriod = g_currentMission.environment.currentPeriod
-    if currentPeriod ~= self.nextEvaluationPeriod then
-        print("Policy not ready for evaluation. Current period: " .. currentPeriod ..
+    local cumulativePeriod = RedTape.getCumulativePeriod()
+    if cumulativePeriod ~= self.nextEvaluationPeriod then
+        print("Policy not ready for evaluation. Current period: " .. cumulativePeriod ..
             ", Next evaluation period: " .. self.nextEvaluationPeriod)
         return
     end
@@ -175,8 +155,5 @@ function Policy:evaluate()
     end
 
     self.evaluationCount = self.evaluationCount + 1
-    self.nextEvaluationPeriod = currentPeriod + policyInfo.evaluationInterval
-    if self.nextEvaluationPeriod > 12 then
-        self.nextEvaluationPeriod = self.nextEvaluationPeriod - 12
-    end
+    self.nextEvaluationPeriod = cumulativePeriod + policyInfo.evaluationInterval
 end
