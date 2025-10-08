@@ -3,11 +3,10 @@ MenuRedTape.currentTasks = {}
 MenuRedTape._mt = Class(MenuRedTape, TabbedMenuFrameElement)
 
 MenuRedTape.SUB_CATEGORY = {
-    OVERVIEW = 1,
-    POLICIES = 2,
-    SCHEMES = 3,
-    TAX = 4,
-    EVENTLOG = 5
+    POLICIES = 1,
+    SCHEMES = 2,
+    TAX = 3,
+    EVENTLOG = 4
 }
 
 MenuRedTape.SCHEME_LIST_TYPE = {
@@ -17,14 +16,12 @@ MenuRedTape.SCHEME_LIST_TYPE = {
 MenuRedTape.SCHEME_STATE_TEXTS = { "ui_contractsNew", "ui_contractsActive" }
 
 MenuRedTape.HEADER_SLICES = {
-    [MenuRedTape.SUB_CATEGORY.OVERVIEW] = "gui.icon_ingameMenu_contracts",
-    [MenuRedTape.SUB_CATEGORY.POLICIES] = "gui.icon_ingameMenu_finances",
+    [MenuRedTape.SUB_CATEGORY.POLICIES] = "gui.icon_ingameMenu_contracts",
     [MenuRedTape.SUB_CATEGORY.SCHEMES] = "gui.icon_ingameMenu_finances",
     [MenuRedTape.SUB_CATEGORY.TAX] = "gui.icon_ingameMenu_prices",
     [MenuRedTape.SUB_CATEGORY.EVENTLOG] = "gui.icon_ingameMenu_contracts",
 }
 MenuRedTape.HEADER_TITLES = {
-    [MenuRedTape.SUB_CATEGORY.OVERVIEW] = "rt_header_overview",
     [MenuRedTape.SUB_CATEGORY.POLICIES] = "rt_header_policies",
     [MenuRedTape.SUB_CATEGORY.SCHEMES] = "rt_header_schemes",
     [MenuRedTape.SUB_CATEGORY.TAX] = "rt_header_tax",
@@ -130,12 +127,7 @@ function MenuRedTape:updateSchemeEquipmentBox(scheme)
     self.schemeVehiclesBox:invalidateLayout()
     local schemeInfo = Schemes[scheme.schemeIndex]
 
-    if schemeInfo.getSchemeVehicles == nil then
-        self.schemeEquipmentBox:setVisible(false)
-        return
-    end
-
-    local vehicles = Schemes[scheme.schemeIndex].getSchemeVehicles(scheme)
+    local vehicles = scheme:getVehiclesToSpawn()
 
     if vehicles == nil or #vehicles == 0 then
         self.schemeEquipmentBox:setVisible(false)
@@ -145,9 +137,6 @@ function MenuRedTape:updateSchemeEquipmentBox(scheme)
     local totalWidth = 0
     for _, vehicle in ipairs(vehicles) do
         local storeItem = g_storeManager:getItemByXMLFilename(vehicle.filename)
-        -- if storeItem == nil then
-        --     Logging.error("Mission uses non-existent vehicle at \'%s\'", v77_.filename)
-        -- end
         local vehicleImage = storeItem.imageFilename
         if vehicle.configurations ~= nil and storeItem.configurations ~= nil then
             for k, _ in pairs(storeItem.configurations) do
@@ -238,7 +227,6 @@ function MenuRedTape:initialize()
 
     self.menuButtonInfoDefault = { self.btnBack, self.btnNextPage, self.btnPrevPage }
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.EVENTLOG] = self.menuButtonInfoDefault
-    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.OVERVIEW] = self.menuButtonInfoDefault
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.POLICIES] = self.menuButtonInfoDefault
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.TAX] = self.menuButtonInfoDefault
 
@@ -291,27 +279,28 @@ function MenuRedTape:onFrameClose()
     g_messageCenter:unsubscribeAll(self)
 end
 
-function MenuRedTape:onClickOverview()
-    self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.OVERVIEW, true)
-    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~=
-        MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
-    self:setMenuButtonInfoDirty()
-end
-
 function MenuRedTape:onClickPolicies()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.POLICIES, true)
+
+    self:setMenuButtonInfoDirty()
 end
 
 function MenuRedTape:onClickSchemes()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.SCHEMES, true)
+
+    self:setMenuButtonInfoDirty()
 end
 
 function MenuRedTape:onClickTax()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.TAX, true)
+
+    self:setMenuButtonInfoDirty()
 end
 
 function MenuRedTape:onClickEventLog()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.EVENTLOG, true)
+
+    self:setMenuButtonInfoDirty()
 end
 
 function MenuRedTape:updateSubCategoryPages(subCategoryIndex)
@@ -344,9 +333,7 @@ function MenuRedTape:updateContent()
         v:setVisible(k == state)
     end
 
-    if state == MenuRedTape.SUB_CATEGORY.OVERVIEW then
-        print("Overview sub-category selected")
-    elseif state == MenuRedTape.SUB_CATEGORY.POLICIES then
+    if state == MenuRedTape.SUB_CATEGORY.POLICIES then
         local policySystem = g_currentMission.RedTape.PolicySystem
         local activePolicies = policySystem.policies
         local progress = policySystem:getProgressForCurrentFarm()
@@ -405,9 +392,7 @@ end
 function MenuRedTape:updateMenuButtons()
     local state = self.subCategoryPaging:getState()
 
-    if state == MenuRedTape.SUB_CATEGORY.OVERVIEW then
-        print("Overview sub-category selected")
-    elseif state == MenuRedTape.SUB_CATEGORY.POLICIES then
+    if state == MenuRedTape.SUB_CATEGORY.POLICIES then
         print("Policies sub-category selected")
     elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
         print("Schemes sub-category selected")
@@ -444,7 +429,7 @@ function MenuRedTape:onSelectScheme()
 
     local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE][self.schemesRenderer.selectedRow]
     local schemeInfo = Schemes[scheme.schemeIndex]
-    local vehicles = schemeInfo.getSchemeVehicles(scheme)
+    local vehicles = schemeInfo.getVehiclesToSpawn(scheme)
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
 
     -- TODO test full shop

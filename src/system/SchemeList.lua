@@ -102,26 +102,15 @@ Schemes = {
             },
         },
         probability = 1,
+        vehicleGroupOmissions = { "TRACTORSS", "TRACTORSM", "TRACTORSL", "TRAILERS", "TRUCKS", "TRAILERSSEMI" },
         descriptionFunction = function(schemeInfo, scheme)
             local fruitType = tonumber(scheme.props['fruitType'])
             local title = g_fruitTypeManager.fruitTypes[fruitType].fillType.title
             return string.format(g_i18n:getText("rt_scheme_desc_crop_promotion"), title)
         end,
-        getSchemeVehicles = function(scheme)
-            local vehicles = {}
-
-            local groupVehicles = g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
-                [tonumber(scheme.props['vehicleGroup'])]
-
-            for _, vehicleInfo in pairs(groupVehicles.vehicles) do
-                -- TODO -- filter to remove tractors and trailers
-                table.insert(vehicles, vehicleInfo)
-            end
-
-            return vehicles
-        end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
+            scheme:setProp('vehicleMissionType', 'harvestMission')
             local fruitTypes = {
                 [FruitType.SUGARBEET] = "SUGARBEET",
                 [FruitType.POTATO] = "POTATO",
@@ -142,7 +131,7 @@ Schemes = {
                 i = i + 1
             end
             scheme:setProp('size', SchemeSystem.getAvailableEquipmentSize(scheme.props['variant']))
-            local sizedVehicles = g_missionManager.missionVehicles["harvestMission"][scheme.props['size']]
+            local sizedVehicles = g_missionManager.missionVehicles[scheme.props['vehicleMissionType']][scheme.props['size']]
             local variantIndices = {}
             for groupIndex, group in pairs(sizedVehicles) do
                 if group.variant == scheme.props['variant'] then
@@ -151,6 +140,7 @@ Schemes = {
             end
             local chosenGroupIndex = math.random(1, #variantIndices)
             scheme:setProp('vehicleGroup', variantIndices[chosenGroupIndex])
+            
         end,
         selected = function(schemeInfo, scheme, tier)
             -- Any action when applying the scheme to a farm, e.g. initial payout or equipment

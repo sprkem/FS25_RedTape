@@ -10,7 +10,6 @@
 
 		<text name="rt_label_active_policies" text="Active Policies"/>
 		<text name="rt_label_available_schemes" text="Available Schemes"/>
-		<text name="rt_header_overview" text="Overview"/>
 		<text name="rt_header_policies" text="Policies"/>
 		<text name="rt_header_schemes" text="Schemes"/>
 		<text name="rt_header_tax" text="Tax"/>
@@ -22,6 +21,7 @@
 		<text name="rt_header_latest_report" text="Latest Report"/>
 		<text name="rt_header_no_selected_policy" text="Select an active policy to see relevant information"/>
 		<text name="rt_header_no_report_information" text="There is no report information available. Check back later."/>
+		<text name="rt_header_scheme_equipment" text="The following equipment will be provided for the duration of the scheme:"/>
 
 		<text name="rt_event_type_none" text="-"/>
 		<text name="rt_event_type_policypoints" text="Policy Points"/>
@@ -88,7 +88,7 @@
 		<text name="rt_scheme_crop_promotion" text="Crop Promotion"/>
 
 		<text name="rt_scheme_desc_delayed_mowing" text="Do not cut your grass during the spring months (March to June) to protect wildlife. In July, you will be compensated for any uncut grass."/>
-		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You will be provided harvesting equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
+		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You may be provided equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
 
 		<text name="rt_scheme_report_desc_delayed_mowing" text="The report shows a list of farmlands owned by you and the amount paid out during the last evaluation."/>
 		<text name="rt_scheme_report_desc_crop_promotion" text="The report shows a list of farmlands owned by you and the amount paid out during the last evaluation."/>

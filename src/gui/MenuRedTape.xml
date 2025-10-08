@@ -13,28 +13,22 @@
             </BoxLayout>
         </GuiElement>
         <BoxLayout profile="fs25_subCategorySelectorTabbedBox" id="subCategoryBox">
-            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[1]" text="$l10n_rt_header_overview" onClick="onClickOverview">
+            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[1]" text="$l10n_rt_header_policies" onClick="onClickPolicies">
                 <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
             </Button>
-            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[2]" text="$l10n_rt_header_policies" onClick="onClickPolicies">
+            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[2]" text="$l10n_rt_header_schemes" onClick="onClickSchemes">
                 <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
             </Button>
-            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[3]" text="$l10n_rt_header_schemes" onClick="onClickSchemes">
+            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[3]" text="$l10n_rt_header_tax" onClick="onClickTax">
                 <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
             </Button>
-            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[4]" text="$l10n_rt_header_tax" onClick="onClickTax">
-                <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
-            </Button>
-            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[5]" text="$l10n_rt_header_eventlog" onClick="onClickEventLog">
+            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[4]" text="$l10n_rt_header_eventlog" onClick="onClickEventLog">
                 <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
             </Button>
         </BoxLayout>
         <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -57px"/>
-        <MultiTextOption profile="fs25_subCategorySelectorTabbed" id="subCategoryPaging" position="0px -10px" onClick="updateSubCategoryPages"/>
+        <MultiTextOption profile="fs25_subCategorySelectorTabbed" id="subCategoryPaging" position="0px -10px" onClick="updateSubCategoryPages"/>        
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[1]">
-
-        </GuiElement>
-        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[2]">
             <GuiElement position="0px -20px">
                 <Text profile="rtLabelTopLeft" text="$l10n_rt_label_active_policies" position="0px 20px"/>
                 <GuiElement id="activePoliciesContainer">
@@ -91,7 +85,7 @@
 
             </GuiElement>
         </GuiElement>
-        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[3]">
+        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[2]">
             <GuiElement position="0px -20px">
                 <MultiTextOption profile="rt_scheme_display_switcher" id="schemeDisplaySwitcher" onClick="onSwitchSchemeDisplay" size="400px 32px" position="0px 10px"/>
                 <GuiElement id="schemesContainer">
@@ -136,9 +130,9 @@
                             <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_no_report_information" position="40px -180px" width="800px" />
                         </GuiElement>
                     </GuiElement>
-                    <GuiElement profile="fs25_contractsProgressBox" id="schemeEquipmentBox" position="40px -240px">
-                        <Text profile="fs25_contractsContentTitle" text="$l10n_ui_ingameMissionSpecs:"/>
-                        <Text profile="fs25_contractsContentText" id="useOwnEquipementText" text="ABC"/>
+                    <GuiElement profile="fs25_contractsProgressBox" id="schemeEquipmentBox" position="00px -140px">
+                        <Text profile="rt_header_top_left" text="$l10n_ui_ingameMissionSpecs:" position="0px 0px" />
+                        <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_scheme_equipment" position="40px -40px" size="800px 20px" />
                         <Bitmap profile="fs25_contractsVehiclesItem" id="vehicleTemplate"/>
                         <GuiElement profile="fs25_contractsVehiclesBoxMarquee">
                             <BoxLayout profile="fs25_contractsVehiclesBox" id="schemeVehiclesBox"/>
@@ -148,11 +142,11 @@
 
             </GuiElement>
         </GuiElement>
-        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[4]">
+        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[3]">
 
 
         </GuiElement>
-        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[5]">
+        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[4]">
             <GuiElement id="farmEventsContainer">
                 <GuiElement profile="fs25_statisticsHeaderBox">
                     <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_timestamp" handleFocus="false" />

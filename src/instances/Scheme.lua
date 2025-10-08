@@ -104,15 +104,16 @@ function Scheme:saveToXmlFile(xmlFile, key)
     end
 
     local i = 0
-    for key, value in pairs(self.props) do
+    for propertyKey, propertyValue in pairs(self.props) do
         local propKey = string.format("%s.propItems.item(%d)", key, i)
-        setXMLString(xmlFile, propKey .. "#key", key)
-        setXMLString(xmlFile, propKey .. "#value", value)
+        setXMLString(xmlFile, propKey .. "#key", propertyKey)
+        setXMLString(xmlFile, propKey .. "#value", propertyValue)
         i = i + 1
     end
 
     for i, vehicle in ipairs(self.vehicles) do
-        xmlFile:setValue(string.format(key .. ".vehicles.vehicle(%d)#uniqueId", i - 1), vehicle.uniqueId)
+        local vehicleKey = string.format("%s.vehicles.vehicle(%d)", key, i - 1)
+        setXMLString(xmlFile, vehicleKey .. "#uniqueId", vehicle.uniqueId)
     end
 end
 
@@ -154,12 +155,16 @@ function Scheme:loadFromXMLFile(xmlFile, key)
         j = j + 1
     end
 
-    for _, vehicleKey in xmlFile:iterator(key .. ".vehicles.vehicle") do
-        local vehicleUniqueId = xmlFile:getValue(vehicleKey .. "#uniqueId")
-        if self.pendingVehicleUniqueIds == nil then
-            self.pendingVehicleUniqueIds = {}
+    self.pendingVehicleUniqueIds = {}
+    local k = 0
+    while true do
+        local vehicleKey = string.format("%s.vehicles.vehicle(%d)", key, k)
+        if not hasXMLProperty(xmlFile, vehicleKey) then
+            break
         end
+        local vehicleUniqueId = getXMLString(xmlFile, vehicleKey .. "#uniqueId")
         table.insert(self.pendingVehicleUniqueIds, vehicleUniqueId)
+        k = k + 1
     end
 end
 
@@ -274,13 +279,38 @@ function Scheme:selected()
     schemeInfo.selected(schemeInfo, self, self.activatedTier)
 end
 
+-- Get a list of vehicles to spawn.
+function Scheme:getVehiclesToSpawn()
+    local schemeInfo = Schemes[self.schemeIndex]
+    local categoriesToSkip = schemeInfo.vehicleGroupOmissions or {}
+    local vehicles = {}
+
+    if self.props['vehicleMissionType'] == nil then
+        return vehicles
+    end
+
+    local groupVehicles = g_missionManager.missionVehicles[self.props['vehicleMissionType']][self.props['size']]
+        [tonumber(self.props['vehicleGroup'])]
+
+    for _, vehicleInfo in pairs(groupVehicles.vehicles) do
+        local storeItem = g_storeManager:getItemByXMLFilename(vehicleInfo.filename)
+        if storeItem ~= nil then
+            if not RedTape.tableHasValue(categoriesToSkip, storeItem.categoryName) then
+                table.insert(vehicles, vehicleInfo)
+            end
+        end
+    end
+
+    return vehicles
+end
+
 function Scheme:spawnVehicles()
     if not g_currentMission:getIsServer() then
         return
     end
 
     local schemeInfo = Schemes[self.schemeIndex]
-    local vehicles = schemeInfo.getSchemeVehicles(self)
+    local vehicles = self:getVehiclesToSpawn()
 
     for _, info in ipairs(vehicles) do
         local data = VehicleLoadingData.new()
@@ -300,7 +330,7 @@ function Scheme:spawnVehicles()
         end
     end
 
-    self.spawnedVehicles = #vehicleGroup.vehicles > 0
+    self.spawnedVehicles = #vehicles > 0
     g_messageCenter:subscribe(MessageType.VEHICLE_RESET, self.onVehicleReset, self)
 end
 
