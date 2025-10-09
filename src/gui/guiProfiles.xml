@@ -31,11 +31,14 @@
     </Profile>
     <Profile name="rt_header_top_center" extends="fs25_statisticsHeaderText" with="anchorTopCenter" />
     <Profile name="rt_header_top_left" extends="fs25_statisticsHeaderText" with="anchorTopLeft" />
+    <Profile name="rt_header_top_left_l" extends="fs25_statisticsHeaderText" with="anchorTopLeft">
+        <textSize value="20px" />
+    </Profile>
     <Profile name="rt_table" extends="emptyPanel" with="anchorStretchingYLeft pivotTopLeft" />
     <Profile name="rt_slider_box" extends="fs25_listSliderBox" with="anchorTopRight" />
     <Profile name="rt_slider_box_left" extends="fs25_listSliderBox" with="anchorTopLeft" />
     <Profile name="rt_scheme_display_switcher" extends="fs25_subCategorySelector" with="anchorTopLeft" />
-    <Profile name="rt_scheme_policy_info" extends="fs25_textGrey" with="anchorTopLeft">        
+    <Profile name="rt_scheme_policy_info" extends="fs25_textGrey" with="anchorTopLeft">
         <textMaxNumLines value="4"/>
         <textVerticalAlignment value="top"/>
     </Profile>

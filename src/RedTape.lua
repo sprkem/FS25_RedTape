@@ -55,6 +55,8 @@ function RedTape:update(dt)
         self.InfoGatherer:runInfrequentChecks()
         self.infrequentChecksUpdateTime = self.infrequentChecksUpdateIntervalMs
     end
+
+    self.SchemeSystem:checkPendingVehicles()
 end
 
 function RedTape:makeCheckEnabledPredicate()
@@ -244,9 +246,15 @@ function RedTape.tableHasKey(tab, key)
     return tab[key] ~= nil
 end
 
-function RedTape.tableCount(table)
+function RedTape.tableCount(tab)
     local count = 0
-    for _, _ in pairs(table) do
+
+    if type(tab) ~= "table" then
+        print("RedTape.tableCount called on non-table value")
+        return 0
+    end
+
+    for _, _ in pairs(tab) do
         count = count + 1
     end
     return count

@@ -27,7 +27,7 @@ function Scheme.new()
     return self
 end
 
-function Scheme:update(dt)
+function Scheme:checkPendingVehicles()
     if self.pendingVehicleUniqueIds ~= nil then
         for i = #self.pendingVehicleUniqueIds, 1, -1 do
             local uniqueId = self.pendingVehicleUniqueIds[i]

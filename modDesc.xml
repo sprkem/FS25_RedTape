@@ -34,6 +34,7 @@ Un mod qui ajoute des programmes gouvernementaux, des subventions et des taxes.
         <sourceFile filename="src/events/PolicyActivatedEvent.lua"/>
         <sourceFile filename="src/events/PolicyPointsEvent.lua"/>
         <sourceFile filename="src/events/SchemeActivatedEvent.lua"/>
+        <sourceFile filename="src/events/SchemeNoLongerAvailableEvent.lua"/>
         <sourceFile filename="src/events/SchemePayoutEvent.lua"/>
         <sourceFile filename="src/events/SchemeSelectedEvent.lua"/>
         <sourceFile filename="src/extensions/I18NExtension.lua"/>

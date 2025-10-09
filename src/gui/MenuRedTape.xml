@@ -49,7 +49,7 @@
                     <ThreePartBitmap profile="fs25_contractsContentSeparator"/>
                 </GuiElement>
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_compliance_tier" position="460px 20px" width="500px" />
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_header_compliance_tier" position="460px 20px" width="500px" />
                 <GuiElement profile="fs25_contractsProgressBox" id="progressBox" position="480px -50px">
                     <Text profile="fs25_contractsContentTitle" id="complianceTier"/>
                     <Text profile="fs25_contractsContentValue" id="progressText"/>
@@ -58,7 +58,7 @@
                     </ThreePartBitmap>
                 </GuiElement>
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_policy_information" position="460px -160px" width="500px" />
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_header_policy_information" position="460px -160px" width="500px" />
                 <Text id="noSelectedPolicyText" profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -230px" width="500px" />
 
                 <GuiElement id="policyInfoContainer" position="460px -190px">
@@ -105,7 +105,7 @@
                     <ThreePartBitmap profile="fs25_contractsContentSeparator"/>
                 </GuiElement>
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_scheme_information" position="460px 20px" width="500px" />
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_header_scheme_information" position="460px 20px" width="500px" />
                 <Text id="noSelectedSchemeText" profile="rt_header_top_left" text="$l10n_rt_header_no_selected_policy" position="460px -230px" width="500px" />
 
                 <GuiElement id="schemeInfoContainer" position="460px -40px">

@@ -428,8 +428,7 @@ function MenuRedTape:onSelectScheme()
     end
 
     local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE][self.schemesRenderer.selectedRow]
-    local schemeInfo = Schemes[scheme.schemeIndex]
-    local vehicles = schemeInfo.getVehiclesToSpawn(scheme)
+    local vehicles = scheme:getVehiclesToSpawn()
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
 
     -- TODO test full shop

@@ -36,15 +36,14 @@ function FarmlandGatherer:periodChanged()
 
             local cumulativeMonth = RedTape.getCumulativeMonth()
 
-            farmlandData.fruitHistory[cumulativeMonth] = {
-                name = currentFruit.name or "",
-                growthState = growthState
-            }
-
             if currentFruit == nil then
                 farmlandData.fallowMonths = farmlandData.fallowMonths + 1
             else
                 farmlandData.fallowMonths = 0
+                farmlandData.fruitHistory[cumulativeMonth] = {
+                    name = currentFruit.name or "",
+                    growthState = growthState
+                }
             end
             farmlandData.areaHa = field:getAreaHa()
 
@@ -164,7 +163,6 @@ function FarmlandGatherer:getPreviousFruit(farmlandId, startMonth, endMonth, not
     end
     return nil, nil
 end
-
 
 -- Forwards search to see if any fruit recorded in the given range
 function FarmlandGatherer:hasRecordedFruit(farmlandId, startMonth, endMonth)

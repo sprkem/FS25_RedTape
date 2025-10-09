@@ -132,8 +132,6 @@ function Policy:evaluate()
     local policyInfo = Policies[self.policyIndex]
     local cumulativeMonth = RedTape.getCumulativeMonth()
     if cumulativeMonth ~= self.nextEvaluationMonth then
-        print("Policy not ready for evaluation. Current month: " .. cumulativeMonth ..
-            ", Next evaluation month: " .. self.nextEvaluationMonth)
         return
     end
 

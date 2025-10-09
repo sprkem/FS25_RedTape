@@ -90,19 +90,19 @@ Schemes = {
         name = "rt_scheme_crop_promotion",
         report_description = "rt_scheme_report_desc_crop_promotion",
         duplicationKey = "CROP_PROMOTION",
-        offerMonths = { 7, 8 },
+        offerMonths = { 1, 2 },
         tiers = {
             [PolicySystem.TIER.A] = {
-                bonusPerHa = 350,
+                bonusPerHa = 2200,
             },
             [PolicySystem.TIER.B] = {
-                bonusPerHa = 300,
+                bonusPerHa = 1800,
             },
             [PolicySystem.TIER.C] = {
-                bonusPerHa = 250,
+                bonusPerHa = 1500,
             },
             [PolicySystem.TIER.D] = {
-                bonusPerHa = 200,
+                bonusPerHa = 1200,
             },
         },
         probability = 1,

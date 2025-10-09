@@ -119,11 +119,18 @@ function SchemeSystem:periodChanged()
     schemeSystem:generateSchemes()
 end
 
+function SchemeSystem:checkPendingVehicles()
+    for farm, schemes in pairs(self.activeSchemesByFarm) do
+        for _, scheme in pairs(schemes) do
+            scheme:checkPendingVehicles()
+        end
+    end
+end
+
 function SchemeSystem:generateSchemes()
     for tier, schemes in pairs(self.availableSchemes) do
         local existingCount = RedTape.tableCount(schemes)
         if existingCount < SchemeSystem.OPEN_SCHEMES_PER_TIER then
-            print("Generating new schemes for tier " .. tier)
             local toCreate = SchemeSystem.OPEN_SCHEMES_PER_TIER - existingCount
             for i = 1, toCreate do
                 local scheme = Scheme.new()
@@ -131,7 +138,6 @@ function SchemeSystem:generateSchemes()
                 local nextIndex = self:getNextSchemeIndex(tier)
 
                 if nextIndex == nil then
-                    print("No more schemes available for tier " .. tier)
                     break
                 end
 
