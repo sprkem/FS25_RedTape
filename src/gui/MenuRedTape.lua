@@ -59,6 +59,14 @@ function MenuRedTape:displaySelectedPolicy()
             self.selectedPolicyName:setText(policy:getName())
             self.selectedPolicyDescription:setText(policy:getDescription())
 
+            local nextEval = policy.nextEvaluationMonth % 12
+            if nextEval == 0 then
+                nextEval = 12
+            end
+
+            self.selectedPolicyReportNextDate:setText(string.format(g_i18n:getText("rt_header_next_evaluation_date"),
+                RedTape.monthToString(nextEval)))
+
             if rt.tableCount(policy.lastEvaluationReport) == 0 then
                 self.policyReportContainer:setVisible(false)
                 self.noPolicyReportContainer:setVisible(true)

@@ -223,6 +223,16 @@ function SchemeSystem:removeAvailableScheme(id)
     end
 end
 
+function SchemeSystem:endActiveScheme(id, farmId)
+    for i, scheme in pairs(self.activeSchemesByFarm[farmId]) do
+        if scheme.id == id then
+            scheme:endScheme()
+            table.remove(self.activeSchemesByFarm[farmId], i)
+            return
+        end
+    end
+end
+
 function SchemeSystem:getActiveSchemesForFarm(farmId)
     if self.activeSchemesByFarm[farmId] == nil then
         self.activeSchemesByFarm[farmId] = {}

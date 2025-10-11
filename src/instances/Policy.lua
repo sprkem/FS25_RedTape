@@ -20,7 +20,7 @@ function Policy:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.evaluationCount)
 
     streamWriteInt32(streamId, #self.lastEvaluationReport)
-    for i, report in ipairs(self.lastEvaluationReport) do
+    for _, report in pairs(self.lastEvaluationReport) do
         streamWriteString(streamId, report.cell1)
         streamWriteString(streamId, report.cell2)
         streamWriteString(streamId, report.cell3)
@@ -48,11 +48,13 @@ function Policy:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#nextEvaluationMonth", self.nextEvaluationMonth)
     setXMLInt(xmlFile, key .. "#evaluationCount", self.evaluationCount)
 
-    for i, report in ipairs(self.lastEvaluationReport) do
+    local i = 0
+    for _, report in pairs(self.lastEvaluationReport) do
         local reportKey = string.format("%s.reportItems.item(%d)", key, i)
         setXMLString(xmlFile, reportKey .. "#cell1", report.cell1)
         setXMLString(xmlFile, reportKey .. "#cell2", report.cell2)
         setXMLString(xmlFile, reportKey .. "#cell3", report.cell3)
+        i = i + 1
     end
 end
 
@@ -141,7 +143,7 @@ function Policy:evaluate()
             self.lastEvaluationReport = report or {}
 
             -- Ensure all report values are strings
-            for _, report in ipairs(self.lastEvaluationReport) do
+            for _, report in pairs(self.lastEvaluationReport) do
                 report.cell1 = tostring(report.cell1 or "")
                 report.cell2 = tostring(report.cell2 or "")
                 report.cell3 = tostring(report.cell3 or "")

@@ -191,7 +191,7 @@ Schemes = {
                 end
             end
 
-            scheme:endScheme()
+            g_client:getServerConnection():sendEvent(SchemeEndedEvent.new(scheme.id, farmId))
             return report
         end
     }

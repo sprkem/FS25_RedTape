@@ -22,6 +22,7 @@
 		<text name="rt_header_no_selected_policy" text="Select an active policy to see relevant information"/>
 		<text name="rt_header_no_report_information" text="There is no report information available. Check back later."/>
 		<text name="rt_header_scheme_equipment" text="The following equipment will be provided for the duration of the scheme:"/>
+		<text name="rt_header_next_evaluation_date" text="Next evaluation date: %s"/>
 
 		<text name="rt_event_type_none" text="-"/>
 		<text name="rt_event_type_policypoints" text="Policy Points"/>
