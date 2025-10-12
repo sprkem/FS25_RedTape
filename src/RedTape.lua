@@ -79,6 +79,7 @@ function RedTape:periodChanged()
     rt.PolicySystem:periodChanged()
     rt.SchemeSystem:periodChanged()
     rt.TaxSystem:periodChanged()
+    rt.InfoGatherer:resetMonthlyData()
 end
 
 function RedTape:populateFillTypeCache()

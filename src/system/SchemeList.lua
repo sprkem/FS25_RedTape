@@ -4,7 +4,7 @@
 
 SchemeIds = {
     DELAYED_MOWING_WILDLIFE = 1, -- SFI, or just only cut twice for a payout
-    REDUCE_BALE_WRAPPING = 2,         -- He also got paid for hay making. Basically, he chose to make hay and not silage in some fields. Reasons are less plastic use from wrapping, and the seeds from the wildflowers and grass get spread when baling and loading, and moving the bales.
+    REDUCE_BALE_WRAPPING = 2,    -- He also got paid for hay making. Basically, he chose to make hay and not silage in some fields. Reasons are less plastic use from wrapping, and the seeds from the wildflowers and grass get spread when baling and loading, and moving the bales.
     NATURAL_GRAZING = 3,         -- Promotes natural grazing practices and biodiversity
     NATURAL_FERTILISER = 4,      -- Encourages the use of natural fertilizers to improve soil health
     CROP_PROMOTION = 5,          -- promotes growing specific crops. possibly split this by tier, and give equipment or cash bonuses
@@ -59,9 +59,10 @@ Schemes = {
                     local mayFruit = farmlandData.fruitHistory[cumulativeMonth - 2]
                     local aprilFruit = farmlandData.fruitHistory[cumulativeMonth - 3]
 
-                    local retainedGrass = juneFruit ~= nil and juneFruit.name == "GRASS" and
-                        mayFruit ~= nil and mayFruit.name == "GRASS" and
-                        aprilFruit ~= nil and aprilFruit.name == "GRASS"
+                    local grassName = g_fruitTypeManager:getFruitTypeByIndex(FruitType.GRASS).name
+                    local retainedGrass = juneFruit ~= nil and juneFruit.name == grassName and
+                        mayFruit ~= nil and mayFruit.name == grassName and
+                        aprilFruit ~= nil and aprilFruit.name == grassName
 
                     local didHarvest = RedTape.tableHasValue(invalidMonths, farmlandData.lastHarvestMonth)
                     if retainedGrass and not didHarvest then
@@ -76,6 +77,79 @@ Schemes = {
                         table.insert(report, {
                             cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
                             cell2 = g_i18n:formatMoney(0, 0, true, true),
+                        })
+                    end
+                end
+            end
+
+            return report
+        end
+    },
+
+    [SchemeIds.REDUCE_BALE_WRAPPING] = {
+        id = SchemeIds.REDUCE_BALE_WRAPPING,
+        name = "rt_scheme_reduce_bale_wrapping",
+        description = "rt_scheme_desc_reduce_bale_wrapping",
+        report_description = "rt_scheme_report_desc_reduce_bale_wrapping",
+        duplicationKey = "REDUCE_BALE_WRAPPING",
+        tiers = {
+            [PolicySystem.TIER.A] = {
+                deductionPerBale = 15,
+                maxPayoutPerHa = 2000,
+            },
+            [PolicySystem.TIER.B] = {
+                deductionPerBale = 15,
+                maxPayoutPerHa = 1750,
+            },
+            [PolicySystem.TIER.C] = {
+                deductionPerBale = 15,
+                maxPayoutPerHa = 1500,
+            },
+            [PolicySystem.TIER.D] = {
+                deductionPerBale = 15,
+                maxPayoutPerHa = 1250,
+            },
+        },
+        probability = 1,
+        initialise = function(schemeInfo, scheme)
+            -- Init of an available scheme, prior to selection by a farm
+        end,
+        selected = function(schemeInfo, scheme, tier)
+            -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
+        end,
+        evaluate = function(schemeInfo, scheme, tier)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
+            local farmId = scheme.farmId
+            local cumulativeMonth = RedTape.getCumulativeMonth()
+
+            local report = {}
+            for _, farmland in pairs(g_farmlandManager.farmlands) do
+                if farmland.farmId == farmId then
+                    local farmlandData = gatherer:getFarmlandData(farmland.id)
+                    local grassName = g_fruitTypeManager:getFruitTypeByIndex(FruitType.GRASS).name
+                    local lastMonthFruit = farmlandData.fruitHistory[cumulativeMonth - 1]
+
+                    if farmlandData.lastHarvestMonth == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
+
+                        local deductions = farmlandData.monthlyWrappedBales * schemeInfo.tiers[tier].deductionPerBale
+                        local maxPayout = farmlandData.areaHa * schemeInfo.tiers[tier].max
+                        local payout = math.max(0, maxPayout - deductions) * EconomyManager.getPriceMultiplier()
+
+                        table.insert(report, {
+                            cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                            cell2 = g_i18n:formatMoney(payout, 0, true, true),
+                            cell3 = string.format(g_i18n:getText("rt_report_name_harvested"), g_i18n:getText("rt_report_value_true"))
+                        })
+
+                        if payout > 0 then
+                            g_client:getServerConnection():sendEvent(SchemePayoutEvent.new(scheme, farmId, payout))
+                        end
+                    else
+                        table.insert(report, {
+                            cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                            cell2 = g_i18n:formatMoney(0, 0, true, true),
+                            cell3 = string.format(g_i18n:getText("rt_report_name_harvested"), g_i18n:getText("rt_report_value_false"))
                         })
                     end
                 end

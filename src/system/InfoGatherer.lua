@@ -71,3 +71,9 @@ function InfoGatherer:periodChanged()
         gatherer:periodChanged()
     end
 end
+
+function InfoGatherer:resetMonthlyData()
+    for _, gatherer in pairs(self.gatherers) do
+        gatherer:resetMonthlyData()
+    end
+end

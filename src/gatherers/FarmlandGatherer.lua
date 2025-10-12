@@ -30,8 +30,6 @@ function FarmlandGatherer:periodChanged()
         if farmland.showOnFarmlandsScreen and farmland.field ~= nil then
             local farmlandData = self:getFarmlandData(farmland.id)
 
-            farmlandData.monthlyWrappedBales = 0
-
             local field = farmland.field
             local x, z = field:getCenterOfFieldWorldPosition()
             local fruitTypeIndex, growthState = FSDensityMapUtil.getFruitTypeIndexAtWorldPos(x, z)
@@ -57,6 +55,12 @@ function FarmlandGatherer:periodChanged()
                 end
             end
         end
+    end
+end
+
+function FarmlandGatherer:resetMonthlyData()
+    for _, farmlandData in pairs(self.data) do
+        farmlandData.monthlyWrappedBales = 0
     end
 end
 
@@ -106,10 +110,10 @@ function FarmlandGatherer:loadFromXMLFile(xmlFile, key)
 
         local farmlandId = getXMLInt(xmlFile, farmlandKey .. "#id")
         self.data[farmlandId] = {
-            fallowMonths = getXMLInt(xmlFile, farmlandKey .. "#fallowMonths"),
-            areaHa = getXMLInt(xmlFile, farmlandKey .. "#areaHa"),
-            lastHarvestMonth = getXMLInt(xmlFile, farmlandKey .. "#lastHarvestMonth"),
-            monthlyWrappedBales = getXMLInt(xmlFile, farmlandKey .. "#monthlyWrappedBales"),
+            fallowMonths = getXMLInt(xmlFile, farmlandKey .. "#fallowMonths") or 0,
+            areaHa = getXMLInt(xmlFile, farmlandKey .. "#areaHa") or 0,
+            lastHarvestMonth = getXMLInt(xmlFile, farmlandKey .. "#lastHarvestMonth") or 0,
+            monthlyWrappedBales = getXMLInt(xmlFile, farmlandKey .. "#monthlyWrappedBales") or 0,
         }
 
         local j = 0

@@ -50,8 +50,9 @@ end
 
 function FarmGatherer:periodChanged()
     self:updateManureLevels()
+end
 
-    -- Reset monthly counters
+function FarmGatherer:resetMonthlyData()
     for _, farmData in pairs(self.data) do
         farmData.monthlySprayViolations = 0
         farmData.monthlyEmptyStrawCount = 0
@@ -110,16 +111,16 @@ function FarmGatherer:loadFromXMLFile(xmlFile, key)
 
         local farmId = getXMLInt(xmlFile, farmKey .. "#id")
         self.data[farmId] = {
-            monthlySprayViolations = getXMLInt(xmlFile, farmKey .. "#monthlySprayViolations"),
-            monthlyEmptyStrawCount = getXMLInt(xmlFile, farmKey .. "#monthlyEmptyStrawCount"),
-            monthlyFullSlurryCount = getXMLInt(xmlFile, farmKey .. "#monthlyFullSlurryCount"),
-            monthlyEmptyFoodCount = getXMLInt(xmlFile, farmKey .. "#monthlyEmptyFoodCount"),
-            monthlyLowProductivityHusbandry = getXMLInt(xmlFile, farmKey .. "#monthlyLowProductivityHusbandry"),
-            monthlyAnimalSpaceViolations = getXMLInt(xmlFile, farmKey .. "#monthlyAnimalSpaceViolations"),
-            currentManureLevel = getXMLInt(xmlFile, farmKey .. "#currentManureLevel"),
-            rollingAverageManureLevel = getXMLInt(xmlFile, farmKey .. "#rollingAverageManureLevel"),
-            pendingManureSpread = getXMLInt(xmlFile, farmKey .. "#pendingManureSpread"),
-            monthlyRestrictedSlurryViolations = getXMLInt(xmlFile, farmKey .. "#monthlyRestrictedSlurryViolations")
+            monthlySprayViolations = getXMLInt(xmlFile, farmKey .. "#monthlySprayViolations") or 0,
+            monthlyEmptyStrawCount = getXMLInt(xmlFile, farmKey .. "#monthlyEmptyStrawCount") or 0,
+            monthlyFullSlurryCount = getXMLInt(xmlFile, farmKey .. "#monthlyFullSlurryCount") or 0,
+            monthlyEmptyFoodCount = getXMLInt(xmlFile, farmKey .. "#monthlyEmptyFoodCount") or 0,
+            monthlyLowProductivityHusbandry = getXMLInt(xmlFile, farmKey .. "#monthlyLowProductivityHusbandry") or 0,
+            monthlyAnimalSpaceViolations = getXMLInt(xmlFile, farmKey .. "#monthlyAnimalSpaceViolations") or 0,
+            currentManureLevel = getXMLInt(xmlFile, farmKey .. "#currentManureLevel") or 0,
+            rollingAverageManureLevel = getXMLInt(xmlFile, farmKey .. "#rollingAverageManureLevel") or 0,
+            pendingManureSpread = getXMLInt(xmlFile, farmKey .. "#pendingManureSpread") or 0,
+            monthlyRestrictedSlurryViolations = getXMLInt(xmlFile, farmKey .. "#monthlyRestrictedSlurryViolations") or 0
         }
         i = i + 1
     end
