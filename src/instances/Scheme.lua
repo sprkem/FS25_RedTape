@@ -282,24 +282,35 @@ end
 -- Get a list of vehicles to spawn.
 function Scheme:getVehiclesToSpawn()
     local schemeInfo = Schemes[self.schemeIndex]
-    local categoriesToSkip = schemeInfo.vehicleGroupOmissions or {}
+    -- local categoriesToSkip = schemeInfo.vehicleGroupOmissions or {}
     local vehicles = {}
 
-    if self.props['vehicleMissionType'] == nil then
-        return vehicles
-    end
+    -- if self.props['vehicleMissionType'] == nil then
+    --     return vehicles
+    -- end
 
-    local groupVehicles = g_missionManager.missionVehicles[self.props['vehicleMissionType']][self.props['size']]
-        [tonumber(self.props['vehicleGroup'])]
+    -- local groupVehicles = g_missionManager.missionVehicles[self.props['vehicleMissionType']][self.props['size']]
+    --     [tonumber(self.props['vehicleGroup'])]
 
-    for _, vehicleInfo in pairs(groupVehicles.vehicles) do
-        local storeItem = g_storeManager:getItemByXMLFilename(vehicleInfo.filename)
-        if storeItem ~= nil then
-            if not RedTape.tableHasValue(categoriesToSkip, storeItem.categoryName) then
-                table.insert(vehicles, vehicleInfo)
-            end
+    local vehicleSpawnIndex = 1
+    while true do
+        local vehicleKey = 'vehicleToSpawn' .. vehicleSpawnIndex
+        if self.props[vehicleKey] == nil then
+            break
         end
+        local storeItem = g_storeManager:getItemByXMLFilename(self.props[vehicleKey])
+        table.insert(vehicles, storeItem)
+        vehicleSpawnIndex = vehicleSpawnIndex + 1
     end
+
+    -- for _, vehicleInfo in pairs(groupVehicles.vehicles) do
+    --     local storeItem = g_storeManager:getItemByXMLFilename(vehicleInfo.filename)
+    --     if storeItem ~= nil then
+    --         if not RedTape.tableHasValue(categoriesToSkip, storeItem.categoryName) then
+    --             table.insert(vehicles, vehicleInfo)
+    --         end
+    --     end
+    -- end
 
     return vehicles
 end
@@ -309,15 +320,19 @@ function Scheme:spawnVehicles()
         return
     end
 
-    local schemeInfo = Schemes[self.schemeIndex]
-    local vehicles = self:getVehiclesToSpawn()
+    local storeItems = self:getVehiclesToSpawn()
 
-    for _, info in pairs(vehicles) do
+    for _, storeItem in pairs(storeItems) do
         local data = VehicleLoadingData.new()
-        data:setFilename(info.filename)
+        data:setFilename(storeItem.xmlFilename)
         if data.isValid then
-            if info.configurations ~= nil then
-                data:setConfigurations(info.configurations)
+            if storeItem.configurations ~= nil then
+                local configurations = {}
+                for key, _ in pairs(storeItem.configurations) do
+                    local value = math.random(#storeItem.configurations[key])
+                    configurations[key] = value
+                end
+                data:setConfigurations(configurations)
             end
             data:setLoadingPlace(g_currentMission.storeSpawnPlaces, g_currentMission.usedStorePlaces)
             data:setPropertyState(VehiclePropertyState.MISSION)
@@ -325,12 +340,12 @@ function Scheme:spawnVehicles()
             table.insert(self.pendingVehicleLoadingData, data)
             data:load(self.onSpawnedVehicle, self, {
                 ["loadingData"] = data,
-                ["vehicleInfo"] = info
+                ["vehicleInfo"] = storeItem
             })
         end
     end
 
-    self.spawnedVehicles = #vehicles > 0
+    self.spawnedVehicles = #storeItems > 0
     g_messageCenter:subscribe(MessageType.VEHICLE_RESET, self.onVehicleReset, self)
 end
 

@@ -90,6 +90,7 @@
 		<text name="rt_scheme_reduce_bale_wrapping" text="Reduced Bale Wrapping"/>
 
 		<text name="rt_scheme_desc_delayed_mowing" text="Do not cut your grass during the spring months (March to June) to protect wildlife. In July, you will be compensated for any uncut grass."/>
+		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You may be provided equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
 		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Wrapping bales consumes plastic and prevents the spread of seeds during transportation. This scheme does not punish you for wrapping bales - it only rewards you when you choose an alternative such as making hay bales or using a forage wagon."/>
 
 		<text name="rt_scheme_report_desc_delayed_mowing" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>

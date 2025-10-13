@@ -143,12 +143,11 @@ function MenuRedTape:updateSchemeEquipmentBox(scheme)
     end
 
     local totalWidth = 0
-    for _, vehicle in ipairs(vehicles) do
-        local storeItem = g_storeManager:getItemByXMLFilename(vehicle.filename)
+    for _, storeItem in ipairs(vehicles) do
         local vehicleImage = storeItem.imageFilename
-        if vehicle.configurations ~= nil and storeItem.configurations ~= nil then
+        if storeItem.configurations ~= nil then
             for k, _ in pairs(storeItem.configurations) do
-                local configId = vehicle.configurations[k]
+                local configId = storeItem.configurations[k]
                 local config = storeItem.configurations[k][configId]
                 if config ~= nil and (config.vehicleIcon ~= nil and config.vehicleIcon ~= "") then
                     vehicleImage = config.vehicleIcon

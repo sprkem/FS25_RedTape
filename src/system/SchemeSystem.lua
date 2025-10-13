@@ -161,14 +161,17 @@ function SchemeSystem:getNextSchemeIndex(tier)
     for _, schemeInfo in pairs(Schemes) do
         if rt.tableHasKey(schemeInfo.tiers, tier) and not rt.tableHasValue(currentSchemeDupeKeys, schemeInfo.duplicationKey) then
             if schemeInfo.offerMonths == nil or rt.tableHasValue(schemeInfo.offerMonths, currentMonth) then
-                table.insert(availableSchemes, schemeInfo)
+                local availabilityProbability = schemeInfo.availabilityProbability or 1
+                if math.random() <= availabilityProbability then
+                    table.insert(availableSchemes, schemeInfo)
+                end
             end
         end
     end
 
     local totalProbability = 0
     for _, scheme in pairs(availableSchemes) do
-        totalProbability = totalProbability + scheme.probability
+        totalProbability = totalProbability + scheme.selectionProbability
     end
 
     if totalProbability == 0 then
@@ -178,7 +181,7 @@ function SchemeSystem:getNextSchemeIndex(tier)
     local randomValue = math.random() * totalProbability
     local cumulativeProbability = 0
     for _, scheme in pairs(availableSchemes) do
-        cumulativeProbability = cumulativeProbability + scheme.probability
+        cumulativeProbability = cumulativeProbability + scheme.selectionProbability
         if randomValue <= cumulativeProbability then
             return scheme.id
         end
@@ -265,39 +268,38 @@ function SchemeSystem:getIsSchemeVehicle(farmId, vehicle)
     return false
 end
 
-function SchemeSystem.getAvailableEquipmentSize(variant)
-    local groups = g_missionManager.missionVehicles["harvestMission"]
-    local sizes = { "medium", "small", "large" }
-    local chosenSize = nil
-    local sized = nil
+-- function SchemeSystem.getAvailableEquipmentSize(variant)
+--     local groups = g_missionManager.missionVehicles["harvestMission"]
+--     local sizes = { "medium", "small", "large" }
+--     local chosenSize = nil
+--     local sized = nil
 
-    for _, s in ipairs(sizes) do
-        sized = groups[s]
-        if sized ~= nil then
-            for _, g in pairs(sized) do
-                if g.variant == variant then
-                    chosenSize = s
-                    break
-                end
-            end
-        end
-    end
+--     for _, s in ipairs(sizes) do
+--         sized = groups[s]
+--         if sized ~= nil then
+--             for _, g in pairs(sized) do
+--                 if g.variant == variant then
+--                     chosenSize = s
+--                     break
+--                 end
+--             end
+--         end
+--     end
 
-    if sized == nil then
-        print("No vehicle groups found for any size for variant " .. variant)
-        return nil
-    end
+--     if sized == nil then
+--         print("No vehicle groups found for any size for variant " .. variant)
+--         return nil
+--     end
 
-    return chosenSize
-end
+--     return chosenSize
+-- end
 
-function SchemeSystem.isSpawnSpaceAvailable(vehicles)
+function SchemeSystem.isSpawnSpaceAvailable(storeItems)
     local usedStorePlaces = g_currentMission.usedStorePlaces
     local placesFilled = {}
     local result = true
-    for _, v in ipairs(vehicles) do
-        local storeItem = g_storeManager:getItemByXMLFilename(v.filename)
-        local size = StoreItemUtil.getSizeValues(v.filename, "vehicle", storeItem.rotation, v.configurations)
+    for _, storeItem in ipairs(storeItems) do
+        local size = StoreItemUtil.getSizeValues(storeItem.xmlFilename, "vehicle", storeItem.rotation, storeItem.configurations)
         local x = size.width
         size.width = math.max(x, VehicleLoadingData.MIN_SPAWN_PLACE_WIDTH)
         size.length = math.max(size.length, VehicleLoadingData.MIN_SPAWN_PLACE_LENGTH)
@@ -312,8 +314,8 @@ function SchemeSystem.isSpawnSpaceAvailable(vehicles)
         PlacementUtil.markPlaceUsed(usedStorePlaces, place, width)
         table.insert(placesFilled, place)
     end
-    for _, v172_ in ipairs(placesFilled) do
-        PlacementUtil.unmarkPlaceUsed(usedStorePlaces, v172_)
+    for _, place in ipairs(placesFilled) do
+        PlacementUtil.unmarkPlaceUsed(usedStorePlaces, place)
     end
     return result
 end

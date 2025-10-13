@@ -1,6 +1,4 @@
 -- Maybe an incentive to use a natural fertiliser. Like sea weed fert, its a real  thing.
--- You could add a big bad that just says sea weed feet but works the same. But include it as a environmental policy.
--- Another one would be to add a grass type, but would be a lot of work. But it could work like herbal lay does.
 
 SchemeIds = {
     DELAYED_MOWING_WILDLIFE = 1, -- SFI, or just only cut twice for a payout
@@ -8,6 +6,7 @@ SchemeIds = {
     NATURAL_GRAZING = 3,         -- Promotes natural grazing practices and biodiversity
     NATURAL_FERTILISER = 4,      -- Encourages the use of natural fertilizers to improve soil health
     CROP_PROMOTION = 5,          -- promotes growing specific crops. possibly split this by tier, and give equipment or cash bonuses
+    TRACTOR_DEMO = 6,            -- Demo a tractor for some time
 }
 
 
@@ -33,7 +32,8 @@ Schemes = {
                 bonusPerHa = 12000,
             },
         },
-        probability = 1,
+        selectionProbability = 1,
+        availabilityProbability = 0.8,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
         end,
@@ -94,23 +94,24 @@ Schemes = {
         duplicationKey = "REDUCE_BALE_WRAPPING",
         tiers = {
             [PolicySystem.TIER.A] = {
-                deductionPerBale = 15,
+                deductionPerBaleRate = 0.068,
                 maxPayoutPerHa = 2000,
             },
             [PolicySystem.TIER.B] = {
-                deductionPerBale = 15,
+                deductionPerBaleRate = 0.068,
                 maxPayoutPerHa = 1750,
             },
             [PolicySystem.TIER.C] = {
-                deductionPerBale = 15,
+                deductionPerBaleRate = 0.068,
                 maxPayoutPerHa = 1500,
             },
             [PolicySystem.TIER.D] = {
-                deductionPerBale = 15,
+                deductionPerBaleRate = 0.068,
                 maxPayoutPerHa = 1250,
             },
         },
-        probability = 1,
+        selectionProbability = 1,
+        availabilityProbability = 0.8,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
         end,
@@ -131,15 +132,19 @@ Schemes = {
                     local lastMonthFruit = farmlandData.fruitHistory[cumulativeMonth - 1]
 
                     if farmlandData.lastHarvestMonth == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
+                        local tierInfo = schemeInfo.tiers[tier]
 
-                        local deductions = farmlandData.monthlyWrappedBales * schemeInfo.tiers[tier].deductionPerBale
-                        local maxPayout = farmlandData.areaHa * schemeInfo.tiers[tier].max
+                        -- The goal of this calculation is an entirely baled field at 150cm bales reduces the payout to zero.
+                        local deductionPerBale = tierInfo.deductionPerBaleRate * tierInfo.maxPayoutPerHa
+                        local deductions = farmlandData.monthlyWrappedBales * deductionPerBale
+                        local maxPayout = farmlandData.areaHa * tierInfo.maxPayoutPerHa
                         local payout = math.max(0, maxPayout - deductions) * EconomyManager.getPriceMultiplier()
 
                         table.insert(report, {
                             cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
                             cell2 = g_i18n:formatMoney(payout, 0, true, true),
-                            cell3 = string.format(g_i18n:getText("rt_report_name_harvested"), g_i18n:getText("rt_report_value_true"))
+                            cell3 = string.format(g_i18n:getText("rt_report_name_harvested"),
+                                g_i18n:getText("rt_report_value_true"))
                         })
 
                         if payout > 0 then
@@ -149,7 +154,8 @@ Schemes = {
                         table.insert(report, {
                             cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
                             cell2 = g_i18n:formatMoney(0, 0, true, true),
-                            cell3 = string.format(g_i18n:getText("rt_report_name_harvested"), g_i18n:getText("rt_report_value_false"))
+                            cell3 = string.format(g_i18n:getText("rt_report_name_harvested"),
+                                g_i18n:getText("rt_report_value_false"))
                         })
                     end
                 end
@@ -179,8 +185,9 @@ Schemes = {
                 bonusPerHa = 1200,
             },
         },
-        probability = 1,
-        vehicleGroupOmissions = { "TRACTORSS", "TRACTORSM", "TRACTORSL", "TRAILERS", "TRUCKS", "TRAILERSSEMI" },
+        selectionProbability = 1,
+        availabilityProbability = 1,
+        -- vehicleGroupOmissions = { "TRACTORSS", "TRACTORSM", "TRACTORSL", "TRAILERS", "TRUCKS", "TRAILERSSEMI" },
         descriptionFunction = function(schemeInfo, scheme)
             local fruitType = tonumber(scheme.props['fruitType'])
             local title = g_fruitTypeManager.fruitTypes[fruitType].fillType.title
@@ -188,42 +195,88 @@ Schemes = {
         end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
-            scheme:setProp('vehicleMissionType', 'harvestMission')
+            -- scheme:setProp('vehicleMissionType', 'harvestMission')
+            -- local fruitTypes = {
+            --     [FruitType.SUGARBEET] = "SUGARBEET",
+            --     [FruitType.POTATO] = "POTATO",
+            --     [FruitType.PARSNIP] = "VEGETABLES",
+            --     [FruitType.GREENBEAN] = "GREENBEAN",
+            --     [FruitType.PEA] = "PEA",
+            --     [FruitType.SPINACH] = "SPINACH",
+            --     [FruitType.CARROT] = "VEGETABLES",
+            -- }
+            -- local chosenIndex = math.random(1, RedTape.tableCount(fruitTypes))
+            -- local i = 1
+            -- for fruitType, variant in pairs(fruitTypes) do
+            --     if i == chosenIndex then
+            --         scheme:setProp('fruitType', fruitType)
+            --         scheme:setProp('variant', variant)
+            --         break
+            --     end
+            --     i = i + 1
+            -- end
+            -- scheme:setProp('size', SchemeSystem.getAvailableEquipmentSize(scheme.props['variant']))
+            -- local sizedVehicles = g_missionManager.missionVehicles[scheme.props['vehicleMissionType']]
+            --     [scheme.props['size']]
+            -- local variantIndices = {}
+            -- for groupIndex, group in pairs(sizedVehicles) do
+            --     if group.variant == scheme.props['variant'] then
+            --         table.insert(variantIndices, groupIndex)
+            --     end
+            -- end
+            -- local chosenGroupIndex = math.random(1, #variantIndices)
+            -- scheme:setProp('vehicleGroup', variantIndices[chosenGroupIndex])
+
             local fruitTypes = {
-                [FruitType.SUGARBEET] = "SUGARBEET",
-                [FruitType.POTATO] = "POTATO",
-                [FruitType.PARSNIP] = "VEGETABLES",
-                [FruitType.GREENBEAN] = "GREENBEAN",
-                [FruitType.PEA] = "PEA",
-                [FruitType.SPINACH] = "SPINACH",
-                [FruitType.CARROT] = "VEGETABLES",
+                [FruitType.SUGARBEET] = "BEETHARVESTERS",
+                [FruitType.POTATO] = "POTATOHARVESTING",
+                [FruitType.PARSNIP] = "VEGETABLEHARVESTERS",
+                [FruitType.GREENBEAN] = "GREENBEANHARVESTERS",
+                [FruitType.PEA] = "PEAHARVESTERS",
+                [FruitType.SPINACH] = "SPINACHHARVESTERS",
+                [FruitType.CARROT] = "VEGETABLEHARVESTERS",
             }
             local chosenIndex = math.random(1, RedTape.tableCount(fruitTypes))
+            local chosenCategory = nil
             local i = 1
-            for fruitType, variant in pairs(fruitTypes) do
+            for fruitType, category in pairs(fruitTypes) do
                 if i == chosenIndex then
                     scheme:setProp('fruitType', fruitType)
-                    scheme:setProp('variant', variant)
+                    chosenCategory = category
                     break
                 end
                 i = i + 1
             end
-            scheme:setProp('size', SchemeSystem.getAvailableEquipmentSize(scheme.props['variant']))
-            local sizedVehicles = g_missionManager.missionVehicles[scheme.props['vehicleMissionType']]
-                [scheme.props['size']]
-            local variantIndices = {}
-            for groupIndex, group in pairs(sizedVehicles) do
-                if group.variant == scheme.props['variant'] then
-                    table.insert(variantIndices, groupIndex)
+
+            local options = {}
+            for _, item in pairs(g_storeManager:getItems()) do
+                for i = 1, #item.categoryNames do
+                    if chosenCategory == item.categoryNames[i] then
+                        table.insert(options, item)
+                    end
                 end
             end
-            local chosenGroupIndex = math.random(1, #variantIndices)
-            scheme:setProp('vehicleGroup', variantIndices[chosenGroupIndex])
+            local harvester = options[math.random(1, #options)]
+            scheme:setProp('vehicleToSpawn1', harvester.xmlFilename)
+            StoreItemUtil.loadSpecsFromXML(harvester)
+
+            local skipCategories = { "WEIGHTS" }
+            local spawnIndex = 2
+            if harvester.specs ~= nil and harvester.specs.combinations ~= nil then
+                local items = g_shopController:getItemsFromCombinations(harvester.specs.combinations)
+                for _, item in pairs(items) do
+                    local storeItem = item.storeItem
+                    if not RedTape.tableHasValue(skipCategories, storeItem.categoryName) then
+                        scheme:setProp('vehicleToSpawn' .. spawnIndex, storeItem.xmlFilename)
+                        spawnIndex = spawnIndex + 1
+                    end
+                end
+            end
         end,
         selected = function(schemeInfo, scheme, tier)
             -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
             scheme:spawnVehicles()
-            scheme:setProp('evaluationYear', g_currentMission.environment.currentYear + 1)
+            scheme:setProp('evaluationYear', g_currentMission.environment.currentYear)
             scheme:setProp('evaluationMonth', 12)
         end,
         evaluate = function(schemeInfo, scheme, tier)
@@ -266,6 +319,76 @@ Schemes = {
             end
 
             g_client:getServerConnection():sendEvent(SchemeEndedEvent.new(scheme.id, farmId))
+            return report
+        end
+    },
+
+    [SchemeIds.TRACTOR_DEMO] = {
+        id = SchemeIds.TRACTOR_DEMO,
+        name = "rt_scheme_tractor_demo",
+        report_description = "rt_scheme_report_desc_tractor_demo",
+        duplicationKey = "TRACTOR_DEMO",
+        tiers = {
+            [PolicySystem.TIER.A] = {
+                categories = { "TRACTORSS", "TRACTORSM", "TRACTORSM", "TRACTORSL", "TRACTORSL" },
+                durationMonths = 6,
+            },
+            [PolicySystem.TIER.B] = {
+                categories = { "TRACTORSS", "TRACTORSM", "TRACTORSM", "TRACTORSL" },
+                durationMonths = 4,
+            },
+            [PolicySystem.TIER.C] = {
+                categories = { "TRACTORSS", "TRACTORSS", "TRACTORSM" },
+                durationMonths = 3,
+            },
+            [PolicySystem.TIER.D] = {
+                categories = { "TRACTORSS" },
+                durationMonths = 2,
+            },
+        },
+        selectionProbability = 1,
+        availabilityProbability = 1,
+        descriptionFunction = function(schemeInfo, scheme)
+            return "TODO"
+        end,
+        initialise = function(schemeInfo, scheme)
+            local tierInfo = schemeInfo.tiers[scheme.tier].categories
+            local chosenCategory = tierInfo[math.random(1, #tierInfo)]
+
+            local options = {}
+            for _, item in pairs(g_storeManager:getItems()) do
+                for i = 1, #item.categoryNames do
+                    if chosenCategory == item.categoryNames[i] then
+                        table.insert(options, item)
+                    end
+                end
+            end
+            local chosenItem = options[math.random(1, #options)]
+            scheme:setProp('vehicleToSpawn1', chosenItem.xmlFilename)
+        end,
+        selected = function(schemeInfo, scheme, tier)
+            -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
+
+            -- TODO ratify the props we set here, add 1 year if in next year
+            scheme:setProp('evaluationYear', g_currentMission.environment.currentYear)
+            scheme:setProp('evaluationMonth', 12)
+            scheme:spawnVehicles()
+        end,
+        evaluate = function(schemeInfo, scheme, tier)
+            if true then return end -- Currently no payout, just the use of the vehicle
+
+            local evaluationYear = tonumber(scheme.props['evaluationYear'])
+            local evaluationMonth = tonumber(scheme.props['evaluationMonth'])
+            local currentYear = g_currentMission.environment.currentYear
+            local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+            local cumulativeMonth = RedTape.getCumulativeMonth()
+
+            if currentYear ~= evaluationYear or currentMonth ~= evaluationMonth then
+                return
+            end
+
+            local report = {}
+
             return report
         end
     }
