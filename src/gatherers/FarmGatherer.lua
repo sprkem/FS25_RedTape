@@ -34,8 +34,12 @@ function FarmGatherer:hourChanged()
                 farmData.monthlyEmptyFoodCount = farmData.monthlyEmptyFoodCount + 1
             end
 
-            if stats.productivity and stats.productivity < 70 then
+            if stats.productivity and stats.productivity < 40 then
                 farmData.monthlyLowProductivityHusbandry = farmData.monthlyLowProductivityHusbandry + 1
+            end
+
+            if stats.meadowFood > 0 and stats.totalFood == stats.meadowFood then
+                farmData.monthlyAnimalGrazingHours = farmData.monthlyAnimalGrazingHours + stats.numAnimals
             end
 
             local desiredSpacePerAnimal = self:getDesirableSpace(stats.animalType)
@@ -61,6 +65,7 @@ function FarmGatherer:resetMonthlyData()
         farmData.monthlyLowProductivityHusbandry = 0
         farmData.monthlyAnimalSpaceViolations = 0
         farmData.monthlyRestrictedSlurryViolations = 0
+        farmData.monthlyAnimalGrazingHours = 0
     end
 end
 
@@ -77,6 +82,7 @@ function FarmGatherer:getFarmData(farmId)
             currentManureLevel = 0,
             rollingAverageManureLevel = 0,
             pendingManureSpread = 0,
+            monthlyAnimalGrazingHours = 0
         }
     end
     return self.data[farmId]
@@ -97,6 +103,7 @@ function FarmGatherer:saveToXmlFile(xmlFile, key)
         setXMLInt(xmlFile, farmKey .. "#rollingAverageManureLevel", farmData.rollingAverageManureLevel)
         setXMLInt(xmlFile, farmKey .. "#pendingManureSpread", farmData.pendingManureSpread)
         setXMLInt(xmlFile, farmKey .. "#monthlyRestrictedSlurryViolations", farmData.monthlyRestrictedSlurryViolations)
+        setXMLInt(xmlFile, farmKey .. "#monthlyAnimalGrazingHours", farmData.monthlyAnimalGrazingHours)
         i = i + 1
     end
 end
@@ -120,7 +127,8 @@ function FarmGatherer:loadFromXMLFile(xmlFile, key)
             currentManureLevel = getXMLInt(xmlFile, farmKey .. "#currentManureLevel") or 0,
             rollingAverageManureLevel = getXMLInt(xmlFile, farmKey .. "#rollingAverageManureLevel") or 0,
             pendingManureSpread = getXMLInt(xmlFile, farmKey .. "#pendingManureSpread") or 0,
-            monthlyRestrictedSlurryViolations = getXMLInt(xmlFile, farmKey .. "#monthlyRestrictedSlurryViolations") or 0
+            monthlyRestrictedSlurryViolations = getXMLInt(xmlFile, farmKey .. "#monthlyRestrictedSlurryViolations") or 0,
+            monthlyAnimalGrazingHours = getXMLInt(xmlFile, farmKey .. "#monthlyAnimalGrazingHours") or 0
         }
         i = i + 1
     end
@@ -308,6 +316,7 @@ function FarmGatherer:getHusbandryStats()
 
         if meadowSpec ~= nil then
             totalFood = meadowSpec.info.value
+            stats.meadowFood = meadowSpec.info.value
         end
 
         local food = g_currentMission.animalFoodSystem:getAnimalFood(animalType)

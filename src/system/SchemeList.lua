@@ -3,7 +3,7 @@
 SchemeIds = {
     DELAYED_MOWING_WILDLIFE = 1, -- SFI, or just only cut twice for a payout
     REDUCE_BALE_WRAPPING = 2,    -- He also got paid for hay making. Basically, he chose to make hay and not silage in some fields. Reasons are less plastic use from wrapping, and the seeds from the wildflowers and grass get spread when baling and loading, and moving the bales.
-    NATURAL_GRAZING = 3,         -- Promotes natural grazing practices and biodiversity
+    NATURAL_GRAZING = 3,         -- Promotes natural grazing
     NATURAL_FERTILISER = 4,      -- Encourages the use of natural fertilizers to improve soil health
     CROP_PROMOTION = 5,          -- promotes growing specific crops. possibly split this by tier, and give equipment or cash bonuses
     TRACTOR_DEMO = 6,            -- Demo a tractor for some time
@@ -147,8 +147,7 @@ Schemes = {
                     end
 
                     if farmlandData.lastHarvestMonth == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
-                        local reward = farmlandData.areaHa * tierInfo.maxPayoutPerHa *
-                            EconomyManager.getPriceMultiplier()
+                        local reward = farmlandData.areaHa * tierInfo.maxPayoutPerHa
                         payout = payout + reward
 
                         table.insert(report, {
@@ -159,7 +158,8 @@ Schemes = {
                     end
 
                     if payout ~= 0 then
-                        g_client:getServerConnection():sendEvent(SchemePayoutEvent.new(scheme, farmId, payout))
+                        g_client:getServerConnection():sendEvent(SchemePayoutEvent.new(scheme, farmId,
+                            payout * EconomyManager.getPriceMultiplier()))
                     end
                 end
             end
@@ -168,6 +168,59 @@ Schemes = {
 
             return report
         end
+    },
+
+    [SchemeIds.NATURAL_GRAZING] = {
+        id = SchemeIds.NATURAL_GRAZING,
+        name = "rt_scheme_natural_grazing",
+        description = "rt_scheme_desc_natural_grazing",
+        report_description = "rt_scheme_report_desc_natural_grazing",
+        duplicationKey = "NATURAL_GRAZING",
+        tiers = {
+            [PolicySystem.TIER.A] = {
+                bonusPerAnimal = 500,
+            },
+            [PolicySystem.TIER.B] = {
+                bonusPerAnimal = 400,
+            },
+            [PolicySystem.TIER.C] = {
+                bonusPerAnimal = 300,
+            },
+            [PolicySystem.TIER.D] = {
+                bonusPerAnimal = 250,
+            },
+        },
+        selectionProbability = 1,
+        availabilityProbability = 0.8,
+        initialise = function(schemeInfo, scheme)
+        end,
+        selected = function(schemeInfo, scheme, tier)
+        end,
+        evaluate = function(schemeInfo, scheme, tier)
+            local daysPerPeriod = g_currentMission.environment.daysPerPeriod
+
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+
+            local report = {}
+            local farmData = gatherer:getFarmData(scheme.farmId)
+            local tierInfo = schemeInfo.tiers[tier]
+            local eligibleAnimalCount = farmData.monthlyAnimalGrazingHours / 24 / daysPerPeriod
+            local payout = eligibleAnimalCount * tierInfo.bonusPerAnimal * EconomyManager.getPriceMultiplier()
+
+            table.insert(report, {
+                cell1 = g_i18n:getText("rt_report_name_animal_count"),
+                cell2 = tostring(eligibleAnimalCount)
+            })
+            table.insert(report, {
+                cell1 = g_i18n:getText("rt_report_name_total_payout"),
+                cell2 = g_i18n:formatMoney(payout, 0, true, true)
+            })
+            g_client:getServerConnection():sendEvent(SchemePayoutEvent.new(scheme, scheme.farmId, payout))
+
+            return report
+        end
+
     },
 
     [SchemeIds.CROP_PROMOTION] = {

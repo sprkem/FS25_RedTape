@@ -83,6 +83,8 @@
 		<text name="rt_report_name_restricted_slurry_violations" text="Restricted slurry violations"/>
 		<text name="rt_report_name_bale_penalty" text="Bale Penalty"/>
 		<text name="rt_report_name_harvest_reward" text="Harvest Reward"/>
+		<text name="rt_report_name_total_payout" text="Total amount paid"/>
+		<text name="rt_report_name_animal_count" text="Eligible animal count"/>
 				
 		<text name="rt_report_value_true" text="True"/>
 		<text name="rt_report_value_false" text="False"/>
@@ -91,15 +93,18 @@
 		<text name="rt_scheme_crop_promotion" text="Crop Promotion"/>
 		<text name="rt_scheme_reduce_bale_wrapping" text="Reduced Bale Wrapping"/>
 		<text name="rt_scheme_tractor_demo" text="Tractor Demo"/>
+		<text name="rt_scheme_natural_grazing" text="Natural Grazing"/>
 
 		<text name="rt_scheme_desc_delayed_mowing" text="Do not cut your grass during the spring months (March to June) to protect wildlife. In July, you will be compensated for any uncut grass."/>
 		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You may be provided equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
 		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Wrapping bales consumes plastic and prevents the spread of seeds during transportation. This scheme does not punish you for wrapping bales - it only rewards you when you choose an alternative such as making hay bales or using a forage wagon."/>
 		<text name="rt_scheme_desc_tractor_demo" text="%s are offering your farm the opportunity to demo a %s for %s month%s. The exact specification of the demo vehicle is determined at the point that you sign up to the scheme."/>
+		<text name="rt_scheme_desc_natural_grazing" text="A scheme to encourage letting animals graze in a pasture without additional feed. The payment is intended to offset any loss of earnings. You will receive a bonus for each hour that your animals spend grazing in a pasture."/>
 
 		<text name="rt_scheme_report_desc_delayed_mowing" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
 		<text name="rt_scheme_report_desc_crop_promotion" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
 		<text name="rt_scheme_report_desc_reduce_bale_wrapping" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
+		<text name="rt_scheme_report_desc_natural_grazing" text="The report shows the total amount paid out during the last evaluation."/>
 
 		<text name="rt_btn_select_scheme" text="Select Scheme"/>
 
