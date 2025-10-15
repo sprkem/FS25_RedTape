@@ -214,6 +214,19 @@ function Scheme:getReportDescription()
     return g_i18n:getText(schemeInfo.report_description)
 end
 
+function Scheme:getNextEvaluationMonth()
+    local schemeInfo = Schemes[self.schemeIndex]
+    if schemeInfo.getNextEvaluationMonth ~= nil then
+        return schemeInfo.getNextEvaluationMonth(schemeInfo, self)
+    end
+    local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+    local nextMonth = currentMonth + 1
+    if nextMonth > 12 then
+        nextMonth = 1
+    end
+    return nextMonth
+end
+
 function Scheme:availableForCurrentFarm()
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
     local policySystem = g_currentMission.RedTape.PolicySystem
@@ -242,7 +255,7 @@ function Scheme:evaluate()
     local schemeInfo = Schemes[self.schemeIndex]
     local report = schemeInfo.evaluate(schemeInfo, self, self.tier)
 
-    if report ~= nil and rt.tableCount(report) > 0 then
+    if report ~= nil then
         self.lastEvaluationReport = report or {}
 
         -- Ensure all report values are strings

@@ -34,6 +34,9 @@ Schemes = {
         },
         selectionProbability = 1,
         availabilityProbability = 0.8,
+        getNextEvaluationMonth = function(schemeInfo, scheme)
+            return 7 -- July
+        end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
         end,
@@ -251,6 +254,9 @@ Schemes = {
             local title = g_fruitTypeManager.fruitTypes[fruitType].fillType.title
             return string.format(g_i18n:getText("rt_scheme_desc_crop_promotion"), title)
         end,
+        getNextEvaluationMonth = function(schemeInfo, scheme)
+            return tonumber(scheme.props['evaluationMonth'])
+        end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
 
@@ -392,6 +398,9 @@ Schemes = {
                 vehicleName,
                 scheme.props['durationMonths'],
                 suffix)
+        end,
+        getNextEvaluationMonth = function(schemeInfo, scheme)
+            return tonumber(scheme.props['evaluationMonth'])
         end,
         initialise = function(schemeInfo, scheme)
             local tierInfo = schemeInfo.tiers[scheme.tier]

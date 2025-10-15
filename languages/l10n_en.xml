@@ -20,7 +20,7 @@
 		<text name="rt_header_scheme_information" text="Scheme Information"/>
 		<text name="rt_header_latest_report" text="Latest Report"/>
 		<text name="rt_header_no_selected_policy" text="Select an active policy to see relevant information"/>
-		<text name="rt_header_no_report_information" text="There is no report information available. Check back later."/>
+		<text name="rt_header_no_report_information" text="There is no report information available. Either there is nothing to report or no evaluation has taken place."/>
 		<text name="rt_header_scheme_equipment" text="The following equipment will be provided for the duration of the scheme:"/>
 		<text name="rt_header_next_evaluation_date" text="Next evaluation date: %s"/>
 
@@ -76,15 +76,15 @@
 		<text name="rt_report_name_empty_straw" text="Hours without straw"/>
 		<text name="rt_report_name_full_slurry" text="Hours with full slurry"/>
 		<text name="rt_report_name_low_productivity_hours" text="Hours with low productivity"/>
-		<text name="rt_report_name_animal_space_violations" text="Animal Space Violations"/>
+		<text name="rt_report_name_animal_space_violations" text="Animal space violations"/>
 		<text name="rt_report_name_manure_spread_expected" text="Expected manure spread"/>
 		<text name="rt_report_name_manure_spread" text="Actual manure spread"/>
 		<text name="rt_report_name_manure_spread_rolling_average" text="Rolling average manure level"/>
 		<text name="rt_report_name_restricted_slurry_violations" text="Restricted slurry violations"/>
-		<text name="rt_report_name_bale_penalty" text="Bale Penalty"/>
-		<text name="rt_report_name_harvest_reward" text="Harvest Reward"/>
+		<text name="rt_report_name_bale_penalty" text="Bale penalty"/>		
 		<text name="rt_report_name_total_payout" text="Total amount paid"/>
 		<text name="rt_report_name_animal_count" text="Eligible animal count"/>
+		<text name="rt_report_name_harvest_reward" text="Harvest reward"/>
 				
 		<text name="rt_report_value_true" text="True"/>
 		<text name="rt_report_value_false" text="False"/>
@@ -99,7 +99,7 @@
 		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You may be provided equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
 		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Wrapping bales consumes plastic and prevents the spread of seeds during transportation. This scheme does not punish you for wrapping bales - it only rewards you when you choose an alternative such as making hay bales or using a forage wagon."/>
 		<text name="rt_scheme_desc_tractor_demo" text="%s are offering your farm the opportunity to demo a %s for %s month%s. The exact specification of the demo vehicle is determined at the point that you sign up to the scheme."/>
-		<text name="rt_scheme_desc_natural_grazing" text="A scheme to encourage letting animals graze in a pasture without additional feed. The payment is intended to offset any loss of earnings. You will receive a bonus for each hour that your animals spend grazing in a pasture."/>
+		<text name="rt_scheme_desc_natural_grazing" text="A scheme to encourage letting animals graze in a pasture without additional feed. The payment is intended to offset any loss of earnings. You will receive a bonus for the time that your animals spend grazing in a pasture."/>
 
 		<text name="rt_scheme_report_desc_delayed_mowing" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
 		<text name="rt_scheme_report_desc_crop_promotion" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>

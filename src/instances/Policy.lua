@@ -139,7 +139,7 @@ function Policy:evaluate()
 
     for _, farm in pairs(g_farmManager.farmIdToFarm) do
         local report = policyInfo.evaluate(policyInfo, self, farm.farmId)
-        if report ~= nil and rt.tableCount(report) > 0 then
+        if report ~= nil then
             self.lastEvaluationReport = report or {}
 
             -- Ensure all report values are strings

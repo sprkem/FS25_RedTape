@@ -68,14 +68,14 @@
                     <Text profile="rt_scheme_policy_info" id="selectedPolicyReportNextDate" position="40px -170px"  width="500px"/>
                     <Text profile="rt_scheme_policy_info" id="selectedPolicyReportDescription" position="40px -200px" size="800px 40px" />
                     <GuiElement id="policyReportContainer">
-                        <SmoothList id="policyReportTable" profile="rt_table" position="40px -260px" size="700px 300px">
+                        <SmoothList id="policyReportTable" profile="rt_table" position="40px -260px" size="900px 300px">
                             <ListItem profile="rtTableListItem">
                                 <Text profile="rtListRowCellLeft" position="20px 0px" size="300px 32px" name="cell1"/>
                                 <Text profile="rtListRowCellLeft" position="320px 0px" size="300px 32px" name="cell2"/>
                                 <Text profile="rtListRowCellLeft" position="620px 0px" size="300px 32px" name="cell3"/>
                             </ListItem>
                         </SmoothList>
-                        <ThreePartBitmap profile="rt_slider_box_left" position="760px -260px" size="6px 300px">
+                        <ThreePartBitmap profile="rt_slider_box_left" position="960px -260px" size="6px 300px">
                             <Slider profile="fs25_listSlider" dataElementId="policyReportTable" />
                         </ThreePartBitmap>
                     </GuiElement>
@@ -114,21 +114,22 @@
                     <Text profile="rt_scheme_policy_info" id="selectedSchemeDescription" position="40px -40px" size="800px 400px" />
                     <GuiElement id ="activeSchemeInfo">
                         <Text profile="rt_header_top_left" text="$l10n_rt_header_latest_report" position="0px -140px" width="500px" />
-                        <Text profile="rt_scheme_policy_info" id="selectedSchemeReportDescription" position="40px -180px" size="800px 100px" />
+                        <Text profile="rt_scheme_policy_info" id="selectedSchemeReportNextDate" position="40px -170px"  width="500px"/>
+                        <Text profile="rt_scheme_policy_info" id="selectedSchemeReportDescription" position="40px -200px" size="800px 100px" />
                         <GuiElement id="schemeReportContainer">
-                            <SmoothList id="schemeReportTable" profile="rt_table" position="40px -240px" size="700px 400px">
+                            <SmoothList id="schemeReportTable" profile="rt_table" position="40px -240px" size="900px 400px">
                                 <ListItem profile="rtTableListItem">
                                     <Text profile="rtListRowCellLeft" position="20px 0px" size="300px 32px" name="cell1"/>
                                     <Text profile="rtListRowCellLeft" position="320px 0px" size="300px 32px" name="cell2"/>
                                     <Text profile="rtListRowCellLeft" position="620px 0px" size="300px 32px" name="cell3"/>
                                 </ListItem>
                             </SmoothList>
-                            <ThreePartBitmap profile="rt_slider_box_left" position="760px -240px" size="6px 400px">
+                            <ThreePartBitmap profile="rt_slider_box_left" position="960px -240px" size="6px 400px">
                                 <Slider profile="fs25_listSlider" dataElementId="schemeReportTable" />
                             </ThreePartBitmap>
                         </GuiElement>
                         <GuiElement id="noSchemeReportContainer">
-                            <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_no_report_information" position="40px -180px" width="800px" />
+                            <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_no_report_information" position="40px -200px" width="800px" />
                         </GuiElement>
                     </GuiElement>
                     <GuiElement profile="fs25_contractsProgressBox" id="schemeEquipmentBox" position="00px -140px">

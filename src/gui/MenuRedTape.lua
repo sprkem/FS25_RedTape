@@ -106,6 +106,11 @@ function MenuRedTape:displaySelectedScheme()
             elseif selection == MenuRedTape.SCHEME_LIST_TYPE.ACTIVE then
                 self.activeSchemeInfo:setVisible(true)
                 self.schemeEquipmentBox:setVisible(false)
+
+                local nextEval = scheme:getNextEvaluationMonth()
+                self.selectedSchemeReportNextDate:setText(string.format(g_i18n:getText("rt_header_next_evaluation_date"),
+                    RedTape.monthToString(nextEval)))
+
                 if rt.tableCount(scheme.lastEvaluationReport) == 0 then
                     self.schemeReportContainer:setVisible(false)
                     self.noSchemeReportContainer:setVisible(true)
