@@ -11,15 +11,6 @@ function FarmlandGatherer.new()
 end
 
 function FarmlandGatherer:hourChanged()
-    -- for _, farmland in pairs(g_farmlandManager.farmlands) do
-    --     if farmland.showOnFarmlandsScreen and farmland.field ~= nil then
-    --         local farmlandData = self:getFarmlandData(farmland.id)
-    --         local field = farmland.field
-    --         local x, z = field:getCenterOfFieldWorldPosition()
-    --         local fruitTypeIndexPos, growthState = FSDensityMapUtil.getFruitTypeIndexAtWorldPos(x, z)
-    --         local currentFruit = g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndexPos)
-    --     end
-    -- end
 end
 
 function FarmlandGatherer:periodChanged()

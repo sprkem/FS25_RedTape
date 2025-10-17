@@ -184,7 +184,7 @@ function FarmGatherer:storeSprayAreaCoords(uniqueId, coords)
 end
 
 function FarmGatherer:checkSprayers()
-    local checkFillTypes = { FillType.FERTILIZER, FillType.SLURRY, FillType.LIME, FillType.MANURE }
+    local checkFillTypes = { FillType.FERTILIZER, FillType.LIQUIDMANURE, FillType.LIME, FillType.MANURE }
     local restrictedSlurryMonths = { 9, 10, 11, 12 } -- September to December
 
     for uniqueId, sprayer in pairs(self.turnedOnSprayers) do
@@ -200,7 +200,7 @@ function FarmGatherer:checkSprayers()
         local fillType = sprayer:getFillUnitFillType(fillUnitIndex)
         local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
 
-        if RedTape.tableHasValue(restrictedSlurryMonths, currentMonth) and fillType == FillType.SLURRY then
+        if RedTape.tableHasValue(restrictedSlurryMonths, currentMonth) and fillType == FillType.LIQUIDMANURE then
             farmData.monthlyRestrictedSlurryViolations = farmData.monthlyRestrictedSlurryViolations + 1
         end
 
@@ -381,7 +381,7 @@ function FarmGatherer:getHusbandryStats()
             local conditionFillType = fillTypeCache[conditionInfo.title]
             if conditionFillType == FillType.STRAW then
                 stats.straw = conditionInfo.value
-            elseif conditionFillType == FillType.SLURRY then
+            elseif conditionFillType == FillType.LIQUIDMANURE then
                 stats.slurry = conditionInfo.value
                 stats.slurryCapacity = husbandry:getHusbandryCapacity(conditionFillType)
             end

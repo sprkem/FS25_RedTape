@@ -7,7 +7,7 @@ SchemeIds = {
     NATURAL_FERTILISER = 4,
     CROP_PROMOTION = 5,
     TRACTOR_DEMO = 6,
-    WINTER_COVER_CROPS = 7, -- look at crop calendar to work out what makes sense. SAM2 
+    WINTER_COVER_CROPS = 7, -- look at crop calendar to work out what makes sense. SAM2
 }
 
 
@@ -227,6 +227,86 @@ Schemes = {
 
     },
 
+    [SchemeIds.NATURAL_FERTILISER] = {
+        id = SchemeIds.NATURAL_FERTILISER,
+        name = "rt_scheme_natural_fertiliser",
+        description = "rt_scheme_desc_natural_fertiliser",
+        report_description = "rt_scheme_report_desc_natural_fertiliser",
+        duplicationKey = "NATURAL_FERTILISER",
+        tiers = {
+            [PolicySystem.TIER.A] = {
+                bonusPerUsageAmount = 10,
+            },
+            [PolicySystem.TIER.B] = {
+                bonusPerUsageAmount = 9,
+            },
+            [PolicySystem.TIER.C] = {
+                bonusPerUsageAmount = 8,
+            },
+            [PolicySystem.TIER.D] = {
+                bonusPerUsageAmount = 7,
+            },
+        },
+        selectionProbability = 1,
+        availabilityProbability = 0.8,
+        initialise = function(schemeInfo, scheme)
+        end,
+        selected = function(schemeInfo, scheme, tier)
+        end,
+        evaluate = function(schemeInfo, scheme, tier)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMS]
+            local farmData = gatherer:getFarmData(scheme.farmId)
+            local cumulativeMonth = RedTape.getCumulativeMonth()
+
+            local naturalFertilisers = {
+                g_fillTypeManager:getFillTypeNameByIndex(FillType.MANURE),
+                g_fillTypeManager:getFillTypeNameByIndex(FillType.LIQUIDMANURE),
+                g_fillTypeManager:getFillTypeNameByIndex(FillType.DIGESTATE)
+            }
+            local otherFertilisers = {
+                g_fillTypeManager:getFillTypeNameByIndex(FillType.FERTILIZER),
+                g_fillTypeManager:getFillTypeNameByIndex(FillType.LIQUIDFERTILIZER)
+            }
+            local totalNaturalUsage = 0
+            local totalOtherUsage = 0
+            local sprayHistory = farmData.sprayHistory
+
+            if sprayHistory[cumulativeMonth] ~= nil then
+                for fillType, amount in pairs(sprayHistory[cumulativeMonth]) do
+                    if RedTape.tableHasValue(naturalFertilisers, fillType) then
+                        totalNaturalUsage = totalNaturalUsage + amount
+                    elseif RedTape.tableHasValue(otherFertilisers, fillType) then
+                        totalOtherUsage = totalOtherUsage + amount
+                    end
+                end
+            end
+
+            local totalUsage = totalNaturalUsage + totalOtherUsage
+            local percentageNatural = totalUsage > 0 and (totalNaturalUsage / totalUsage) * 100 or 0
+            local payout = 0
+
+            if percentageNatural >= 75 then
+                local tierInfo = schemeInfo.tiers[tier]
+                payout = (totalNaturalUsage - totalOtherUsage) * tierInfo.bonusPerUsageAmount *
+                    EconomyManager.getPriceMultiplier()
+            end
+
+            local report = {}
+            table.insert(report, {
+                cell1 = g_i18n:getText("rt_report_name_natural_usage"),
+                cell2 = tostring(totalNaturalUsage)
+            })
+            table.insert(report, {
+                cell1 = g_i18n:getText("rt_report_name_other_usage"),
+                cell2 = tostring(totalOtherUsage)
+            })
+            g_client:getServerConnection():sendEvent(SchemePayoutEvent.new(scheme, scheme.farmId, payout))
+
+            return report
+        end
+    },
+
     [SchemeIds.CROP_PROMOTION] = {
         id = SchemeIds.CROP_PROMOTION,
         name = "rt_scheme_crop_promotion",
@@ -249,7 +329,6 @@ Schemes = {
         },
         selectionProbability = 1,
         availabilityProbability = 1,
-        -- vehicleGroupOmissions = { "TRACTORSS", "TRACTORSM", "TRACTORSL", "TRAILERS", "TRUCKS", "TRAILERSSEMI" },
         descriptionFunction = function(schemeInfo, scheme)
             local fruitType = tonumber(scheme.props['fruitType'])
             local title = g_fruitTypeManager.fruitTypes[fruitType].fillType.title
