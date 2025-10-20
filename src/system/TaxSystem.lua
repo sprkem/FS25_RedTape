@@ -165,9 +165,9 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         "expenses"
     }
 
-    if RedTape.tableContains(expenseStats, lineItem.statistic) then
+    if RedTape.tableHasValue(expenseStats, lineItem.statistic) then
         taxStatement.totalExpenses = taxStatement.totalExpenses + math.abs(lineItem.amount)
-    elseif RedTape.tableContains(incomeStats, lineItem.statistic) then
+    elseif RedTape.tableHasValue(incomeStats, lineItem.statistic) then
         taxStatement.totalTaxableIncome = taxStatement.totalTaxableIncome + math.abs(lineItem.amount)
         taxStatement.totalTaxedIncome = taxStatement.totalTaxedIncome + self:getTaxedAmount(lineItem, taxStatement)
     else
@@ -246,9 +246,6 @@ function RTTaxSystem:markTaxStatementAsPaid(farmId)
 end
 
 function RTTaxSystem:getCurrentYearTaxToDate(farmId)
-    -- local minMonth = RedTape.getCumulativeMonth() - 12
-    -- local maxMonth = RedTape.getCumulativeMonth() - 1
-
     local cumulativeMonth = RedTape.getCumulativeMonth()
     local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
 
@@ -267,7 +264,7 @@ function RTTaxSystem:getCurrentYearTaxToDate(farmId)
             continue
         end
 
-        for _, lineItem in ipairs(lineItems) do
+        for _, lineItem in pairs(lineItems) do
             self:categoriseLineItem(lineItem, taxStatement)
         end
 

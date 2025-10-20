@@ -320,15 +320,9 @@ function RTScheme:spawnVehicles()
     for _, storeItem in pairs(storeItems) do
         local data = VehicleLoadingData.new()
         data:setFilename(storeItem.xmlFilename)
-        if data.isValid then
-            if storeItem.configurations ~= nil then
-                local configurations = {}
-                for key, _ in pairs(storeItem.configurations) do
-                    local value = math.random(#storeItem.configurations[key])
-                    configurations[key] = value
-                end
-                data:setConfigurations(configurations)
-            end
+        if data.isValid then`
+            local vehicleConfig = self:getVehicleConfiguration(storeItem)
+            data:setConfigurations(vehicleConfig)
             data:setLoadingPlace(g_currentMission.storeSpawnPlaces, g_currentMission.usedStorePlaces)
             data:setPropertyState(VehiclePropertyState.MISSION)
             data:setOwnerFarmId(self.farmId)
@@ -342,6 +336,36 @@ function RTScheme:spawnVehicles()
 
     self.spawnedVehicles = #storeItems > 0
     g_messageCenter:subscribe(MessageType.VEHICLE_RESET, self.onVehicleReset, self)
+end
+
+function RTScheme:getVehicleConfiguration(storeItem)
+    local result = {}
+    StoreItemUtil.loadSpecsFromXML(storeItem)
+	if storeItem.configurations ~= nil then
+		for k, v in pairs(storeItem.configurations) do
+			if #v > 1 then
+				local found = false
+				for _, configSet in ipairs(storeItem.configurationSets) do
+					if configSet.configurations[k] ~= nil then
+						found = true
+						break
+					end
+				end
+				if not found and math.random() < 0.15 then
+					local defaultId = ConfigurationUtil.getDefaultConfigIdFromItems(v)
+					for _ = 1, 5 do
+						local rnd = math.random(1, #v)
+						if rnd ~= defaultId and v[rnd].isSelectable then
+							result[k] = {}
+							result[k][rnd] = true
+							break
+						end
+					end
+				end
+			end
+		end
+	end
+    return result
 end
 
 function RTScheme:onSpawnedVehicle(vehicles, vehicleLoadState, loadingInfo)

@@ -226,11 +226,14 @@ function RTSchemeSystem:removeAvailableScheme(id)
     end
 end
 
+-- Called by RTSchemeEndedEvent, runs on Client and Server
 function RTSchemeSystem:endActiveScheme(id, farmId)
     for i, scheme in pairs(self.activeSchemesByFarm[farmId]) do
         if scheme.id == id then
             scheme:endScheme()
             table.remove(self.activeSchemesByFarm[farmId], i)
+            g_currentMission.RedTape.EventLog:addEvent(nil, RTEventLogItem.EVENT_TYPE.SCHEME_ACTIVATED,
+                string.format(g_i18n:getText("rt_notify_ended_scheme"), scheme:getName()), true)
             return
         end
     end
@@ -273,7 +276,8 @@ function RTSchemeSystem.isSpawnSpaceAvailable(storeItems)
     local placesFilled = {}
     local result = true
     for _, storeItem in ipairs(storeItems) do
-        local size = StoreItemUtil.getSizeValues(storeItem.xmlFilename, "vehicle", storeItem.rotation, storeItem.configurations)
+        local size = StoreItemUtil.getSizeValues(storeItem.xmlFilename, "vehicle", storeItem.rotation,
+        storeItem.configurations)
         local x = size.width
         size.width = math.max(x, VehicleLoadingData.MIN_SPAWN_PLACE_WIDTH)
         size.length = math.max(size.length, VehicleLoadingData.MIN_SPAWN_PLACE_LENGTH)

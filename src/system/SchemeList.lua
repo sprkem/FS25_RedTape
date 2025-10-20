@@ -460,7 +460,7 @@ RTSchemes = {
             },
         },
         selectionProbability = 1,
-        availabilityProbability = 1,
+        availabilityProbability = 0.3,
         descriptionFunction = function(schemeInfo, scheme)
             local storeItem = g_storeManager:getItemByXMLFilename(scheme.props["vehicleToSpawn1"])
             StoreItemUtil.loadSpecsFromXML(storeItem)
