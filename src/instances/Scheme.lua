@@ -231,6 +231,11 @@ function RTScheme:availableForCurrentFarm()
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
     local policySystem = g_currentMission.RedTape.PolicySystem
     local farmId = g_currentMission:getFarmId()
+
+    if farmId == nil then
+        return false
+    end
+
     local farmTier = policySystem:getProgressForCurrentFarm().tier
     local schemeInfo = RTSchemes[self.schemeIndex]
 
@@ -320,7 +325,7 @@ function RTScheme:spawnVehicles()
     for _, storeItem in pairs(storeItems) do
         local data = VehicleLoadingData.new()
         data:setFilename(storeItem.xmlFilename)
-        if data.isValid then`
+        if data.isValid then
             local vehicleConfig = self:getVehicleConfiguration(storeItem)
             data:setConfigurations(vehicleConfig)
             data:setLoadingPlace(g_currentMission.storeSpawnPlaces, g_currentMission.usedStorePlaces)
@@ -341,30 +346,30 @@ end
 function RTScheme:getVehicleConfiguration(storeItem)
     local result = {}
     StoreItemUtil.loadSpecsFromXML(storeItem)
-	if storeItem.configurations ~= nil then
-		for k, v in pairs(storeItem.configurations) do
-			if #v > 1 then
-				local found = false
-				for _, configSet in ipairs(storeItem.configurationSets) do
-					if configSet.configurations[k] ~= nil then
-						found = true
-						break
-					end
-				end
-				if not found and math.random() < 0.15 then
-					local defaultId = ConfigurationUtil.getDefaultConfigIdFromItems(v)
-					for _ = 1, 5 do
-						local rnd = math.random(1, #v)
-						if rnd ~= defaultId and v[rnd].isSelectable then
-							result[k] = {}
-							result[k][rnd] = true
-							break
-						end
-					end
-				end
-			end
-		end
-	end
+    if storeItem.configurations ~= nil then
+        for k, v in pairs(storeItem.configurations) do
+            if #v > 1 then
+                local found = false
+                for _, configSet in ipairs(storeItem.configurationSets) do
+                    if configSet.configurations[k] ~= nil then
+                        found = true
+                        break
+                    end
+                end
+                if not found and math.random() < 0.15 then
+                    local defaultId = ConfigurationUtil.getDefaultConfigIdFromItems(v)
+                    for _ = 1, 5 do
+                        local rnd = math.random(1, #v)
+                        if rnd ~= defaultId and v[rnd].isSelectable then
+                            result[k] = {}
+                            result[k][rnd] = true
+                            break
+                        end
+                    end
+                end
+            end
+        end
+    end
     return result
 end
 

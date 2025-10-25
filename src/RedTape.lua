@@ -9,6 +9,8 @@ function RedTape:loadMap()
 
     MessageType.EVENT_LOG_UPDATED = nextMessageTypeId()
     MessageType.SCHEMES_UPDATED = nextMessageTypeId()
+    MessageType.TAXES_UPDATED = nextMessageTypeId()
+    MessageType.POLICIES_UPDATED = nextMessageTypeId()
 
     self.leaseDeals = {}
     self.constantChecksUpdateIntervalMs = 2000     -- interval for constant checks

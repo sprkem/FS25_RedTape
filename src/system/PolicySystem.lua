@@ -208,6 +208,7 @@ end
 -- Also called when loading InitialClientStateEvent
 function RTPolicySystem:registerActivatedPolicy(policy, isLoading)
     table.insert(self.policies, policy)
+    g_messageCenter:publish(MessageType.POLICIES_UPDATED)
 
     if not isLoading then
         g_currentMission.RedTape.EventLog:addEvent(policy.farmId, RTEventLogItem.EVENT_TYPE.POLICY_ACTIVATED,
@@ -222,6 +223,7 @@ function RTPolicySystem:applyPoints(farmId, points, reason)
     end
 
     self.points[farmId] = math.max(0, self.points[farmId] + points)
+    g_messageCenter:publish(MessageType.POLICIES_UPDATED)
     g_currentMission.RedTape.EventLog:addEvent(farmId, RTEventLogItem.EVENT_TYPE.POLICY_POINTS, reason, false)
 end
 
@@ -242,6 +244,7 @@ function RTPolicySystem:removePolicy(policyIndex)
         return
     end
 
+    g_messageCenter:publish(MessageType.POLICIES_UPDATED)
     g_currentMission.RedTape.EventLog:addEvent(nil, RTEventLogItem.EVENT_TYPE.POLICY_COMPLETED,
         string.format(g_i18n:getText("rt_notify_completed_policy"), removed), true)
 end
