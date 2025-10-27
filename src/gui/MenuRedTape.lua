@@ -126,7 +126,6 @@ function MenuRedTape:displaySelectedScheme()
                 end
             end
         else
-            print("Scheme is nil")
             self.schemeInfoContainer:setVisible(false)
             self.noSelectedSchemeText:setVisible(true)
         end
@@ -356,6 +355,16 @@ function MenuRedTape:updateContent()
         local activePolicies = policySystem.policies
         local progress = policySystem:getProgressForCurrentFarm()
 
+        if progress == nil then
+            self.complianceTier:setText(string.format(g_i18n:getText("rt_header_current_tier"), "-"))
+            self.progressText:setVisible(false)
+            self.progressBar:setVisible(false)
+            return
+        end
+
+        self.progressText:setVisible(true)
+        self.progressBar:setVisible(true)
+
         self.complianceTier:setText(string.format(g_i18n:getText("rt_header_current_tier"),
             RTPolicySystem.TIER_NAMES[progress.tier]))
         self.progressText:setText(string.format("%d/%d", progress.points, progress.nextTierPoints))
@@ -444,13 +453,13 @@ end
 function MenuRedTape:updateMenuButtons()
     local state = self.subCategoryPaging:getState()
 
-    if state == MenuRedTape.SUB_CATEGORY.POLICIES then
-        print("Policies sub-category selected")
-    elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
-        print("Schemes sub-category selected")
-    elseif state == MenuRedTape.SUB_CATEGORY.EVENTLOG then
-        print("Event Log sub-category selected")
-    end
+    -- if state == MenuRedTape.SUB_CATEGORY.POLICIES then
+    --     print("Policies sub-category selected")
+    -- elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
+    --     print("Schemes sub-category selected")
+    -- elseif state == MenuRedTape.SUB_CATEGORY.EVENTLOG then
+    --     print("Event Log sub-category selected")
+    -- end
 end
 
 function MenuRedTape:onMoneyChange()

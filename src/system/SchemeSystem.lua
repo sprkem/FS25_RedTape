@@ -250,6 +250,10 @@ end
 
 -- Called by SchemeSelectedEvent, runs on Client and Server
 function RTSchemeSystem:registerSelectedScheme(scheme, farmId)
+    if farmId == nil or farmId == 0 then
+        return nil
+    end
+
     local activeSchemes = self:getActiveSchemesForFarm(farmId)
 
     local schemeForFarm = scheme:createFarmScheme(farmId)
@@ -289,6 +293,10 @@ function RTSchemeSystem:endActiveScheme(id, farmId)
 end
 
 function RTSchemeSystem:getActiveSchemesForFarm(farmId)
+    if farmId == nil or farmId == 0 then
+        return {}
+    end
+
     if self.activeSchemesByFarm[farmId] == nil then
         self.activeSchemesByFarm[farmId] = {}
     end
@@ -298,6 +306,11 @@ end
 
 function RTSchemeSystem:getAvailableSchemesForCurrentFarm()
     local availableForFarm = {}
+
+    local farmId = g_currentMission:getFarmId()
+    if farmId == nil or farmId == 0 then
+        return availableForFarm
+    end
 
     local policySystem = g_currentMission.RedTape.PolicySystem
     local farmTier = policySystem:getProgressForCurrentFarm().tier

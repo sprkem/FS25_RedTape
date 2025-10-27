@@ -251,10 +251,18 @@ end
 
 function RTPolicySystem:getProgressForCurrentFarm()
     local farmId = g_currentMission:getFarmId()
+    if farmId == nil or farmId == 0 then
+        return nil
+    end
+
     return self:getProgressForFarm(farmId)
 end
 
 function RTPolicySystem:getProgressForFarm(farmId)
+     if farmId == nil or farmId == 0 then
+        return nil
+    end
+    
     local points = self.points[farmId] or 0
 
     local currentTier = RTPolicySystem.TIER.D

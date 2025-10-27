@@ -31,7 +31,7 @@ end
 
 function RTSchemeSelectedEvent:run(connection)
     if not connection:getIsServer() then
-        g_server:broadcastEvent(RTSchemeSelectedEvent.new(self.scheme))
+        g_server:broadcastEvent(RTSchemeSelectedEvent.new(self.scheme, self.farmId))
     end
 
     local schemeSystem = g_currentMission.RedTape.SchemeSystem

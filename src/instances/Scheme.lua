@@ -232,7 +232,7 @@ function RTScheme:availableForCurrentFarm()
     local policySystem = g_currentMission.RedTape.PolicySystem
     local farmId = g_currentMission:getFarmId()
 
-    if farmId == nil then
+    if farmId == nil or farmId == 0 then
         return false
     end
 

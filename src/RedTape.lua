@@ -40,6 +40,7 @@ function RedTape:loadMap()
 
     g_messageCenter:subscribe(MessageType.HOUR_CHANGED, RedTape.hourChanged)
     g_messageCenter:subscribe(MessageType.PERIOD_CHANGED, RedTape.periodChanged)
+    g_messageCenter:subscribe(MessageType.PLAYER_FARM_CHANGED, RedTape.playerFarmChanged)
 
     self:loadFromXMLFile()
 end
@@ -293,6 +294,15 @@ function RedTape:onStartMission()
     end
 end
 
+function RedTape:playerFarmChanged()
+    g_messageCenter:publish(MessageType.EVENT_LOG_UPDATED)
+    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+    g_messageCenter:publish(MessageType.TAXES_UPDATED)
+    g_messageCenter:publish(MessageType.POLICIES_UPDATED)
+end
+
+FSBaseMission.sendInitialClientState = Utils.appendedFunction(FSBaseMission.sendInitialClientState,
+    RedTape.sendInitialClientState)
 FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame, RedTape.saveToXmlFile)
 FSBaseMission.onStartMission = Utils.prependedFunction(FSBaseMission.onStartMission, RedTape.onStartMission)
 
