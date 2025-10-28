@@ -47,6 +47,7 @@
 		<text name="rt_event_type_policycompleted" text="Policy Completed"/>		
 		<text name="rt_event_type_schemeactivated" text="Scheme Activated"/>
 		<text name="rt_event_type_schemepayout" text="Scheme Payout"/>
+		<text name="rt_event_type_schemeexpired" text="Scheme Expired"/>
 
 		<text name="rt_tableheader_timestamp" text="Timestamp"/>
 		<text name="rt_tableheader_eventtype" text="Event Type"/>

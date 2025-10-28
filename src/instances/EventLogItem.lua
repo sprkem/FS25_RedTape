@@ -17,7 +17,8 @@ RTEventLogItem.EVENT_TYPE_LABELS = {
     [RTEventLogItem.EVENT_TYPE.POLICY_ACTIVATED] = "rt_event_type_policyactivated",
     [RTEventLogItem.EVENT_TYPE.POLICY_COMPLETED] = "rt_event_type_policycompleted",
     [RTEventLogItem.EVENT_TYPE.SCHEME_ACTIVATED] = "rt_event_type_schemeactivated",
-    [RTEventLogItem.EVENT_TYPE.SCHEME_PAYOUT] = "rt_event_type_schemepayout"
+    [RTEventLogItem.EVENT_TYPE.SCHEME_PAYOUT] = "rt_event_type_schemepayout",
+    [RTEventLogItem.EVENT_TYPE.SCHEME_EXPIRED] = "rt_event_type_schemeexpired"
 }
 
 function RTEventLogItem.new()
