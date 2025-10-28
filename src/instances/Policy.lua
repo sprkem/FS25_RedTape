@@ -133,7 +133,8 @@ function RTPolicy:evaluate()
 
     local policyInfo = RTPolicies[self.policyIndex]
     local cumulativeMonth = RedTape.getCumulativeMonth()
-    if cumulativeMonth ~= self.nextEvaluationMonth then
+    -- Accounts for possible skipping of time
+    if cumulativeMonth < self.nextEvaluationMonth then
         return
     end
 

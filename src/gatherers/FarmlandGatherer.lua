@@ -14,7 +14,6 @@ function FarmlandGatherer:hourChanged()
 end
 
 function FarmlandGatherer:periodChanged()
-    print("Gathering farmlands data...")
     local cumulativeMonth = RedTape.getCumulativeMonth()
     local oldestHistoryMonth = cumulativeMonth - 24
     for _, farmland in pairs(g_farmlandManager.farmlands) do

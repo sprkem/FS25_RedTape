@@ -150,40 +150,41 @@
             <Text profile="rt_header_top_left_l" text="$l10n_rt_header_finalised_statement" position="0px -50px" size="500px 20px" />
 
             <GuiElement id="taxStatementContainer">
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_expenses" position="0px -80px" width="100px" />
-                <Text profile="rt_header_top_left" id="taxTotalExpenses" position="100px -80px" width="100px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_expenses" position="0px -100px" width="300px" />
+                <Text profile="rt_header_top_left" id="taxTotalExpenses" position="300px -100px" width="100px" />
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_taxable_income" position="0px -110px" width="100px" />
-                <Text profile="rt_header_top_left" id="taxTotalTaxable" position="100px -110px" width="100px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_taxable_income" position="0px -130px" width="300px" />
+                <Text profile="rt_header_top_left" id="taxTotalTaxable" position="300px -130px" width="100px" />
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_taxed_income" position="0px -140px" width="100px" />
-                <Text profile="rt_header_top_left" id="taxTotalTaxed" position="100px -140px" width="100px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_taxed_income" position="0px -160px" width="300px" />
+                <Text profile="rt_header_top_left" id="taxTotalTaxed" position="300px -160px" width="100px" />
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_tax_rate" position="0px -170px" width="100px" />
-                <Text profile="rt_header_top_left" id="taxTaxRate" position="100px -170px" width="100px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_tax_rate" position="0px -190px" width="300px" />
+                <Text profile="rt_header_top_left" id="taxTaxRate" position="300px -190px" width="100px" />
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_tax_due" position="0px -200px" width="100px" />
-                <Text profile="rt_header_top_left" id="taxTotalTaxDue" position="100px -200px" width="100px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_total_tax_due" position="0px -220px" width="300px" />
+                <Text profile="rt_header_top_left" id="taxTotalTaxDue" position="300px -220px" width="100px" />
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_tax_status" position="0px -230px" width="100px" />
-                <Text profile="rt_header_top_left" id="taxStatementStatus" position="100px -230px" width="100px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_tax_status" position="0px -250px" width="300px" />
+                <Text profile="rt_header_top_left" id="taxStatementStatus" position="300px -250px" width="100px" />
 
-                <Text profile="rt_header_top_left" text="$l10n_rt_header_tax_notes" position="0px -260px" width="100px" />
+                <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_tax_payment_info" position="40px -280px" width="800px" />
+                <Text profile="rt_header_top_left" text="$l10n_rt_header_tax_notes" position="0px -320px" width="300px" />
 
                 <GuiElement id="taxNotesContainer">
-                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_tax_notes_info" position="0px -280px" width="800px" />
-                    <SmoothList id="taxNotesTable" profile="rt_table" position="40px -240px" size="600px 400px">
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_tax_notes_info" position="40px -340px" width="800px" />
+                    <SmoothList id="taxNotesTable" profile="rt_table" position="40px -360px" size="600px 400px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="300px 32px" name="note"/>
                         </ListItem>
                     </SmoothList>
-                    <ThreePartBitmap profile="rt_slider_box_left" position="660px -240px" size="6px 400px">
+                    <ThreePartBitmap profile="rt_slider_box_left" position="660px -360px" size="6px 400px">
                         <Slider profile="fs25_listSlider" dataElementId="taxNotesTable" />
                     </ThreePartBitmap>
                 </GuiElement>
 
                 <GuiElement id="noTaxNotesContainer">
-                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_no_tax_notes" position="0px -280px" width="800px" />
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_no_tax_notes" position="40px -340px" width="800px" />
                 </GuiElement>
             </GuiElement>
 

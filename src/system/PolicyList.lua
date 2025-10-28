@@ -38,8 +38,6 @@ RTPolicies = {
                     local farmLandData = gatherer:getFarmlandData(farmland.id)
 
                     if farmLandData.fallowMonths > 10 then
-                        print("Skipping farmland " ..
-                            farmland.id .. " due to fallow months: " .. farmLandData.fallowMonths)
                         continue
                     end
 
@@ -52,7 +50,6 @@ RTPolicies = {
                     end
 
                     if RedTape.tableHasValue(fruitsToSkip, mostRecentFruit) then
-                        print("Skipping farmland " .. farmland.id .. " with fruit " .. mostRecentFruit)
                         continue
                     end
 
@@ -60,7 +57,6 @@ RTPolicies = {
                     local hasAnyPreviousFruit = gatherer:hasRecordedFruit(farmland.id, cumulativeMonth - 12,
                         cumulativeMonth - 1)
                     if not hasAnyPreviousFruit then
-                        print("Skipping farmland " .. farmland.id .. " due to no previous fruit recorded")
                         continue
                     end
 

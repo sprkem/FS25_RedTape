@@ -36,6 +36,7 @@
 		<text name="rt_header_total_tax_rate" text="Tax Rate:"/>
 		<text name="rt_header_total_tax_due" text="Tax Due:"/>
 		<text name="rt_header_tax_status" text="Tax Status:"/>
+		<text name="rt_header_tax_payment_info" text="Tax statements calculated in April and payment taken in September."/>
 		<text name="rt_tax_statement_status_paid" text="Paid"/>
 		<text name="rt_tax_statement_status_unpaid" text="Unpaid"/>
 
