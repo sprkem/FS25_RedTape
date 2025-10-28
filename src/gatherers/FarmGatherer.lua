@@ -25,8 +25,13 @@ function FarmGatherer:hourChanged()
             farmData.monthlyFullSlurryCount = farmData.monthlyFullSlurryCount + 1
         end
 
+        local isFencelessPasture = false
+        if husbandry.customEnvironment ~= nil and husbandry.customEnvironment == 'FS25_FencelessPastures' then
+            isFencelessPasture = true
+        end
+
         if stats.numAnimals and stats.numAnimals > 0 then
-            if stats.straw and stats.straw == 0 then
+            if stats.straw and stats.straw == 0 and not isFencelessPasture then
                 farmData.monthlyEmptyStrawCount = farmData.monthlyEmptyStrawCount + 1
             end
 
