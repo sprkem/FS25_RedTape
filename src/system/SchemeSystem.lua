@@ -141,8 +141,7 @@ function RTSchemeSystem:hourChanged()
 end
 
 function RTSchemeSystem:periodChanged()
-    local rt = g_currentMission.RedTape
-    local schemeSystem = rt.SchemeSystem
+    local schemeSystem = g_currentMission.RedTape.SchemeSystem
 
     for farm, schemes in pairs(schemeSystem.activeSchemesByFarm) do
         for _, scheme in pairs(schemes) do
@@ -150,13 +149,19 @@ function RTSchemeSystem:periodChanged()
         end
     end
 
-    local currentMonth = rt.periodToMonth(g_currentMission.environment.currentPeriod)
+    local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+    local cumulativeMonth = RedTape.getCumulativeMonth()
     local expired = {}
     for tier, schemes in pairs(self.availableSchemes) do
         for _, scheme in pairs(schemes) do
             local schemeInfo = RTSchemes[scheme.schemeIndex]
-            if schemeInfo.offerMonths ~= nil and not rt.tableHasValue(schemeInfo.offerMonths, currentMonth) then
+            if schemeInfo.offerMonths ~= nil and not RedTape.tableHasValue(schemeInfo.offerMonths, currentMonth) then
                 table.insert(expired, scheme)
+            elseif schemeInfo.getExpiryMonth ~= nil then
+                local expiryMonth = schemeInfo.getExpiryMonth(schemeInfo, scheme)
+                if expiryMonth ~= nil and expiryMonth <= cumulativeMonth then
+                    table.insert(expired, scheme)
+                end
             end
         end
     end
@@ -273,6 +278,8 @@ function RTSchemeSystem:removeAvailableScheme(id)
             if scheme.id == id then
                 table.remove(schemes, i)
                 g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+                g_currentMission.RedTape.EventLog:addEvent(nil, RTEventLogItem.EVENT_TYPE.SCHEME_EXPIRED,
+                    string.format(g_i18n:getText("rt_notify_expired_scheme"), scheme:getName()), scheme:availableForCurrentFarm())
                 return
             end
         end
@@ -281,12 +288,13 @@ end
 
 -- Called by RTSchemeEndedEvent, runs on Client and Server
 function RTSchemeSystem:endActiveScheme(id, farmId)
+    local currentFarmId = g_currentMission:getFarmId()
     for i, scheme in pairs(self.activeSchemesByFarm[farmId]) do
         if scheme.id == id then
             scheme:endScheme()
             table.remove(self.activeSchemesByFarm[farmId], i)
             g_currentMission.RedTape.EventLog:addEvent(nil, RTEventLogItem.EVENT_TYPE.SCHEME_ACTIVATED,
-                string.format(g_i18n:getText("rt_notify_ended_scheme"), scheme:getName()), true)
+                string.format(g_i18n:getText("rt_notify_ended_scheme"), scheme:getName()), farmId == currentFarmId)
             return
         end
     end

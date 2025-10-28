@@ -2,10 +2,11 @@
 <l10n>
 	<translationContributors/>
 	<texts>
-		<text name="rt_misc_year" text="Year"/>
+		
 		<text name="rt_notify_active_policy" text="A new policy has been activated: %s"/>
 		<text name="rt_notify_active_scheme" text="A new scheme has become available: %s"/>
 		<text name="rt_notify_ended_scheme" text="A scheme has ended: %s"/>
+		<text name="rt_notify_expired_scheme" text="A scheme is no longer available: %s"/>
 		<text name="rt_policy_reason_evaluation" text="%s points awarded during evaluation of policy %s"/>
 		<text name="rt_notify_scheme_payout" text="The %s scheme paid you: %s"/>
 
@@ -137,5 +138,6 @@
 		<text name="finance_taxCost" text="Tax"/>
 		<text name="rt_no_vehicle_room" text="Not enough space for deliver vehicles for the scheme. Make some room and try again."/>
 		<text name="rt_info_scheme_selected" text="You have signed up for the scheme. Collect any vehicles from the shop."/>
+		<text name="rt_misc_year" text="Year"/>
 	</texts>
 </l10n>

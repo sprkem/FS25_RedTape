@@ -489,7 +489,7 @@ RTSchemes = {
             },
         },
         selectionProbability = 1,
-        availabilityProbability = 0.3,
+        availabilityProbability = 0.2,
         descriptionFunction = function(schemeInfo, scheme)
             local storeItem = g_storeManager:getItemByXMLFilename(scheme.props["vehicleToSpawn1"])
             StoreItemUtil.loadSpecsFromXML(storeItem)
@@ -511,6 +511,9 @@ RTSchemes = {
         getNextEvaluationMonth = function(schemeInfo, scheme)
             return tonumber(scheme.props['endMonth']) % 12
         end,
+        getExpiryMonth = function(schemeInfo, scheme)
+            return tonumber(scheme.props['expiryMonth'])
+        end,
         initialise = function(schemeInfo, scheme)
             local tierInfo = schemeInfo.tiers[scheme.tier]
             local chosenCategory = tierInfo.categories[math.random(1, #tierInfo.categories)]
@@ -528,6 +531,7 @@ RTSchemes = {
 
             local chosenDuration = tierInfo.durationMonths[math.random(1, #tierInfo.durationMonths)]
             scheme:setProp('durationMonths', chosenDuration)
+            scheme:setProp('expiryMonth', RedTape.getCumulativeMonth() + math.random(1, 2))
         end,
         selected = function(schemeInfo, scheme, tier)
             -- Any action when applying the scheme to a farm, e.g. initial payout or equipment
