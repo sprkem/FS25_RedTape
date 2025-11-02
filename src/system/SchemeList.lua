@@ -360,19 +360,19 @@ RTSchemes = {
             return string.format(g_i18n:getText("rt_scheme_desc_crop_promotion"), title)
         end,
         getNextEvaluationMonth = function(schemeInfo, scheme)
-            return tonumber(scheme.props['evaluationMonth'])
+            return 12
         end,
         initialise = function(schemeInfo, scheme)
             -- Init of an available scheme, prior to selection by a farm
 
             local fruitTypes = {
-                [FruitType.SUGARBEET] = "BEETHARVESTERS",
-                [FruitType.POTATO] = "POTATOHARVESTING",
+                -- [FruitType.SUGARBEET] = "BEETHARVESTERS",
+                -- [FruitType.POTATO] = "POTATOHARVESTING",
                 [FruitType.PARSNIP] = "VEGETABLEHARVESTERS",
-                [FruitType.GREENBEAN] = "GREENBEANHARVESTERS",
-                [FruitType.PEA] = "PEAHARVESTERS",
-                [FruitType.SPINACH] = "SPINACHHARVESTERS",
-                [FruitType.CARROT] = "VEGETABLEHARVESTERS",
+                -- [FruitType.GREENBEAN] = "GREENBEANHARVESTERS",
+                -- [FruitType.PEA] = "PEAHARVESTERS",
+                -- [FruitType.SPINACH] = "SPINACHHARVESTERS",
+                -- [FruitType.CARROT] = "VEGETABLEHARVESTERS",
             }
             local chosenIndex = math.random(1, RedTape.tableCount(fruitTypes))
             local chosenCategory = nil

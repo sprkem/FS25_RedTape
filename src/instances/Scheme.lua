@@ -346,30 +346,22 @@ end
 function RTScheme:getVehicleConfiguration(storeItem)
     local result = {}
     StoreItemUtil.loadSpecsFromXML(storeItem)
-    if storeItem.configurations ~= nil then
-        for k, v in pairs(storeItem.configurations) do
-            if #v > 1 then
-                local found = false
-                for _, configSet in ipairs(storeItem.configurationSets) do
-                    if configSet.configurations[k] ~= nil then
-                        found = true
-                        break
-                    end
-                end
-                if not found and math.random() < 0.15 then
-                    local defaultId = ConfigurationUtil.getDefaultConfigIdFromItems(v)
-                    for _ = 1, 5 do
-                        local rnd = math.random(1, #v)
-                        if rnd ~= defaultId and v[rnd].isSelectable then
-                            result[k] = {}
-                            result[k][rnd] = true
-                            break
-                        end
-                    end
-                end
+
+    if storeItem.defaultConfigurationIds ~= nil then
+        for k, v in pairs(storeItem.defaultConfigurationIds) do
+            result[k] = v
+        end
+    end
+
+    if storeItem.configurations ~= nil and storeItem.configurationSets ~= nil then
+        if RedTape.tableCount(storeItem.configurationSets) > 0 then
+            local chosenSet = math.random(1, #storeItem.configurationSets)
+            for k, v in pairs(storeItem.configurationSets[chosenSet]) do
+                result[k] = v
             end
         end
     end
+
     return result
 end
 
