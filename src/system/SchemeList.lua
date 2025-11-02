@@ -255,16 +255,16 @@ RTSchemes = {
         duplicationKey = "NATURAL_FERTILISER",
         tiers = {
             [RTPolicySystem.TIER.A] = {
-                bonusPerUsageAmount = 10,
+                bonusPerUsageAmount = 0.025,
             },
             [RTPolicySystem.TIER.B] = {
-                bonusPerUsageAmount = 9,
+                bonusPerUsageAmount = 0.022,
             },
             [RTPolicySystem.TIER.C] = {
-                bonusPerUsageAmount = 8,
+                bonusPerUsageAmount = 0.018,
             },
             [RTPolicySystem.TIER.D] = {
-                bonusPerUsageAmount = 7,
+                bonusPerUsageAmount = 0.015,
             },
         },
         selectionProbability = 1,
@@ -294,8 +294,9 @@ RTSchemes = {
             local totalOtherUsage = 0
             local sprayHistory = farmData.sprayHistory
 
-            if sprayHistory[cumulativeMonth] ~= nil then
-                for fillType, amount in pairs(sprayHistory[cumulativeMonth]) do
+            local previousMonth = cumulativeMonth - 1
+            if sprayHistory[previousMonth] ~= nil then
+                for fillType, amount in pairs(sprayHistory[previousMonth]) do
                     if RedTape.tableHasValue(naturalFertilisers, fillType) then
                         totalNaturalUsage = totalNaturalUsage + amount
                     elseif RedTape.tableHasValue(otherFertilisers, fillType) then
@@ -317,11 +318,11 @@ RTSchemes = {
             local report = {}
             table.insert(report, {
                 cell1 = g_i18n:getText("rt_report_name_natural_usage"),
-                cell2 = tostring(totalNaturalUsage)
+                cell2 = tostring(g_i18n:formatVolume(totalNaturalUsage, 0))
             })
             table.insert(report, {
                 cell1 = g_i18n:getText("rt_report_name_other_usage"),
-                cell2 = tostring(totalOtherUsage)
+                cell2 = tostring(g_i18n:formatVolume(totalOtherUsage, 0))
             })
             g_client:getServerConnection():sendEvent(RTSchemePayoutEvent.new(scheme, scheme.farmId, payout))
 
