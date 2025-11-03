@@ -353,7 +353,7 @@ function RTPolicySystem:WarnAndFine(policyInfo, policy, farmId, fineIfDue)
     local futureWarningCount = policy:getWarningCount(farmId) + 1
     local allowedWarnings = policyInfo.maxWarnings or 1
     local sendFine = false
-    if futureWarningCount >= allowedWarnings then
+    if futureWarningCount > allowedWarnings then
         sendFine = true
     end
     g_client:getServerConnection():sendEvent(RTPolicyWarningEvent.new(farmId, policy.policyIndex))
