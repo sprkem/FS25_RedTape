@@ -9,7 +9,8 @@ function RTPolicy.new()
     self.policyIndex = -1
     self.nextEvaluationMonth = -1
     self.evaluationCount = 0
-    self.lastEvaluationReport = {}
+    -- self.lastEvaluationReport = {}
+    self.evaluationReports = {}
 
     return self
 end
@@ -20,8 +21,9 @@ function RTPolicy:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.nextEvaluationMonth)
     streamWriteInt32(streamId, self.evaluationCount)
 
-    streamWriteInt32(streamId, #self.lastEvaluationReport)
-    for _, report in pairs(self.lastEvaluationReport) do
+    streamWriteInt32(streamId, #RedTape.tableCount(self.evaluationReports))
+    for farmId, report in pairs(self.evaluationReports) do
+        streamWriteString(streamId, farmId)
         streamWriteString(streamId, report.cell1)
         streamWriteString(streamId, report.cell2)
         streamWriteString(streamId, report.cell3)
@@ -35,13 +37,15 @@ function RTPolicy:readStream(streamId, connection)
     self.evaluationCount = streamReadInt32(streamId)
 
     local reportCount = streamReadInt32(streamId)
+    self.evaluationReports = {}
     for i = 1, reportCount do
+        local farmId = streamReadString(streamId)
         local report = {
             cell1 = streamReadString(streamId),
             cell2 = streamReadString(streamId),
             cell3 = streamReadString(streamId)
         }
-        table.insert(self.lastEvaluationReport, report)
+        self.evaluationReports[farmId] = report
     end
 end
 
@@ -52,8 +56,9 @@ function RTPolicy:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#evaluationCount", self.evaluationCount)
 
     local i = 0
-    for _, report in pairs(self.lastEvaluationReport) do
-        local reportKey = string.format("%s.reportItems.item(%d)", key, i)
+    for farmId, report in pairs(self.evaluationReports) do
+        local reportKey = string.format("%s.evaluationReports.item(%d)", key, i)
+        setXMLString(xmlFile, reportKey .. "#farmId", farmId)
         setXMLString(xmlFile, reportKey .. "#cell1", report.cell1)
         setXMLString(xmlFile, reportKey .. "#cell2", report.cell2)
         setXMLString(xmlFile, reportKey .. "#cell3", report.cell3)
@@ -68,17 +73,21 @@ function RTPolicy:loadFromXMLFile(xmlFile, key)
     self.evaluationCount = getXMLInt(xmlFile, key .. "#evaluationCount") or 0
 
     local i = 0
+    self.evaluationReports = {}
     while true do
-        local reportKey = string.format("%s.reportItems.item(%d)", key, i)
+        local reportKey = string.format("%s.evaluationReports.item(%d)", key, i)
         if not hasXMLProperty(xmlFile, reportKey) then
             break
         end
+
+        local farmId = getXMLString(xmlFile, reportKey .. "#farmId")
         local report = {
-            cell1 = getXMLString(xmlFile, reportKey .. "#cell1"),
-            cell2 = getXMLString(xmlFile, reportKey .. "#cell2"),
-            cell3 = getXMLString(xmlFile, reportKey .. "#cell3")
+            cell1 = getXMLString(xmlFile, reportKey .. "#cell1") or "",
+            cell2 = getXMLString(xmlFile, reportKey .. "#cell2") or "",
+            cell3 = getXMLString(xmlFile, reportKey .. "#cell3") or ""
         }
-        table.insert(self.lastEvaluationReport, report)
+        self.evaluationReports[farmId] = report
+
         i = i + 1
     end
 end
@@ -149,15 +158,17 @@ function RTPolicy:evaluate()
     for _, farm in pairs(g_farmManager.farmIdToFarm) do
         local report = policyInfo.evaluate(policyInfo, self, farm.farmId)
         if report ~= nil then
-            self.lastEvaluationReport = report or {}
+            report = report or {}
 
             -- Ensure all report values are strings
-            for _, report in pairs(self.lastEvaluationReport) do
-                report.cell1 = tostring(report.cell1 or "")
-                report.cell2 = tostring(report.cell2 or "")
-                report.cell3 = tostring(report.cell3 or "")
+            for _, reportLine in pairs(report) do
+                reportLine.cell1 = tostring(reportLine.cell1 or "")
+                reportLine.cell2 = tostring(reportLine.cell2 or "")
+                reportLine.cell3 = tostring(reportLine.cell3 or "")
             end
         end
+
+        g_client:getServerConnection():sendEvent(RTPolicyReportEvent.new(self.policyIndex, farm.farmId, report))
     end
 
     self.evaluationCount = self.evaluationCount + 1

@@ -17,12 +17,12 @@ function RTPolicyWarningEvent.new(farmId, policyIndex)
 end
 
 function RTPolicyWarningEvent:writeStream(streamId, connection)
-    streamWriteString(streamId, self.farmId)
+    streamWriteInt32(streamId, self.farmId)
     streamWriteInt32(streamId, self.policyIndex)
 end
 
 function RTPolicyWarningEvent:readStream(streamId, connection)
-    self.farmId = streamReadString(streamId)
+    self.farmId = streamReadInt32(streamId)
     self.policyIndex = streamReadInt32(streamId)
 
     self:run(connection)

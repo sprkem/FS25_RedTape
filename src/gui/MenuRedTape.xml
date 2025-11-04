@@ -35,7 +35,8 @@
 
                     <SmoothList id="activePoliciesTable" profile="rt_table" position="20px -30px" size="400px 690px">
                         <ListItem profile="rtTableListItem">
-                            <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>                            
+                            <Bitmap position="350px 0px" profile="fs25_statisticsHeaderIcon" imageSliceId="gui.exclamationCircle" imageColor="1.0000 0.6592 0.0000 1" name="warning"/>
                         </ListItem>
                     </SmoothList>
 

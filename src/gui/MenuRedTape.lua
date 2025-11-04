@@ -67,15 +67,16 @@ function MenuRedTape:displaySelectedPolicy()
 
             self.selectedPolicyReportNextDate:setText(string.format(g_i18n:getText("rt_header_next_evaluation_date"),
                 RedTape.monthToString(nextEval)))
+            local report = policy.evaluationReports[g_currentMission:getFarmId()] or {}
 
-            if rt.tableCount(policy.lastEvaluationReport) == 0 then
+            if rt.tableCount(report) == 0 then
                 self.policyReportContainer:setVisible(false)
                 self.noPolicyReportContainer:setVisible(true)
                 self.selectedPolicyReportDescription:setVisible(false)
             else
                 self.policyReportContainer:setVisible(true)
                 self.noPolicyReportContainer:setVisible(false)
-                self.policyReportRenderer:setData(policy.lastEvaluationReport)
+                self.policyReportRenderer:setData(report)
                 self.selectedPolicyReportDescription:setVisible(true)
                 self.selectedPolicyReportDescription:setText(policy:getReportDescription())
                 self.policyReportTable:reloadData()

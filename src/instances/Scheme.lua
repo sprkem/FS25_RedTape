@@ -256,19 +256,20 @@ function RTScheme:availableForCurrentFarm()
 end
 
 function RTScheme:evaluate()
-    local rt = g_currentMission.RedTape
     local schemeInfo = RTSchemes[self.schemeIndex]
     local report = schemeInfo.evaluate(schemeInfo, self, self.tier)
 
     if report ~= nil then
-        self.lastEvaluationReport = report or {}
+        report = report or {}
 
         -- Ensure all report values are strings
-        for _, report in pairs(self.lastEvaluationReport) do
-            report.cell1 = tostring(report.cell1 or "")
-            report.cell2 = tostring(report.cell2 or "")
-            report.cell3 = tostring(report.cell3 or "")
+        for _, reportLine in pairs(report) do
+            reportLine.cell1 = tostring(reportLine.cell1 or "")
+            reportLine.cell2 = tostring(reportLine.cell2 or "")
+            reportLine.cell3 = tostring(reportLine.cell3 or "")
         end
+
+        g_client:getServerConnection():sendEvent(RTSchemeReportEvent.new(self.id, self.farmId, report))
     end
 end
 

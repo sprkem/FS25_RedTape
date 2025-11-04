@@ -109,6 +109,7 @@
 		<text name="rt_report_name_harvest_reward" text="Harvest reward"/>
 		<text name="rt_report_name_natural_usage" text="Natural fertilizer usage"/>
 		<text name="rt_report_name_other_usage" text="Other fertilizer usage"/>
+		<text name="rt_report_name_points" text="Points"/>
 				
 		<text name="rt_report_value_true" text="True"/>
 		<text name="rt_report_value_false" text="False"/>

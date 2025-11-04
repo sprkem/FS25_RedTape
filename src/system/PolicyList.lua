@@ -21,7 +21,6 @@ RTPolicies = {
         periodicReward = 100,
         periodicPenalty = -200,
         evaluationInterval = 12,
-        minEvaluationCount = 2,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -110,8 +109,9 @@ RTPolicies = {
         periodicReward = 5,
         pointsPenaltyPerViolation = -1,
         evaluationInterval = 1,
-        minEvaluationCount = 12,
         finePerViolation = 100,
+        warningThreshold = 10,
+        maxWarnings = 1,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -123,8 +123,10 @@ RTPolicies = {
             local reward = 0
             if monthlySprayViolations > 0 then
                 reward = policyInfo.pointsPenaltyPerViolation * monthlySprayViolations
-                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId,
-                    policyInfo.finePerViolation * monthlySprayViolations)
+
+                local fineAmount = monthlySprayViolations * policyInfo.finePerViolation
+                local skipWarning = monthlySprayViolations > policyInfo.warningThreshold
+                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
             end
@@ -148,9 +150,11 @@ RTPolicies = {
         report_description = "rt_policy_report_description_empty_straw",
         probability = 0.6,
         periodicReward = 5,
-        periodicPenaltyPerViolation = -2,
+        pointsPenaltyPerViolation = -2,
+        finePerViolation = 50,
+        warningThreshold = 24,
+        maxWarnings = 1,
         evaluationInterval = 1,
-        minEvaluationCount = 12,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -160,8 +164,13 @@ RTPolicies = {
             local monthlyEmptyStrawCount = farmData.monthlyEmptyStrawCount or 0
             local reward = 0
             if monthlyEmptyStrawCount > 0 then
-                reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
+                reward = (policyInfo.pointsPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
                     monthlyEmptyStrawCount
+
+                local normalisedCount = monthlyEmptyStrawCount / g_currentMission.environment.daysPerPeriod
+                local fineAmount = normalisedCount * policyInfo.finePerViolation
+                local skipWarning = normalisedCount > policyInfo.warningThreshold
+                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
             end
@@ -172,6 +181,7 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_points"), cell2 = reward })
             return report
         end,
     },
@@ -185,7 +195,9 @@ RTPolicies = {
         periodicReward = 5,
         periodicPenaltyPerViolation = -3,
         evaluationInterval = 1,
-        minEvaluationCount = 12,
+        finePerViolation = 80,
+        warningThreshold = 12,
+        maxWarnings = 1,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -197,6 +209,11 @@ RTPolicies = {
             if monthlyFullSlurryCount > 0 then
                 reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
                     monthlyFullSlurryCount
+
+                local normalisedViolations = monthlyFullSlurryCount / g_currentMission.environment.daysPerPeriod
+                local fineAmount = policyInfo.finePerViolation * normalisedViolations
+                local skipWarning = normalisedViolations > policyInfo.warningThreshold
+                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
             end
@@ -208,6 +225,7 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_points"), cell2 = reward })
             return report
         end
     },
@@ -223,7 +241,9 @@ RTPolicies = {
         deductionPerViolationOnComplete = 5,
         maxCompleteReward = 500,
         evaluationInterval = 1,
-        minEvaluationCount = 12,
+        finePerViolation = 100,
+        warningThreshold = 6,
+        maxWarnings = 1,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -235,6 +255,11 @@ RTPolicies = {
             if monthlyEmptyFoodCount > 0 then
                 reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
                     monthlyEmptyFoodCount
+
+                local normalisedViolations = monthlyEmptyFoodCount / g_currentMission.environment.daysPerPeriod
+                local fineAmount = normalisedViolations * policyInfo.finePerViolation
+                local skipWarning = normalisedViolations > policyInfo.warningThreshold
+                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
             end
@@ -246,6 +271,7 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_points"), cell2 = reward })
             return report
         end,
     },
@@ -259,7 +285,9 @@ RTPolicies = {
         periodicReward = 10,
         periodicPenaltyPerViolation = -1,
         evaluationInterval = 1,
-        minEvaluationCount = 12,
+        finePerViolation = 50,
+        warningThreshold = 24,
+        maxWarnings = 1,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -271,6 +299,11 @@ RTPolicies = {
             if pendingViolations > 0 then
                 reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
                     pendingViolations
+
+                local normalisedViolations = pendingViolations / g_currentMission.environment.daysPerPeriod
+                local fineAmount = normalisedViolations * policyInfo.finePerViolation
+                local skipWarning = normalisedViolations > policyInfo.warningThreshold
+                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
             end
@@ -283,6 +316,7 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_points"), cell2 = reward })
             return report
         end,
     },
@@ -296,7 +330,9 @@ RTPolicies = {
         periodicReward = 5,
         periodicPenaltyPerViolation = -1,
         evaluationInterval = 1,
-        minEvaluationCount = 12,
+        finePerViolation = 100,
+        warningThreshold = 24,
+        maxWarnings = 1,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -308,6 +344,11 @@ RTPolicies = {
             if pendingViolations > 0 then
                 reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
                     pendingViolations
+
+                local normalisedViolations = pendingViolations / g_currentMission.environment.daysPerPeriod
+                local fineAmount = normalisedViolations * policyInfo.finePerViolation
+                local skipWarning = normalisedViolations > policyInfo.warningThreshold
+                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
             end
@@ -320,6 +361,7 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_points"), cell2 = reward })
             return report
         end,
     },
@@ -333,7 +375,9 @@ RTPolicies = {
         periodicReward = 50,
         periodicPenalty = -100,
         evaluationInterval = 6,
-        minEvaluationCount = 2,
+        finePerViolation = 5000,
+        warningThreshold = 0,
+        maxWarnings = 0,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -359,6 +403,10 @@ RTPolicies = {
                 expectedSpread = farmData.rollingAverageManureLevel * 0.5
                 if actualSpread < expectedSpread then
                     reward = policyInfo.periodicPenalty
+
+                    local fineAmount = policyInfo.finePerViolation
+                    local skipWarning = true
+                    g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
                 else
                     reward = policyInfo.periodicReward
                 end
@@ -385,6 +433,7 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_points"), cell2 = reward })
             return report
         end
     },
@@ -398,7 +447,9 @@ RTPolicies = {
         periodicReward = 20,
         periodicPenaltyPerViolation = -5,
         evaluationInterval = 1,
-        minEvaluationCount = 12,
+        finePerViolation = 20,
+        warningThreshold = 50,
+        maxWarnings = 1,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId)
@@ -409,6 +460,10 @@ RTPolicies = {
             local reward = 0
             if pendingViolations > 0 then
                 reward = policyInfo.periodicPenaltyPerViolation * pendingViolations
+
+                local fineAmount = pendingViolations * policyInfo.finePerViolation
+                local skipWarning = pendingViolations > policyInfo.warningThreshold
+                g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
             end
@@ -421,6 +476,7 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
             end
 
+            table.insert(report, { cell1 = g_i18n:getText("rt_report_name_points"), cell2 = reward })
             return report
         end,
     },

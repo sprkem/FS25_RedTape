@@ -93,9 +93,9 @@ function RTPolicySystem:saveToXmlFile(xmlFile)
     local key = RedTape.SaveKey .. ".policySystem"
 
     local i = 0
-    for _, group in pairs(self.policies) do
+    for _, policy in pairs(self.policies) do
         local groupKey = string.format("%s.policies.policy(%d)", key, i)
-        group:saveToXmlFile(xmlFile, groupKey)
+        policy:saveToXmlFile(xmlFile, groupKey)
         i = i + 1
     end
 
@@ -349,15 +349,17 @@ function RTPolicySystem:recordFine(farmId, policyIndex, amount)
 end
 
 -- Called on the server during evaluation to warn and fine farms if warnings exceed the allowed amount
-function RTPolicySystem:WarnAndFine(policyInfo, policy, farmId, fineIfDue)
-    local futureWarningCount = policy:getWarningCount(farmId) + 1
-    local allowedWarnings = policyInfo.maxWarnings or 1
-    local sendFine = false
-    if futureWarningCount > allowedWarnings then
-        sendFine = true
+function RTPolicySystem:WarnAndFine(policyInfo, policy, farmId, fineIfDue, skipWarning)
+    local maxWarningsReached = false
+    if not skipWarning then
+        local futureWarningCount = policy:getWarningCount(farmId) + 1
+        local allowedWarnings = policyInfo.maxWarnings or 1
+        if futureWarningCount > allowedWarnings then
+            maxWarningsReached = true
+        end
+        g_client:getServerConnection():sendEvent(RTPolicyWarningEvent.new(farmId, policy.policyIndex))
     end
-    g_client:getServerConnection():sendEvent(RTPolicyWarningEvent.new(farmId, policy.policyIndex))
-    if sendFine and fineIfDue > 0 then
+    if (maxWarningsReached or skipWarning) and fineIfDue > 0 then
         g_client:getServerConnection():sendEvent(RTPolicyFineEvent.new(farmId, policy.policyIndex, fineIfDue))
     end
 end
