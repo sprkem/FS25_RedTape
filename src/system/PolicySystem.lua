@@ -324,6 +324,16 @@ function RTPolicySystem:recordWarning(farmId, policyIndex)
     end
 end
 
+-- Called by RTPolicyClearWarningsEvent, runs on client and server
+function RTPolicySystem:clearWarning(farmId, policyIndex)
+    for _, warning in pairs(self.warnings) do
+        if warning.farmId == farmId and warning.policyIndex == policyIndex then
+            warning.warningCount = 0
+            return
+        end
+    end
+end
+
 -- Called by RTPolicyFineEvent, runs on client and server
 function RTPolicySystem:recordFine(farmId, policyIndex, amount)
     if g_currentMission:getIsServer() then

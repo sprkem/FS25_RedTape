@@ -129,6 +129,7 @@ RTPolicies = {
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
+                g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
             local report = {}
@@ -173,6 +174,7 @@ RTPolicies = {
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
+                g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
             local report = {}
             table.insert(report, { cell1 = g_i18n:getText("rt_report_name_empty_straw"), cell2 = monthlyEmptyStrawCount })
@@ -216,6 +218,7 @@ RTPolicies = {
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
+                g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
             local report = {}
@@ -262,6 +265,7 @@ RTPolicies = {
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
+                g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
             local report = {}
@@ -306,6 +310,7 @@ RTPolicies = {
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
+                g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
             local report = {}
@@ -351,6 +356,7 @@ RTPolicies = {
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
+                g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
             local report = {}
@@ -466,6 +472,7 @@ RTPolicies = {
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
                 reward = policyInfo.periodicReward
+                g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
             local report = {}
