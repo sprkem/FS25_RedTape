@@ -185,6 +185,14 @@ function RTTaxSystem:recordLineItem(farmId, lineItem)
         table.insert(self.farms, farmId)
     end
 
+    -- try merge into an existing lineItem of the same statistic for this month
+    for _, existingLineItem in ipairs(self.lineItems[farmId][cumulativeMonth]) do
+        if existingLineItem.statistic == lineItem.statistic then
+            existingLineItem.amount = existingLineItem.amount + lineItem.amount
+            return
+        end
+    end
+
     table.insert(self.lineItems[farmId][cumulativeMonth], lineItem)
 end
 

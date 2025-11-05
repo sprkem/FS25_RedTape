@@ -43,7 +43,7 @@ function FarmGatherer:hourChanged()
                 farmData.monthlyLowProductivityHusbandry = farmData.monthlyLowProductivityHusbandry + 1
             end
 
-            if stats.meadowFood > 0 and stats.totalFood == stats.meadowFood then
+            if stats.meadowFood and stats.meadowFood > 0 and stats.totalFood == stats.meadowFood then
                 farmData.monthlyAnimalGrazingHours = farmData.monthlyAnimalGrazingHours + stats.numAnimals
                 farmData.monthlyScaledAnimalGrazingHours = farmData.monthlyScaledAnimalGrazingHours +
                     (stats.numAnimals * self:getAnimalGrazingScaleFactor(stats.animalType))
