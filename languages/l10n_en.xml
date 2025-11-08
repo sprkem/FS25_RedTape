@@ -29,7 +29,7 @@
 		<text name="rt_header_next_evaluation_date" text="Next evaluation date: %s"/>
 		<text name="rt_header_no_tax_statement" text="There is currently no tax statement available. Tax statements are generated annually in April and payment taken in September."/>
 		<text name="rt_header_finalised_statement" text="Previous Year Statement:"/>
-		<text name="rt_header_tax_estimate" text="Current year estimate:"/>
+		<text name="rt_header_tax_estimate" text="Current year totals:"/>
 		<text name="rt_header_tax_notes" text="Tax Notes:"/>
 		<text name="rt_header_tax_notes_info" text="A list of relevant annotations which may help explain your tax statement."/>
 		<text name="rt_header_no_tax_notes" text="No tax notes are contained in the statement."/>

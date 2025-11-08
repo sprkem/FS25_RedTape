@@ -35,7 +35,7 @@
 
                     <SmoothList id="activePoliciesTable" profile="rt_table" position="20px -30px" size="400px 690px">
                         <ListItem profile="rtTableListItem">
-                            <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>                            
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="210px 32px" name="name"/>
                             <Bitmap position="350px 0px" profile="fs25_statisticsHeaderIcon" imageSliceId="gui.exclamationCircle" imageColor="1.0000 0.6592 0.0000 1" name="warning"/>
                         </ListItem>
                     </SmoothList>
@@ -194,7 +194,16 @@
             </GuiElement>
 
             <Text profile="rt_header_top_left_l" text="$l10n_rt_header_tax_estimate" position="800px -50px" size="300px 20px" />
-            <Text profile="rt_header_top_left" id="taxEstimate" position="800px -80px" width="100px" />
+            <!-- <Text profile="rt_header_top_left" id="taxEstimate" position="800px -80px" width="100px" /> -->
+
+            <Text profile="rt_header_top_left" text="$l10n_rt_header_total_expenses" position="800px -100px" width="300px" />
+            <Text profile="rt_header_top_left" id="currentYearTaxTotalExpenses" position="1100px -100px" width="100px" />
+
+            <Text profile="rt_header_top_left" text="$l10n_rt_header_total_taxable_income" position="800px -130px" width="300px" />
+            <Text profile="rt_header_top_left" id="currentYearTaxTotalTaxable" position="1100px -130px" width="100px" />
+
+            <Text profile="rt_header_top_left" text="$l10n_rt_header_total_tax_due" position="800px -170px" width="300px" />
+            <Text profile="rt_header_top_left" id="currentYearTaxTotalTaxDue" position="1100px -170px" width="100px" />
 
         </GuiElement>
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[4]">
