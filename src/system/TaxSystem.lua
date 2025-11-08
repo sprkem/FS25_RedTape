@@ -247,6 +247,13 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         "expenses"
     }
 
+    if g_modIsLoaded["FS25_RealisticLivestock"] then
+        table.insert(expenseStats, "herdsmanWages")
+        table.insert(expenseStats, "semenPurchase")
+        table.insert(incomeStats, "medicine")
+        table.insert(incomeStats, "monitorSubscriptions")
+    end
+
     if RedTape.tableHasValue(expenseStats, lineItem.statistic) then
         taxStatement.totalExpenses = taxStatement.totalExpenses + math.abs(lineItem.amount)
     elseif RedTape.tableHasValue(incomeStats, lineItem.statistic) then
