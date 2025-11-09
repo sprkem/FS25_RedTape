@@ -193,8 +193,7 @@
                 <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_no_tax_statement" position="40px -80px" width="800px" />
             </GuiElement>
 
-            <Text profile="rt_header_top_left_l" text="$l10n_rt_header_tax_estimate" position="800px -50px" size="300px 20px" />
-            <!-- <Text profile="rt_header_top_left" id="taxEstimate" position="800px -80px" width="100px" /> -->
+            <Text profile="rt_header_top_left_l" text="$l10n_rt_header_tax_estimate" position="800px -50px" size="300px 20px" />            
 
             <Text profile="rt_header_top_left" text="$l10n_rt_header_total_expenses" position="800px -100px" width="300px" />
             <Text profile="rt_header_top_left" id="currentYearTaxTotalExpenses" position="1100px -100px" width="100px" />

@@ -418,7 +418,6 @@ function MenuRedTape:updateContent()
         local statement = taxSystem.taxStatements[farmId]
 
         local currentYearStatement = taxSystem:getCurrentYearTaxToDate(farmId)
-        -- self.taxEstimate:setText(g_i18n:formatMoney(currentYearStatement.totalTax, 0, true, true))
         self.currentYearTaxTotalExpenses:setText(g_i18n:formatMoney(currentYearStatement.totalExpenses, 0, true, true))
         self.currentYearTaxTotalTaxable:setText(g_i18n:formatMoney(currentYearStatement.totalTaxableIncome, 0, true, true))
         self.currentYearTaxTotalTaxDue:setText(g_i18n:formatMoney(currentYearStatement.totalTax, 0, true, true))
