@@ -53,7 +53,19 @@ function RTRandomEventsSystem:readInitialClientState(streamId, connection)
 end
 
 function RTRandomEventsSystem:hourChanged()
+    local eventSystem = g_currentMission.RedTape.RandomEventsSystem
 
+    for farmId, events in pairs(eventSystem.activeEventsByFarm) do
+        for _, event in pairs(events) do
+            if event.hoursToNextRun > 0 then
+                event.hoursToNextRun = event.hoursToNextRun - 1
+
+                if event.hoursToNextRun == 0 then
+                    event:run()
+                end
+            end
+        end
+    end
 end
 
 function RTRandomEventsSystem:periodChanged()
