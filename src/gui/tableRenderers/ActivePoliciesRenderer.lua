@@ -31,13 +31,11 @@ function RTActivePoliciesRenderer:populateCellForItemInSection(list, section, in
     local activePolicy = self.data[index]
     local farmId = g_currentMission:getFarmId()
     local hasWarnings = activePolicy:getWarningCount(farmId) > 0
+    local isBeingWatched = activePolicy:isBeingWatchedByFarm(farmId)
 
     cell:getAttribute("name"):setText(activePolicy:getName())
-    if hasWarnings then
-        cell:getAttribute("warning"):setVisible(true)
-    else
-        cell:getAttribute("warning"):setVisible(false)
-    end
+    cell:getAttribute("warning"):setVisible(hasWarnings)
+    cell:getAttribute("watched"):setVisible(isBeingWatched)
 end
 
 function RTActivePoliciesRenderer:onListSelectionChanged(list, section, index)

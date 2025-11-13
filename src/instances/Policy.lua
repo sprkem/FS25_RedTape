@@ -9,8 +9,8 @@ function RTPolicy.new()
     self.policyIndex = -1
     self.nextEvaluationMonth = -1
     self.evaluationCount = 0
-    -- self.lastEvaluationReport = {}
     self.evaluationReports = {}
+    self.watchingFarms = {}
 
     return self
 end
@@ -21,12 +21,17 @@ function RTPolicy:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.nextEvaluationMonth)
     streamWriteInt32(streamId, self.evaluationCount)
 
-    streamWriteInt32(streamId, #RedTape.tableCount(self.evaluationReports))
+    streamWriteInt32(streamId, RedTape.tableCount(self.evaluationReports))
     for farmId, report in pairs(self.evaluationReports) do
         streamWriteString(streamId, farmId)
         streamWriteString(streamId, report.cell1)
         streamWriteString(streamId, report.cell2)
         streamWriteString(streamId, report.cell3)
+    end
+
+    streamWriteInt32(streamId, RedTape.tableCount(self.watchingFarms))
+    for farmId, _ in pairs(self.watchingFarms) do
+        streamWriteString(streamId, farmId)
     end
 end
 
@@ -46,6 +51,13 @@ function RTPolicy:readStream(streamId, connection)
             cell3 = streamReadString(streamId)
         }
         self.evaluationReports[farmId] = report
+    end
+
+    local watchingCount = streamReadInt32(streamId)
+    self.watchingFarms = {}
+    for i = 1, watchingCount do
+        local farmId = streamReadString(streamId)
+        self.watchingFarms[farmId] = true
     end
 end
 
@@ -68,6 +80,13 @@ function RTPolicy:saveToXmlFile(xmlFile, key)
             j = j + 1
         end
         i = i + 1
+    end
+
+    local k = 0
+    for farmId, _ in pairs(self.watchingFarms) do
+        local watchKey = string.format("%s.watchingFarms.item(%d)", key, k)
+        setXMLInt(xmlFile, watchKey .. "#farmId", farmId)
+        k = k + 1
     end
 end
 
@@ -107,6 +126,20 @@ function RTPolicy:loadFromXMLFile(xmlFile, key)
 
         i = i + 1
     end
+
+    local k = 0
+    self.watchingFarms = {}
+    while true do
+        local watchKey = string.format("%s.watchingFarms.item(%d)", key, k)
+        if not hasXMLProperty(xmlFile, watchKey) then
+            break
+        end
+
+        local farmId = getXMLInt(xmlFile, watchKey .. "#farmId")
+        self.watchingFarms[farmId] = true
+
+        k = k + 1
+    end
 end
 
 function RTPolicy:getName()
@@ -131,6 +164,18 @@ end
 
 function RTPolicy:getWarningCount(farmId)
     return g_currentMission.RedTape.PolicySystem:getWarningCountForFarmPolicy(farmId, self.policyIndex)
+end
+
+function RTPolicy:isBeingWatchedByFarm(farmId)
+    return self.watchingFarms[farmId] == true
+end
+
+function RTPolicy:setBeingWatchedByFarm(farmId, isWatching)
+    if isWatching then
+        self.watchingFarms[farmId] = true
+    else
+        self.watchingFarms[farmId] = nil
+    end
 end
 
 function RTPolicy:getReportDescription()

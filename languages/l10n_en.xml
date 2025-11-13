@@ -78,7 +78,7 @@
 		<text name="rt_policy_description_full_slurry" text="Requires slurry tanks to be kept below capacity to prevent overflows and spills. Overflows can release slurry into fields and waterways, contaminating soil and water and causing environmental harm."/>
 		<text name="rt_policy_description_animal_productivity" text="Encourages maintaining animal productivity, which is a general indicator of good animal welfare."/>
 		<text name="rt_policy_description_animal_space" text="Requires animals to have enough space to move, rest and access food/water; preventing overcrowding reduces stress, injuries and disease spread, and supports better health and productivity."/>
-		<text name="rt_policy_description_manure_spreading" text="You should not let manure sit idle indefinitely. Ensure you spread at least 50% of the manure you produce on a rolling basis. If you do not produce manure you will not be affected by this policy."/>
+		<text name="rt_policy_description_manure_spreading" text="You should not let manure sit idle indefinitely. Ensure you spread at least 50% of the manure you produce on a rolling basis. If you do not produce manure you will not be affected by this policy. The policy checks performance every 6 months."/>
 		<text name="rt_policy_description_restricted_slurry" text="You are not allowed to apply slurry during the months of September to December. You will be penalized for each violation."/>
 		<text name="rt_policy_description_sustainable_forestry" text="Encourages sustainable forestry practices, rewarding net positive tree planting and fining for overall deforestation. The report will update monthly with bi-annual totals, however full evaluation and payout or fines will occur in June and December."/>
 
@@ -143,6 +143,7 @@
 		<text name="rt_scheme_report_desc_winter_cover_crops" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
 
 		<text name="rt_btn_select_scheme" text="Select Scheme"/>
+		<text name="rt_btn_watch_scheme_policy" text="Toggle Watch"/>
 		<text name="rt_ui_schemePayout" text="Scheme Payout"/>
 		<text name="finance_schemePayout" text="Scheme Payout"/>
 		<text name="rt_ui_policyFine" text="Policy Fine"/>

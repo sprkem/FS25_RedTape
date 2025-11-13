@@ -12,13 +12,12 @@ function RTScheme.new()
     -- if -1, the scheme is open for selection by farms
     self.farmId = -1
     self.tier = -1
-
+    self.watched = false
     self.lastEvaluationReport = {}
-
     self.props = {}
-
     self.spawnedVehicles = false
     self.vehicles = {}
+
     self.pendingVehicleLoadingData = {} -- temp, not to be saved
     self.failedToLoadVehicles = false   -- temp, not to be saved
 
@@ -46,6 +45,7 @@ function RTScheme:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.schemeIndex)
     streamWriteInt32(streamId, self.farmId)
     streamWriteInt32(streamId, self.tier)
+    streamWriteBool(streamId, self.watched)
     streamWriteBool(streamId, self.spawnedVehicles)
 
     streamWriteInt32(streamId, RedTape.tableCount(self.lastEvaluationReport))
@@ -67,6 +67,7 @@ function RTScheme:readStream(streamId, connection)
     self.schemeIndex = streamReadInt32(streamId)
     self.farmId = streamReadInt32(streamId)
     self.tier = streamReadInt32(streamId)
+    self.watched = streamReadBool(streamId)
     self.spawnedVehicles = streamReadBool(streamId)
 
     local reportCount = streamReadInt32(streamId)
@@ -92,6 +93,7 @@ function RTScheme:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#schemeIndex", self.schemeIndex)
     setXMLInt(xmlFile, key .. "#farmId", self.farmId)
     setXMLInt(xmlFile, key .. "#tier", self.tier)
+    setXMLBool(xmlFile, key .. "#watched", self.watched)
     setXMLBool(xmlFile, key .. "#spawnedVehicles", self.spawnedVehicles)
 
     local i = 0
@@ -124,7 +126,8 @@ function RTScheme:loadFromXMLFile(xmlFile, key)
     self.schemeIndex = getXMLInt(xmlFile, key .. "#schemeIndex")
     self.farmId = getXMLInt(xmlFile, key .. "#farmId")
     self.tier = getXMLInt(xmlFile, key .. "#tier")
-    self.spawnedVehicles = getXMLBool(xmlFile, key .. "#spawnedVehicles")
+    self.watched = getXMLBool(xmlFile, key .. "#watched") or false
+    self.spawnedVehicles = getXMLBool(xmlFile, key .. "#spawnedVehicles") or false
 
     if self.spawnedVehicles then
         g_messageCenter:subscribe(MessageType.VEHICLE_RESET, self.onVehicleReset, self)

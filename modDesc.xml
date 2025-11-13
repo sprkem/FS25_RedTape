@@ -40,12 +40,14 @@ Un mod qui ajoute des programmes gouvernementaux, des subventions et des taxes.
         <sourceFile filename="src/events/PolicyPointsEvent.lua"/>
         <sourceFile filename="src/events/PolicyReportEvent.lua"/>
         <sourceFile filename="src/events/PolicyWarningEvent.lua"/>
+        <sourceFile filename="src/events/PolicyWatchToggleEvent.lua"/>
         <sourceFile filename="src/events/SchemeActivatedEvent.lua"/>
         <sourceFile filename="src/events/SchemeEndedEvent.lua"/>
         <sourceFile filename="src/events/SchemeNoLongerAvailableEvent.lua"/>
         <sourceFile filename="src/events/SchemePayoutEvent.lua"/>
         <sourceFile filename="src/events/SchemeReportEvent.lua"/>
         <sourceFile filename="src/events/SchemeSelectedEvent.lua"/>
+        <sourceFile filename="src/events/SchemeWatchToggleEvent.lua"/>
         <sourceFile filename="src/events/TaxStatementPaidEvent.lua"/>
         <sourceFile filename="src/extensions/BaleWrapperExtension.lua"/>
         <sourceFile filename="src/extensions/FarmExtension.lua"/>

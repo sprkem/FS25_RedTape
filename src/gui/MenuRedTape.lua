@@ -243,7 +243,6 @@ function MenuRedTape:initialize()
 
     self.menuButtonInfoDefault = { self.btnBack, self.btnNextPage, self.btnPrevPage }
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.EVENTLOG] = self.menuButtonInfoDefault
-    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.POLICIES] = self.menuButtonInfoDefault
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.TAX] = self.menuButtonInfoDefault
 
     self.btnSelectSchemeForFarm = {
@@ -253,8 +252,25 @@ function MenuRedTape:initialize()
             self:onSelectScheme()
         end
     }
+
+    self.btnWatchSchemeOrPolicy = {
+        inputAction = InputAction.MENU_ACCEPT,
+        text = g_i18n:getText("rt_btn_watch_scheme_policy"),
+        callback = function()
+            self:onToggleWatch()
+        end
+    }
+
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.SCHEMES] = {
+        self.btnWatchSchemeOrPolicy,
         self.btnSelectSchemeForFarm,
+        self.btnBack,
+        self.btnNextPage,
+        self.btnPrevPage
+    }
+
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.POLICIES] = {
+        self.btnWatchSchemeOrPolicy,
         self.btnBack,
         self.btnNextPage,
         self.btnPrevPage
@@ -338,6 +354,8 @@ function MenuRedTape:onSwitchSchemeDisplay()
     self:displaySelectedScheme()
     self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~=
         MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
+    self.btnWatchSchemeOrPolicy.disabled = self.schemeDisplaySwitcher:getState() ~=
+        MenuRedTape.SCHEME_LIST_TYPE.ACTIVE
     self:setMenuButtonInfoDirty()
 end
 
@@ -377,6 +395,7 @@ function MenuRedTape:updateContent()
         self.activePoliciesRenderer:setData(activePolicies)
         self.activePoliciesTable:reloadData()
 
+        self.btnWatchSchemeOrPolicy.disabled = false
         self:displaySelectedPolicy()
 
         self.activePoliciesContainer:setVisible(self.activePoliciesTable:getItemCount() > 0)
@@ -394,6 +413,7 @@ function MenuRedTape:updateContent()
         self.schemesRenderer:setData(renderData)
         self.schemesTable:reloadData()
 
+        self.btnWatchSchemeOrPolicy.disabled = self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.ACTIVE
         self:displaySelectedScheme()
 
         self.schemesContainer:setVisible(self.schemesTable:getItemCount() > 0)
@@ -421,7 +441,7 @@ function MenuRedTape:updateContent()
         self.currentYearTaxTotalExpenses:setText(g_i18n:formatMoney(currentYearStatement.totalExpenses, 0, true, true))
         self.currentYearTaxTotalTaxable:setText(g_i18n:formatMoney(currentYearStatement.totalTaxableIncome, 0, true, true))
         self.currentYearTaxTotalTaxDue:setText(g_i18n:formatMoney(currentYearStatement.totalTax, 0, true, true))
-        
+
         if statement == nil then
             self.taxStatementContainer:setVisible(false)
             self.noTaxStatementContainer:setVisible(true)
@@ -505,4 +525,37 @@ function MenuRedTape:onSelectScheme()
     g_client:getServerConnection():sendEvent(RTSchemeSelectedEvent.new(scheme, farmId))
 
     InfoDialog.show(g_i18n:getText("rt_info_scheme_selected"))
+end
+
+function MenuRedTape:onToggleWatch()
+    local state = self.subCategoryPaging:getState()
+
+    if state == MenuRedTape.SUB_CATEGORY.POLICIES then
+        if self.activePoliciesRenderer.selectedRow == -1 then
+            return
+        end
+
+        local policy = self.activePoliciesRenderer.data[self.activePoliciesRenderer.selectedRow]
+        local farmId = g_currentMission:getFarmId()
+
+        g_client:getServerConnection():sendEvent(RTPolicyWatchToggleEvent.new(policy.id, farmId))
+    elseif state == MenuRedTape.SUB_CATEGORY.SCHEMES then
+        if self.schemesRenderer.selectedRow == -1 then
+            return
+        end
+
+        if self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.ACTIVE then
+            return
+        end
+
+        local selection = self.schemeDisplaySwitcher:getState()
+        if selection ~= MenuRedTape.SCHEME_LIST_TYPE.ACTIVE then
+            return
+        end
+
+        local scheme = self.schemesRenderer.data[selection][self.schemesRenderer.selectedRow]
+        local farmId = g_currentMission:getFarmId()
+
+        g_client:getServerConnection():sendEvent(RTSchemeWatchToggleEvent.new(scheme.id))
+    end
 end

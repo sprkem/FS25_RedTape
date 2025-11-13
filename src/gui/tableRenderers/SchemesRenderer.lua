@@ -36,6 +36,7 @@ function RTSchemesRenderer:populateCellForItemInSection(list, section, index, ce
     local rt = g_currentMission.RedTape
 
     cell:getAttribute("name"):setText(scheme:getName())
+    cell:getAttribute("watched"):setVisible(scheme.watched)
 end
 
 function RTSchemesRenderer:onListSelectionChanged(list, section, index)
