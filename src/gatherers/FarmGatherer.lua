@@ -544,10 +544,11 @@ function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
         farmData.monthlyDetail["animalSpace"] = {}
     end
 
+    local formattedActual = string.format("%.2f", actual)
     for _, entry in pairs(farmData.monthlyDetail["animalSpace"]) do
         if entry.key == husbandryName then
             if entry.value1 == nil or actual < tonumber(entry.value1) then
-                entry.value1 = string.format("%.2f", actual)
+                entry.value1 = formattedActual
                 entry.value2 = tostring(desired)
             end
             return
@@ -555,7 +556,7 @@ function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
     end
     table.insert(farmData.monthlyDetail["animalSpace"], {
         key = husbandryName,
-        value1 = string.format("%.2f", actual),
+        value1 = formattedActual,
         value2 = tostring(desired)
     })
 end
