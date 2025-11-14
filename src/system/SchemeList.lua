@@ -238,7 +238,10 @@ RTSchemes = {
                 cell1 = g_i18n:getText("rt_report_name_total_payout"),
                 cell2 = g_i18n:formatMoney(payout, 0, true, true)
             })
-            g_client:getServerConnection():sendEvent(RTSchemePayoutEvent.new(scheme, scheme.farmId, payout))
+
+            if payout ~= 0 then
+                g_client:getServerConnection():sendEvent(RTSchemePayoutEvent.new(scheme, scheme.farmId, payout))
+            end
 
             if cumulativeMonth >= endMonth then
                 g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
@@ -325,7 +328,10 @@ RTSchemes = {
                 cell1 = g_i18n:getText("rt_report_name_other_usage"),
                 cell2 = tostring(g_i18n:formatVolume(totalOtherUsage, 0))
             })
-            g_client:getServerConnection():sendEvent(RTSchemePayoutEvent.new(scheme, scheme.farmId, payout))
+
+            if payout ~= 0 then
+                g_client:getServerConnection():sendEvent(RTSchemePayoutEvent.new(scheme, scheme.farmId, payout))
+            end
 
             if cumulativeMonth >= endMonth then
                 g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
