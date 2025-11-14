@@ -51,6 +51,7 @@ function FarmGatherer:hourChanged()
 
             local desiredSpacePerAnimal = self:getDesirableSpace(stats.animalType)
             local actualSpacePerAnimal = stats.navigableArea / stats.numAnimals
+            self:updateMinAnimalSpacing(husbandry, actualSpacePerAnimal, desiredSpacePerAnimal)
 
             if actualSpacePerAnimal < desiredSpacePerAnimal then
                 farmData.monthlyAnimalSpaceViolations = farmData.monthlyAnimalSpaceViolations + 1
@@ -86,6 +87,7 @@ function FarmGatherer:resetMonthlyData()
         farmData.monthlyRestrictedSlurryViolations = 0
         farmData.monthlyAnimalGrazingHours = 0
         farmData.monthlyScaledAnimalGrazingHours = 0
+        farmData.monthlyDetail = {}
     end
 end
 
@@ -112,7 +114,8 @@ function FarmGatherer:getFarmData(farmId)
             monthlyScaledAnimalGrazingHours = 0,
             biAnnualCutTrees = 0,
             biAnnualPlantedTrees = 0,
-            sprayHistory = {}
+            sprayHistory = {},
+            monthlyDetail = {}
         }
     end
     return self.data[farmId]
@@ -146,6 +149,23 @@ function FarmGatherer:saveToXmlFile(xmlFile, key)
                 setXMLInt(xmlFile, sprayKey .. "#amount", amount)
                 j = j + 1
             end
+        end
+
+        local k = 0
+        for detailKey, detailTable in pairs(farmData.monthlyDetail) do
+            local detailXmlKey = string.format("%s.monthlyDetail.detail(%d)", farmKey, k)
+            setXMLString(xmlFile, detailXmlKey .. "#key", detailKey)
+
+            local l = 0
+            for _, detailLine in pairs(detailTable) do
+                local lineKey = string.format("%s.line(%d)", detailXmlKey, l)
+                setXMLString(xmlFile, lineKey .. "#k", detailLine.key)
+                setXMLString(xmlFile, lineKey .. "#v1", detailLine.value1 or "")
+                setXMLString(xmlFile, lineKey .. "#v2", detailLine.value2 or "")
+                l = l + 1
+            end
+
+            k = k + 1
         end
 
         i = i + 1
@@ -195,6 +215,36 @@ function FarmGatherer:loadFromXMLFile(xmlFile, key)
             self.data[farmId].sprayHistory[month][name] = amount
 
             j = j + 1
+        end
+
+        local k = 0
+        self.data[farmId].monthlyDetail = {}
+        while true do
+            local detailXmlKey = string.format("%s.monthlyDetail.detail(%d)", farmKey, k)
+            if not hasXMLProperty(xmlFile, detailXmlKey) then
+                break
+            end
+
+            local detailKey = getXMLString(xmlFile, detailXmlKey .. "#key")
+            self.data[farmId].monthlyDetail[detailKey] = {}
+
+            local l = 0
+            while true do
+                local lineKey = string.format("%s.line(%d)", detailXmlKey, l)
+                if not hasXMLProperty(xmlFile, lineKey) then
+                    break
+                end
+
+                table.insert(self.data[farmId].monthlyDetail[detailKey], {
+                    key = getXMLString(xmlFile, lineKey .. "#k"),
+                    value1 = getXMLString(xmlFile, lineKey .. "#v1"),
+                    value2 = getXMLString(xmlFile, lineKey .. "#v2"),
+                })
+
+                l = l + 1
+            end
+
+            k = k + 1
         end
 
         i = i + 1
@@ -484,4 +534,28 @@ function FarmGatherer:updateManureLevels()
         farmData.rollingAverageManureLevel = (oldAverage * (averagingWindow - 1) + farmData.currentManureLevel) /
             averagingWindow
     end
+end
+
+function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
+    local farmId = husbandry:getOwnerFarmId()
+    local husbandryName = husbandry:getName()
+    local farmData = self:getFarmData(farmId)
+    if farmData.monthlyDetail["animalSpace"] == nil then
+        farmData.monthlyDetail["animalSpace"] = {}
+    end
+
+    for _, entry in pairs(farmData.monthlyDetail["animalSpace"]) do
+        if entry.key == husbandryName then
+            if entry.value1 == nil or actual < tonumber(entry.value1) then
+                entry.value1 = string.format("%.2f", actual)
+                entry.value2 = tostring(desired)
+            end
+            return
+        end
+    end
+    table.insert(farmData.monthlyDetail["animalSpace"], {
+        key = husbandryName,
+        value1 = string.format("%.2f", actual),
+        value2 = tostring(desired)
+    })
 end

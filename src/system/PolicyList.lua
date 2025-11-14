@@ -299,6 +299,7 @@ RTPolicies = {
             local ig = g_currentMission.RedTape.InfoGatherer
             local gatherer = ig.gatherers[INFO_KEYS.FARMS]
             local farmData = gatherer:getFarmData(farmId)
+            local animalSpaceDetail = farmData.monthlyDetail["animalSpace"] or {}
             local pendingViolations = farmData.monthlyAnimalSpaceViolations or 0
             local reward = 0
             if pendingViolations > 0 then
@@ -317,6 +318,10 @@ RTPolicies = {
             local report = {}
             table.insert(report,
                 { cell1 = g_i18n:getText("rt_report_name_animal_space_violations"), cell2 = pendingViolations })
+
+            for _, entry in pairs(animalSpaceDetail) do
+                table.insert(report, { cell1 = entry.key, cell2 = entry.value1, cell3 = entry.value2 })
+            end
 
             if reward ~= 0 then
                 g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farmId, reward, policy:getName()))
@@ -381,7 +386,7 @@ RTPolicies = {
         probability = 0.4,
         periodicReward = 50,
         periodicPenalty = -100,
-        evaluationInterval = 6,
+        evaluationInterval = 1,
         finePerViolation = 5000,
         warningThreshold = 0,
         maxWarnings = 0,
@@ -392,6 +397,7 @@ RTPolicies = {
             local gatherer = ig.gatherers[INFO_KEYS.FARMS]
             local farmData = gatherer:getFarmData(farmId)
             local manureName = g_fillTypeManager:getFillTypeNameByIndex(FillType.MANURE)
+            local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
 
             local actualSpread = 0
             local monthsToSearch = 6
@@ -408,14 +414,18 @@ RTPolicies = {
             local reward = 0
             if farmData.rollingAverageManureLevel > 0 then
                 expectedSpread = farmData.rollingAverageManureLevel * 0.5
-                if actualSpread < expectedSpread then
-                    reward = policyInfo.periodicPenalty
 
-                    local fineAmount = policyInfo.finePerViolation
-                    local skipWarning = true
-                    g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
-                else
-                    reward = policyInfo.periodicReward
+                if currentMonth == 5 or currentMonth == 11 then
+                    if actualSpread < expectedSpread then
+                        reward = policyInfo.periodicPenalty
+
+                        local fineAmount = policyInfo.finePerViolation
+                        local skipWarning = true
+                        g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount,
+                            skipWarning)
+                    else
+                        reward = policyInfo.periodicReward
+                    end
                 end
             end
 

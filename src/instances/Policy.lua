@@ -94,7 +94,15 @@ function RTPolicy:loadFromXMLFile(xmlFile, key)
     self.id = getXMLString(xmlFile, key .. "#id") or RedTape.generateId()
     self.policyIndex = getXMLInt(xmlFile, key .. "#policyIndex")
     self.nextEvaluationMonth = getXMLInt(xmlFile, key .. "#nextEvaluationMonth")
-    self.evaluationCount = getXMLInt(xmlFile, key .. "#evaluationCount") or 0
+
+    -- TODO: Remove this hack prior to release
+    -- Forces manure policy to evaluate the next month
+    local cumulativeMonth = RedTape.getCumulativeMonth()
+    if self.policyIndex == 8 then
+        self.nextEvaluationMonth = cumulativeMonth + 1
+    end
+
+    self.evaluationCount = getXMLInt(xmlFile, key .. "#evaluationCount") or 0 
 
     local i = 0
     self.evaluationReports = {}
