@@ -88,7 +88,7 @@
 		<text name="rt_policy_report_description_empty_straw" text="The report shows how many combined hours straw was empty in animal pens."/>
 		<text name="rt_policy_report_description_full_slurry" text="The report shows how many combined hours slurry tanks were full."/>
 		<text name="rt_policy_report_description_animal_productivity" text="The report shows how many combined hours animals were unproductive."/>
-		<text name="rt_policy_report_description_animal_space" text="The report shows first how many violations were recorded. Then for each husbandry it shows the minimum recorded and required space per animal."/>
+		<text name="rt_policy_report_description_animal_space" text="The report shows first how many violation hours were recorded. Then for each husbandry it shows the minimum recorded and required space per animal."/>
 		<text name="rt_policy_report_description_manure_spreading" text="The report shows how actual vs expected manure spreading over the last 6 months."/>
 		<text name="rt_policy_report_description_restricted_slurry" text="The report shows how many times slurry was applied during the restricted months."/>
 		<text name="rt_policy_report_description_sustainable_forestry" text="The report shows how many trees were planted and cut down in the current bi-annual period."/>
@@ -144,6 +144,7 @@
 
 		<text name="rt_btn_select_scheme" text="Select Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Toggle Watch"/>
+		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Scheme Payout"/>
 		<text name="finance_schemePayout" text="Scheme Payout"/>
 		<text name="rt_ui_policyFine" text="Policy Fine"/>

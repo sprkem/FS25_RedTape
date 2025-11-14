@@ -111,19 +111,19 @@ RTSchemes = {
         tiers = {
             [RTPolicySystem.TIER.A] = {
                 deductionPerBaleRate = 0.068,
-                maxPayoutPerHa = 2000,
+                maxPayoutPerHa = 1000,
             },
             [RTPolicySystem.TIER.B] = {
                 deductionPerBaleRate = 0.068,
-                maxPayoutPerHa = 1750,
+                maxPayoutPerHa = 850,
             },
             [RTPolicySystem.TIER.C] = {
                 deductionPerBaleRate = 0.068,
-                maxPayoutPerHa = 1500,
+                maxPayoutPerHa = 700,
             },
             [RTPolicySystem.TIER.D] = {
                 deductionPerBaleRate = 0.068,
-                maxPayoutPerHa = 1250,
+                maxPayoutPerHa = 600,
             },
         },
         selectionProbability = 1,

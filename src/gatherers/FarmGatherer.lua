@@ -162,6 +162,7 @@ function FarmGatherer:saveToXmlFile(xmlFile, key)
                 setXMLString(xmlFile, lineKey .. "#k", detailLine.key)
                 setXMLString(xmlFile, lineKey .. "#v1", detailLine.value1 or "")
                 setXMLString(xmlFile, lineKey .. "#v2", detailLine.value2 or "")
+                setXMLInt(xmlFile, lineKey .. "#updated", detailLine.updated or -1)
                 l = l + 1
             end
 
@@ -239,6 +240,7 @@ function FarmGatherer:loadFromXMLFile(xmlFile, key)
                     key = getXMLString(xmlFile, lineKey .. "#k"),
                     value1 = getXMLString(xmlFile, lineKey .. "#v1"),
                     value2 = getXMLString(xmlFile, lineKey .. "#v2"),
+                    updated = getXMLInt(xmlFile, lineKey .. "#updated") or -1
                 })
 
                 l = l + 1
@@ -292,8 +294,8 @@ function FarmGatherer:checkSprayers()
             if raycastHit or overlapHit then
                 print("Water found for sprayer " .. sprayer:getName())
                 farmData.monthlySprayViolations = farmData.monthlySprayViolations + 1
-            else
-                print("No water found for sprayer " .. sprayer:getName())
+            -- else
+            --     print("No water found for sprayer " .. sprayer:getName())
             end
         end
     end
@@ -361,7 +363,6 @@ function FarmGatherer:checkCreekByOverlap(sprayer, workingWidth)
             local isCreek = false
 
             if ig.knownCreeks[originalHitObjectId] ~= nil then
-                print("Detected known creek " .. originalHitObjectId)
                 isCreek = true
             end
 
@@ -540,6 +541,7 @@ function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
     local farmId = husbandry:getOwnerFarmId()
     local husbandryName = husbandry:getName()
     local farmData = self:getFarmData(farmId)
+    local cumulativeMonth = RedTape.getCumulativeMonth()
     if farmData.monthlyDetail["animalSpace"] == nil then
         farmData.monthlyDetail["animalSpace"] = {}
     end
@@ -551,12 +553,14 @@ function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
                 entry.value1 = formattedActual
                 entry.value2 = tostring(desired)
             end
+            entry.updated = cumulativeMonth
             return
         end
     end
     table.insert(farmData.monthlyDetail["animalSpace"], {
         key = husbandryName,
         value1 = formattedActual,
-        value2 = tostring(desired)
+        value2 = tostring(desired),
+        updated = cumulativeMonth
     })
 end

@@ -301,6 +301,7 @@ RTPolicies = {
             local farmData = gatherer:getFarmData(farmId)
             local animalSpaceDetail = farmData.monthlyDetail["animalSpace"] or {}
             local pendingViolations = farmData.monthlyAnimalSpaceViolations or 0
+            local cumulativeMonth = RedTape.getCumulativeMonth()
             local reward = 0
             if pendingViolations > 0 then
                 reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
@@ -320,7 +321,13 @@ RTPolicies = {
                 { cell1 = g_i18n:getText("rt_report_name_animal_space_violations"), cell2 = pendingViolations })
 
             for _, entry in pairs(animalSpaceDetail) do
-                table.insert(report, { cell1 = entry.key, cell2 = entry.value1, cell3 = entry.value2 })
+                if entry.updated >= cumulativeMonth -1 then
+                    table.insert(report, {
+                        cell1 = entry.key,
+                        cell2 = string.format("%s%s", entry.value1, g_i18n:getText("rt_unit_meter_square")),
+                        cell3 = string.format("%s%s", entry.value2, g_i18n:getText("rt_unit_meter_square"))
+                    })
+                end
             end
 
             if reward ~= 0 then

@@ -11,7 +11,6 @@ function RTBaleWrapperExtension:doStateChange(id, nearestBaleServerId)
                 local x, y, z = getWorldTranslation(bale.nodeId)
                 local farmland = g_farmlandManager:getFarmlandAtWorldPosition(x, z)
                 if farmland ~= nil then
-                    print("Bale wrapped and dropped on farmland " .. farmland.id)
                     local ig = g_currentMission.RedTape.InfoGatherer
                     local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
                     local farmlandData = gatherer:getFarmlandData(farmland.id)
