@@ -413,7 +413,8 @@ function MenuRedTape:updateContent()
         self.schemesRenderer:setData(renderData)
         self.schemesTable:reloadData()
 
-        self.btnWatchSchemeOrPolicy.disabled = self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.ACTIVE
+        self.btnWatchSchemeOrPolicy.disabled = self.schemeDisplaySwitcher:getState() ~=
+            MenuRedTape.SCHEME_LIST_TYPE.ACTIVE
         self:displaySelectedScheme()
 
         self.schemesContainer:setVisible(self.schemesTable:getItemCount() > 0)
@@ -521,10 +522,15 @@ function MenuRedTape:onSelectScheme()
         return
     end
 
-    local farmId = g_currentMission:getFarmId()
-    g_client:getServerConnection():sendEvent(RTSchemeSelectedEvent.new(scheme, farmId))
-
-    InfoDialog.show(g_i18n:getText("rt_info_scheme_selected"))
+    YesNoDialog.show(
+        function(self, clickOk)
+            if clickOk then
+                local farmId = g_currentMission:getFarmId()
+                g_client:getServerConnection():sendEvent(RTSchemeSelectedEvent.new(scheme, farmId))
+                InfoDialog.show(g_i18n:getText("rt_info_scheme_selected"))
+            end
+        end, self,
+        g_i18n:getText("rt_misc_confirm_scheme_selection"))
 end
 
 function MenuRedTape:onToggleWatch()

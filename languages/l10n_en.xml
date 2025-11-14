@@ -153,5 +153,6 @@
 		<text name="rt_no_vehicle_room" text="Not enough space for deliver vehicles for the scheme. Make some room and try again."/>
 		<text name="rt_info_scheme_selected" text="You have signed up for the scheme. Collect any vehicles from the shop."/>
 		<text name="rt_misc_year" text="Year"/>
+		<text name="rt_misc_confirm_scheme_selection" text="Are you sure you want to sign up to this scheme?"/>
 	</texts>
 </l10n>
