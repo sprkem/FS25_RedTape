@@ -92,49 +92,7 @@ function FarmlandGatherer:saveToXmlFile(xmlFile, key)
     end
 end
 
--- TODO remove this function before release
-function FarmlandGatherer:tmpLoadOldXMLFile(xmlFile, key)
-    local i = 0
-    while true do
-        local farmlandKey = string.format("%s.farmlands.farmland(%d)", key, i)
-        if not hasXMLProperty(xmlFile, farmlandKey) then
-            break
-        end
-
-        local farmlandId = getXMLInt(xmlFile, farmlandKey .. "#id")
-        self.data[farmlandId] = {
-            fallowMonths = getXMLInt(xmlFile, farmlandKey .. "#fallowMonths") or 0,
-            areaHa = getXMLInt(xmlFile, farmlandKey .. "#areaHa") or 0,
-            lastHarvestMonth = getXMLInt(xmlFile, farmlandKey .. "#lastHarvestMonth") or 0,
-            monthlyWrappedBales = getXMLInt(xmlFile, farmlandKey .. "#monthlyWrappedBales") or 0,
-        }
-
-        local j = 0
-        self.data[farmlandId].fruitHistory = {}
-        while true do
-            local fruitKey = string.format("%s.fruitHistory.fruit(%d)", farmlandKey, j)
-            if not hasXMLProperty(xmlFile, fruitKey) then
-                break
-            end
-
-            local month = getXMLInt(xmlFile, fruitKey .. "#month")
-
-            self.data[farmlandId].fruitHistory[month] = {
-                name = getXMLString(xmlFile, fruitKey .. "#name"),
-                growthState = getXMLInt(xmlFile, fruitKey .. "#growthState")
-            }
-
-            j = j + 1
-        end
-
-        i = i + 1
-    end
-end
-
 function FarmlandGatherer:loadFromXMLFile(xmlFile, key)
-    -- TODO: remove function call before release
-    self:tmpLoadOldXMLFile(xmlFile, key)
-
     local farmlandGathererKey = string.format("%s.farmlandGatherer", key)
 
     local i = 0
