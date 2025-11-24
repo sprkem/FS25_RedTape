@@ -4,8 +4,10 @@ RTEventLog_mt = Class(RTEventLog)
 RTEventLog.sortAgeDescendingFunction = function(a, b)
     if a.year ~= b.year then
         return a.year > b.year
-    else
+    elseif a.month ~= b.month then
         return a.month > b.month
+    else
+        return a.hour > b.hour
     end
 end
 
@@ -26,6 +28,7 @@ function RTEventLog:addEvent(farmId, eventType, detail, sendNotification)
     event.farmId = farmId or -1
     event.eventType = eventType
     event.detail = detail
+    event.hour = g_currentMission.environment.currentHour
     event.month = rt.periodToMonth(g_currentMission.environment.currentPeriod)
     event.year = RedTape.getActualYear()
     table.insert(self.events, event)

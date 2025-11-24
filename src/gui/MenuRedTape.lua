@@ -41,6 +41,7 @@ function MenuRedTape.new(i18n, messageCenter)
     self.schemeReportRenderer = RTReportRenderer.new()
     self.policyReportRenderer = RTReportRenderer.new()
     self.taxNotesRenderer = RTTaxNotesRenderer.new()
+    self.currentYearTaxNotesRenderer = RTTaxNotesRenderer.new()
 
     self.vehicleElements = {}
 
@@ -207,6 +208,9 @@ function MenuRedTape:onGuiSetupFinished()
 
     self.taxNotesTable:setDataSource(self.taxNotesRenderer)
     self.taxNotesTable:setDelegate(self.taxNotesRenderer)
+
+    self.currentYearTaxNotesTable:setDataSource(self.currentYearTaxNotesRenderer)
+    self.currentYearTaxNotesTable:setDelegate(self.currentYearTaxNotesRenderer)
 end
 
 function MenuRedTape:initialize()
@@ -442,6 +446,16 @@ function MenuRedTape:updateContent()
         self.currentYearTaxTotalExpenses:setText(g_i18n:formatMoney(currentYearStatement.totalExpenses, 0, true, true))
         self.currentYearTaxTotalTaxable:setText(g_i18n:formatMoney(currentYearStatement.totalTaxableIncome, 0, true, true))
         self.currentYearTaxTotalTaxDue:setText(g_i18n:formatMoney(currentYearStatement.totalTax, 0, true, true))
+
+        if #currentYearStatement.notes == 0 then
+            self.currentYearTaxNotesContainer:setVisible(false)
+            self.currentYearNoTaxNotesContainer:setVisible(true)
+        else
+            self.currentYearTaxNotesContainer:setVisible(true)
+            self.currentYearNoTaxNotesContainer:setVisible(false)
+            self.currentYearTaxNotesRenderer:setData(currentYearStatement.notes)
+            self.currentYearTaxNotesTable:reloadData()
+        end
 
         if statement == nil then
             self.taxStatementContainer:setVisible(false)

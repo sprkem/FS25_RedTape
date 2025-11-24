@@ -167,12 +167,21 @@ function FarmlandGatherer:getPreviousFruit(farmlandId, startMonth, endMonth, not
 end
 
 -- Forwards search to see if any fruit recorded in the given range
-function FarmlandGatherer:hasRecordedFruit(farmlandId, startMonth, endMonth)
+function FarmlandGatherer:hasRecordedFruit(farmlandId, startMonth, endMonth, ignoreHarvestedOrWithered)
     local farmlandData = self:getFarmlandData(farmlandId)
     for month = startMonth, endMonth do
         local fruitEntry = farmlandData.fruitHistory[month]
-        if fruitEntry ~= nil and fruitEntry.name ~= "" then
-            return true
+
+        if fruitEntry ~= nil then
+            local fruit = g_fruitTypeManager.nameToFruitType[fruitEntry.name]
+
+            if ignoreHarvestedOrWithered and fruitEntry.growthState > fruit.maxHarvestingGrowthState then
+                continue
+            end
+
+            if fruitEntry.name ~= "" then
+                return true
+            end
         end
     end
     return false

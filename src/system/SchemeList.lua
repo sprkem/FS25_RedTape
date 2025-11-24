@@ -10,6 +10,7 @@ RTSchemeIds = {
     WINTER_COVER_CROPS = 7,
     ROAD_SNOW_CLEARING = 8,
     BRAND_DEMO = 9,
+    SET_ASIDE = 10,
 }
 
 
@@ -587,20 +588,25 @@ RTSchemes = {
         initialise = function(schemeInfo, scheme)
         end,
         selected = function(schemeInfo, scheme, tier)
-            scheme:setProp('endYear', RedTape.getActualYear() + 1)
-            scheme:setProp('endMonth', 4)
+            local cumulativeMonth = RedTape.getCumulativeMonth()
+            local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+            local nextApril = cumulativeMonth + (12 - currentMonth + 4)
+
+            scheme:setProp('endMonth', nextApril)
         end,
         evaluate = function(schemeInfo, scheme, tier)
             local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
-            local currentYear = RedTape.getActualYear()
-            local endYear = tonumber(scheme.props['endYear'])
-            local endMonth = tonumber(scheme.props['endMonth'])
             local ig = g_currentMission.RedTape.InfoGatherer
             local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
             local farmId = scheme.farmId
+            local cumulativeMonth = RedTape.getCumulativeMonth()
+
+            if cumulativeMonth >= tonumber(scheme.props['endMonth']) then
+                g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
+                return
+            end
 
             if currentMonth ~= 3 then return end -- Only evaluate in March
-            local cumulativeMonth = RedTape.getCumulativeMonth()
 
             local report = {}
             local totalReward = 0
@@ -636,10 +642,6 @@ RTSchemes = {
 
             if totalReward > 0 then
                 g_client:getServerConnection():sendEvent(RTSchemePayoutEvent.new(scheme, farmId, totalReward))
-            end
-
-            if endYear >= currentYear and endMonth >= currentMonth then
-                g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
             end
 
             return report
@@ -816,6 +818,108 @@ RTSchemes = {
                 g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
             end
             return {}
+        end
+    },
+
+    [RTSchemeIds.SET_ASIDE] = {
+        id = RTSchemeIds.SET_ASIDE,
+        name = "rt_scheme_set_aside",
+        description = "rt_scheme_desc_set_aside",
+        report_description = "rt_scheme_report_desc_set_aside",
+        duplicationKey = "LEAVE_FALLOW",
+        offerMonths = { 1, 2 },
+        tiers = {
+            [RTPolicySystem.TIER.A] = {
+                bonusPerHa = 1800,
+            },
+            [RTPolicySystem.TIER.B] = {
+                bonusPerHa = 1500,
+            },
+            [RTPolicySystem.TIER.C] = {
+                bonusPerHa = 1200,
+            },
+            [RTPolicySystem.TIER.D] = {
+                bonusPerHa = 1000,
+            },
+        },
+        requiredFallowMonths = 9,
+        requiredFallowHa = 3,
+        selectionProbability = 1,
+        availabilityProbability = 1,
+        descriptionFunction = function(schemeInfo, scheme)
+            return string.format(g_i18n:getText("rt_scheme_desc_set_aside"), schemeInfo.requiredFallowMonths, g_i18n:formatArea(schemeInfo.requiredFallowHa, 2))
+        end,
+        getNextEvaluationMonth = function(schemeInfo, scheme)
+            return 12
+        end,
+        initialise = function(schemeInfo, scheme)
+        end,
+        selected = function(schemeInfo, scheme, tier)
+            local cumulativeMonth = RedTape.getCumulativeMonth()
+            local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+            local nextJan = cumulativeMonth + (12 - currentMonth + 1)
+            scheme:setProp('endMonth', nextJan)
+        end,
+        evaluate = function(schemeInfo, scheme, tier)
+            local ig = g_currentMission.RedTape.InfoGatherer
+            local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
+            local farmId = scheme.farmId
+            local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
+            local cumulativeMonth = RedTape.getCumulativeMonth()
+
+            -- End in January, allowing player to see report in December
+            if cumulativeMonth >= tonumber(scheme.props['endMonth']) then
+                g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, farmId))
+                return
+            end
+
+            if currentMonth ~= 12 then
+                return
+            end
+
+            local report = {}
+            local payout = 0
+            local eligibleHa = 0
+            for _, farmland in pairs(g_farmlandManager.farmlands) do
+                if farmland.farmId == farmId then
+                    local farmlandData = gatherer:getFarmlandData(farmland.id)
+                    local bonus = schemeInfo.tiers[tier].bonusPerHa
+                    local reward = 0
+                    if not gatherer:hasRecordedFruit(farmland.id, cumulativeMonth - 9, cumulativeMonth, true) then
+                        reward = farmlandData.areaHa * bonus * EconomyManager.getPriceMultiplier()
+                        eligibleHa = eligibleHa + farmlandData.areaHa
+                    end
+                    table.insert(report, {
+                        cell1 = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                        cell2 = g_i18n:formatArea(farmlandData.areaHa, 2),
+                        cell3 = g_i18n:formatMoney(reward, 0, true, true)
+                    })
+                    payout = payout + reward
+                end
+            end
+
+            if eligibleHa > schemeInfo.requiredFallowHa then
+                table.insert(report, {
+                    cell1 = g_i18n:getText("rt_report_name_additional_tax_benefit"),
+                    cell2 = g_i18n:getText("rt_report_value_true")
+                })
+
+                local cumulativeMonth = RedTape.getCumulativeMonth()
+                local startMonth = cumulativeMonth + 4
+                local endMonth = startMonth + 11
+                g_client:getServerConnection():sendEvent(RTTaxRateBenefitEvent.new(scheme.farmId, startMonth, endMonth, "harvestIncome", 0.25))
+            else
+                table.insert(report, {
+                    cell1 = g_i18n:getText("rt_report_name_additional_tax_benefit"),
+                    cell2 = g_i18n:getText("rt_report_value_false")
+                })
+            end
+
+            if payout ~= 0 then
+                g_client:getServerConnection():sendEvent(RTSchemePayoutEvent.new(scheme, scheme.farmId, payout))
+            end
+
+            return report
         end
     },
 

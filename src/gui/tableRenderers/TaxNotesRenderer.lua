@@ -19,9 +19,7 @@ function RTTaxNotesRenderer:getNumberOfSections()
 end
 
 function RTTaxNotesRenderer:getNumberOfItemsInSection(list, section)
-    local menu = g_currentMission.RedTape.RedTapeMenu
-    local selection = menu.schemeDisplaySwitcher:getState()
-    return #self.data[selection]
+    return #self.data
 end
 
 function RTTaxNotesRenderer:getTitleForSectionHeader(list, section)

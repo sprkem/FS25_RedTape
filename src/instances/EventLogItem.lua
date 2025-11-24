@@ -34,6 +34,7 @@ function RTEventLogItem.new()
     self.detail = ""
     self.month = 0
     self.year = 0
+    self.hour = 0
 
     return self
 end
@@ -49,6 +50,7 @@ function RTEventLogItem:saveToXmlFile(xmlFile, key)
     setXMLString(xmlFile, key .. "#detail", self.detail)
     setXMLInt(xmlFile, key .. "#month", self.month)
     setXMLInt(xmlFile, key .. "#year", self.year)
+    setXMLInt(xmlFile, key .. "#hour", self.hour)
 end
 
 function RTEventLogItem:loadFromXMLFile(xmlFile, key)
@@ -57,6 +59,7 @@ function RTEventLogItem:loadFromXMLFile(xmlFile, key)
     self.detail = getXMLString(xmlFile, key .. "#detail")
     self.month = getXMLInt(xmlFile, key .. "#month")
     self.year = getXMLInt(xmlFile, key .. "#year")
+    self.hour = getXMLInt(xmlFile, key .. "#hour") or 0
 end
 
 function RTEventLogItem:writeStream(streamId, connection)
@@ -65,6 +68,7 @@ function RTEventLogItem:writeStream(streamId, connection)
     streamWriteString(streamId, self.detail)
     streamWriteInt32(streamId, self.month)
     streamWriteInt32(streamId, self.year)
+    streamWriteInt32(streamId, self.hour)
 end
 
 function RTEventLogItem:readStream(streamId, connection)
@@ -73,4 +77,5 @@ function RTEventLogItem:readStream(streamId, connection)
     self.detail = streamReadString(streamId)
     self.month = streamReadInt32(streamId)
     self.year = streamReadInt32(streamId)
+    self.hour = streamReadInt32(streamId)
 end

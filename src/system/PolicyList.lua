@@ -55,7 +55,7 @@ RTPolicies = {
 
                     -- Accounting for a new game where we have no history
                     local hasAnyPreviousFruit = gatherer:hasRecordedFruit(farmland.id, cumulativeMonth - 12,
-                        cumulativeMonth - 1)
+                        cumulativeMonth - 1, true)
                     if not hasAnyPreviousFruit then
                         continue
                     end

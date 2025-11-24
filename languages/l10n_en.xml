@@ -116,6 +116,7 @@
 		<text name="rt_report_name_trees_planted" text="Trees Planted"/>
 		<text name="rt_report_name_trees_cut" text="Trees Cut"/>
 		<text name="rt_report_name_note" text="Note:"/>
+		<text name="rt_report_name_additional_tax_benefit" text="Qualified for tax benefit"/>
 				
 		<text name="rt_report_value_true" text="True"/>
 		<text name="rt_report_value_false" text="False"/>
@@ -130,6 +131,7 @@
 		<text name="rt_scheme_winter_cover_crops" text="Winter Cover Crop"/>
 		<text name="rt_scheme_road_snow_clearing" text="Road Snow Clearing"/>
 		<text name="rt_scheme_brand_demo" text="Brand Demo"/>
+		<text name="rt_scheme_set_aside" text="Set-aside"/>
 
 		<text name="rt_scheme_desc_delayed_mowing" text="Do not cut your grass during the spring months (March to June) to protect wildlife. In July, you will be compensated for any uncut grass."/>
 		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You may be provided equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
@@ -140,6 +142,7 @@
 		<text name="rt_scheme_desc_winter_cover_crops" text="Encourages the planting of cover crops during the winter months to reduce soil erosion and nutrient leaching. You will receive a bonus for each field where you plant an approved cover crop during the winter season."/>
 		<text name="rt_scheme_desc_road_snow_clearing" text="In light of recent snowfall, the local council are asking farmers to spread salt to help keep the roads clear and safe. "/>
 		<text name="rt_scheme_desc_brand_demo" text="%s are offering your farm the opportunity to demo some equipment for %s month%s. The exact specification of the demo vehicle is determined at the point that you sign up to the scheme."/>
+		<text name="rt_scheme_desc_set_aside" text="Encourages setting aside a portion of your farmland, providing a rest from constant work. You will receive a bonus for land left clear of crops for at least %d months leading up to December. If over %s qualify, all crops sold in the following tax year will qualify for a 5%% tax rate."/>
 
 		<text name="rt_scheme_report_desc_delayed_mowing" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
 		<text name="rt_scheme_report_desc_crop_promotion" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
@@ -148,6 +151,7 @@
 		<text name="rt_scheme_report_desc_natural_fertiliser" text="The report shows the usage of natural and other fertilizers during the last month."/>
 		<text name="rt_scheme_report_desc_winter_cover_crops" text="The report shows a list of farmlands and the amount paid out during the last evaluation."/>
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="There is no report for this scheme. Once the snow ends, you will receive a payout relative to how much salt you have spread."/>
+		<text name="rt_scheme_report_desc_set_aside" text="The report shows the payout for each of your fields. It also shows if you have qualified for the special 5% tax rate."/>
 
 		<text name="rt_btn_select_scheme" text="Select Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Toggle Watch"/>
@@ -162,6 +166,7 @@
 		<text name="rt_info_scheme_selected" text="You have signed up for the scheme. Collect any vehicles from the shop."/>
 		<text name="rt_misc_year" text="Year"/>
 		<text name="rt_misc_confirm_scheme_selection" text="Are you sure you want to sign up to this scheme?"/>
+		<text name="rt_notes_additional_tax_benefit" text="Effective tax rate"/>
 		
 		<text name="rt_help_title_red_tape" text="Red Tape"/>
 		<text name="rt_help_title_intro" text="Introduction"/>

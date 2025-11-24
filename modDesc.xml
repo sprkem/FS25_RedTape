@@ -54,6 +54,7 @@ Voir le menu d'aide dans le jeu pour plus d'informations.
         <sourceFile filename="src/events/SchemeReportEvent.lua"/>
         <sourceFile filename="src/events/SchemeSelectedEvent.lua"/>
         <sourceFile filename="src/events/SchemeWatchToggleEvent.lua"/>
+        <sourceFile filename="src/events/TaxRateBenefitEvent.lua"/>
         <sourceFile filename="src/events/TaxStatementPaidEvent.lua"/>
         <sourceFile filename="src/extensions/BaleWrapperExtension.lua"/>
         <sourceFile filename="src/extensions/FarmExtension.lua"/>

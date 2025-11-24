@@ -13,6 +13,7 @@ function RTTaxSystem.new()
     self.lineItems = {}
     self.taxStatements = {}
     self.farms = {}
+    self.customRates = {}
 
     MoneyType.TAX_PAID = MoneyType.register("taxCost", "rt_ui_taxCost")
     MoneyType.LAST_ID = MoneyType.LAST_ID + 1
@@ -71,6 +72,31 @@ function RTTaxSystem:loadFromXMLFile(xmlFile)
 
         j = j + 1
     end
+
+    self.customRates = {}
+    local k = 0
+    while true do
+        local rateKey = string.format("%s.customRates.customRate(%d)", key, k)
+        if not hasXMLProperty(xmlFile, rateKey) then
+            break
+        end
+
+        local farmId = getXMLInt(xmlFile, rateKey .. "#farmId")
+        if self.customRates[farmId] == nil then
+            self.customRates[farmId] = {}
+        end
+
+        local rateInfo = {
+            startMonth = getXMLInt(xmlFile, rateKey .. "#startMonth"),
+            endMonth = getXMLInt(xmlFile, rateKey .. "#endMonth"),
+            statistic = getXMLString(xmlFile, rateKey .. "#statistic"),
+            taxedAmountModifier = getXMLFloat(xmlFile, rateKey .. "#taxedAmountModifier")
+        }
+
+        table.insert(self.customRates[farmId], rateInfo)
+
+        k = k + 1
+    end
 end
 
 function RTTaxSystem:saveToXmlFile(xmlFile)
@@ -97,6 +123,19 @@ function RTTaxSystem:saveToXmlFile(xmlFile)
         taxStatement:saveToXmlFile(xmlFile, taxStatementKey)
         j = j + 1
     end
+
+    local k = 0
+    for farmId, customRates in pairs(self.customRates) do
+        for _, rateInfo in ipairs(customRates) do
+            local rateKey = string.format("%s.customRates.customRate(%d)", key, k)
+            setXMLInt(xmlFile, rateKey .. "#farmId", farmId)
+            setXMLInt(xmlFile, rateKey .. "#startMonth", rateInfo.startMonth)
+            setXMLInt(xmlFile, rateKey .. "#endMonth", rateInfo.endMonth)
+            setXMLString(xmlFile, rateKey .. "#statistic", rateInfo.statistic)
+            setXMLFloat(xmlFile, rateKey .. "#taxedAmountModifier", rateInfo.taxedAmountModifier)
+            k = k + 1
+        end
+    end
 end
 
 function RTTaxSystem:writeInitialClientState(streamId, connection)
@@ -114,6 +153,18 @@ function RTTaxSystem:writeInitialClientState(streamId, connection)
             for _, lineItem in ipairs(lineItems) do
                 lineItem:writeStream(streamId, connection)
             end
+        end
+    end
+
+    streamWriteInt32(streamId, RedTape.tableCount(self.customRates))
+    for farmId, customRates in pairs(self.customRates) do
+        streamWriteInt32(streamId, farmId)
+        streamWriteInt32(streamId, RedTape.tableCount(customRates))
+        for _, rateInfo in ipairs(customRates) do
+            streamWriteInt32(streamId, rateInfo.startMonth)
+            streamWriteInt32(streamId, rateInfo.endMonth)
+            streamWriteString(streamId, rateInfo.statistic)
+            streamWriteFloat32(streamId, rateInfo.taxedAmountModifier)
         end
     end
 end
@@ -145,6 +196,24 @@ function RTTaxSystem:readInitialClientState(streamId, connection)
             local lineItem = RTTaxLineItem.new()
             lineItem:readStream(streamId, connection)
             table.insert(self.lineItems[farmId][month], lineItem)
+        end
+    end
+
+    local customRateFarmCount = streamReadInt32(streamId)
+    self.customRates = {}
+    for i = 1, customRateFarmCount do
+        local farmId = streamReadInt32(streamId)
+        local rateCount = streamReadInt32(streamId)
+
+        self.customRates[farmId] = {}
+        for j = 1, rateCount do
+            local rateInfo = {
+                startMonth = streamReadInt32(streamId),
+                endMonth = streamReadInt32(streamId),
+                statistic = streamReadString(streamId),
+                taxedAmountModifier = streamReadFloat32(streamId)
+            }
+            table.insert(self.customRates[farmId], rateInfo)
         end
     end
 end
@@ -205,12 +274,23 @@ function RTTaxSystem:getTaxRate(farmId)
 end
 
 function RTTaxSystem:getTaxedAmount(lineItem, taxStatement)
-    -- Example usage is to look up the farm and find earned tax breaks for the lineItem.statistic and reduce taxable amount accordingly
-    return lineItem.amount
+    -- Apply any modifiers to the amount taxed
+    local taxedAmountModifier = 1
+    if self.customRates[lineItem.farmId] ~= nil then
+        local cumulativeMonth = RedTape.getCumulativeMonth()
+        for _, rateInfo in ipairs(self.customRates[lineItem.farmId]) do
+            if lineItem.statistic == rateInfo.statistic and
+                cumulativeMonth >= rateInfo.startMonth and
+                cumulativeMonth <= rateInfo.endMonth then
+                taxedAmountModifier = rateInfo.taxedAmountModifier
+            end
+        end
+    end
+
+    return lineItem.amount * taxedAmountModifier
 end
 
 function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
-
     if lineItem.statistic == "other" then
         return
     end
@@ -268,39 +348,63 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         taxStatement.totalTaxableIncome = taxStatement.totalTaxableIncome + math.abs(lineItem.amount)
         taxStatement.totalTaxedIncome = taxStatement.totalTaxedIncome + self:getTaxedAmount(lineItem, taxStatement)
     else
-        print("Warning: Uncategorised tax line item statistic '" .. tostring(lineItem.statistic) .. "'")
+        if not RedTape.tableHasValue({ "policyFine", "schemePayout" }, lineItem.statistic) then
+            print("Warning: Uncategorised tax line item statistic '" .. tostring(lineItem.statistic) .. "'")
+        end
     end
+end
+
+function RTTaxSystem:generateTaxStatement(farmId, startMonth, endMonth)
+    local taxStatement = RTTaxStatement.new()
+    taxStatement.farmId = farmId
+    taxStatement.taxRate = self:getTaxRate(farmId)
+
+    local allLineItems = self.lineItems[farmId] or {}
+
+    for month, lineItems in pairs(allLineItems) do
+        if month < startMonth or month > endMonth then
+            continue
+        end
+
+        for _, lineItem in ipairs(lineItems) do
+            self:categoriseLineItem(lineItem, taxStatement)
+        end
+
+        local finalTaxAmount = taxStatement.totalTaxedIncome - taxStatement.totalExpenses
+        if finalTaxAmount < 0 then
+            finalTaxAmount = 0
+        end
+
+        taxStatement.totalTax = math.floor(finalTaxAmount * taxStatement.taxRate)
+    end
+
+    if self.customRates[farmId] ~= nil then
+        for _, rateInfo in ipairs(self.customRates[farmId]) do
+            if self:monthsIntersect(startMonth, endMonth, rateInfo.startMonth, rateInfo.endMonth) then
+                local statName = g_i18n:getText("finance_" .. rateInfo.statistic)
+                local rate = taxStatement.taxRate * rateInfo.taxedAmountModifier * 100
+                table.insert(taxStatement.notes, string.format(
+                    g_i18n:getText("rt_notes_additional_tax_benefit") .. " - %s: %.2f%%",
+                    statName,
+                    rate
+                ))
+            end
+        end
+    end
+    return taxStatement
 end
 
 function RTTaxSystem:createAnnualTaxStatements()
     local minMonth = RedTape.getCumulativeMonth() - 12
     local maxMonth = RedTape.getCumulativeMonth() - 1
     for _, farmId in ipairs(self.farms) do
-        local taxStatement = RTTaxStatement.new()
-        taxStatement.farmId = farmId
-        taxStatement.taxRate = self:getTaxRate(farmId)
-
-        local allLineItems = self.lineItems[farmId] or {}
-
-        for month, lineItems in pairs(allLineItems) do
-            if month < minMonth or month > maxMonth then
-                continue
-            end
-
-            for _, lineItem in ipairs(lineItems) do
-                self:categoriseLineItem(lineItem, taxStatement)
-            end
-
-            local finalTaxAmount = taxStatement.totalTaxedIncome - taxStatement.totalExpenses
-            if finalTaxAmount < 0 then
-                finalTaxAmount = 0
-            end
-
-            taxStatement.totalTax = math.floor(finalTaxAmount * taxStatement.taxRate)
-        end
-
+        local taxStatement = self:generateTaxStatement(farmId, minMonth, maxMonth)
         g_client:getServerConnection():sendEvent(RTNewTaxStatementEvent.new(taxStatement))
     end
+end
+
+function RTTaxSystem:monthsIntersect(windowStart, windowEnd, periodStart, periodEnd)
+    return not (windowEnd < periodStart or windowStart > periodEnd)
 end
 
 -- Called via NewTaxStatementEvent to store on client and server
@@ -352,27 +456,20 @@ function RTTaxSystem:getCurrentYearTaxToDate(farmId)
     local minMonth = cumulativeMonth - monthsBack
     local maxMonth = cumulativeMonth
 
-    local taxStatement = RTTaxStatement.new()
-    taxStatement.farmId = farmId
-    taxStatement.taxRate = self:getTaxRate(farmId)
-
-    local allLineItems = self.lineItems[farmId] or {}
-
-    for month, lineItems in pairs(allLineItems) do
-        if month < minMonth or month > maxMonth then
-            continue
-        end
-
-        for _, lineItem in pairs(lineItems) do
-            self:categoriseLineItem(lineItem, taxStatement)
-        end
-
-        local finalTaxAmount = taxStatement.totalTaxedIncome - taxStatement.totalExpenses
-        if finalTaxAmount < 0 then
-            finalTaxAmount = 0
-        end
-
-        taxStatement.totalTax = math.floor(finalTaxAmount * taxStatement.taxRate)
-    end
+    local taxStatement = self:generateTaxStatement(farmId, minMonth, maxMonth)
     return taxStatement
+end
+
+-- Called by RTTaxRateBenefitEvent to record a custom tax rate benefit
+function RTTaxSystem:recordCustomTaxRateBenefit(farmId, startMonth, endMonth, statistic, taxedAmountModifier)
+    if self.customRates[farmId] == nil then
+        self.customRates[farmId] = {}
+    end
+
+    table.insert(self.customRates[farmId], {
+        startMonth = startMonth,
+        endMonth = endMonth,
+        statistic = statistic,
+        taxedAmountModifier = taxedAmountModifier
+    })
 end
