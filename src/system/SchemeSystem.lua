@@ -304,6 +304,16 @@ function RTSchemeSystem:endActiveScheme(id, farmId)
     end
 end
 
+function RTSchemeSystem:isSchemeActiveForFarm(farmId, schemeIndex)
+    local activeSchemes = self:getActiveSchemesForFarm(farmId)
+    for _, scheme in pairs(activeSchemes) do
+        if scheme.schemeIndex == schemeIndex then
+            return true
+        end
+    end
+    return false
+end
+
 function RTSchemeSystem:getActiveSchemesForFarm(farmId)
     if farmId == nil or farmId == 0 then
         return {}

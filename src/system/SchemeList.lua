@@ -652,7 +652,6 @@ RTSchemes = {
     [RTSchemeIds.ROAD_SNOW_CLEARING] = {
         id = RTSchemeIds.ROAD_SNOW_CLEARING,
         name = "rt_scheme_road_snow_clearing",
-        description = "rt_scheme_desc_road_snow_clearing",
         report_description = "rt_scheme_report_desc_road_snow_clearing",
         duplicationKey = "ROAD_SNOW_CLEARING",
         tiers = {
@@ -671,6 +670,10 @@ RTSchemes = {
         },
         selectionProbability = 1,
         availabilityProbability = 0,
+        maxKMH = 21,
+        descriptionFunction = function(schemeInfo, scheme)
+            return string.format(g_i18n:getText("rt_scheme_desc_road_snow_clearing"), string.format("%1d", g_i18n:getSpeed(schemeInfo.maxKMH)), g_i18n:getSpeedMeasuringUnit())
+        end,
         initialise = function(schemeInfo, scheme)
             local chosenCategory = "WINTEREQUIPMENT"
             local options = {}
@@ -847,7 +850,8 @@ RTSchemes = {
         selectionProbability = 1,
         availabilityProbability = 1,
         descriptionFunction = function(schemeInfo, scheme)
-            return string.format(g_i18n:getText("rt_scheme_desc_set_aside"), schemeInfo.requiredFallowMonths, g_i18n:formatArea(schemeInfo.requiredFallowHa, 2))
+            return string.format(g_i18n:getText("rt_scheme_desc_set_aside"), schemeInfo.requiredFallowMonths,
+                g_i18n:formatArea(schemeInfo.requiredFallowHa, 2))
         end,
         getNextEvaluationMonth = function(schemeInfo, scheme)
             return 12
@@ -907,7 +911,8 @@ RTSchemes = {
                 local cumulativeMonth = RedTape.getCumulativeMonth()
                 local startMonth = cumulativeMonth + 4
                 local endMonth = startMonth + 11
-                g_client:getServerConnection():sendEvent(RTTaxRateBenefitEvent.new(scheme.farmId, startMonth, endMonth, "harvestIncome", 0.25))
+                g_client:getServerConnection():sendEvent(RTTaxRateBenefitEvent.new(scheme.farmId, startMonth, endMonth,
+                    "harvestIncome", 0.25))
             else
                 table.insert(report, {
                     cell1 = g_i18n:getText("rt_report_name_additional_tax_benefit"),
