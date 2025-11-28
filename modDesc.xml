@@ -91,7 +91,7 @@ Voir le menu d'aide dans le jeu pour plus d'informations.
     <l10n filenamePrefix="languages/l10n" />
     <helpLines>
         <category title="$l10n_rt_help_title_red_tape">
-            <page title="$l10n_rt_help_title_intro">
+            <page title="$l10n_rt_help_title_intro" iconSliceId="helpline.icon_shop">
                 <paragraph>
                     <text text="$l10n_rt_help_intro_intro"/>
                 </paragraph>
@@ -99,7 +99,7 @@ Voir le menu d'aide dans le jeu pour plus d'informations.
                     <text text="$l10n_rt_help_intro_intro_2"/>
                 </paragraph>
             </page>
-            <page title="$l10n_rt_help_title_policies">
+            <page title="$l10n_rt_help_title_policies" iconSliceId="helpline.animals_general">
                 <paragraph>
                     <text text="$l10n_rt_help_policies_intro"/>
                 </paragraph>
@@ -110,7 +110,7 @@ Voir le menu d'aide dans le jeu pour plus d'informations.
                     <text text="$l10n_rt_help_policies_intro_3"/>
                 </paragraph>
             </page>
-            <page title="$l10n_rt_help_title_schemes">
+            <page title="$l10n_rt_help_title_schemes" iconSliceId="helpline.forestry_treeTypes">
                 <paragraph>
                     <text text="$l10n_rt_help_schemes_intro"/>
                 </paragraph>
@@ -121,12 +121,15 @@ Voir le menu d'aide dans le jeu pour plus d'informations.
                     <text text="$l10n_rt_help_schemes_intro_3"/>
                 </paragraph>
             </page>
-            <page title="$l10n_rt_help_title_tax">
+            <page title="$l10n_rt_help_title_tax" iconSliceId="helpline.firstSteps_shop">
                 <paragraph>
                     <text text="$l10n_rt_help_tax_intro"/>
                 </paragraph>
                 <paragraph>
                     <text text="$l10n_rt_help_tax_intro_2"/>
+                </paragraph>
+                <paragraph>
+                    <text text="$l10n_rt_help_tax_intro_3"/>
                 </paragraph>
             </page>
         </category>
