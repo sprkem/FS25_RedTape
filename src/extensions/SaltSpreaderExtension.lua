@@ -18,12 +18,9 @@ function RTSaltSpreaderExtension:processSaltSpreaderArea(superFunc, workArea)
         local kmhSpeed = self:getLastSpeed()
         if kmhSpeed > maxKMH then
             if isActiveForScheme then
-                if g_currentMission.RedTape.lastNotificationTime == nil or g_time - g_currentMission.RedTape.lastNotificationTime > 12000 then
-                    local message = string.format(g_i18n:getText("rt_misc_spreading_too_fast"),
-                        string.format("%1d", g_i18n:getSpeed(maxKMH)), g_i18n:getSpeedMeasuringUnit())
-                    g_currentMission:addIngameNotification(FSBaseMission.INGAME_NOTIFICATION_CRITICAL, message)
-                    g_currentMission.RedTape.lastNotificationTime = g_time
-                end
+                local message = string.format(g_i18n:getText("rt_misc_spreading_too_fast"),
+                    string.format("%1d", g_i18n:getSpeed(maxKMH)), g_i18n:getSpeedMeasuringUnit())
+                g_currentMission:showBlinkingWarning(message, 1000)
             end
             return superFunc(self, workArea)
         end

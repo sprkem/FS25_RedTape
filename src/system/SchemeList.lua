@@ -656,23 +656,24 @@ RTSchemes = {
         duplicationKey = "ROAD_SNOW_CLEARING",
         tiers = {
             [RTPolicySystem.TIER.A] = {
-                bonusPerBlock = 2.3,
+                bonusPerBlock = 3.8,
             },
             [RTPolicySystem.TIER.B] = {
-                bonusPerBlock = 2.1,
+                bonusPerBlock = 3.5,
             },
             [RTPolicySystem.TIER.C] = {
-                bonusPerBlock = 1.9,
+                bonusPerBlock = 3.2,
             },
             [RTPolicySystem.TIER.D] = {
-                bonusPerBlock = 1.7,
+                bonusPerBlock = 2.9,
             },
         },
         selectionProbability = 1,
         availabilityProbability = 0,
         maxKMH = 21,
         descriptionFunction = function(schemeInfo, scheme)
-            return string.format(g_i18n:getText("rt_scheme_desc_road_snow_clearing"), string.format("%1d", g_i18n:getSpeed(schemeInfo.maxKMH)), g_i18n:getSpeedMeasuringUnit())
+            return string.format(g_i18n:getText("rt_scheme_desc_road_snow_clearing"),
+                string.format("%1d", g_i18n:getSpeed(schemeInfo.maxKMH)), g_i18n:getSpeedMeasuringUnit())
         end,
         initialise = function(schemeInfo, scheme)
             local chosenCategory = "WINTEREQUIPMENT"
