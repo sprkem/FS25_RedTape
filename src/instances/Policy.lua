@@ -31,7 +31,7 @@ function RTPolicy:writeStream(streamId, connection)
 
     streamWriteInt32(streamId, RedTape.tableCount(self.watchingFarms))
     for farmId, _ in pairs(self.watchingFarms) do
-        streamWriteString(streamId, farmId)
+        streamWriteInt32(streamId, farmId)
     end
 end
 
@@ -56,7 +56,7 @@ function RTPolicy:readStream(streamId, connection)
     local watchingCount = streamReadInt32(streamId)
     self.watchingFarms = {}
     for i = 1, watchingCount do
-        local farmId = streamReadString(streamId)
+        local farmId = streamReadInt32(streamId)
         self.watchingFarms[farmId] = true
     end
 end
