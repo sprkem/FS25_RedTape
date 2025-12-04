@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="104">
     <author>Ozz</author>
-    <version>1.0.0.1</version>
+    <version>1.0.0.2</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -20,6 +20,14 @@ Tax adds a layer of financial management, requiring players to budget for regula
 Your performance in complying with Policies can impact the quality of rewards from Schemes and even offer tax benefits.
 
 See the help menu in game for more information.
+
+- GitHub:
+https://github.com/sprkem/FS25_RedTape
+
+Changelog:
+
+1.0.0.2:
+- Fixed an issue where seeders that fertilised caused harmless errors in the log.
 ]]>
         </en>
         <de><![CDATA[Papierkram
@@ -31,6 +39,14 @@ Richtlinien umfassen Tierschutz- und Umweltauflagen, deren Nichteinhaltung zu Bu
 Die Einhaltung der Richtlinien beeinflusst die Qualität der Belohnungen aus Programmen und kann sogar Steuervorteile gewähren.
 
 Weitere Informationen finden Sie im Hilfemenü des Spiels.
+
+- GitHub:
+https://github.com/sprkem/FS25_RedTape
+
+Änderungsliste:
+
+1.0.0.2:
+- Es wurde ein Problem behoben, bei dem Sämaschinen, die Dünger ausbrachten, harmlose Fehler im Protokoll verursachten.
 ]]>
         </de>
         <fr><![CDATA[Paperasserie
@@ -46,6 +62,15 @@ Les impôts ajoutent une dimension de gestion financière, obligeant les joueurs
 Votre respect des politiques peut influencer la qualité des récompenses des programmes et même vous octroyer des avantages fiscaux.
 
 Consultez le menu d'aide du jeu pour plus d'informations.
+
+- GitHub:
+https://github.com/sprkem/FS25_RedTape
+
+Journal des modifications:
+
+1.0.0.2:
+- Correction d'un problème où les semoirs qui fertilisaient provoquaient des erreurs sans conséquence dans le journal.
+
 ]]>
         </fr>
     </description>

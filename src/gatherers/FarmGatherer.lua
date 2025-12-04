@@ -467,6 +467,7 @@ function FarmGatherer:checkCreekByOverlap(sprayer, workingWidth)
     }
 
     local coords = self.sprayCoords[sprayer.uniqueId]
+    if coords == nil then return false end
     local sizeX, sizeY, sizeZ = 2, 2, 2
     for _, coord in ipairs(coords) do
         overlapBox(coord.x, coord.y, coord.z, 0, 0, 0, sizeX, sizeY, sizeZ, "overlapCallback",
