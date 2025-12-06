@@ -13,7 +13,9 @@ Sprayer.onTurnedOn = Utils.appendedFunction(Sprayer.onTurnedOn, RTSprayerExtensi
 Sprayer.onTurnedOff = Utils.appendedFunction(Sprayer.onTurnedOff, RTSprayerExtension.onTurnedOff)
 
 function RTSprayerExtension:processSprayerArea(superFunc, workArea, dt)
-    if (not g_currentMission:getIsServer()) then return end
+    if (not g_currentMission:getIsServer()) then
+        return superFunc(self, workArea, dt)
+    end
     local rt = g_currentMission.RedTape
 
     -- Gate to perform spray area calculations much less frequently
