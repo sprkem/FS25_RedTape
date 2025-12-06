@@ -26,6 +26,13 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
+1.0.0.3:
+
+- Fix a multiplayer only issue when spraying fertiliser
+- Skip pigs and horses for the animal productivity policy.
+- Brazilian translation added, thanks to MuhWalker.
+- Russian translation added, thanks to Martin.
+
 1.0.0.2:
 - Fixed an issue where seeders that fertilised caused harmless errors in the log.
 ]]>
@@ -44,6 +51,13 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.3:
+
+- Problem beim Düngen im Mehrspielermodus behoben
+- Schweine und Pferde bei der Tierproduktivitätspolitik überspringen
+- Brasilianische Übersetzung hinzugefügt, vielen Dank an MuhWalker
+- Russische Übersetzung hinzugefügt, vielen Dank an Martin
 
 1.0.0.2:
 - Es wurde ein Problem behoben, bei dem Sämaschinen, die Dünger ausbrachten, harmlose Fehler im Protokoll verursachten.
@@ -67,6 +81,13 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.0.3:
+
+- Correction d'un problème lié au mode multijoueur lors de l'épandage d'engrais.
+- Exclusion des porcs et des chevaux du calcul de la productivité animale.
+- Ajout de la traduction brésilienne, grâce à MuhWalker.
+- Ajout de la traduction russe, grâce à Martin.
 
 1.0.0.2:
 - Correction d'un problème où les semoirs qui fertilisaient provoquaient des erreurs sans conséquence dans le journal.
