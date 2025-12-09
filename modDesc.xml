@@ -26,6 +26,11 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
+1.0.0.4:
+- Safe guard added to prevent salt spreading scheme showing up multiple times at once.
+- Rework of manure policy. The report will be incorrect initially, but in a way that it is more lenient until all the data is tracked.
+- Rework of animal spacing policy. Age is now taken into account, e.g. a 2 month old cow requires less space than a 24 month old cow. Points will no longer be deducted during a month that produces a warning only.
+
 1.0.0.3:
 
 - Fix a multiplayer only issue when spraying fertiliser
@@ -51,6 +56,11 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.4:
+- Eine Sicherheitsvorkehrung wurde hinzugefügt, um zu verhindern, dass das Streusalzprogramm mehrfach gleichzeitig angezeigt wird.
+- Die Güllerichtlinie wurde überarbeitet. Der Bericht wird zunächst fehlerhaft sein, jedoch so, dass er bis zur vollständigen Datenerfassung weniger streng ausfällt.
+- Die Richtlinie zur Tierhaltung wurde überarbeitet. Das Alter wird nun berücksichtigt; beispielsweise benötigt eine zwei Monate alte Kuh weniger Platz als eine 24 Monate alte. In Monaten, in denen lediglich eine Warnung ausgegeben wird, werden keine Punkte mehr abgezogen.
 
 1.0.0.3:
 
@@ -81,6 +91,11 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.0.4:
+- Un dispositif de sécurité a été ajouté pour éviter que le programme d'épandage de sel ne s'affiche plusieurs fois simultanément.
+- Refonte de la politique relative au fumier. Le rapport sera initialement erroné, mais plus indulgent jusqu'à ce que toutes les données soient collectées.
+- Refonte de la politique d'espacement des animaux. L'âge est désormais pris en compte: par exemple, une vache de 2 mois nécessite moins d'espace qu'une vache de 24 mois. Aucun point ne sera déduit durant un mois ayant généré uniquement un avertissement.
 
 1.0.0.3:
 
