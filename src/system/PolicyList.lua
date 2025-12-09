@@ -319,8 +319,10 @@ RTPolicies = {
             local cumulativeMonth = RedTape.getCumulativeMonth()
             local reward = 0
             if pendingViolations > 0 then
-                reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
-                    pendingViolations
+                if policy:getWarningCount(farmId) > 0 then
+                    reward = (policyInfo.periodicPenaltyPerViolation / g_currentMission.environment.daysPerPeriod) *
+                        pendingViolations
+                end
 
                 local normalisedViolations = pendingViolations / g_currentMission.environment.daysPerPeriod
                 local fineAmount = normalisedViolations * policyInfo.finePerViolation

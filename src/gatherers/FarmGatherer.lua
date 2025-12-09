@@ -56,11 +56,9 @@ function FarmGatherer:hourChanged()
                     (stats.numAnimals * self:getAnimalGrazingScaleFactor(stats.animalType))
             end
 
-            local desiredSpacePerAnimal = self:getDesirableSpace(stats.animalType)
-            local actualSpacePerAnimal = stats.navigableArea / stats.numAnimals
-            self:updateMinAnimalSpacing(husbandry, actualSpacePerAnimal, desiredSpacePerAnimal)
+            self:updateAnimalSpacing(husbandry, stats.navigableArea, stats.desiredSpace)
 
-            if stats.numAnimals > 1 and actualSpacePerAnimal < desiredSpacePerAnimal then
+            if stats.numAnimals > 1 and stats.navigableArea < stats.desiredSpace then
                 farmData.monthlyAnimalSpaceViolations = farmData.monthlyAnimalSpaceViolations + 1
             end
         end
@@ -90,7 +88,7 @@ function FarmGatherer:periodChanged()
             end
         end
     end
-    
+
     for _, farmData in pairs(self.data) do
         for month, _ in pairs(farmData.produceHistory) do
             if month < oldestHistoryMonth then
@@ -98,8 +96,6 @@ function FarmGatherer:periodChanged()
             end
         end
     end
-
-
 end
 
 function FarmGatherer:resetMonthlyData()
@@ -571,29 +567,42 @@ function FarmGatherer:getHusbandryStats()
         end
 
         local numAnimals = 0
+        local desiredSpace = 0
         local clusters = husbandry:getClusters()
         for _, cluster in pairs(clusters) do
+            local clusterSpace = cluster:getNumAnimals() * self:getDesirableSpace(stats.animalType, cluster:getAge())
+            desiredSpace = desiredSpace + clusterSpace
             numAnimals = numAnimals + cluster:getNumAnimals()
         end
         stats.numAnimals = numAnimals
+        stats.desiredSpace = desiredSpace
 
         results[husbandry] = stats
     end
     return results
 end
 
-function FarmGatherer:getDesirableSpace(animalType)
-    if animalType == AnimalType.CHICKEN then
-        return 0.75
-    elseif animalType == AnimalType.COW then
-        return 9
-    elseif animalType == AnimalType.HORSE then
-        return 17
-    elseif animalType == AnimalType.PIG then
-        return 5
-    elseif animalType == AnimalType.SHEEP then
-        return 4
+function FarmGatherer:getDesirableSpace(animalType, age)
+    local animalSpaceConfig = {
+        [AnimalType.CHICKEN] = { minSpace = 0.3, fullSizeSpace = 0.75, fullSizeAge = 4 },
+        [AnimalType.COW] = { minSpace = 2, fullSizeSpace = 7, fullSizeAge = 24 },
+        [AnimalType.HORSE] = { minSpace = 5, fullSizeSpace = 17, fullSizeAge = 24 },
+        [AnimalType.PIG] = { minSpace = 0.5, fullSizeSpace = 2, fullSizeAge = 12 },
+        [AnimalType.SHEEP] = { minSpace = 1.2, fullSizeSpace = 3, fullSizeAge = 12 }
+    }
+
+    local config = animalSpaceConfig[animalType]
+    if config == nil then
+        return 5.0
     end
+
+    age = age or 0
+    if age >= config.fullSizeAge then
+        return config.fullSizeSpace
+    end
+
+    local ageRatio = math.max(0, age / config.fullSizeAge)
+    return config.minSpace + (config.fullSizeSpace - config.minSpace) * ageRatio
 end
 
 function FarmGatherer:getAnimalGrazingScaleFactor(animalType)
@@ -644,7 +653,7 @@ function FarmGatherer:updateManureLevels()
     end
 end
 
-function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
+function FarmGatherer:updateAnimalSpacing(husbandry, availableArea, desiredArea)
     local farmId = husbandry:getOwnerFarmId()
     local husbandryName = husbandry:getName()
     local farmData = self:getFarmData(farmId)
@@ -653,12 +662,13 @@ function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
         farmData.monthlyDetail["animalSpace"] = {}
     end
 
-    local formattedActual = string.format("%.2f", actual)
+    local formattedActual = string.format("%.2f", availableArea)
+    local formattedDesired = string.format("%.2f", desiredArea)
     for _, entry in pairs(farmData.monthlyDetail["animalSpace"]) do
         if entry.key == husbandryName then
-            if entry.value1 == nil or actual < tonumber(entry.value1) then
+            if entry.value1 == nil or desiredArea > tonumber(entry.value2) then
                 entry.value1 = formattedActual
-                entry.value2 = tostring(desired)
+                entry.value2 = formattedDesired
             end
             entry.updated = cumulativeMonth
             return
@@ -667,7 +677,7 @@ function FarmGatherer:updateMinAnimalSpacing(husbandry, actual, desired)
     table.insert(farmData.monthlyDetail["animalSpace"], {
         key = husbandryName,
         value1 = formattedActual,
-        value2 = tostring(desired),
+        value2 = formattedDesired,
         updated = cumulativeMonth
     })
 end
