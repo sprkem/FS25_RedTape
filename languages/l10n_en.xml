@@ -66,7 +66,7 @@
 		<text name="rt_policy_restricted_slurry" text="Restricted Slurry Application"/>
 		<text name="rt_policy_sustainable_forestry" text="Sustainable Forestry"/>
 		<text name="rt_policy_description_croprotation" text="Requires rotating crops between fields and seasons to maintain soil fertility, break pest and disease cycles, improve nutrient balance, and protect long term yields."/>
-		<text name="rt_policy_description_sprayviolation" text="Prohibits spraying chemicals (Solid Fertilizer, Slurry, Lime, Manure, Herbicide) within buffer zones of water bodies to prevent runoff and contamination that can harm aquatic life, degrade water quality, and endanger human health. Violations are penalized."/>
+		<text name="rt_policy_description_sprayviolation" text="Prohibits spraying chemicals (Solid Fertilizer, Slurry, Lime, Manure, Herbicide) within 14m buffer zones of water bodies to prevent runoff and contamination that can harm aquatic life, degrade water quality, and endanger human health. Violations are penalized."/>
 		<text name="rt_policy_description_empty_food" text="Requires animals to always have sufficient feed available; keep feed troughs topped up and accessible at all times to prevent hunger and meet welfare standards."/>
 		<text name="rt_policy_description_empty_straw" text="Requires animals to be provided with adequate straw bedding to ensure comfort, insulation and hygiene. Straw reduces injury and stress, helps maintain body temperature, and absorbs moisture to protect animal welfare."/>
 		<text name="rt_policy_description_full_slurry" text="Requires slurry tanks to be kept below capacity to prevent overflows and spills. Overflows can release slurry into fields and waterways, contaminating soil and water and causing environmental harm."/>
