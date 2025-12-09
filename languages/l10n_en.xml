@@ -81,8 +81,8 @@
 		<text name="rt_policy_report_description_empty_straw" text="The report shows how many combined hours straw was empty in animal pens."/>
 		<text name="rt_policy_report_description_full_slurry" text="The report shows how many combined hours slurry tanks were full."/>
 		<text name="rt_policy_report_description_animal_productivity" text="The report shows how many combined hours animals were unproductive."/>
-		<text name="rt_policy_report_description_animal_space" text="The report shows first how many violation hours were recorded. Then for each husbandry it shows the available space and the maximum required space in the previous month."/>
-		<text name="rt_policy_report_description_manure_spreading" text="The report shows the amount of manure produced over the last 6 months. It also shows total produced and highest allowed storage over the last 6 months. Note that Month 1 data shown will not be included in the next report, and any manure produced in the current month will need to be accounted for."/>
+		<text name="rt_policy_report_description_animal_space" text="The report shows first how many violation hours were recorded. Then for each husbandry it shows the available space and the highest required space in the previous month."/>
+		<text name="rt_policy_report_description_manure_spreading" text="The report shows the amount of manure produced over the last 6 months. It also shows total produced and maximum allowed storage over the last 6 months. Note that Month 1 data shown will not be included in the next report, and any manure produced in the current month will need to be accounted for."/>
 		<text name="rt_policy_report_description_restricted_slurry" text="The report shows how many times slurry was applied during the restricted months."/>
 		<text name="rt_policy_report_description_sustainable_forestry" text="The report shows how many trees were planted and cut down in the current bi-annual period."/>
 		<text name="rt_report_name_farmland" text="Farmland %s"/>
