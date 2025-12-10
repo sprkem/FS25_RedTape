@@ -17,10 +17,11 @@ function RTSprayerExtension:processSprayerArea(superFunc, workArea, dt)
         return superFunc(self, workArea, dt)
     end
     local rt = g_currentMission.RedTape
+    local delta = dt or g_currentDt
 
     -- Gate to perform spray area calculations much less frequently
     if rt.sprayCheckTime > 0 then
-        rt.sprayCheckTime = rt.sprayCheckTime - dt
+        rt.sprayCheckTime = rt.sprayCheckTime - delta
         return superFunc(self, workArea, dt)
     else
         rt.sprayCheckTime = rt.sprayAreaCheckInterval
