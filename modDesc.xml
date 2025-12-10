@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.0.4</version>
+    <version>1.0.0.5</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,9 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.0.5:
+- Adds a workaround to address an issue in the Realistic Weather which causes an issue in this mod when spraying.
 
 1.0.0.4:
 - Safe guard added to prevent salt spreading scheme showing up multiple times at once.
@@ -57,6 +60,9 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.5:
+- Fügt eine Umgehungslösung hinzu, um ein Problem im Realistic Weather zu beheben, das beim Sprühen in dieser Mod zu einem Problem führt.
 
 1.0.0.4:
 - Eine Sicherheitsvorkehrung wurde hinzugefügt, um zu verhindern, dass das Streusalzprogramm mehrfach gleichzeitig angezeigt wird.
@@ -93,6 +99,9 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.0.5:
+- Ajoute une solution de contournement pour résoudre un problème dans le module Realistic Weather qui provoque un dysfonctionnement dans ce mod lors de la pulvérisation.
 
 1.0.0.4:
 - Un dispositif de sécurité a été ajouté pour éviter que le programme d'épandage de sel ne s'affiche plusieurs fois simultanément.
