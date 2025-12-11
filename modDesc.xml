@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.0.5</version>
+    <version>1.0.0.6</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,9 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.0.6: 
+- Add threshold to manure storage policy to only be in violation above 5k litres of stored manure.
 
 1.0.0.5:
 - Adds a workaround to address an issue in the Realistic Weather which causes an issue in this mod when spraying.

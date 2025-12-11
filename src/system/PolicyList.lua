@@ -459,7 +459,7 @@ RTPolicies = {
             end
 
             local reward = 0
-            local maxStoredAmount = totalProduced * 0.5
+            local maxStoredAmount = math.max(totalProduced * 0.5, 5000)
             -- expectedSpread = farmData.rollingAverageManureLevel * 0.5
 
             if currentMonth == 5 or currentMonth == 11 then
