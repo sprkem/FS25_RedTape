@@ -65,6 +65,7 @@ end
 
 function RTSchemeSystem:saveToXmlFile(xmlFile)
     if (not g_currentMission:getIsServer()) then return end
+    if (not RedTape.policiesAndSchemesEnabled) then return end
 
     local key = RedTape.SaveKey .. ".schemeSystem"
 
@@ -141,6 +142,7 @@ function RTSchemeSystem:hourChanged()
 end
 
 function RTSchemeSystem:periodChanged()
+    if (not RedTape.policiesAndSchemesEnabled) then return end
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
 
     for farm, schemes in pairs(schemeSystem.activeSchemesByFarm) do
@@ -182,6 +184,7 @@ function RTSchemeSystem:checkPendingVehicles()
 end
 
 function RTSchemeSystem:generateSchemes()
+    if (not RedTape.policiesAndSchemesEnabled) then return end
     for tier, schemes in pairs(self.availableSchemes) do
         local existingCount = RedTape.tableCount(schemes)
         if existingCount < RTSchemeSystem.OPEN_SCHEMES_PER_TIER then
@@ -392,6 +395,7 @@ function RTSchemeSystem.isSpawnSpaceAvailable(storeItems)
 end
 
 function RTSchemeSystem:onSnowApplied()
+    if (not RedTape.policiesAndSchemesEnabled) then return end
     for tier, _ in pairs(self.availableSchemes) do
         if not self:isSchemeAvailableForTier(tier, RTSchemeIds.ROAD_SNOW_CLEARING) then
             local scheme = RTScheme.new()
@@ -404,6 +408,7 @@ function RTSchemeSystem:onSnowApplied()
 end
 
 function RTSchemeSystem:onSnowEnded()
+    if (not RedTape.policiesAndSchemesEnabled) then return end
     for _, schemes in pairs(self.availableSchemes) do
         for _, scheme in pairs(schemes) do
             if scheme.schemeIndex == RTSchemeIds.ROAD_SNOW_CLEARING then
@@ -416,6 +421,14 @@ function RTSchemeSystem:onSnowEnded()
             if scheme.schemeIndex == RTSchemeIds.ROAD_SNOW_CLEARING then
                 scheme:snowSchemeEnded()
             end
+        end
+    end
+end
+
+function RTSchemeSystem:onDisabled()
+    for _, schemes in pairs(self.activeSchemesByFarm) do
+        for _, scheme in pairs(schemes) do
+            g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
         end
     end
 end

@@ -176,7 +176,7 @@
 		<text name="rt_setting_taxEnabled" text="Tax Enabled"/>
 		<text name="rt_toolTip_taxEnabled" text="Enable or disable the Tax System"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Policies/Schemes Enabled"/>
-		<text name="rt_toolTip_policiesAndSchemesEnabled" text="Enable or disable the Policies and Schemes system"/>
+		<text name="rt_toolTip_policiesAndSchemesEnabled" text="Enable or disable the Policies and Schemes system. Turning this off will immediately end all active Schemes."/>
 		<text name="rt_setting_baseTaxRate" text="Base Tax Rate"/>
 		<text name="rt_toolTip_baseTaxRate" text="Set the base tax rate"/>
 	</texts>

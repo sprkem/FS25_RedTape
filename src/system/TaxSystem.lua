@@ -101,6 +101,7 @@ end
 
 function RTTaxSystem:saveToXmlFile(xmlFile)
     if (not g_currentMission:getIsServer()) then return end
+    if (not RedTape.taxEnabled) then return end
 
     local key = RedTape.SaveKey .. ".taxSystem"
 
@@ -222,6 +223,7 @@ function RTTaxSystem:hourChanged()
 end
 
 function RTTaxSystem:periodChanged()
+    if (not RedTape.taxEnabled) then return end
     local month = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
     if month == RTTaxSystem.TAX_CALCULATION_MONTH then
         self:createAnnualTaxStatements()
@@ -246,6 +248,7 @@ end
 
 -- Called via NewTaxLineItemEvent to store on server and client
 function RTTaxSystem:recordLineItem(farmId, lineItem)
+    if (not RedTape.taxEnabled) then return end
     local cumulativeMonth = RedTape.getCumulativeMonth()
     self.lineItems[farmId] = self.lineItems[farmId] or {}
 
@@ -396,6 +399,7 @@ function RTTaxSystem:generateTaxStatement(farmId, startMonth, endMonth)
 end
 
 function RTTaxSystem:createAnnualTaxStatements()
+    if (not RedTape.taxEnabled) then return end
     local minMonth = RedTape.getCumulativeMonth() - 12
     local maxMonth = RedTape.getCumulativeMonth() - 1
     for _, farmId in ipairs(self.farms) do
@@ -450,6 +454,7 @@ function RTTaxSystem:markTaxStatementAsPaid(farmId)
 end
 
 function RTTaxSystem:getCurrentYearTaxToDate(farmId)
+    if (not RedTape.taxEnabled) then return end
     local cumulativeMonth = RedTape.getCumulativeMonth()
     local currentMonth = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
 

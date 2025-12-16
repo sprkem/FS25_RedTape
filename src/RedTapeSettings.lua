@@ -94,7 +94,7 @@ function RedTapeControls.onMenuOptionChanged(self, state, menuOption)
         RedTape.setValue(id, value)
     end
 
-    RedTapeSettingsEvent.sendEvent()
+    g_client:getServerConnection():sendEvent(RTSettingsEvent.new())
 end
 
 local function updateFocusIds(element)
@@ -302,5 +302,5 @@ end)
 FSBaseMission.sendInitialClientState = Utils.appendedFunction(FSBaseMission.sendInitialClientState,
     function(self, connection, user, farm)
         -- Send all RedTape settings to the new client
-        RedTapeSettingsEvent.sendEvent()
+        g_client:getServerConnection():sendEvent(RTSettingsEvent.new())
     end)
