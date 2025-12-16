@@ -270,7 +270,8 @@ end
 
 function RTTaxSystem:getTaxRate(farmId)
     -- Example usage is to look up the farm and find tax rate modifiers
-    return 0.2
+    -- return 0.2
+    return RedTape.baseTaxRate
 end
 
 function RTTaxSystem:getTaxedAmount(lineItem, taxStatement)

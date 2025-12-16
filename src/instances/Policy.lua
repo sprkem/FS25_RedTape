@@ -217,6 +217,11 @@ function RTPolicy:evaluate()
 
     for _, farm in pairs(g_farmManager.farmIdToFarm) do
         local progress = rt.PolicySystem:getProgressForFarm(farm.farmId)
+
+        if progress == nil then
+            continue
+        end
+
         local farmTier = progress.tier
         local report = policyInfo.evaluate(policyInfo, self, farm.farmId, farmTier)
         if report ~= nil then

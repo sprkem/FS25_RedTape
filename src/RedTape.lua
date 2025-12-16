@@ -45,6 +45,7 @@ function RedTape:loadMap()
     g_messageCenter:subscribe(MessageType.PLAYER_FARM_CHANGED, RedTape.playerFarmChanged)
 
     self:loadFromXMLFile()
+    RedTape.injectMenu()
 end
 
 function RedTape:update(dt)
@@ -124,6 +125,37 @@ function RedTape:loadFromXMLFile()
         g_currentMission.RedTape.TaxSystem:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.EventLog:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.InfoGatherer:loadFromXMLFile(xmlFile)
+        
+        -- Load settings
+        for _, id in pairs(RedTape.menuItems) do
+            local setting = RedTape.SETTINGS[id]
+            if setting then
+                local xmlValueKey = RedTape.SaveKey .. ".settings." .. id .. "#value"
+                local defaultValue = setting.values[setting.default]
+                local value = defaultValue
+                local value_string = tostring(value)
+                
+                if hasXMLProperty(xmlFile, xmlValueKey) then
+                    if type(defaultValue) == 'number' then
+                        value = getXMLFloat(xmlFile, xmlValueKey) or defaultValue
+                        
+                        if value == math.floor(value) then
+                            value_string = tostring(value)
+                        else
+                            value_string = string.format("%.3f", value)
+                        end
+                    elseif type(defaultValue) == 'boolean' then
+                        value = getXMLBool(xmlFile, xmlValueKey) or defaultValue
+                        value_string = tostring(value)
+                    end
+
+
+                end
+                RedTape.setValue(id, value)
+                print("  " .. id .. ": " .. value_string)
+            end
+        end
+        
         self.didLoadFromXML = true
 
         delete(xmlFile)
@@ -148,6 +180,19 @@ function RedTape:saveToXmlFile()
     g_currentMission.RedTape.TaxSystem:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.EventLog:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.InfoGatherer:saveToXmlFile(xmlFile)
+    
+    -- Save settings
+    for _, id in pairs(RedTape.menuItems) do
+        if RedTape.SETTINGS[id] then
+            local xmlValueKey = RedTape.SaveKey .. ".settings." .. id .. "#value"
+            local value = RedTape.getValue(id)
+            if type(value) == 'number' then
+                setXMLFloat(xmlFile, xmlValueKey, value)
+            elseif type(value) == 'boolean' then
+                setXMLBool(xmlFile, xmlValueKey, value)
+            end
+        end
+    end
 
     saveXMLFile(xmlFile);
     delete(xmlFile);
@@ -338,6 +383,14 @@ function RedTape:onStartMission()
             local husbandries = g_currentMission.husbandrySystem.placeables
             for _, husbandry in pairs(husbandries) do
                 farmGatherer:addProductivityException(husbandry, 24)
+            end
+
+            -- Set all settings to their defaults
+            for _, id in pairs(RedTape.menuItems) do
+                if RedTape.SETTINGS[id] then
+                    local defaultValue = RedTape.SETTINGS[id].values[RedTape.SETTINGS[id].default]
+                    RedTape.setValue(id, defaultValue)
+                end
             end
 
             rt:periodChanged()

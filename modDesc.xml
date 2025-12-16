@@ -26,6 +26,10 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
+1.0.0.7 [WIP]:
+- Further fix to address multiplayer progression issues
+- Added settings to disable systems and set tax rate
+
 1.0.0.6:
 - Add threshold to manure storage policy to only be in violation above 5k litres of stored manure.
 - Fix an issue on multiplayer which prevents animals aging correctly.
@@ -144,6 +148,7 @@ Journal des modifications:
         <sourceFile filename="src/events/PolicyReportEvent.lua"/>
         <sourceFile filename="src/events/PolicyWarningEvent.lua"/>
         <sourceFile filename="src/events/PolicyWatchToggleEvent.lua"/>
+        <sourceFile filename="src/events/RedTapeSettingsEvent.lua"/>
         <sourceFile filename="src/events/SchemeActivatedEvent.lua"/>
         <sourceFile filename="src/events/SchemeEndedEvent.lua"/>
         <sourceFile filename="src/events/SchemeNoLongerAvailableEvent.lua"/>
@@ -184,6 +189,7 @@ Journal des modifications:
         <sourceFile filename="src/system/SchemeSystem.lua"/>
         <sourceFile filename="src/system/TaxSystem.lua"/>
         <sourceFile filename="src/RedTape.lua"/>
+        <sourceFile filename="src/RedTapeSettings.lua"/>
     </extraSourceFiles>
     <multiplayer supported="true"/>
     <l10n filenamePrefix="languages/l10n" />
