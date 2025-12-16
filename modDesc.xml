@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.0.6</version>
+    <version>1.0.0.7</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -26,7 +26,7 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.0.7 [WIP]:
+1.0.0.7:
 - Further fix to address multiplayer progression issues
 - Added settings to disable systems and set tax rate
 
