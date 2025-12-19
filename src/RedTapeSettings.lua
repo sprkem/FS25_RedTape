@@ -76,8 +76,6 @@ function RedTape.getStateIndex(id, value)
     return RedTape.SETTINGS[id].default
 end
 
-
-
 RedTapeControls = {}
 function RedTapeControls.onMenuOptionChanged(self, state, menuOption)
     local id = menuOption.id
@@ -141,9 +139,6 @@ function RedTape.injectMenu()
         -- Assign new focus IDs to the controls as clone() copies the existing ones which are supposed to be unique
         updateFocusIds(menuOptionBox)
         table.insert(settingsPage.controlsList, menuOptionBox)
-
-        print(" added " .. id)
-
         return menuOptionBox
     end
 
@@ -181,9 +176,6 @@ function RedTape.injectMenu()
         -- Assign new focus IDs to the controls as clone() copies the existing ones which are supposed to be unique
         updateFocusIds(menuOptionBox)
         table.insert(settingsPage.controlsList, menuMultiOption)
-
-        print(" added " .. id)
-
         return menuOptionBox
     end
 

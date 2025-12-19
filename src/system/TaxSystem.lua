@@ -149,7 +149,15 @@ function RTTaxSystem:writeInitialClientState(streamId, connection)
         taxStatement:writeStream(streamId, connection)
     end
 
-    streamWriteInt32(streamId, RedTape.tableCount(self.lineItems))
+    -- Count total farm/month combinations
+    local farmMonthCount = 0
+    for farmId, months in pairs(self.lineItems) do
+        for month, lineItems in pairs(months) do
+            farmMonthCount = farmMonthCount + 1
+        end
+    end
+
+    streamWriteInt32(streamId, farmMonthCount)
     for farmId, months in pairs(self.lineItems) do
         for month, lineItems in pairs(months) do
             streamWriteInt32(streamId, farmId)
@@ -278,7 +286,7 @@ end
 function RTTaxSystem:getTaxRate(farmId)
     -- Example usage is to look up the farm and find tax rate modifiers
     -- return 0.2
-    return g_currentMission.RedTape.settings.baseTaxRate
+    return g_currentMission.RedTape.settings.baseTaxRate / 100
 end
 
 function RTTaxSystem:getTaxedAmount(lineItem, taxStatement)

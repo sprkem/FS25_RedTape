@@ -126,7 +126,7 @@ function RedTape:loadFromXMLFile()
         g_currentMission.RedTape.TaxSystem:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.EventLog:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.InfoGatherer:loadFromXMLFile(xmlFile)
-        
+
         -- Load settings
         for _, id in pairs(RedTape.menuItems) do
             local setting = RedTape.SETTINGS[id]
@@ -135,11 +135,11 @@ function RedTape:loadFromXMLFile()
                 local defaultValue = setting.values[setting.default]
                 local value = defaultValue
                 local value_string = tostring(value)
-                
+
                 if hasXMLProperty(xmlFile, xmlValueKey) then
                     if type(defaultValue) == 'number' then
                         value = getXMLFloat(xmlFile, xmlValueKey) or defaultValue
-                        
+
                         if value == math.floor(value) then
                             value_string = tostring(value)
                         else
@@ -149,14 +149,11 @@ function RedTape:loadFromXMLFile()
                         value = getXMLBool(xmlFile, xmlValueKey) or defaultValue
                         value_string = tostring(value)
                     end
-
-
                 end
                 g_currentMission.RedTape.settings[id] = value
-                print("  " .. id .. ": " .. value_string)
             end
         end
-        
+
         self.didLoadFromXML = true
 
         delete(xmlFile)
@@ -181,7 +178,7 @@ function RedTape:saveToXmlFile()
     g_currentMission.RedTape.TaxSystem:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.EventLog:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.InfoGatherer:saveToXmlFile(xmlFile)
-    
+
     -- Save settings
     for _, id in pairs(RedTape.menuItems) do
         if RedTape.SETTINGS[id] then

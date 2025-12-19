@@ -39,7 +39,7 @@ function RTSettingsEvent:run(connection)
     g_currentMission.RedTape.settings.baseTaxRate = self.baseTaxRate
 
     if not connection:getIsServer() then
-        if (not RedTape.policiesAndSchemesEnabled) then
+        if (not g_currentMission.RedTape.settings.policiesAndSchemesEnabled) then
             g_currentMission.RedTape.PolicySystem:onDisabled()
             g_currentMission.RedTape.SchemeSystem:onDisabled()
         end

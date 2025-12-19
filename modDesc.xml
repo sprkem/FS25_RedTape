@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.0.7</version>
+    <version>1.0.0.8</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,10 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.0.8:
+- A number of multiplayer fixes.
+- Fix excess tax rate maths I added when moving tax rate to a setting.
 
 1.0.0.7:
 - Further fix to address multiplayer progression issues
@@ -68,6 +72,10 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.8:
+- Eine Reihe von Mehrspielermodus-Fixes.
+- Behebung fehlerhafter Steuersatz-Mathematik, die ich beim Verschieben des Steuersatzes in eine Einstellung hinzugefügt habe.
 
 1.0.0.7:
 - Weitere Behebung von Mehrspielermodus-Fortschrittsproblemen
@@ -115,6 +123,10 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.0.8:
+- Un certain nombre de corrections multijoueur.
+- Correction des calculs de taux d'imposition excessifs que j'ai ajoutés lors du déplacement du taux d'imposition dans un paramètre.
 
 1.0.0.7:
 - Correction supplémentaire pour résoudre les problèmes de progression en multijoueur

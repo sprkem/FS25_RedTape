@@ -50,9 +50,9 @@ function RTScheme:writeStream(streamId, connection)
 
     streamWriteInt32(streamId, RedTape.tableCount(self.lastEvaluationReport))
     for _, report in pairs(self.lastEvaluationReport) do
-        streamWriteString(streamId, report.cell1)
-        streamWriteString(streamId, report.cell2)
-        streamWriteString(streamId, report.cell3)
+        streamWriteString(streamId, report.cell1 or "")
+        streamWriteString(streamId, report.cell2 or "")
+        streamWriteString(streamId, report.cell3 or "")
     end
 
     streamWriteInt32(streamId, RedTape.tableCount(self.props))

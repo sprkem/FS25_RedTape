@@ -94,6 +94,7 @@ function RTSchemeSystem:isEnabled()
 end
 
 function RTSchemeSystem:writeInitialClientState(streamId, connection)
+    streamWriteInt32(streamId, RedTape.tableCount(self.availableSchemes))
     for tier, schemes in pairs(self.availableSchemes) do
         streamWriteInt32(streamId, tier)
         streamWriteInt32(streamId, RedTape.tableCount(schemes))
@@ -102,12 +103,7 @@ function RTSchemeSystem:writeInitialClientState(streamId, connection)
         end
     end
 
-    local farmCount = 0
-    for _ in pairs(self.activeSchemesByFarm) do
-        farmCount = farmCount + 1
-    end
-    streamWriteInt32(streamId, farmCount)
-
+    streamWriteInt32(streamId, RedTape.tableCount(self.activeSchemesByFarm))
     for farmId, schemes in pairs(self.activeSchemesByFarm) do
         streamWriteInt32(streamId, farmId)
         streamWriteInt32(streamId, RedTape.tableCount(schemes))
@@ -118,7 +114,8 @@ function RTSchemeSystem:writeInitialClientState(streamId, connection)
 end
 
 function RTSchemeSystem:readInitialClientState(streamId, connection)
-    for tier = RTPolicySystem.TIER.A, RTPolicySystem.TIER.D do
+    local tierCount = streamReadInt32(streamId)
+    for i = 1, tierCount do
         local readTier = streamReadInt32(streamId)
         local schemeCount = streamReadInt32(streamId)
         self.availableSchemes[readTier] = self.availableSchemes[readTier] or {}
@@ -133,11 +130,11 @@ function RTSchemeSystem:readInitialClientState(streamId, connection)
     for i = 1, farmCount do
         local farmId = streamReadInt32(streamId)
         local schemeCount = streamReadInt32(streamId)
-        self.activeSchemesByFarm[farmId] = self.activeSchemesByFarm[farmId] or {}
+        local activeSchemes = self:getActiveSchemesForFarm(farmId)
         for j = 1, schemeCount do
             local scheme = RTScheme.new()
             scheme:readStream(streamId, connection)
-            table.insert(self.activeSchemesByFarm[farmId], scheme)
+            table.insert(activeSchemes, scheme)
         end
     end
 end

@@ -22,11 +22,14 @@ function RTPolicy:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.evaluationCount)
 
     streamWriteInt32(streamId, RedTape.tableCount(self.evaluationReports))
-    for farmId, report in pairs(self.evaluationReports) do
-        streamWriteString(streamId, farmId)
-        streamWriteString(streamId, report.cell1)
-        streamWriteString(streamId, report.cell2)
-        streamWriteString(streamId, report.cell3)
+    for farmId, reportLines in pairs(self.evaluationReports) do
+        streamWriteInt32(streamId, farmId)
+        streamWriteInt32(streamId, RedTape.tableCount(reportLines))
+        for _, line in pairs(reportLines) do
+            streamWriteString(streamId, line.cell1 or "")
+            streamWriteString(streamId, line.cell2 or "")
+            streamWriteString(streamId, line.cell3 or "")
+        end
     end
 
     streamWriteInt32(streamId, RedTape.tableCount(self.watchingFarms))
@@ -44,13 +47,18 @@ function RTPolicy:readStream(streamId, connection)
     local reportCount = streamReadInt32(streamId)
     self.evaluationReports = {}
     for i = 1, reportCount do
-        local farmId = streamReadString(streamId)
-        local report = {
-            cell1 = streamReadString(streamId),
-            cell2 = streamReadString(streamId),
-            cell3 = streamReadString(streamId)
-        }
-        self.evaluationReports[farmId] = report
+        local farmId = streamReadInt32(streamId)
+        local lineCount = streamReadInt32(streamId)
+        local reportLines = {}
+        for j = 1, lineCount do
+            local line = {
+                cell1 = streamReadString(streamId),
+                cell2 = streamReadString(streamId),
+                cell3 = streamReadString(streamId)
+            }
+            table.insert(reportLines, line)
+        end
+        self.evaluationReports[farmId] = reportLines
     end
 
     local watchingCount = streamReadInt32(streamId)
