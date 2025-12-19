@@ -259,21 +259,24 @@ function RTSchemeSystem:registerActivatedScheme(scheme)
     g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
 end
 
--- Called by SchemeSelectedEvent, runs on Client and Server
+-- Called by SchemeSelectedEvent, runs on Server only
 function RTSchemeSystem:registerSelectedScheme(scheme, farmId)
+    if (not g_currentMission:getIsServer()) then return end
     if farmId == nil or farmId == 0 then
         return nil
     end
 
     local activeSchemes = self:getActiveSchemesForFarm(farmId)
-
     local schemeForFarm = scheme:createFarmScheme(farmId)
     table.insert(activeSchemes, schemeForFarm)
+    schemeForFarm:selected()
+    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+end
 
-    if g_currentMission:getIsServer() then
-        schemeForFarm:selected()
-    end
-
+function RTSchemeSystem:storeSelectedSchemeOnClient(scheme)
+    if (g_currentMission:getIsServer()) then return end
+    local activeSchemes = self:getActiveSchemesForFarm(scheme.farmId)
+    table.insert(activeSchemes, scheme)
     g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
 end
 

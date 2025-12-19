@@ -26,6 +26,10 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
+1.0.0.9:
+- Fix an issue with tractor demos not ending correctly.
+- Fix a multiplayer issue when selecting schemes.
+
 1.0.0.8:
 - A number of multiplayer fixes.
 - Fix excess tax rate maths I added when moving tax rate to a setting.
@@ -72,6 +76,10 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.9:
+- Behebung eines Problems, bei dem Traktor-Demos nicht korrekt endeten.
+- Behebung eines Mehrspielermodus-Problems beim Auswählen von Programmen.
 
 1.0.0.8:
 - Eine Reihe von Mehrspielermodus-Fixes.
@@ -124,6 +132,10 @@ https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
 
+1.0.0.9:
+- Correction d'un problème avec les démonstrations de tracteurs qui ne se terminaient pas correctement.
+- Correction d'un problème multijoueur lors de la sélection de programmes.
+
 1.0.0.8:
 - Un certain nombre de corrections multijoueur.
 - Correction des calculs de taux d'imposition excessifs que j'ai ajoutés lors du déplacement du taux d'imposition dans un paramètre.
@@ -173,6 +185,7 @@ Journal des modifications:
         <sourceFile filename="src/events/SchemeEndedEvent.lua"/>
         <sourceFile filename="src/events/SchemeNoLongerAvailableEvent.lua"/>
         <sourceFile filename="src/events/SchemePayoutEvent.lua"/>
+        <sourceFile filename="src/events/SchemePostSelectionEvent.lua"/>
         <sourceFile filename="src/events/SchemeReportEvent.lua"/>
         <sourceFile filename="src/events/SchemeSelectedEvent.lua"/>
         <sourceFile filename="src/events/SchemeWatchToggleEvent.lua"/>

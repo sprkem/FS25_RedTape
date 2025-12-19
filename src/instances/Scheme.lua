@@ -308,6 +308,7 @@ function RTScheme:selected()
 
     local schemeInfo = RTSchemes[self.schemeIndex]
     schemeInfo.selected(schemeInfo, self, self.tier)
+    g_client:getServerConnection():sendEvent(RTSchemePostSelectionEvent.new(self))
 end
 
 -- Get a list of vehicles to spawn.
@@ -419,9 +420,11 @@ function RTScheme:removeVehicles()
     if g_currentMission:getIsServer() then
         for _, vehicle in pairs(self.vehicles) do
             if not vehicle:getIsBeingDeleted() then
-                if vehicle.spec_fillUnit ~= nil then
-                    vehicle.spec_fillUnit:unloadFillUnits(true)
-                end
+                pcall(function()
+                    if vehicle.spec_fillUnit ~= nil then
+                        vehicle.spec_fillUnit:unloadFillUnits(true)
+                    end
+                end)
                 vehicle:delete()
             end
         end
