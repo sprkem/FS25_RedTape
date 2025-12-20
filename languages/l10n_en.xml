@@ -153,6 +153,7 @@
 		<text name="rt_info_scheme_selected" text="You have signed up for the scheme. Collect any vehicles from the shop."/>
 		<text name="rt_misc_year" text="Year"/>
 		<text name="rt_misc_month" text="Month"/>
+		<text name="rt_misc_month_plural_suffix" text="s"/>
 		<text name="rt_misc_spreading_too_fast" text="You are driving too fast to spread salt effectively. Limit your speed to %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Are you sure you want to sign up to this scheme?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Effective tax rate"/>

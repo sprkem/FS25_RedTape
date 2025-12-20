@@ -153,6 +153,7 @@
 		<text name="rt_info_scheme_selected" text="Вы зарегистрировались в программе. Заберите все транспортные средства из магазина."/>
 		<text name="rt_misc_year" text="Год"/>
 		<text name="rt_misc_month" text="Месяц"/>
+		<text name="rt_misc_month_plural_suffix" text="ев"/>
 		<text name="rt_misc_spreading_too_fast" text="Вы едете слишком быстро, чтобы эффективно распределять соль. Ограничьте скорость до %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Вы уверены, что хотите подписаться на эту программу?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Эффективная налоговая ставка"/>

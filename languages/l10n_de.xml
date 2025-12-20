@@ -153,6 +153,7 @@
 		<text name="rt_info_scheme_selected" text="Sie haben sich für das Förderprogramm angemeldet. Holen Sie alle Fahrzeuge im Shop ab."/>
 		<text name="rt_misc_year" text="Jahr"/>
 		<text name="rt_misc_month" text="Monat"/>
+		<text name="rt_misc_month_plural_suffix" text="e"/>
 		<text name="rt_misc_spreading_too_fast" text="Sie fahren zu schnell, um Salz effektiv zu streuen. Begrenzen Sie Ihre Geschwindigkeit auf %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Sind Sie sicher, dass Sie sich für dieses Förderprogramm anmelden möchten?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Effektiver Steuersatz"/>

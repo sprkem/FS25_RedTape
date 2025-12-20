@@ -508,7 +508,7 @@ RTSchemes = {
             local suffix = ""
 
             if (tonumber(scheme.props['durationMonths']) or 1) > 1 then
-                suffix = "s"
+                suffix = g_i18n:getText("rt_misc_month_plural_suffix")
             end
 
             return string.format(g_i18n:getText("rt_scheme_desc_tractor_demo"),
@@ -759,7 +759,7 @@ RTSchemes = {
             local suffix = ""
 
             if (tonumber(scheme.props['durationMonths']) or 1) > 1 then
-                suffix = "s"
+                suffix = g_i18n:getText("rt_misc_month_plural_suffix")
             end
 
             return string.format(g_i18n:getText("rt_scheme_desc_brand_demo"),

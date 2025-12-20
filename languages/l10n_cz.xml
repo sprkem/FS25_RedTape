@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+	<translationContributors/>
+	<texts>
+		<text name="rt_notify_active_policy" text="Byla aktivována nová směrnice: %s"/>
+        <text name="rt_notify_active_scheme" text="Je dostupný nový dotační program: %s (Úroveň %s)"/>
+        <text name="rt_notify_ended_scheme" text="Dotační program byl ukončen: %s"/>
+        <text name="rt_notify_expired_scheme" text="Dotační program již není dostupný: %s (Úroveň %s)"/>
+        <text name="rt_policy_reason_evaluation" text="%s bodů uděleno při hodnocení směrnice %s"/>
+        <text name="rt_notify_scheme_payout" text="Dotační program %s vám vyplatil: %s"/>
+        <text name="rt_notify_policy_warning" text="Obdrželi jste varování za porušení směrnice %s"/>
+        <text name="rt_notify_policy_fine" text="Obdrželi jste pokutu %s za porušení směrnice %s"/>
+        <text name="rt_label_active_policies" text="Aktivní směrnice"/>
+        <text name="rt_label_tax_statement" text="Daňové přiznání / Výměr"/>
+        <text name="rt_header_policies" text="Směrnice"/>
+        <text name="rt_header_schemes" text="Dotační programy"/>
+        <text name="rt_header_tax" text="Daně"/>
+        <text name="rt_header_eventlog" text="Protokol událostí"/>
+        <text name="rt_header_current_tier" text="Aktuální úroveň: %s"/>
+        <text name="rt_header_compliance_tier" text="Shoda s předpisy"/>
+        <text name="rt_header_policy_information" text="Informace o směrnici"/>
+        <text name="rt_header_scheme_information" text="Informace o dotačním programu"/>
+        <text name="rt_header_latest_report" text="Aktuální zpráva"/>
+        <text name="rt_header_no_selected_policy" text="Vyberte aktivní směrnici pro zobrazení relevantních informací"/>
+        <text name="rt_header_no_report_information" text="Nejsou k dispozici žádné informace ze zprávy. Buď není nic k hlášení, nebo neproběhlo žádné hodnocení."/>
+        <text name="rt_header_scheme_equipment" text="Následující vybavení je poskytnuto po dobu trvání dotačního programu:"/>
+        <text name="rt_header_next_evaluation_date" text="Datum dalšího hodnocení: %s"/>
+        <text name="rt_header_no_tax_statement" text="Daňové přiznání momentálně není k dispozici. Daňové přiznání se zpracovává ročně v dubnu a platba je stržena v září."/>
+        <text name="rt_header_finalised_statement" text="Výměr z předchozího roku:"/>
+        <text name="rt_header_tax_estimate" text="Součty za aktuální rok:"/>
+        <text name="rt_header_tax_notes" text="Daňové poznámky:"/>
+        <text name="rt_header_tax_notes_info" text="Seznam relevantních poznámek, které mohou pomoci vysvětlit vaše daňové přiznání."/>
+        <text name="rt_header_no_tax_notes" text="V daňovém přiznání nejsou zahrnuty žádné poznámky."/>
+        <text name="rt_header_total_expenses" text="Výdaje:"/>
+        <text name="rt_header_total_taxable_income" text="Zdanitelný příjem:"/>
+        <text name="rt_header_total_taxed_income" text="Zdaněný příjem:"/>
+        <text name="rt_header_total_tax_rate" text="Daňová sazba:"/>
+        <text name="rt_header_total_tax_due" text="Splatná daň:"/>
+        <text name="rt_header_tax_status" text="Daňový status:"/>
+        <text name="rt_header_tax_payment_info" text="Daňová přiznání jsou vypočítána v dubnu a platba je stržena v září."/>
+        <text name="rt_tax_statement_status_paid" text="Zaplaceno"/>
+        <text name="rt_tax_statement_status_unpaid" text="Nezaplaceno"/>
+        <text name="rt_event_type_none" text="-"/>
+        <text name="rt_event_type_policypoints" text="Body směrnice"/>
+        <text name="rt_event_type_policyactivated" text="Směrnice aktivována"/>
+        <text name="rt_event_type_policycompleted" text="Směrnice splněna"/>
+        <text name="rt_event_type_schemeactivated" text="Dotační program aktivován"/>
+        <text name="rt_event_type_schemepayout" text="Výplata dotačního programu"/>
+        <text name="rt_event_type_schemeexpired" text="Dotační program vypršel"/>
+        <text name="rt_event_type_policywarning" text="Varování směrnice"/>
+		<text name="rt_event_type_policyfine" text="Pokuta směrnice"/>
+        <text name="rt_tableheader_timestamp" text="Časová značka"/>
+        <text name="rt_tableheader_eventtype" text="Typ události"/>
+        <text name="rt_tableheader_detail" text="Detail"/>
+        <text name="rt_tableheader_name" text="Název"/>
+        <text name="rt_tableheader_description" text="Popis"/>
+        <text name="rt_tableheader_next" text="Další kontrola"/>
+        <text name="rt_policy_croprotation" text="Střídání plodin"/>
+        <text name="rt_policy_sprayviolation" text="Znečištění vod"/>
+        <text name="rt_policy_empty_food" text="Krmení zvířat"/>
+        <text name="rt_policy_empty_straw" text="Podestýlka pro zvířata"/>
+        <text name="rt_policy_full_slurry" text="Management kejdy"/>
+        <text name="rt_policy_animal_productivity" text="Podmínky pro zvířata"/>
+        <text name="rt_policy_animal_space" text="Potřeba prostoru pro zvířata"/>
+        <text name="rt_policy_manure_spreading" text="Management hnoje"/>
+        <text name="rt_policy_restricted_slurry" text="Omezené rozmetání kejdy"/>
+        <text name="rt_policy_sustainable_forestry" text="Udržitelné lesnictví"/>
+		<text name="rt_policy_description_croprotation" text="Vyžaduje střídání plodin mezi poli a ročními obdobími, aby se zachovala úrodnost půdy, přerušily cykly škůdců a chorob, zlepšila rovnováha živin a ochránily dlouhodobé výnosy."/>
+        <text name="rt_policy_description_sprayviolation" text="Zakazuje aplikaci chemikálií (pevná hnojiva, kejda, vápno, hnůj, herbicidy) ve 14m nárazníkových zónách vodních ploch, aby se zabránilo odtoku a kontaminaci, která může poškodit vodní život, zhoršit kvalitu vody a ohrozit lidské zdraví. Porušení se trestá pokutou."/>
+        <text name="rt_policy_description_empty_food" text="Vyžaduje, aby zvířata měla vždy dostatek potravy; udržujte koryta na krmení neustále plná a přístupná, abyste předešli hladu a splnili standardy ochrany zvířat."/>
+        <text name="rt_policy_description_empty_straw" text="Vyžaduje poskytnutí dostatečné podestýlky ze slámy pro zvířata k zajištění pohodlí, izolace a hygieny. Sláma snižuje zranění a stres, pomáhá udržovat tělesnou teplotu a absorbuje vlhkost pro ochranu dobrých životních podmínek zvířat."/>
+        <text name="rt_policy_description_full_slurry" text="Vyžaduje, aby nádrže na kejdu byly udržovány pod svou kapacitou, aby se zabránilo přetečení a úniku. Přetečení může uvolnit kejdu do polí a vodních toků, kontaminovat půdu a vodu a způsobit poškození životního prostředí."/>
+        <text name="rt_policy_description_animal_productivity" text="Podporuje udržování produktivity zvířat, což je obecný indikátor dobrých životních podmínek zvířat."/>
+        <text name="rt_policy_description_animal_space" text="Vyžaduje, aby zvířata měla dostatek prostoru k pohybu, odpočinku a přístupu k potravě/vodě; zamezení přeplnění snižuje stres, zranění a šíření nemocí a podporuje lepší zdraví a produktivitu. Neplatí, pokud má chov pouze jedno zvíře. Mladší zvířata potřebují méně místa než dospělá zvířata."/>
+        <text name="rt_policy_description_manure_spreading" text="Neměli byste hnůj nechávat neomezeně ležet. Zajistěte, abyste neskladovali více než 50 % hnoje, který vyprodukujete, v období 6 měsíců. Pokud neprodukujete žádný hnůj, tato směrnice se vás netýká. Zpráva je aktualizována měsíčně, avšak úplné hodnocení a výplata nebo pokuta probíhají v květnu a listopadu."/>
+        <text name="rt_policy_description_restricted_slurry" text="V měsících září až prosinec nesmíte rozmetávat kejdu. Za každé porušení budete pokutováni."/>
+        <text name="rt_policy_description_sustainable_forestry" text="Podporuje udržitelné postupy v lesnictví, odměňuje čistou pozitivní výsadbu stromů a trestá celkové odlesňování. Směrnice se vztahuje na vaši vlastní půdu. Zakázkové práce neovlivní vaše hodnocení. Zpráva je aktualizována měsíčně s pololetními součty, avšak úplné hodnocení a výplata nebo pokuta probíhají v červnu a prosinci."/>
+        <text name="rt_policy_report_description_croprotation" text="Zpráva ukazuje součty pro vyhovující a nevyhovující plochy."/>
+        <text name="rt_policy_report_description_sprayviolation" text="Zpráva ukazuje, kolik porušení postřikem nastalo v minulém měsíci."/>
+        <text name="rt_policy_report_description_empty_food" text="Zpráva ukazuje, kolik kombinovaných hodin bylo krmivo v ohradách pro zvířata prázdné."/>
+        <text name="rt_policy_report_description_empty_straw" text="Zpráva ukazuje, kolik kombinovaných hodin byla sláma v ohradách pro zvířata prázdná."/>
+        <text name="rt_policy_report_description_full_slurry" text="Zpráva ukazuje, kolik kombinovaných hodin byly nádrže na kejdu plné."/>
+        <text name="rt_policy_report_description_animal_productivity" text="Zpráva ukazuje, kolik kombinovaných hodin byla zvířata neproduktivní."/>
+        <text name="rt_policy_report_description_animal_space" text="Zpráva nejprve ukazuje, kolik hodin porušení bylo zaznamenáno. Poté ukazuje dostupný prostor a nejvyšší požadovaný prostor v předchozím měsíci pro každý chov."/>
+        <text name="rt_policy_report_description_manure_spreading" text="Zpráva ukazuje množství vyprodukovaného hnoje za posledních 6 měsíců. Dále ukazuje celkovou produkci a maximální povolené skladování za posledních 6 měsíců. Všimněte si, že data z Měsíce 1 nebudou zahrnuta do další zprávy a každý hnůj vyrobený v aktuálním měsíci musí být zohledněn."/>
+        <text name="rt_policy_report_description_restricted_slurry" text="Zpráva ukazuje, kolikrát byla kejda aplikována během omezených měsíců."/>
+        <text name="rt_policy_report_description_sustainable_forestry" text="Zpráva ukazuje, kolik stromů bylo zasazeno a pokáceno v aktuálním pololetí."/>
+		<text name="rt_report_name_farmland" text="Zemědělská půda %s"/>
+        <text name="rt_report_name_total_area" text="Celková plocha"/>
+        <text name="rt_report_name_non_compliant_area" text="Nevyhovující plocha"/>
+        <text name="rt_report_name_spray_violations" text="Porušení postřikem"/>
+        <text name="rt_report_name_empty_food" text="Hodiny bez krmiva"/>
+        <text name="rt_report_name_empty_straw" text="Hodiny bez slámy"/>
+        <text name="rt_report_name_full_slurry" text="Hodiny s plnou kejdou"/>
+        <text name="rt_report_name_low_productivity_hours" text="Hodiny s nízkou produktivitou"/>
+        <text name="rt_report_name_animal_space_violations" text="Porušení prostoru pro zvířata"/>
+        <text name="rt_report_name_manure_total_produced" text="Celkem vyprodukováno hnoje"/>
+        <text name="rt_report_name_manure_stored_amount" text="Aktuálně uskladněný hnůj"/>
+        <text name="rt_report_name_manure_max_stored_amount" text="Maximální povolené uskladnění"/>
+        <text name="rt_report_name_restricted_slurry_violations" text="Porušení omezené kejdy"/>
+        <text name="rt_report_name_bale_penalty" text="Pokuta za balíky"/>
+        <text name="rt_report_name_total_payout" text="Celková vyplacena částka"/>
+        <text name="rt_report_name_animal_count" text="Počet oprávněných zvířat"/>
+        <text name="rt_report_name_harvest_reward" text="Odměna za sklizeň"/>
+        <text name="rt_report_name_natural_usage" text="Spotřeba přírodního hnojiva"/>
+        <text name="rt_report_name_other_usage" text="Spotřeba jiného hnojiva"/>
+        <text name="rt_report_name_points" text="Body"/>
+        <text name="rt_report_name_trees_planted" text="Zasazené stromy"/>
+        <text name="rt_report_name_trees_cut" text="Pokácené stromy"/>
+        <text name="rt_report_name_note" text="Poznámka:"/>
+        <text name="rt_report_name_additional_tax_benefit" text="Kvalifikováno pro daňovou výhodu"/>
+        <text name="rt_report_value_true" text="Ano"/>
+        <text name="rt_report_value_false" text="Ne"/>
+        <text name="rt_report_value_not_enough_months_elapsed" text="Úplné hodnocení bylo tento měsíc přeskočeno."/>
+        <text name="rt_scheme_delayed_mowing" text="Odložené sečení / Vyhnout se sečení na jaře"/>
+        <text name="rt_scheme_crop_promotion" text="Podpora plodin"/>
+        <text name="rt_scheme_reduce_bale_wrapping" text="Snížené balení balíků"/>
+        <text name="rt_scheme_tractor_demo" text="Předvádění traktoru"/>
+        <text name="rt_scheme_natural_grazing" text="Přirozená pastva"/>
+        <text name="rt_scheme_natural_fertiliser" text="Přírodní hnojivo"/>
+        <text name="rt_scheme_winter_cover_crops" text="Ozimé meziplodiny"/>
+        <text name="rt_scheme_road_snow_clearing" text="Odhánění sněhu z cest"/>
+        <text name="rt_scheme_brand_demo" text="Předvádění značky"/>
+        <text name="rt_scheme_set_aside" text="Plochy vyňaté z produkce / Úhor"/>
+		<text name="rt_scheme_desc_delayed_mowing" text="Nesečte svou trávu během jarních měsíců (březen až červen), abyste chránili volně žijící zvířata. V červenci budete kompenzováni za nesečenou trávu."/>
+        <text name="rt_scheme_desc_crop_promotion" text="Vládní iniciativa na podporu pěstování %s poskytováním finančních pobídek. Můžete obdržet vybavení po dobu trvání iniciativy a finanční bonus za každé pole, na kterém plodinu pěstujete."/>
+        <text name="rt_scheme_desc_reduce_bale_wrapping" text="Balení balíků spotřebovává plast a zabraňuje šíření semen během přepravy. Tento dotační program vás netrestá za balení balíků – odměňuje vás, pouze pokud zvolíte alternativu, jako je výroba senných balíků nebo použití sběracího vozu."/>
+        <text name="rt_scheme_desc_tractor_demo" text="%s nabízí vaší farmě možnost vyzkoušet si traktor %s po dobu %s měsíc%s. Přesná specifikace předváděcího vozidla bude stanovena v době vaší registrace do dotačního programu."/>
+        <text name="rt_scheme_desc_natural_grazing" text="Dotační program na podporu pastvy zvířat bez doplňkového krmiva. Platba je určena k vyrovnání jakékoli ztráty příjmu. Získáte bonus za čas, který vaše zvířata stráví na pastvě. Výše bonusu se liší podle druhu zvířete."/>
+        <text name="rt_scheme_desc_natural_fertiliser" text="Dotační program na podporu používání přírodních hnojiv, jako je hnůj, kejda a digestát. Získáte bonus za množství přírodního hnojiva, které použijete ve srovnání se syntetickými alternativami. Toto platí pro všechna hnojiva, která aplikujete, ať už na své farmě nebo pro zakázku."/>
+        <text name="rt_scheme_desc_winter_cover_crops" text="Podporuje setí meziplodin během zimních měsíců za účelem snížení eroze půdy a vyplavování živin. Získáte bonus za každé pole, na kterém během zimní sezóny zasadíte schválenou meziplodinu."/>
+        <text name="rt_scheme_desc_road_snow_clearing" text="Vzhledem k nedávnému sněžení obec žádá zemědělce, aby sypali sůl, aby udrželi silnice průjezdné a bezpečné. Zajistěte, aby vaše rychlost při sypání nepřesáhla %s%s, aby bylo zajištěno dostatečné pokrytí."/>
+        <text name="rt_scheme_desc_brand_demo" text="%s nabízí vaší farmě možnost vyzkoušet si některé vybavení po dobu %s měsíc%s. Přesná specifikace předváděcího vozidla bude stanovena v době vaší registrace do dotačního programu."/>
+        <text name="rt_scheme_desc_set_aside" text="Podporuje vyjmutí části vaší zemědělské půdy z produkce a nabízí přestávku od neustálé práce. Získáte bonus za půdu, která zůstane bez plodin po dobu nejméně %d měsíců před prosincem. Pokud se kvalifikuje více než %s, veškeré plodiny prodané v následujícím daňovém roce budou zdaněny sazbou 5 %."/>
+        <text name="rt_scheme_report_desc_delayed_mowing" text="Zpráva ukazuje seznam zemědělských pozemků a částku vyplacenou při posledním hodnocení."/>
+        <text name="rt_scheme_report_desc_crop_promotion" text="Zpráva ukazuje seznam zemědělských pozemků a částku vyplacenou při posledním hodnocení."/>
+        <text name="rt_scheme_report_desc_reduce_bale_wrapping" text="Zpráva ukazuje seznam zemědělských pozemků a částku vyplacenou při posledním hodnocení."/>
+        <text name="rt_scheme_report_desc_natural_grazing" text="Zpráva ukazuje celkovou částku vyplacenou při posledním hodnocení."/>
+        <text name="rt_scheme_report_desc_natural_fertiliser" text="Zpráva ukazuje spotřebu přírodních a jiných hnojiv za poslední měsíc."/>
+        <text name="rt_scheme_report_desc_winter_cover_crops" text="Zpráva ukazuje seznam zemědělských pozemků a částku vyplacenou při posledním hodnocení."/>
+        <text name="rt_scheme_report_desc_road_snow_clearing" text="Pro tento dotační program neexistuje žádná zpráva. Jakmile sníh skončí, obdržíte platbu odpovídající množství posypané soli."/>
+        <text name="rt_scheme_report_desc_set_aside" text="Zpráva ukazuje výplatu pro každé z vašich polí. Také ukazuje, zda jste se kvalifikovali pro speciální daňovou sazbu 5 %."/>
+        <text name="rt_btn_select_scheme" text="Vybrat dotační program"/>
+		<text name="rt_btn_watch_scheme_policy" text="Přepnout sledování"/>
+        <text name="rt_unit_meter_square" text="m²"/>
+        <text name="rt_ui_schemePayout" text="Výplata dotačního programu"/>
+        <text name="finance_schemePayout" text="Výplata dotačního programu"/>
+        <text name="rt_ui_policyFine" text="Pokuta za směrnici"/>
+        <text name="finance_policyFine" text="Pokuta za směrnici"/>
+        <text name="rt_ui_taxCost" text="Daně"/>
+        <text name="finance_taxCost" text="Daně"/>
+        <text name="rt_no_vehicle_room" text="Nedostatek místa pro doručení vozidel pro dotační program. Uvolněte místo a zkuste to znovu."/>
+        <text name="rt_info_scheme_selected" text="Zaregistrovali jste se do dotačního programu. Vyzvedněte všechna vozidla v obchodě."/>
+        <text name="rt_misc_year" text="Rok"/>
+        <text name="rt_misc_month" text="Měsíc"/>
+        <text name="rt_misc_month_plural_suffix" text="ů"/>
+        <text name="rt_misc_spreading_too_fast" text="Jedete příliš rychle na efektivní sypání soli. Omezte rychlost na %s%s."/>
+        <text name="rt_misc_confirm_scheme_selection" text="Jste si jisti, že se chcete přihlásit do tohoto dotačního programu?"/>
+        <text name="rt_notes_additional_tax_benefit" text="Efektivní daňová sazba"/>
+        <text name="rt_help_title_red_tape" text="Byrokracie / Papírování"/>
+        <text name="rt_help_title_intro" text="Úvod"/>
+        <text name="rt_help_title_policies" text="Směrnice"/>
+        <text name="rt_help_title_schemes" text="Dotační programy"/>
+        <text name="rt_help_title_tax" text="Daně"/>
+		<text name="rt_help_intro_intro" text="Byrokracie (Papierkram) je mod, který zavádí směrnice, dotační programy a zdanění do hry Farming Simulator. Tyto systémy jsou navrženy tak, aby dodaly vašemu farmářskému zážitku větší hloubku a výzvu a podpořily udržitelné postupy a strategické plánování."/>
+        <text name="rt_help_intro_intro_2" text="Všechny informace o Byrokracii naleznete v nové nabídce, která byla přidána do hlavního menu. Hledejte ikonu vládní budovy."/>
+        <text name="rt_help_policies_intro" text="Směrnice jsou v podstatě zákony, které musíte při farmaření dodržovat. Řídí věci, jako je zacházení se zvířaty a vhodné využívání půdy."/>
+        <text name="rt_help_policies_intro_2" text="Na kartě Směrnice uvidíte seznam směrnic. Vyberte každou, abyste viděli popis, jak je dodržovat. Níže uvidíte zprávu o vašem výkonu. Některé směrnice jsou kontrolovány každý měsíc, zatímco jiné jsou kontrolovány méně často. Většinou směrnice vytvoří zprávu každý měsíc, abyste mohli sledovat svůj pokrok."/>
+        <text name="rt_help_policies_intro_3" text="Pokud směrnici dodržujete, získáte body, které přispívají k vaší úrovni shody s předpisy. Vyšší úrovně shody vedou k výhodám, jako jsou vylepšené odměny z dotačních programů a potenciální daňové úlevy. Pokud směrnici porušíte, můžete obdržet varování nebo pokuty, v závislosti na závažnosti porušení. Pokud obdržíte varování, objeví se vedle názvu směrnice ikona a obdržíte oznámení ve hře. Opravte problém, abyste předešli budoucí pokutě."/>
+        <text name="rt_help_schemes_intro" text="Dotační programy jsou volitelné a stávají se dostupné v průběhu roku. Můžete se přihlásit do všech, které chcete. Typicky dotační programy vyžadují, abyste dělali určité věci, abyste se kvalifikovali a získali odpovídající výhody. Stejně jako u směrnic jsou generovány zprávy, které vysvětlují váš výkon. Všechny odměny se škálují podle vašeho nastavení ekonomické obtížnosti."/>
+        <text name="rt_help_schemes_intro_2" text="Dotační programy mohou být také situační, jako například značka nabízející předváděcí akci, kde můžete zdarma používat vybavení po určitou dobu. Ve všech případech vaše úroveň shody se směrnicemi přímo ovlivňuje dostupné odměny z dotačních programů. Programy úrovně D dávají nejnižší odměny, zatímco programy úrovně A nabízejí největší odměny."/>
+        <text name="rt_help_schemes_intro_3" text="Dotační programy obvykle trvají po stanovenou dobu, často jeden rok nebo určitý počet hodnocení. Dotační programy se časem znovu stávají dostupnými, ale musíte se znovu přihlásit, pokud chcete. Některé dotační programy mají omezené časové okno, kdy jsou k dispozici. Například program Podpora plodin je k dispozici pouze v prvních měsících roku."/>
+        <text name="rt_help_tax_intro" text="Daně jsou systém, který odebírá část vašich zisků vládě. Daňové přiznání je uzavřeno každý rok v dubnu a splatnou daň automaticky zaplatíte v září. Pokud nemáte dostatek peněz na zaplacení daňového účtu, váš zůstatek se stane záporným."/>
+        <text name="rt_help_tax_intro_2" text="Na kartě Daně můžete vidět uzavřené daňové přiznání na levé straně pohledu. Na pravé straně můžete vidět průběžné součty za váš aktuální daňový rok. Můžete to použít k plánování dopředu a snížení daňového účtu. Například, pokud vidíte, že vaše zisky za rok jsou vysoké, můžete se rozhodnout koupit nové vybavení, abyste snížili zisk, a tím i své daně."/>
+        <text name="rt_help_tax_intro_3" text="Někdy uvidíte daňové poznámky. Ty vám řeknou, pokud je vaše daňové přiznání změněno neštandardní podmínkou. Například, dotační program by vám mohl nabídnout budoucí daňovou úlevu. To se zobrazí v daňových poznámkách, aby vám pomohlo porozumět vaší účtu."/>
+		<text name="rt_setting_taxEnabled" text="Daně povoleny"/>
+		<text name="rt_toolTip_taxEnabled" text="Povolit nebo zakázat daňový systém"/>
+		<text name="rt_setting_policiesAndSchemesEnabled" text="Směrnice/Dotační programy povoleny"/>
+		<text name="rt_toolTip_policiesAndSchemesEnabled" text="Povolit nebo zakázat systém směrnic a dotačních programů. Vypnutím se okamžitě ukončí všechny aktivní dotační programy."/>
+		<text name="rt_setting_baseTaxRate" text="Základní daňová sazba"/>
+		<text name="rt_toolTip_baseTaxRate" text="Nastavit základní daňovou sazbu"/>
+		<text name="rt_system_disabled" text="Tento systém je momentálně zakázán. Zkontrolujte nastavení hry a znovu jej zapněte." />
+	</texts>
+</l10n>

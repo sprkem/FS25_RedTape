@@ -153,6 +153,7 @@
 		<text name="rt_info_scheme_selected" text="Você se inscreveu no programa. Recolha os veículos na loja."/>
 		<text name="rt_misc_year" text="Ano"/>
 		<text name="rt_misc_month" text="Mês"/>
+		<text name="rt_misc_month_plural_suffix" text="es"/>
 		<text name="rt_misc_spreading_too_fast" text="Você está dirigindo rápido demais para espalhar sal efetivamente. Limite sua velocidade para %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Tem certeza de que deseja se inscrever neste programa?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Alíquota efetiva"/>

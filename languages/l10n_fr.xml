@@ -153,6 +153,7 @@
 		<text name="rt_info_scheme_selected" text="Vous vous êtes inscrit au programme. Récupérez les véhicules au magasin."/>
 		<text name="rt_misc_year" text="Année"/>
 		<text name="rt_misc_month" text="Mois"/>
+		<text name="rt_misc_month_plural_suffix" text=""/>
 		<text name="rt_misc_spreading_too_fast" text="Vous roulez trop vite pour épandre le sel efficacement. Limitez votre vitesse à %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Êtes-vous sûr de vouloir vous inscrire à ce programme ?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Taux d'imposition effectif"/>
