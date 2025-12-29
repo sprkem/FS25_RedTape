@@ -209,6 +209,7 @@ Journal des modifications:
         <sourceFile filename="src/gatherers/FarmGatherer.lua"/>
         <sourceFile filename="src/gatherers/FarmlandGatherer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/ActivePoliciesRenderer.lua"/>
+        <sourceFile filename="src/gui/tableRenderers/CropRotationRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/SchemesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/EventLogRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/ReportRenderer.lua"/>

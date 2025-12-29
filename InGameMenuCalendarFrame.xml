@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuCalendar">
+    <GuiElement profile="fs25_menuContainer">
+        <GuiElement profile="fs25_menuHeaderPanel">
+            <Bitmap profile="fs25_menuHeaderIconBg">
+                <Bitmap profile="fs25_menuHeaderIcon" imageSliceId="gui.icon_ingameMenu_calendar"/>
+            </Bitmap>
+            <Text profile="fs25_menuHeaderTitle" text="$l10n_ui_cropCalendar"/>
+        </GuiElement>
+        <GuiElement profile="fs25_calendarContainer">
+            <Bitmap profile="fs25_calendarSeparatorBig" id="separatorBigTemplate"/>
+            <Bitmap profile="fs25_calendarSeparator" id="separatorTemplate"/>
+            <Text profile="fs25_calendarHeaderMonthText" id="monthTextTemplate"/>
+            <Bitmap profile="fs25_calendarHeaderSeasonSpring"/>
+            <Bitmap profile="fs25_calendarHeaderSeasonSummer"/>
+            <Bitmap profile="fs25_calendarHeaderSeasonFall"/>
+            <Bitmap profile="fs25_calendarHeaderSeasonWinter"/>
+            <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -80px"/>
+            <SmoothList profile="fs25_calendarList" id="calendar">
+                <ListItem profile="fs25_calendarListItem">
+                    <ThreePartBitmap profile="fs25_calendarListItemBg" name="alternating"/>
+                    <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon"/>
+                    <Text profile="fs25_calendarListItemFruitName" name="fruitName"/>
+                    <ThreePartBitmap profile="fs25_calendarListItemPlanting" name="fruitPlanting1"/>
+                    <ThreePartBitmap profile="fs25_calendarListItemPlanting" name="fruitPlanting2"/>
+                    <ThreePartBitmap profile="fs25_calendarListItemHarvesting" name="fruitHarvesting1"/>
+                    <ThreePartBitmap profile="fs25_calendarListItemHarvesting" name="fruitHarvesting2"/>
+                </ListItem>
+            </SmoothList>
+            <ThreePartBitmap profile="fs25_lineSeparatorBottom" height="1dp"/>
+            <BoxLayout profile="fs25_calendarHeaderBox" id="tableHeaderBox"/>
+            <GuiElement profile="fs25_calendarTodayBarBox">
+                <Bitmap profile="fs25_calendarTodayBar" id="todayBar" visible="false"/>
+            </GuiElement>
+            <BoxLayout profile="fs25_calendarLegendBox">
+                <Text profile="fs25_calendarLegendText" text="$l10n_ui_plantingSeason"/>
+                <ThreePartBitmap profile="fs25_calendarLegendIcon" id="legendPlantingSeason"/>
+                <Text profile="fs25_calendarLegendText" text="$l10n_ui_harvestSeason"/>
+                <ThreePartBitmap profile="fs25_calendarLegendIcon" id="legendHarvestSeason"/>
+            </BoxLayout>
+        </GuiElement>
+        <GuiElement profile="fs25_weatherContainer">
+            <Bitmap profile="fs25_weatherTodayIcon" id="nowWeatherIcon"/>
+            <Text profile="fs25_weatherTodayMonth" id="nowWeatherMonth"/>
+            <Text profile="fs25_weatherTodayNow" text="$l10n_ui_currently:"/>
+            <Text profile="fs25_weatherTodayTemperature" id="nowTemperature"/>
+            <Text profile="fs25_weatherTodayWindSpeedTitle" text="$l10n_ui_windSpeedAndDirection:"/>
+            <GuiElement profile="fs25_weatherWindIndicatorBoxToday">
+                <Bitmap profile="fs25_weatherWindIndicatorIcon" id="nowWindDirection" position="10px 0px"/>
+                <Text profile="fs25_weatherWindIndicatorText" id="nowWindSpeed" position="10px 0px"/>
+            </GuiElement>
+            <Bitmap profile="fs25_weatherSeparator"/>
+            <SmoothList profile="fs25_weatherList" id="forecastHourlyList">
+                <ListItem profile="fs25_weatherListItem">
+                    <Text profile="fs25_weatherListItemTitle" name="time"/>
+                    <Bitmap profile="fs25_weatherListItemIcon" name="icon"/>
+                    <Text profile="fs25_weatherListItemTemperature" name="temperature"/>
+                    <GuiElement profile="fs25_weatherWindIndicatorBox">
+                        <Bitmap profile="fs25_weatherWindIndicatorIcon" name="windDirection"/>
+                        <Text profile="fs25_weatherWindIndicatorText" name="windSpeed"/>
+                    </GuiElement>
+                </ListItem>
+            </SmoothList>
+            <Bitmap profile="fs25_weatherSeparator" position="1130px 0px"/>
+            <SmoothList profile="fs25_weatherListDaily" id="forecastDailyList">
+                <ListItem profile="fs25_weatherListItem">
+                    <Text profile="fs25_weatherListItemTitle" name="day"/>
+                    <Bitmap profile="fs25_weatherListItemIcon" name="icon"/>
+                    <Text profile="fs25_weatherListItemTemperature" name="highTemperature"/>
+                    <Text profile="fs25_weatherListItemTemperatureLow" name="lowTemperature"/>
+                </ListItem>
+            </SmoothList>
+        </GuiElement>
+    </GuiElement>
+    <ThreePartBitmap profile="fs25_sliderDockedBg">
+        <ThreePartBitmap profile="fs25_sliderDockedBox">
+            <Slider profile="fs25_sliderDocked" id="slider" dataElementId="calendar" handleFocus="true"/>
+        </ThreePartBitmap>
+    </ThreePartBitmap>
+    <GUIProfiles>
+        <Profile name="fs25_calendarContainer" extends="emptyPanel" with="anchorStretchingYStretchingX pivotTopCenter">
+            <absoluteSizeOffset value="0px 197px"/>
+        </Profile>
+        <Profile name="fs25_calendarHeaderBox" extends="emptyPanel" with="anchorTopLeft">
+            <size value="1242px 80px"/>
+            <position value="255px 0px"/>
+        </Profile>
+        <Profile name="fs25_calendarSeparatorBig" extends="baseReference" with="anchorStretchingYLeft pivotTopLeft">
+            <width value="2dp"/>
+            <imageColor value="$preset_fs25_colorGreyLight_50"/>
+        </Profile>
+        <Profile name="fs25_calendarSeparator" extends="baseReference" with="anchorStretchingYLeft pivotTopLeft">
+            <width value="1dp"/>
+            <absoluteSizeOffset value="0px 35px"/>
+            <margin value="0px 35px 0px 35px"/>
+            <imageColor value="$preset_fs25_colorGreyLight_50"/>
+        </Profile>
+        <Profile name="fs25_calendarHeaderMonthText" extends="fs25_textDefault" with="anchorBottomLeft">
+            <width value="102px"/>
+            <margin value="0px 45px 0px 0px"/>
+            <textSize value="18px"/>
+            <textBold value="true"/>
+            <textUpperCase value="true"/>
+            <textAlignment value="center"/>
+        </Profile>
+        <Profile name="fs25_calendarHeaderSeason" extends="baseReference" with="anchorTopLeft">
+            <size value="40px 40px"/>
+        </Profile>
+        <Profile name="fs25_calendarHeaderSeasonSpring" extends="fs25_calendarHeaderSeason">
+            <position value="391px 16px"/>
+            <imageSliceId value="gui.icon_calendar_spring"/>
+        </Profile>
+        <Profile name="fs25_calendarHeaderSeasonSummer" extends="fs25_calendarHeaderSeason">
+            <position value="701px 16px"/>
+            <imageSliceId value="gui.icon_calendar_summer"/>
+        </Profile>
+        <Profile name="fs25_calendarHeaderSeasonFall" extends="fs25_calendarHeaderSeason">
+            <position value="1011px 16px"/>
+            <imageSliceId value="gui.icon_calendar_fall"/>
+        </Profile>
+        <Profile name="fs25_calendarHeaderSeasonWinter" extends="fs25_calendarHeaderSeason">
+            <position value="1321px 16px"/>
+            <imageSliceId value="gui.icon_calendar_winter"/>
+        </Profile>
+        <Profile name="fs25_calendarList" extends="emptyPanel" with="anchorStretchingYStretchingX pivotBottomCenter">
+            <absoluteSizeOffset value="0px 82px"/>
+            <handleFocus value="false"/>
+            <soundDisabled value="true"/>
+            <itemizedScrollDelta value="3"/>
+        </Profile>
+        <Profile name="fs25_calendarListItem" extends="emptyPanel" with="anchorTopStretchingX alternating">
+            <height value="50px"/>
+            <alternateChildren value="true"/>
+            <imageSliceId value="gui.empty"/>
+            <imageColor value="$preset_fs25_colorGreyListItem"/>
+            <alternateBackgroundColor value="$preset_colorTransparent"/>
+        </Profile>
+        <Profile name="fs25_calendarListItemBg" extends="baseReference" with="anchorStretchingYStretchingX">
+            <startImageSize value="100px 30px"/>
+            <startImageSliceId value="gui.list_gradient"/>
+            <endImageSize value="100px 30px"/>
+            <endImageSliceId value="gui.list_gradient"/>
+            <endImageInvertX value="true"/>
+        </Profile>
+        <Profile name="fs25_calendarListItemIcon" extends="baseReference" with="anchorMiddleLeft">
+            <size value="34px 34px"/>
+            <position value="40px 0px"/>
+            <imageSliceId value="noSlice"/>
+        </Profile>
+        <Profile name="fs25_calendarListItemFruitName" extends="fs25_textDefault" with="anchorMiddleLeft">
+            <width value="160px"/>
+            <position value="85px 0px"/>
+            <textSize value="18px"/>
+            <textBold value="true"/>
+            <textLayoutMode value="scrolling"/>
+        </Profile>
+        <Profile name="fs25_calendarListItemPlanting" extends="fs25_calendarListItemHarvesting">
+            <height value="15px"/>
+            <position value="0px -10px"/>
+            <imageColor value="$preset_fs25_colorMainHighlight"/>
+            <startImageSliceId value="gui.calendar_box_left"/>
+            <startImageSize value="6px 0"/>
+            <startImageSliceId value="gui.calendar_box_middle"/>
+            <startImageColor value="$preset_fs25_colorMainHighlight"/>
+            <endImageSize value="6px 0"/>
+            <endImageSliceId value="gui.calendar_box_right"/>
+            <endImageColor value="$preset_fs25_colorMainHighlight"/>
+        </Profile>
+        <Profile name="fs25_calendarListItemHarvesting" extends="baseReference" with="anchorTopLeft">
+            <height value="15px"/>
+            <position value="0px -25px"/>
+            <imageColor value="$preset_fs25_colorOrangeDark"/>
+            <startImageSliceId value="gui.calendar_box_left"/>
+            <startImageSize value="6px 0"/>
+            <startImageSliceId value="gui.calendar_box_middle"/>
+            <startImageColor value="$preset_fs25_colorOrangeDark"/>
+            <endImageSize value="6px 0"/>
+            <endImageSliceId value="gui.calendar_box_right"/>
+            <endImageColor value="$preset_fs25_colorOrangeDark"/>
+        </Profile>
+        <Profile name="fs25_calendarTodayBarBox" extends="emptyPanel" with="anchorStretchingYStretchingX pivotBottomLeft">
+            <absoluteSizeOffset value="310px 80px"/>
+            <position value="256px 0px"/>
+        </Profile>
+        <Profile name="fs25_calendarTodayBar" extends="baseReference" with="anchorStretchingYLeft">
+            <width value="2dp"/>
+            <imageColor value="$preset_colorMainUI"/>
+        </Profile>
+        <Profile name="fs25_calendarLegendBox" extends="emptyPanel" with="anchorTopRight">
+            <size value="1000px 30px"/>
+            <position value="-54px 60px"/>
+            <alignmentX value="right"/>
+            <alignmentY value="middle"/>
+        </Profile>
+        <Profile name="fs25_calendarLegendText" extends="fs25_textDefault">
+            <size value="0px 30px"/>
+            <margin value="16px 0 0 0"/>
+            <textBold value="true"/>
+            <textUpperCase value="true"/>
+            <textAutoWidth value="true"/>
+            <textAlignment value="right"/>
+        </Profile>
+        <Profile name="fs25_calendarLegendIcon" extends="baseReference">
+            <size value="25px 25px"/>
+            <margin value="8px 0 0 0"/>
+            <imageSliceId value="gui.button_middle"/>
+            <startImageSize value="6px 0"/>
+            <startImageSliceId value="gui.button_left"/>
+            <endImageSize value="6px 0"/>
+            <endImageSliceId value="gui.button_right"/>
+        </Profile>
+        <Profile name="fs25_weatherContainer" extends="emptyPanel" with="anchorBottomStretchingX">
+            <height value="170px"/>
+        </Profile>
+        <Profile name="fs25_weatherTodayIcon" extends="baseReference" with="anchorTopLeft">
+            <size value="120px 120px"/>
+            <position value="16px -16px"/>
+            <imageSdfWidth value="0.015"/>
+            <imageSliceId value="gui.icon_weather_sun"/>
+        </Profile>
+        <Profile name="fs25_weatherTodayMonth" extends="fs25_textDefault" with="anchorTopLeft">
+            <width value="150px"/>
+            <position value="170px -10px"/>
+            <textSize value="20px"/>
+            <textBold value="true"/>
+            <textUpperCase value="true"/>
+        </Profile>
+        <Profile name="fs25_weatherTodayNow" extends="fs25_textDefault" with="anchorTopLeft">
+            <position value="170px -52px"/>
+            <textVerticalAlignment value="bottom"/>
+        </Profile>
+        <Profile name="fs25_weatherTodayTemperature" extends="fs25_textDefault" with="anchorTopLeft">
+            <width value="50px"/>
+            <position value="275px -52px"/>
+            <textSize value="18px"/>
+            <textBold value="true"/>
+            <textUpperCase value="true"/>
+            <textAlignment value="right"/>
+            <textVerticalAlignment value="bottom"/>
+            <format value="temperature"/>
+            <formatDecimalPlaces value="0"/>
+        </Profile>
+        <Profile name="fs25_weatherTodayWindSpeedTitle" extends="fs25_textDefault" with="anchorTopLeft">
+            <size value="110px 60px"/>
+            <position value="170px -95px"/>
+            <textMaxNumLines value="3"/>
+            <textVerticalAlignment value="top"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorBoxToday" extends="emptyPanel" with="anchorTopLeft">
+            <size value="38px 38px"/>
+            <position value="280px -100px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon" extends="baseReference" with="anchorMiddleCenter">
+            <size value="38px 38px"/>
+            <imageSliceId value="gui.windDirection"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon45" extends="fs25_weatherWindIndicatorIcon">
+            <imageUVs value="658px 699px 92px 92px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon90" extends="fs25_weatherWindIndicatorIcon">
+            <imageUVs value="752px 699px 92px 92px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon135" extends="fs25_weatherWindIndicatorIcon">
+            <imageUVs value="846px 699px 92px 92px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon180" extends="fs25_weatherWindIndicatorIcon">
+            <imageUVs value="564px 793px 92px 92px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon225" extends="fs25_weatherWindIndicatorIcon">
+            <imageUVs value="658px 793px 92px 92px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon270" extends="fs25_weatherWindIndicatorIcon">
+            <imageUVs value="752px 793px 92px 92px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorIcon315" extends="fs25_weatherWindIndicatorIcon">
+            <imageUVs value="846px 793px 92px 92px"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorText" extends="fs25_textDefault" with="anchorMiddleCenter">
+            <size value="20px 20px"/>
+            <textSize value="16px"/>
+            <textAlignment value="center"/>
+            <format value="number"/>
+            <formatDecimalPlaces value="0"/>
+        </Profile>
+        <Profile name="fs25_weatherSeparator" extends="baseReference" with="anchorStretchingYLeft">
+            <width value="1dp"/>
+            <absoluteSizeOffset value="0px 20px"/>
+            <position value="360px 0px"/>
+            <imageColor value="$preset_fs25_colorGrey"/>
+        </Profile>
+        <Profile name="fs25_weatherList" extends="emptyPanel" with="anchorStretchingYLeft">
+            <width value="744px"/>
+            <position value="370px 0px"/>
+            <handleFocus value="false"/>
+            <soundDisabled value="true"/>
+            <isHorizontalList value="true"/>
+        </Profile>
+        <Profile name="fs25_weatherListItem" extends="emptyPanel" with="anchorStretchingYLeft">
+            <width value="62px"/>
+        </Profile>
+        <Profile name="fs25_weatherListItemTitle" extends="fs25_textDefault" with="anchorTopCenter">
+            <width value="50px"/>
+            <position value="0px -5px"/>
+            <textSize value="12px"/>
+            <textUpperCase value="true"/>
+            <textAlignment value="center"/>
+            <textColor value="$preset_fs25_colorMainLight_80"/>
+            <textSelectedColor value="$preset_fs25_colorMainLight_80"/>
+        </Profile>
+        <Profile name="fs25_weatherListItemIcon" extends="baseReference" with="anchorTopCenter">
+            <size value="50px 50px"/>
+            <position value="0 -35px"/>
+            <imageSdfWidth value="0.025"/>
+        </Profile>
+        <Profile name="fs25_weatherListItemTemperature" extends="fs25_textDefault" with="anchorTopCenter">
+            <width value="60px"/>
+            <position value="0 -95px"/>
+            <textSize value="16px"/>
+            <textBold value="true"/>
+            <textAlignment value="center"/>
+            <format value="temperature"/>
+            <formatDecimalPlaces value="0"/>
+        </Profile>
+        <Profile name="fs25_weatherListItemTemperatureLow" extends="fs25_textDefault" with="anchorTopCenter">
+            <width value="40px"/>
+            <position value="0 -120px"/>
+            <textSize value="14px"/>
+            <textAlignment value="center"/>
+            <format value="temperature"/>
+            <formatDecimalPlaces value="0"/>
+        </Profile>
+        <Profile name="fs25_weatherWindIndicatorBox" extends="emptyPanel" with="anchorBottomCenter">
+            <size value="38px 38px"/>
+        </Profile>
+        <Profile name="fs25_weatherListDaily" extends="emptyPanel" with="anchorStretchingYLeft">
+            <width value="372px"/>
+            <position value="1147px 0px"/>
+            <handleFocus value="false"/>
+            <soundDisabled value="true"/>
+            <isHorizontalList value="true"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -42,4 +42,12 @@
         <textMaxNumLines value="4"/>
         <textVerticalAlignment value="top"/>
     </Profile>
+    <Profile name="rt_crop_rotation_header" extends="fs25_textDefault" with="anchorBottomLeft">
+        <width value="275px"/>
+        <margin value="0px 45px 0px 0px"/>
+        <textSize value="18px"/>
+        <textBold value="true"/>
+        <textUpperCase value="true"/>
+        <textAlignment value="center"/>
+    </Profile>
 </GUIProfiles>

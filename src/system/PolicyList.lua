@@ -27,8 +27,7 @@ RTPolicies = {
         evaluate = function(policyInfo, policy, farmId, currentTier)
             local ig = g_currentMission.RedTape.InfoGatherer
             local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
-            local fruitsToSkip = { FruitType.GRASS, FruitType.MEADOW, FruitType.OILSEEDRADISH }
-            local cumulativeMonth = RedTape.getCumulativeMonth()
+            local fruitsToSkip = { FruitType.GRASS, FruitType.MEADOW }
 
             local totalHa = 0
             local nonCompliantHa = 0
@@ -41,31 +40,25 @@ RTPolicies = {
                         continue
                     end
 
-                    local mostRecentFruit = farmLandData.fruitHistory[cumulativeMonth]
-                    local mostRecentFruitMonth = cumulativeMonth
-                    if mostRecentFruit == nil then
-                        mostRecentFruit, mostRecentFruitMonth = gatherer:getPreviousFruit(farmland.id,
-                            cumulativeMonth - 1,
-                            cumulativeMonth - 12, nil)
-                    end
-
-                    if RedTape.tableHasValue(fruitsToSkip, mostRecentFruit) then
+                    if #farmLandData.harvestedCropsHistory == 0 then
                         continue
                     end
 
-                    -- Accounting for a new game where we have no history
-                    local hasAnyPreviousFruit = gatherer:hasRecordedFruit(farmland.id, cumulativeMonth - 12,
-                        cumulativeMonth - 1, true)
-                    if not hasAnyPreviousFruit then
+                    local mostRecentHarvest = farmLandData.harvestedCropsHistory[1]
+
+                    if RedTape.tableHasValue(fruitsToSkip, mostRecentHarvest.name) then
                         continue
                     end
 
-                    -- Try to find a different fruit in the 12 months prior to the most recent fruit. Don't match the mostRecentFruit
-                    local previousFruit, _ = gatherer:getPreviousFruit(farmland.id, mostRecentFruitMonth,
-                        mostRecentFruitMonth - 12, mostRecentFruit)
+                    if #farmLandData.harvestedCropsHistory < 2 then
+                        continue
+                    end
+
+                    local previousHarvest = farmLandData.harvestedCropsHistory[2]
 
                     totalHa = totalHa + farmLandData.areaHa
-                    if previousFruit == nil then
+
+                    if mostRecentHarvest.name == previousHarvest.name then
                         nonCompliantHa = nonCompliantHa + farmLandData.areaHa
                     end
                 end

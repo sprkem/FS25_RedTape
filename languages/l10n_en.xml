@@ -16,6 +16,7 @@
 		<text name="rt_header_schemes" text="Schemes"/>
 		<text name="rt_header_tax" text="Tax"/>
 		<text name="rt_header_eventlog" text="Event Log"/>
+		<text name="rt_header_croprotation" text="Crop Rotation"/>
 		<text name="rt_header_current_tier" text="Current Tier: %s"/>
 		<text name="rt_header_compliance_tier" text="Compliance Performance"/>
 		<text name="rt_header_policy_information" text="Policy Information"/>

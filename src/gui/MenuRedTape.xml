@@ -25,6 +25,9 @@
             <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[4]" text="$l10n_rt_header_eventlog" onClick="onClickEventLog">
                 <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
             </Button>
+            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[5]" text="$l10n_rt_header_croprotation" onClick="onClickCropRotation">
+                <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
+            </Button>
         </BoxLayout>
         <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -57px"/>
         <MultiTextOption profile="fs25_subCategorySelectorTabbed" id="subCategoryPaging" position="0px -10px" onClick="updateSubCategoryPages"/>
@@ -258,6 +261,46 @@
 
             <GuiElement id="noFarmEventsContainer">
                 <Text profile="rt_header_top_center" text="$l10n_ui_noShopItems" position="0px -60px" width="350px" />
+            </GuiElement>
+        </GuiElement>
+        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[5]">
+            <GuiElement profile="fs25_calendarContainer">
+                <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -80px"/>
+                <SmoothList profile="fs25_calendarList" id="cropHistoryTable">
+                    <ListItem profile="fs25_calendarListItem">
+                        <ThreePartBitmap profile="fs25_calendarListItemBg" name="alternating"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="farmland"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon4" position="400px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName4" position="400px 0px"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon3" position="675px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName3" position="675px 0px"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon2" position="950px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName2" position="950px 0px"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon1" position="1225px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName1" position="1225px 0px"/>
+                    </ListItem>
+                </SmoothList>
+                <!-- <ThreePartBitmap profile="fs25_lineSeparatorBottom" height="1dp"/> -->
+                <BoxLayout profile="fs25_calendarHeaderBox" id="tableHeaderBox">
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="Previous -2"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="Previous -1"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="Previous"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="Most Recent"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                </BoxLayout>
+                <!-- <GuiElement profile="fs25_calendarTodayBarBox">
+                    <Bitmap profile="fs25_calendarTodayBar" id="todayBar" visible="false"/>
+                </GuiElement>
+                <BoxLayout profile="fs25_calendarLegendBox">
+                    <Text profile="fs25_calendarLegendText" text="$l10n_ui_plantingSeason"/>
+                    <ThreePartBitmap profile="fs25_calendarLegendIcon" id="legendPlantingSeason"/>
+                    <Text profile="fs25_calendarLegendText" text="$l10n_ui_harvestSeason"/>
+                    <ThreePartBitmap profile="fs25_calendarLegendIcon" id="legendHarvestSeason"/>
+                </BoxLayout> -->
             </GuiElement>
         </GuiElement>
     </GuiElement>
