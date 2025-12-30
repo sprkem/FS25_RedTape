@@ -30,10 +30,18 @@ function RTCropRotationRenderer:populateCellForItemInSection(list, section, inde
     local data = self.data[index]
 
     cell:getAttribute("farmland"):setText(data.farmland)
+    cell:getAttribute("fruitName5"):setText(data.fruitName5)
     cell:getAttribute("fruitName4"):setText(data.fruitName4)
     cell:getAttribute("fruitName3"):setText(data.fruitName3)
     cell:getAttribute("fruitName2"):setText(data.fruitName2)
     cell:getAttribute("fruitName1"):setText(data.fruitName1)
+
+    if data.fruitIcon5 ~= nil and data.fruitIcon5 ~= "" then
+        cell:getAttribute("fruitIcon5"):setImageFilename(data.fruitIcon5)
+        cell:getAttribute("fruitIcon5"):setVisible(true)
+    else
+        cell:getAttribute("fruitIcon5"):setVisible(false)
+    end
 
     if data.fruitIcon4 ~= nil and data.fruitIcon4 ~= "" then
         cell:getAttribute("fruitIcon4"):setImageFilename(data.fruitIcon4)

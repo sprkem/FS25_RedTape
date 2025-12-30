@@ -564,14 +564,15 @@ function MenuRedTape:updateContent()
                     fruitName2 = "-",
                     fruitName3 = "-",
                     fruitName4 = "-",
+                    fruitName5 = "-",
                     fruitIcon1 = "",
                     fruitIcon2 = "",
                     fruitIcon3 = "",
-                    fruitIcon4 = ""
+                    fruitIcon4 = "",
+                    fruitIcon5 = ""
                 }
 
-                -- Fill in the harvest history (up to 4 most recent)
-                for i = 1, math.min(4, #farmlandData.harvestedCropsHistory) do
+                for i = 1, math.min(5, #farmlandData.harvestedCropsHistory) do
                     local harvestEntry = farmlandData.harvestedCropsHistory[i]
                     local fruit = g_fruitTypeManager.nameToFruitType[harvestEntry.name]
 

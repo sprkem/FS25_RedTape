@@ -43,7 +43,7 @@
         <textVerticalAlignment value="top"/>
     </Profile>
     <Profile name="rt_crop_rotation_header" extends="fs25_textDefault" with="anchorBottomLeft">
-        <width value="275px"/>
+        <width value="250px"/>
         <margin value="0px 45px 0px 0px"/>
         <textSize value="18px"/>
         <textBold value="true"/>
