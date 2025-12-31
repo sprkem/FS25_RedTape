@@ -6,7 +6,8 @@ MenuRedTape.SUB_CATEGORY = {
     POLICIES = 1,
     SCHEMES = 2,
     TAX = 3,
-    EVENTLOG = 4
+    EVENTLOG = 4,
+    CROP_ROTATION = 5
 }
 
 MenuRedTape.SCHEME_LIST_TYPE = {
@@ -20,12 +21,14 @@ MenuRedTape.HEADER_SLICES = {
     [MenuRedTape.SUB_CATEGORY.SCHEMES] = "gui.icon_ingameMenu_finances",
     [MenuRedTape.SUB_CATEGORY.TAX] = "gui.icon_ingameMenu_prices",
     [MenuRedTape.SUB_CATEGORY.EVENTLOG] = "gui.icon_ingameMenu_contracts",
+    [MenuRedTape.SUB_CATEGORY.CROP_ROTATION] = "gui.icon_ingameMenu_calendar",
 }
 MenuRedTape.HEADER_TITLES = {
     [MenuRedTape.SUB_CATEGORY.POLICIES] = "rt_header_policies",
     [MenuRedTape.SUB_CATEGORY.SCHEMES] = "rt_header_schemes",
     [MenuRedTape.SUB_CATEGORY.TAX] = "rt_header_tax",
     [MenuRedTape.SUB_CATEGORY.EVENTLOG] = "rt_header_eventlog",
+    [MenuRedTape.SUB_CATEGORY.CROP_ROTATION] = "rt_header_croprotation",
 }
 
 function MenuRedTape.new(i18n, messageCenter)
@@ -42,6 +45,7 @@ function MenuRedTape.new(i18n, messageCenter)
     self.policyReportRenderer = RTReportRenderer.new()
     self.taxNotesRenderer = RTTaxNotesRenderer.new()
     self.currentYearTaxNotesRenderer = RTTaxNotesRenderer.new()
+    self.cropRotationRenderer = RTCropRotationRenderer.new()
 
     self.vehicleElements = {}
 
@@ -211,6 +215,9 @@ function MenuRedTape:onGuiSetupFinished()
 
     self.currentYearTaxNotesTable:setDataSource(self.currentYearTaxNotesRenderer)
     self.currentYearTaxNotesTable:setDelegate(self.currentYearTaxNotesRenderer)
+
+    self.cropHistoryTable:setDataSource(self.cropRotationRenderer)
+    self.cropHistoryTable:setDelegate(self.cropRotationRenderer)
 end
 
 function MenuRedTape:initialize()
@@ -247,6 +254,7 @@ function MenuRedTape:initialize()
 
     self.menuButtonInfoDefault = { self.btnBack, self.btnNextPage, self.btnPrevPage }
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.EVENTLOG] = self.menuButtonInfoDefault
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.CROP_ROTATION] = self.menuButtonInfoDefault
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.TAX] = self.menuButtonInfoDefault
 
     self.btnSelectSchemeForFarm = {
@@ -281,6 +289,7 @@ function MenuRedTape:initialize()
     }
 
     self.vehicleTemplate:unlinkElement()
+    self.tableHeaderBox:invalidateLayout()
 end
 
 function MenuRedTape:getMenuButtonInfo()
@@ -288,8 +297,8 @@ function MenuRedTape:getMenuButtonInfo()
 end
 
 function MenuRedTape:onFrameOpen()
-    -- local xmlFile = loadXMLFile("Temp", "dataS/gui/InGameMenuContractsFrame.xml")
-    -- saveXMLFileTo(xmlFile, g_currentMission.missionInfo.savegameDirectory .. "/InGameMenuContractsFrame.xml")
+    -- local xmlFile = loadXMLFile("Temp", "dataS/gui/InGameMenuCalendarFrame.xml")
+    -- saveXMLFileTo(xmlFile, g_currentMission.missionInfo.savegameDirectory .. "/InGameMenuCalendarFrame.xml")
     -- delete(xmlFile);
 
     local texts = {}
@@ -337,6 +346,12 @@ end
 
 function MenuRedTape:onClickEventLog()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.EVENTLOG, true)
+
+    self:setMenuButtonInfoDirty()
+end
+
+function MenuRedTape:onClickCropRotation()
+    self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.CROP_ROTATION, true)
 
     self:setMenuButtonInfoDirty()
 end
@@ -510,6 +525,47 @@ function MenuRedTape:updateContent()
             self.taxNotesRenderer:setData(statement.notes)
             self.taxNotesTable:reloadData()
         end
+    elseif state == MenuRedTape.SUB_CATEGORY.CROP_ROTATION then
+        local cropHistoryData = {}
+        local currentFarmId = g_currentMission:getFarmId()
+        local ig = g_currentMission.RedTape.InfoGatherer
+        local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
+
+        for _, farmland in pairs(g_farmlandManager.farmlands) do
+            if farmland.showOnFarmlandsScreen and farmland.field ~= nil and farmland.farmId == currentFarmId then
+                local farmlandData = gatherer:getFarmlandData(farmland.id)
+
+                local cropEntry = {
+                    farmland = string.format(g_i18n:getText("rt_report_name_farmland"), farmland.id),
+                    fruitName1 = "-",
+                    fruitName2 = "-",
+                    fruitName3 = "-",
+                    fruitName4 = "-",
+                    fruitName5 = "-",
+                    fruitIcon1 = "",
+                    fruitIcon2 = "",
+                    fruitIcon3 = "",
+                    fruitIcon4 = "",
+                    fruitIcon5 = ""
+                }
+
+                for i = 1, math.min(5, #farmlandData.harvestedCropsHistory) do
+                    local harvestEntry = farmlandData.harvestedCropsHistory[i]
+                    local fruit = g_fruitTypeManager.nameToFruitType[harvestEntry.name]
+
+                    if fruit ~= nil then
+                        local fillType = g_fruitTypeManager:getFillTypeByFruitTypeIndex(fruit.index)
+                        cropEntry["fruitName" .. i] = fruit.title or harvestEntry.name
+                        cropEntry["fruitIcon" .. i] = fillType.hudOverlayFilename or ""
+                    end
+                end
+
+                table.insert(cropHistoryData, cropEntry)
+            end
+        end
+
+        self.cropRotationRenderer:setData(cropHistoryData)
+        self.cropHistoryTable:reloadData()
     end
 
     self:updateMenuButtons()

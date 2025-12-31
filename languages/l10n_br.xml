@@ -16,6 +16,14 @@
 		<text name="rt_header_schemes" text="Programas"/>
 		<text name="rt_header_tax" text="Imposto"/>
 		<text name="rt_header_eventlog" text="Registro de Eventos"/>
+		<text name="rt_header_croprotation" text="Rotação"/>
+		<text name="rt_header_croprotation_mostrecent" text="Mais Recente"/>
+		<text name="rt_header_croprotation_previous" text="Anterior"/>
+		<text name="rt_header_croprotation_previous1" text="Anterior -1"/>
+		<text name="rt_header_croprotation_previous2" text="Anterior -2"/>
+		<text name="rt_header_croprotation_previous3" text="Anterior -3"/>
+		<text name="rt_header_croprotation_view_title" text="Histórico de Colheitas"/>
+		<text name="rt_header_croprotation_view_subtitle" text="Os dados abaixo são usados pela política de Rotação de Culturas. Ao planejar a próxima cultura para um campo, certifique-se de escolher uma diferente da Mais Recente mostrada abaixo para permanecer em conformidade."/>
 		<text name="rt_header_current_tier" text="Nível Atual: %s"/>
 		<text name="rt_header_compliance_tier" text="Desempenho de Conformidade"/>
 		<text name="rt_header_policy_information" text="Informações da Política"/>

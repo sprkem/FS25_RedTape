@@ -77,3 +77,19 @@ function RTInfoGatherer:resetBiAnnualData()
         end
     end
 end
+
+function RTInfoGatherer:writeInitialClientState(streamId, connection)
+    for _, gatherer in pairs(self.gatherers) do
+        if gatherer.writeInitialClientState ~= nil then
+            gatherer:writeInitialClientState(streamId, connection)
+        end
+    end
+end
+
+function RTInfoGatherer:readInitialClientState(streamId, connection)
+    for _, gatherer in pairs(self.gatherers) do
+        if gatherer.readInitialClientState ~= nil then
+            gatherer:readInitialClientState(streamId, connection)
+        end
+    end
+end

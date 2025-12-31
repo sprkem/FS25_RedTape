@@ -79,7 +79,7 @@ RTSchemes = {
                         mayFruit ~= nil and mayFruit.name == grassName and
                         aprilFruit ~= nil and aprilFruit.name == grassName
 
-                    local didHarvest = RedTape.tableHasValue(invalidMonths, farmlandData.lastHarvestMonth)
+                    local didHarvest = RedTape.tableHasValue(invalidMonths, farmlandData.lastGrassHarvest)
                     if retainedGrass and not didHarvest then
                         local bonusPerHa = schemeInfo.tiers[tier].bonusPerHa
                         local payout = farmlandData.areaHa * bonusPerHa * EconomyManager.getPriceMultiplier()
@@ -166,7 +166,7 @@ RTSchemes = {
                         })
                     end
 
-                    if farmlandData.lastHarvestMonth == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
+                    if farmlandData.lastGrassHarvest == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
                         local reward = farmlandData.areaHa * tierInfo.maxPayoutPerHa
                         payout = payout + reward
 

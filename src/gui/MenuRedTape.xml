@@ -25,6 +25,9 @@
             <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[4]" text="$l10n_rt_header_eventlog" onClick="onClickEventLog">
                 <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
             </Button>
+            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[5]" text="$l10n_rt_header_croprotation" onClick="onClickCropRotation">
+                <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
+            </Button>
         </BoxLayout>
         <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -57px"/>
         <MultiTextOption profile="fs25_subCategorySelectorTabbed" id="subCategoryPaging" position="0px -10px" onClick="updateSubCategoryPages"/>
@@ -258,6 +261,46 @@
 
             <GuiElement id="noFarmEventsContainer">
                 <Text profile="rt_header_top_center" text="$l10n_ui_noShopItems" position="0px -60px" width="350px" />
+            </GuiElement>
+        </GuiElement>
+        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[5]">
+            <Text profile="rt_header_top_left_l" text="$l10n_rt_header_croprotation_view_title" position="0px 0px" width="350px" />
+            <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_croprotation_view_subtitle" position="40px -40px" size="1280px 30px" />
+            <GuiElement profile="fs25_calendarContainer">
+                <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -120px"/>
+                <SmoothList profile="rt_table" id="cropHistoryTable" position="0px -125px" size="1550px 630px">
+                    <ListItem profile="fs25_calendarListItem">
+                        <ThreePartBitmap profile="fs25_calendarListItemBg" name="alternating"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="farmland"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon5" position="270px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName5" position="310px 0px"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon4" position="520px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName4" position="560px 0px"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon3" position="770px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName3" position="810px 0px"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon2" position="1020px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName2" position="1060px 0px"/>
+                        <Bitmap profile="fs25_calendarListItemIcon" name="fruitIcon1" position="1270px 0px"/>
+                        <Text profile="fs25_calendarListItemFruitName" name="fruitName1" position="1310px 0px"/>
+                    </ListItem>
+                </SmoothList>
+                
+                <ThreePartBitmap profile="rt_slider_box_left" position="1570px -125px" size="6px 630px">
+                    <Slider profile="fs25_listSlider" dataElementId="cropHistoryTable" />
+                </ThreePartBitmap>
+                <BoxLayout profile="fs25_calendarHeaderBox" id="tableHeaderBox" position="250px -40px">
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="$l10n_rt_header_croprotation_previous3"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="$l10n_rt_header_croprotation_previous2"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="$l10n_rt_header_croprotation_previous1"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="$l10n_rt_header_croprotation_previous"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                    <Text profile="rt_crop_rotation_header" text="$l10n_rt_header_croprotation_mostrecent"/>
+                    <Bitmap profile="fs25_calendarSeparator"/>
+                </BoxLayout>
             </GuiElement>
         </GuiElement>
     </GuiElement>

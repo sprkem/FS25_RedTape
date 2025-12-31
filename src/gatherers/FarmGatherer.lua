@@ -722,3 +722,11 @@ function FarmGatherer:onSnowEnded()
     end
     self.saltData = {}
 end
+
+function FarmGatherer:writeInitialClientState(streamId, connection)
+    -- Add any data required on clients
+end
+
+function FarmGatherer:readInitialClientState(streamId, connection)
+    -- Add any data required on clients
+end

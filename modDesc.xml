@@ -27,6 +27,7 @@ https://github.com/sprkem/FS25_RedTape
 Changelog:
 
 1.0.0.10:
+- Adds a new crop rotation view showing harvest history, to aid planning. Minor rework of the crop rotation policy.
 - Add CZ translation.
 - Correctly pluralise months for each language
 
@@ -174,6 +175,7 @@ Journal des modifications:
         </fr>
     </description>
     <extraSourceFiles>
+        <sourceFile filename="src/events/HarvestHistoryUpdateEvent.lua"/>
         <sourceFile filename="src/events/InitialClientStateEvent.lua"/>
         <sourceFile filename="src/events/NewTaxLineItemEvent.lua"/>
         <sourceFile filename="src/events/NewTaxStatementEvent.lua"/>
@@ -209,6 +211,7 @@ Journal des modifications:
         <sourceFile filename="src/gatherers/FarmGatherer.lua"/>
         <sourceFile filename="src/gatherers/FarmlandGatherer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/ActivePoliciesRenderer.lua"/>
+        <sourceFile filename="src/gui/tableRenderers/CropRotationRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/SchemesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/EventLogRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/ReportRenderer.lua"/>

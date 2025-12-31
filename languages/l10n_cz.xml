@@ -16,6 +16,14 @@
         <text name="rt_header_schemes" text="Dotační programy"/>
         <text name="rt_header_tax" text="Daně"/>
         <text name="rt_header_eventlog" text="Protokol událostí"/>
+        <text name="rt_header_croprotation" text="Rotace"/>
+        <text name="rt_header_croprotation_mostrecent" text="Nejnovější"/>
+        <text name="rt_header_croprotation_previous" text="Předchozí"/>
+        <text name="rt_header_croprotation_previous1" text="Předchozí -1"/>
+        <text name="rt_header_croprotation_previous2" text="Předchozí -2"/>
+        <text name="rt_header_croprotation_previous3" text="Předchozí -3"/>
+        <text name="rt_header_croprotation_view_title" text="Historie sklizní"/>
+        <text name="rt_header_croprotation_view_subtitle" text="Níže uvedené údaje jsou používány směrnicí Střídání plodin. Při plánování další plodiny pro pole se ujistěte, že vyberete jinou než tu Nejnovější uvedenou níže, abyste zůstali v souladu s předpisy."/>
         <text name="rt_header_current_tier" text="Aktuální úroveň: %s"/>
         <text name="rt_header_compliance_tier" text="Shoda s předpisy"/>
         <text name="rt_header_policy_information" text="Informace o směrnici"/>
