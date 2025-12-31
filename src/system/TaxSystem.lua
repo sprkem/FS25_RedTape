@@ -99,7 +99,6 @@ function RTTaxSystem:loadFromXMLFile(xmlFile)
         k = k + 1
     end
 
-    -- Load loss rollover data
     self.lossRollover = {}
     local l = 0
     while true do
@@ -155,7 +154,6 @@ function RTTaxSystem:saveToXmlFile(xmlFile)
         end
     end
 
-    -- Save loss rollover data
     local l = 0
     for farmId, rolloverAmount in pairs(self.lossRollover) do
         if rolloverAmount > 0 then
@@ -177,7 +175,6 @@ function RTTaxSystem:writeInitialClientState(streamId, connection)
         taxStatement:writeStream(streamId, connection)
     end
 
-    -- Count total farm/month combinations
     local farmMonthCount = 0
     for farmId, months in pairs(self.lineItems) do
         for month, lineItems in pairs(months) do
@@ -209,7 +206,6 @@ function RTTaxSystem:writeInitialClientState(streamId, connection)
         end
     end
 
-    -- Write loss rollover data
     streamWriteInt32(streamId, RedTape.tableCount(self.lossRollover))
     for farmId, rolloverAmount in pairs(self.lossRollover) do
         streamWriteInt32(streamId, farmId)
@@ -265,7 +261,6 @@ function RTTaxSystem:readInitialClientState(streamId, connection)
         end
     end
 
-    -- Read loss rollover data
     local rolloverCount = streamReadInt32(streamId)
     self.lossRollover = {}
     for i = 1, rolloverCount do
