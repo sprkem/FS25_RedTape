@@ -28,6 +28,7 @@ Changelog:
 
 1.0.0.10:
 - Adds a new crop rotation view showing harvest history, to aid planning. Minor rework of the crop rotation policy.
+- Adds the idea of tax losses rolling over to future years. Upon loading an existing save, it will count losses from the previous statement.
 - Add CZ translation.
 - Correctly pluralise months for each language
 
