@@ -39,6 +39,13 @@ function RTHarvestHistoryUpdateEvent:run(connection)
     local farmlandGatherer = infoGatherer.gatherers[INFO_KEYS.FARMLANDS]
     local farmlandData = farmlandGatherer:getFarmlandData(self.farmlandId)
 
+    if #farmlandData.harvestedCropsHistory > 0 then
+        local mostRecentEntry = farmlandData.harvestedCropsHistory[1]
+        if self.month <= mostRecentEntry.month then
+            return
+        end
+    end
+
     local harvestEntry = {
         name = self.cropName,
         month = self.month
