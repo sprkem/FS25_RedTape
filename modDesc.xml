@@ -27,6 +27,7 @@ https://github.com/sprkem/FS25_RedTape
 Changelog:
 
 1.0.0.10:
+- Adds a new crop rotation view showing harvest history, to aid planning. Minor rework of the crop rotation policy.
 - Add CZ translation.
 - Correctly pluralise months for each language
 
