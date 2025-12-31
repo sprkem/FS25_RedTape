@@ -37,8 +37,6 @@ function MenuRedTape.new(i18n, messageCenter)
     self.i18n = i18n
     self.messageCenter = messageCenter
     self.menuButtonInfo = {}
-    -- self.calendarHeader = {}
-    -- self.clonedElements = {}
 
     self.eventLogRenderer = RTEventLogRenderer.new()
     self.activePoliciesRenderer = RTActivePoliciesRenderer.new()
@@ -291,27 +289,6 @@ function MenuRedTape:initialize()
     }
 
     self.vehicleTemplate:unlinkElement()
-
-    -- -- TODO verify still in use
-    -- self.separatorBigTemplate:unlinkElement()
-    -- self.separatorTemplate:unlinkElement()
-    -- self.monthTextTemplate:unlinkElement()
-    -- FocusManager:removeElement(self.separatorBigTemplate)
-    -- FocusManager:removeElement(self.separatorTemplate)
-    -- FocusManager:removeElement(self.monthTextTemplate)
-
-    -- for i = 1, 4 do
-    --     local monthTextClone = self.monthTextTemplate:clone(self.tableHeaderBox)
-    --     table.insert(self.clonedElements, monthTextClone)
-    --     self.calendarHeader[i] = monthTextClone
-    --     local separator
-    --     if i % 3 == 0 then
-    --         separator = self.separatorBigTemplate:clone(self.tableHeaderBox)
-    --     else
-    --         separator = self.separatorTemplate:clone(self.tableHeaderBox)
-    --     end
-    --     table.insert(self.clonedElements, separator)
-    -- end
     self.tableHeaderBox:invalidateLayout()
 end
 

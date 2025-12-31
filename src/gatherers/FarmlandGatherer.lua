@@ -180,10 +180,8 @@ function FarmlandGatherer:buildHarvestHistory()
 
     local currentMonth = RedTape.getCumulativeMonth()
 
-    -- No harvest history found, build it from fruitHistory
     for farmlandId, farmlandData in pairs(self.data) do
         if farmlandData.fruitHistory then
-            -- Get all months and sort them chronologically (oldest to newest)
             local sortedMonths = {}
             for month, _ in pairs(farmlandData.fruitHistory) do
                 table.insert(sortedMonths, month)
@@ -193,7 +191,6 @@ function FarmlandGatherer:buildHarvestHistory()
             local lastHarvestedCropName = nil
             local lastCropName = nil
 
-            -- Process months in chronological order
             for _, month in ipairs(sortedMonths) do
                 local fruitEntry = farmlandData.fruitHistory[month]
 
@@ -201,7 +198,6 @@ function FarmlandGatherer:buildHarvestHistory()
                     local fruit = g_fruitTypeManager.nameToFruitType[fruitEntry.name]
 
                     if fruit then
-                        -- Skip growthState checking for current month entries
                         if month == currentMonth then
                             continue
                         end
@@ -219,9 +215,6 @@ function FarmlandGatherer:buildHarvestHistory()
                                 name = fruitEntry.name,
                                 month = month
                             }
-
-                            print(string.format("Harvest detected: %s for farmland %d (month %d)", fruitEntry.name,
-                                farmlandId, month))
 
                             table.insert(farmlandData.harvestedCropsHistory, 1, harvestEntry)
 
@@ -250,31 +243,24 @@ function FarmlandGatherer:checkHarvestedState()
             local currentFruit = g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndexPos)
 
             if currentFruit == nil then
-                -- No fruit, field is not harvested
                 farmlandData.isHarvested = false
             else
-                -- Check if field is harvested (growthState equals cutState)
                 local wasHarvested = farmlandData.isHarvested
                 farmlandData.isHarvested = (growthState == currentFruit.cutState)
 
-                -- If field just became harvested (transition from not harvested to harvested)
                 if farmlandData.isHarvested and not wasHarvested then
-                    -- Add to harvested crops history
                     local harvestEntry = {
                         name = currentFruit.name,
                         month = RedTape.getCumulativeMonth()
                     }
 
-                    -- Insert at beginning of history
                     table.insert(farmlandData.harvestedCropsHistory, 1, harvestEntry)
 
-                    -- Keep only the 5 most recent entries
                     while #farmlandData.harvestedCropsHistory > 5 do
                         table.remove(farmlandData.harvestedCropsHistory)
                     end
                 end
 
-                -- Special handling for grass
                 if currentFruit and fruitTypeIndexPos == FruitType.GRASS and growthState == currentFruit.cutState then
                     farmlandData.lastGrassHarvest = RedTape.getCumulativeMonth()
                 end
