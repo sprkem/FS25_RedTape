@@ -275,6 +275,9 @@ Journal des modifications:
                 <paragraph>
                     <text text="$l10n_rt_help_tax_intro_3"/>
                 </paragraph>
+                <paragraph>
+                    <text text="$l10n_rt_help_tax_intro_4"/>
+                </paragraph>
             </page>
         </category>
     </helpLines>

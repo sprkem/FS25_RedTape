@@ -14,6 +14,7 @@ function RTTaxSystem.new()
     self.taxStatements = {}
     self.farms = {}
     self.customRates = {}
+    self.lossRollover = {} -- farmId -> rollover amount
 
     MoneyType.TAX_PAID = MoneyType.register("taxCost", "rt_ui_taxCost")
     MoneyType.LAST_ID = MoneyType.LAST_ID + 1
@@ -55,6 +56,21 @@ function RTTaxSystem:loadFromXMLFile(xmlFile)
         end
 
         i = i + 1
+    end
+
+    self.lossRollover = {}
+    local l = 0
+    while true do
+        local rolloverKey = string.format("%s.lossRollover.rollover(%d)", key, l)
+        if not hasXMLProperty(xmlFile, rolloverKey) then
+            break
+        end
+
+        local farmId = getXMLInt(xmlFile, rolloverKey .. "#farmId")
+        local amount = getXMLInt(xmlFile, rolloverKey .. "#amount")
+        self.lossRollover[farmId] = amount
+
+        l = l + 1
     end
 
     self.taxStatements = {}
@@ -137,6 +153,16 @@ function RTTaxSystem:saveToXmlFile(xmlFile)
             k = k + 1
         end
     end
+
+    local l = 0
+    for farmId, rolloverAmount in pairs(self.lossRollover) do
+        if rolloverAmount > 0 then
+            local rolloverKey = string.format("%s.lossRollover.rollover(%d)", key, l)
+            setXMLInt(xmlFile, rolloverKey .. "#farmId", farmId)
+            setXMLInt(xmlFile, rolloverKey .. "#amount", rolloverAmount)
+            l = l + 1
+        end
+    end
 end
 
 function RTTaxSystem:isEnabled()
@@ -149,7 +175,6 @@ function RTTaxSystem:writeInitialClientState(streamId, connection)
         taxStatement:writeStream(streamId, connection)
     end
 
-    -- Count total farm/month combinations
     local farmMonthCount = 0
     for farmId, months in pairs(self.lineItems) do
         for month, lineItems in pairs(months) do
@@ -179,6 +204,12 @@ function RTTaxSystem:writeInitialClientState(streamId, connection)
             streamWriteString(streamId, rateInfo.statistic)
             streamWriteFloat32(streamId, rateInfo.taxedAmountModifier)
         end
+    end
+
+    streamWriteInt32(streamId, RedTape.tableCount(self.lossRollover))
+    for farmId, rolloverAmount in pairs(self.lossRollover) do
+        streamWriteInt32(streamId, farmId)
+        streamWriteInt32(streamId, rolloverAmount)
     end
 end
 
@@ -228,6 +259,14 @@ function RTTaxSystem:readInitialClientState(streamId, connection)
             }
             table.insert(self.customRates[farmId], rateInfo)
         end
+    end
+
+    local rolloverCount = streamReadInt32(streamId)
+    self.lossRollover = {}
+    for i = 1, rolloverCount do
+        local farmId = streamReadInt32(streamId)
+        local rolloverAmount = streamReadInt32(streamId)
+        self.lossRollover[farmId] = rolloverAmount
     end
 end
 
@@ -370,7 +409,9 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
     end
 end
 
-function RTTaxSystem:generateTaxStatement(farmId, startMonth, endMonth)
+function RTTaxSystem:generateTaxStatement(farmId, startMonth, endMonth, finalizeRollover)
+    finalizeRollover = finalizeRollover or false -- Default to false for estimates
+
     local taxStatement = RTTaxStatement.new()
     taxStatement.farmId = farmId
     taxStatement.taxRate = self:getTaxRate(farmId)
@@ -385,13 +426,52 @@ function RTTaxSystem:generateTaxStatement(farmId, startMonth, endMonth)
         for _, lineItem in ipairs(lineItems) do
             self:categoriseLineItem(lineItem, taxStatement)
         end
+    end
 
-        local finalTaxAmount = taxStatement.totalTaxedIncome - taxStatement.totalExpenses
-        if finalTaxAmount < 0 then
-            finalTaxAmount = 0
+    local baseTaxableAmount = taxStatement.totalTaxedIncome - taxStatement.totalExpenses
+    local existingRollover = self.lossRollover[farmId] or 0
+
+    if baseTaxableAmount < 0 then
+        -- We have a loss this year
+        local currentYearLoss = math.abs(baseTaxableAmount)
+        local totalRollover = math.min(existingRollover + currentYearLoss, 5000000)
+
+        if finalizeRollover then
+            self.lossRollover[farmId] = totalRollover
         end
 
-        taxStatement.totalTax = math.floor(finalTaxAmount * taxStatement.taxRate)
+        taxStatement.lossRolloverGenerated = currentYearLoss
+        taxStatement.lossRolloverUsed = 0
+        taxStatement.totalTax = 0
+
+        if currentYearLoss > 0 then
+            table.insert(taxStatement.notes, string.format(
+                g_i18n:getText("rt_notes_loss_generated"),
+                g_i18n:formatMoney(currentYearLoss, 0, true, true),
+                g_i18n:formatMoney(totalRollover, 0, true, true)
+            ))
+        end
+    else
+        -- We have profit this year, apply rollover losses
+        local rolloverToUse = math.min(existingRollover, baseTaxableAmount)
+        local finalTaxableAmount = baseTaxableAmount - rolloverToUse
+
+        local remainingRollover = existingRollover - rolloverToUse
+        if finalizeRollover then
+            self.lossRollover[farmId] = remainingRollover
+        end
+
+        taxStatement.lossRolloverUsed = rolloverToUse
+        taxStatement.lossRolloverGenerated = 0
+        taxStatement.totalTax = math.floor(finalTaxableAmount * taxStatement.taxRate)
+
+        if rolloverToUse > 0 then
+            table.insert(taxStatement.notes, string.format(
+                g_i18n:getText("rt_notes_loss_applied"),
+                g_i18n:formatMoney(rolloverToUse, 0, true, true),
+                g_i18n:formatMoney(remainingRollover, 0, true, true)
+            ))
+        end
     end
 
     if self.customRates[farmId] ~= nil then
@@ -415,7 +495,7 @@ function RTTaxSystem:createAnnualTaxStatements()
     local minMonth = RedTape.getCumulativeMonth() - 12
     local maxMonth = RedTape.getCumulativeMonth() - 1
     for _, farmId in ipairs(self.farms) do
-        local taxStatement = self:generateTaxStatement(farmId, minMonth, maxMonth)
+        local taxStatement = self:generateTaxStatement(farmId, minMonth, maxMonth, true)
         g_client:getServerConnection():sendEvent(RTNewTaxStatementEvent.new(taxStatement))
     end
 end
@@ -474,7 +554,7 @@ function RTTaxSystem:getCurrentYearTaxToDate(farmId)
     local minMonth = cumulativeMonth - monthsBack
     local maxMonth = cumulativeMonth
 
-    local taxStatement = self:generateTaxStatement(farmId, minMonth, maxMonth)
+    local taxStatement = self:generateTaxStatement(farmId, minMonth, maxMonth, false)
     return taxStatement
 end
 

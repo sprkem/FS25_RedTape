@@ -165,6 +165,8 @@
 		<text name="rt_misc_spreading_too_fast" text="Sie fahren zu schnell, um Salz effektiv zu streuen. Begrenzen Sie Ihre Geschwindigkeit auf %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Sind Sie sicher, dass Sie sich für dieses Förderprogramm anmelden möchten?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Effektiver Steuersatz"/>
+		<text name="rt_notes_loss_generated" text="Jahresverluste: %s (Gesamte Verlustvorträge: %s)"/>
+		<text name="rt_notes_loss_applied" text="Gewinn durch vorherige Verluste ausgeglichen: %s (Verbleibend: %s)"/>
 		<text name="rt_help_title_red_tape" text="Papierkram"/>
 		<text name="rt_help_title_intro" text="Einführung"/>
 		<text name="rt_help_title_policies" text="Richtlinien"/>
@@ -181,6 +183,7 @@
 		<text name="rt_help_tax_intro" text="Steuern sind ein System, das einen Teil Ihrer Gewinne an die Regierung abgibt. Ein Steuerbescheid wird jedes Jahr im April abgeschlossen, und Sie zahlen die fällige Steuer automatisch im September. Wenn Sie nicht genug Geld haben, um die Steuerrechnung zu bezahlen, wird Ihr Kontostand negativ."/>
 		<text name="rt_help_tax_intro_2" text="Im Reiter Steuern können Sie auf der linken Seite der Ansicht einen abgeschlossenen Bescheid sehen. Auf der rechten Seite können Sie laufende Summen für Ihr aktuelles Steuerjahr sehen. Sie können dies nutzen, um vorauszuplanen und Ihre Steuerrechnung zu reduzieren. Wenn Sie zum Beispiel sehen, dass Ihre Gewinne für das Jahr hoch sind, könnten Sie sich entscheiden, neue Ausrüstung zu kaufen, um den Gewinn und damit Ihre Steuern zu reduzieren."/>
 		<text name="rt_help_tax_intro_3" text="Manchmal werden Sie Steuerhinweise sehen. Diese sagen Ihnen, wenn Ihr Steuerbescheid durch eine nicht standardmäßige Bedingung geändert wird. Zum Beispiel könnte ein Förderprogramm Ihnen eine zukünftige Steuererleichterung bieten. Dies wird in den Steuerhinweisen angezeigt, um Ihnen zu helfen, Ihre Rechnung zu verstehen."/>
+		<text name="rt_help_tax_intro_4" text="Wenn Sie in einem Steuerjahr einen Verlust machen, werden Sie sehen, dass diese Verluste in zukünftige Jahre 'übertragen' werden. Wenn Sie dann in einem nachfolgenden Jahr einen Gewinn erzielen, werden vorherige Verluste verwendet, um Ihre Steuerlast zu reduzieren. Dies kann dazu führen, dass Sie trotz Gewinnen keine Steuern zahlen. Vorherige Verluste werden übertragen und sind auf 5 Millionen begrenzt."/>
 		<text name="rt_setting_taxEnabled" text="Steuern aktiviert"/>
 		<text name="rt_toolTip_taxEnabled" text="Steuersystem aktivieren oder deaktivieren"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Richtlinien/Förderprogramme aktiviert"/>

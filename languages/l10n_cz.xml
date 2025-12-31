@@ -165,6 +165,8 @@
         <text name="rt_misc_spreading_too_fast" text="Jedete příliš rychle na efektivní sypání soli. Omezte rychlost na %s%s."/>
         <text name="rt_misc_confirm_scheme_selection" text="Jste si jisti, že se chcete přihlásit do tohoto dotačního programu?"/>
         <text name="rt_notes_additional_tax_benefit" text="Efektivní daňová sazba"/>
+        <text name="rt_notes_loss_generated" text="Ztráty roku: %s (Celkové převáděné ztráty: %s)"/>
+        <text name="rt_notes_loss_applied" text="Zisk kompenzován předchozími ztrátami: %s (Zbývá: %s)"/>
         <text name="rt_help_title_red_tape" text="Byrokracie / Papírování"/>
         <text name="rt_help_title_intro" text="Úvod"/>
         <text name="rt_help_title_policies" text="Směrnice"/>
@@ -181,6 +183,7 @@
         <text name="rt_help_tax_intro" text="Daně jsou systém, který odebírá část vašich zisků vládě. Daňové přiznání je uzavřeno každý rok v dubnu a splatnou daň automaticky zaplatíte v září. Pokud nemáte dostatek peněz na zaplacení daňového účtu, váš zůstatek se stane záporným."/>
         <text name="rt_help_tax_intro_2" text="Na kartě Daně můžete vidět uzavřené daňové přiznání na levé straně pohledu. Na pravé straně můžete vidět průběžné součty za váš aktuální daňový rok. Můžete to použít k plánování dopředu a snížení daňového účtu. Například, pokud vidíte, že vaše zisky za rok jsou vysoké, můžete se rozhodnout koupit nové vybavení, abyste snížili zisk, a tím i své daně."/>
         <text name="rt_help_tax_intro_3" text="Někdy uvidíte daňové poznámky. Ty vám řeknou, pokud je vaše daňové přiznání změněno neštandardní podmínkou. Například, dotační program by vám mohl nabídnout budoucí daňovou úlevu. To se zobrazí v daňových poznámkách, aby vám pomohlo porozumět vaší účtu."/>
+        <text name="rt_help_tax_intro_4" text="Pokud uděláte ztrátu v jednom daňovém roce, uvidíte, že se tyto ztráty 'převádějí' do budoucích let. Pokud pak dosáhnete zisku v následujícím roce, předchozí ztráty budou použity ke snížení vašeho daňového zatížení. To může vést k neplacení daní navzdory dosažení zisků. Předchozí ztráty se převádějí a jsou omezeny na 5 milionů."/>
 		<text name="rt_setting_taxEnabled" text="Daně povoleny"/>
 		<text name="rt_toolTip_taxEnabled" text="Povolit nebo zakázat daňový systém"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Směrnice/Dotační programy povoleny"/>

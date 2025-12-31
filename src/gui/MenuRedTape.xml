@@ -191,7 +191,7 @@
                         <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_tax_notes_info" position="40px -350px" width="800px" />
                         <SmoothList id="taxNotesTable" profile="rt_table" position="40px -380px" size="600px 380px">
                             <ListItem profile="rtTableListItem">
-                                <Text profile="rtListRowCellLeft" position="20px 0px" size="300px 32px" name="note"/>
+                                <Text profile="rtListRowCellLeft" position="20px 0px" size="500px 32px" name="note"/>
                             </ListItem>
                         </SmoothList>
                         <ThreePartBitmap profile="rt_slider_box_left" position="660px -380px" size="6px 380px">
@@ -225,7 +225,7 @@
                     <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_tax_notes_info" position="840px -350px" width="800px" />
                     <SmoothList id="currentYearTaxNotesTable" profile="rt_table" position="840px -380px" size="600px 380px">
                         <ListItem profile="rtTableListItem">
-                            <Text profile="rtListRowCellLeft" position="20px 0px" size="300px 32px" name="note"/>
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="500px 32px" name="note"/>
                         </ListItem>
                     </SmoothList>
                     <ThreePartBitmap profile="rt_slider_box_left" position="1460px -380px" size="6px 380px">

@@ -14,6 +14,8 @@ function RTTaxStatement.new()
     self.taxRate = 0.2
     self.notes = {}
     self.paid = false
+    self.lossRolloverUsed = 0      -- Amount of previous losses applied this year
+    self.lossRolloverGenerated = 0 -- New losses generated this year
 
     return self
 end
@@ -27,6 +29,8 @@ function RTTaxStatement:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#totalTax", self.totalTax)
     setXMLBool(xmlFile, key .. "#paid", self.paid)
     setXMLFloat(xmlFile, key .. "#taxRate", self.taxRate)
+    setXMLInt(xmlFile, key .. "#lossRolloverUsed", self.lossRolloverUsed)
+    setXMLInt(xmlFile, key .. "#lossRolloverGenerated", self.lossRolloverGenerated)
 
     local notesKey = key .. ".notes"
     for i, note in ipairs(self.notes) do
@@ -44,6 +48,8 @@ function RTTaxStatement:loadFromXMLFile(xmlFile, key)
     self.totalTax = getXMLInt(xmlFile, key .. "#totalTax")
     self.paid = getXMLBool(xmlFile, key .. "#paid")
     self.taxRate = getXMLFloat(xmlFile, key .. "#taxRate")
+    self.lossRolloverUsed = getXMLInt(xmlFile, key .. "#lossRolloverUsed") or 0
+    self.lossRolloverGenerated = getXMLInt(xmlFile, key .. "#lossRolloverGenerated") or 0
 
     self.notes = {}
     local notesKey = key .. ".notes"
@@ -59,6 +65,42 @@ function RTTaxStatement:loadFromXMLFile(xmlFile, key)
 
         i = i + 1
     end
+
+    -- Handle backward compatibility for old save files
+    self:handleLegacyLossRollover(xmlFile, key)
+end
+
+-- TODO: eventually remove this function
+function RTTaxStatement:handleLegacyLossRollover(xmlFile, key)
+    -- Check if this is an old-style file by looking for the absence of lossRolloverUsed
+    if not hasXMLProperty(xmlFile, key .. "#lossRolloverUsed") then
+        local baseTaxableAmount = self.totalTaxedIncome - self.totalExpenses
+
+        if baseTaxableAmount < 0 then
+            -- This statement had a loss, we need to add it to the rollover system
+            local lossAmount = math.abs(baseTaxableAmount)
+
+            local taxSystem = g_currentMission.RedTape.TaxSystem
+            if taxSystem then
+                local existingRollover = taxSystem.lossRollover[self.farmId] or 0
+
+                local totalRollover = math.min(existingRollover + lossAmount, 5000000)
+                taxSystem.lossRollover[self.farmId] = totalRollover
+
+                self.lossRolloverGenerated = lossAmount
+                self.lossRolloverUsed = 0
+
+                table.insert(self.notes, string.format(
+                    g_i18n:getText("rt_notes_loss_generated"),
+                    g_i18n:formatMoney(lossAmount, 0, true, true),
+                    g_i18n:formatMoney(totalRollover, 0, true, true)
+                ))
+            end
+        else
+            self.lossRolloverGenerated = 0
+            self.lossRolloverUsed = 0
+        end
+    end
 end
 
 function RTTaxStatement:writeStream(streamId, connection)
@@ -69,6 +111,8 @@ function RTTaxStatement:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.totalTax)
     streamWriteBool(streamId, self.paid)
     streamWriteFloat32(streamId, self.taxRate)
+    streamWriteInt32(streamId, self.lossRolloverUsed)
+    streamWriteInt32(streamId, self.lossRolloverGenerated)
 
     streamWriteInt32(streamId, RedTape.tableCount(self.notes))
     for _, note in pairs(self.notes) do
@@ -84,6 +128,8 @@ function RTTaxStatement:readStream(streamId, connection)
     self.totalTax = streamReadInt32(streamId)
     self.paid = streamReadBool(streamId)
     self.taxRate = streamReadFloat32(streamId)
+    self.lossRolloverUsed = streamReadInt32(streamId)
+    self.lossRolloverGenerated = streamReadInt32(streamId)
 
     local notesCount = streamReadInt32(streamId)
     self.notes = {}

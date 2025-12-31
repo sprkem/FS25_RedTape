@@ -165,6 +165,8 @@
 		<text name="rt_misc_spreading_too_fast" text="Vous roulez trop vite pour épandre le sel efficacement. Limitez votre vitesse à %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Êtes-vous sûr de vouloir vous inscrire à ce programme ?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Taux d'imposition effectif"/>
+		<text name="rt_notes_loss_generated" text="Pertes de l'année : %s (Total des pertes reportées : %s)"/>
+		<text name="rt_notes_loss_applied" text="Bénéfice compensé par les pertes antérieures : %s (Restant : %s)"/>
 		<text name="rt_help_title_red_tape" text="Paperasserie"/>
 		<text name="rt_help_title_intro" text="Introduction"/>
 		<text name="rt_help_title_policies" text="Politiques"/>
@@ -181,6 +183,7 @@
 		<text name="rt_help_tax_intro" text="L'impôt est un système qui donne une partie de vos bénéfices au gouvernement. Une déclaration fiscale est finalisée en avril chaque année, et vous paierez automatiquement l'impôt dû en septembre. Si vous n'avez pas assez d'argent pour payer la facture fiscale, votre solde deviendra négatif."/>
 		<text name="rt_help_tax_intro_2" text="Dans l'onglet Impôts, vous pouvez voir une déclaration finalisée sur le côté gauche de la vue. Sur le côté droit, vous pouvez voir les totaux en cours pour votre année fiscale actuelle. Vous pouvez l'utiliser pour planifier et réduire votre facture fiscale. Par exemple, si vous voyez que vos bénéfices sont élevés pour l'année, vous pourriez choisir d'acheter du nouveau matériel pour réduire les bénéfices, et donc vos impôts."/>
 		<text name="rt_help_tax_intro_3" text="Parfois, vous verrez des notes fiscales. Celles-ci vous indiquent quand votre déclaration fiscale est modifiée par une condition non standard. Par exemple, un programme pourrait vous offrir une réduction d'impôt future. Cela sera indiqué dans les notes fiscales pour vous aider à comprendre votre facture."/>
+		<text name="rt_help_tax_intro_4" text="Si vous subissez une perte au cours d'une année fiscale, vous verrez que ces pertes se 'reportent' sur les années futures. Si vous réalisez ensuite un bénéfice au cours d'une année ultérieure, les pertes antérieures seront utilisées pour réduire votre charge fiscale. Cela peut entraîner le non-paiement d'impôts malgré la réalisation de bénéfices. Les pertes antérieures se reportent et sont plafonnées à 5 millions."/>
 		<text name="rt_setting_taxEnabled" text="Impôts activés"/>
 		<text name="rt_toolTip_taxEnabled" text="Activer ou désactiver le système fiscal"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Politiques/Programmes activés"/>
