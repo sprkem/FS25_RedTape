@@ -58,6 +58,21 @@ function RTTaxSystem:loadFromXMLFile(xmlFile)
         i = i + 1
     end
 
+    self.lossRollover = {}
+    local l = 0
+    while true do
+        local rolloverKey = string.format("%s.lossRollover.rollover(%d)", key, l)
+        if not hasXMLProperty(xmlFile, rolloverKey) then
+            break
+        end
+
+        local farmId = getXMLInt(xmlFile, rolloverKey .. "#farmId")
+        local amount = getXMLInt(xmlFile, rolloverKey .. "#amount")
+        self.lossRollover[farmId] = amount
+
+        l = l + 1
+    end
+
     self.taxStatements = {}
     local j = 0
     while true do
@@ -97,21 +112,6 @@ function RTTaxSystem:loadFromXMLFile(xmlFile)
         table.insert(self.customRates[farmId], rateInfo)
 
         k = k + 1
-    end
-
-    self.lossRollover = {}
-    local l = 0
-    while true do
-        local rolloverKey = string.format("%s.lossRollover.rollover(%d)", key, l)
-        if not hasXMLProperty(xmlFile, rolloverKey) then
-            break
-        end
-
-        local farmId = getXMLInt(xmlFile, rolloverKey .. "#farmId")
-        local amount = getXMLInt(xmlFile, rolloverKey .. "#amount")
-        self.lossRollover[farmId] = amount
-
-        l = l + 1
     end
 end
 
