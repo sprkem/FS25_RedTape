@@ -14,6 +14,8 @@ function RTTaxStatement.new()
     self.taxRate = 0.2
     self.notes = {}
     self.paid = false
+    self.lossRolloverUsed = 0 -- Amount of previous losses applied this year
+    self.lossRolloverGenerated = 0 -- New losses generated this year
 
     return self
 end
@@ -27,6 +29,8 @@ function RTTaxStatement:saveToXmlFile(xmlFile, key)
     setXMLInt(xmlFile, key .. "#totalTax", self.totalTax)
     setXMLBool(xmlFile, key .. "#paid", self.paid)
     setXMLFloat(xmlFile, key .. "#taxRate", self.taxRate)
+    setXMLInt(xmlFile, key .. "#lossRolloverUsed", self.lossRolloverUsed)
+    setXMLInt(xmlFile, key .. "#lossRolloverGenerated", self.lossRolloverGenerated)
 
     local notesKey = key .. ".notes"
     for i, note in ipairs(self.notes) do
@@ -44,6 +48,8 @@ function RTTaxStatement:loadFromXMLFile(xmlFile, key)
     self.totalTax = getXMLInt(xmlFile, key .. "#totalTax")
     self.paid = getXMLBool(xmlFile, key .. "#paid")
     self.taxRate = getXMLFloat(xmlFile, key .. "#taxRate")
+    self.lossRolloverUsed = getXMLInt(xmlFile, key .. "#lossRolloverUsed") or 0
+    self.lossRolloverGenerated = getXMLInt(xmlFile, key .. "#lossRolloverGenerated") or 0
 
     self.notes = {}
     local notesKey = key .. ".notes"
@@ -69,6 +75,8 @@ function RTTaxStatement:writeStream(streamId, connection)
     streamWriteInt32(streamId, self.totalTax)
     streamWriteBool(streamId, self.paid)
     streamWriteFloat32(streamId, self.taxRate)
+    streamWriteInt32(streamId, self.lossRolloverUsed)
+    streamWriteInt32(streamId, self.lossRolloverGenerated)
 
     streamWriteInt32(streamId, RedTape.tableCount(self.notes))
     for _, note in pairs(self.notes) do
@@ -84,6 +92,8 @@ function RTTaxStatement:readStream(streamId, connection)
     self.totalTax = streamReadInt32(streamId)
     self.paid = streamReadBool(streamId)
     self.taxRate = streamReadFloat32(streamId)
+    self.lossRolloverUsed = streamReadInt32(streamId)
+    self.lossRolloverGenerated = streamReadInt32(streamId)
 
     local notesCount = streamReadInt32(streamId)
     self.notes = {}

@@ -165,6 +165,8 @@
 		<text name="rt_misc_spreading_too_fast" text="Sie fahren zu schnell, um Salz effektiv zu streuen. Begrenzen Sie Ihre Geschwindigkeit auf %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Sind Sie sicher, dass Sie sich für dieses Förderprogramm anmelden möchten?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Effektiver Steuersatz"/>
+		<text name="rt_notes_loss_generated" text="Jahresverluste: %s (Gesamte Verlustvorträge: %s)"/>
+		<text name="rt_notes_loss_applied" text="Gewinn durch vorherige Verluste ausgeglichen: %s (Verbleibend: %s)"/>
 		<text name="rt_help_title_red_tape" text="Papierkram"/>
 		<text name="rt_help_title_intro" text="Einführung"/>
 		<text name="rt_help_title_policies" text="Richtlinien"/>

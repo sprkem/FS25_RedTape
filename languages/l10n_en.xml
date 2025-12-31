@@ -165,6 +165,8 @@
 		<text name="rt_misc_spreading_too_fast" text="You are driving too fast to spread salt effectively. Limit your speed to %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Are you sure you want to sign up to this scheme?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Effective tax rate"/>
+		<text name="rt_notes_loss_generated" text="Year losses: %s (Total rolling losses: %s)"/>
+		<text name="rt_notes_loss_applied" text="Profit offset by previous losses: %s (Remaining: %s)"/>
 		<text name="rt_help_title_red_tape" text="Red Tape"/>
 		<text name="rt_help_title_intro" text="Introduction"/>
 		<text name="rt_help_title_policies" text="Policies"/>

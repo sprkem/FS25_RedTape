@@ -165,6 +165,8 @@
 		<text name="rt_misc_spreading_too_fast" text="Вы едете слишком быстро, чтобы эффективно распределять соль. Ограничьте скорость до %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Вы уверены, что хотите подписаться на эту программу?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Эффективная налоговая ставка"/>
+		<text name="rt_notes_loss_generated" text="Убытки года: %s (Общие переносимые убытки: %s)"/>
+		<text name="rt_notes_loss_applied" text="Прибыль компенсирована предыдущими убытками: %s (Остаток: %s)"/>
 		<text name="rt_help_title_red_tape" text="Бюрократическая волокита"/>
 		<text name="rt_help_title_intro" text="Вступление"/>
 		<text name="rt_help_title_policies" text="Политические директивы"/>

@@ -165,6 +165,8 @@
 		<text name="rt_misc_spreading_too_fast" text="Você está dirigindo rápido demais para espalhar sal efetivamente. Limite sua velocidade para %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Tem certeza de que deseja se inscrever neste programa?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Alíquota efetiva"/>
+		<text name="rt_notes_loss_generated" text="Perdas do ano: %s (Total de perdas acumuladas: %s)"/>
+		<text name="rt_notes_loss_applied" text="Lucro compensado por perdas anteriores: %s (Restante: %s)"/>
 		<text name="rt_help_title_red_tape" text="Burocracia"/>
 		<text name="rt_help_title_intro" text="Introdução"/>
 		<text name="rt_help_title_policies" text="Políticas"/>

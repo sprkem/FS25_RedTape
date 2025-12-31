@@ -165,6 +165,8 @@
 		<text name="rt_misc_spreading_too_fast" text="Vous roulez trop vite pour épandre le sel efficacement. Limitez votre vitesse à %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Êtes-vous sûr de vouloir vous inscrire à ce programme ?"/>
 		<text name="rt_notes_additional_tax_benefit" text="Taux d'imposition effectif"/>
+		<text name="rt_notes_loss_generated" text="Pertes de l'année : %s (Total des pertes reportées : %s)"/>
+		<text name="rt_notes_loss_applied" text="Bénéfice compensé par les pertes antérieures : %s (Restant : %s)"/>
 		<text name="rt_help_title_red_tape" text="Paperasserie"/>
 		<text name="rt_help_title_intro" text="Introduction"/>
 		<text name="rt_help_title_policies" text="Politiques"/>

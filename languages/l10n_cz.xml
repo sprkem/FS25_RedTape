@@ -165,6 +165,8 @@
         <text name="rt_misc_spreading_too_fast" text="Jedete příliš rychle na efektivní sypání soli. Omezte rychlost na %s%s."/>
         <text name="rt_misc_confirm_scheme_selection" text="Jste si jisti, že se chcete přihlásit do tohoto dotačního programu?"/>
         <text name="rt_notes_additional_tax_benefit" text="Efektivní daňová sazba"/>
+        <text name="rt_notes_loss_generated" text="Ztráty roku: %s (Celkové převáděné ztráty: %s)"/>
+        <text name="rt_notes_loss_applied" text="Zisk kompenzován předchozími ztrátami: %s (Zbývá: %s)"/>
         <text name="rt_help_title_red_tape" text="Byrokracie / Papírování"/>
         <text name="rt_help_title_intro" text="Úvod"/>
         <text name="rt_help_title_policies" text="Směrnice"/>
