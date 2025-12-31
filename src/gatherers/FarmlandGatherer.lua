@@ -299,6 +299,7 @@ function FarmlandGatherer:wasFruitHarvestable(farmlandId, startMonth, endMonth, 
     return false
 end
 
+-- Add any data required on clients
 function FarmlandGatherer:writeInitialClientState(streamId, connection)
     -- Write the number of farmlands with harvest history data
     local farmlandCount = 0
@@ -324,6 +325,7 @@ function FarmlandGatherer:writeInitialClientState(streamId, connection)
     end
 end
 
+-- Add any data required on clients
 function FarmlandGatherer:readInitialClientState(streamId, connection)
     -- Read the number of farmlands with harvest history data
     local farmlandCount = streamReadInt32(streamId)

@@ -724,9 +724,9 @@ function FarmGatherer:onSnowEnded()
 end
 
 function FarmGatherer:writeInitialClientState(streamId, connection)
-    -- TODO: Implement client state synchronization
+    -- Add any data required on clients
 end
 
 function FarmGatherer:readInitialClientState(streamId, connection)
-    -- TODO: Implement client state synchronization
+    -- Add any data required on clients
 end
