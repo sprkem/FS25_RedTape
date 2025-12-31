@@ -264,10 +264,11 @@
             </GuiElement>
         </GuiElement>
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[5]">
-            <Text profile="rt_header_top_left" text="Harvest History" position="0px 0px" width="350px" />
+            <Text profile="rt_header_top_left_l" text="$l10n_rt_header_croprotation_view_title" position="0px 0px" width="350px" />
+            <Text profile="rt_scheme_policy_info" text="$l10n_rt_header_croprotation_view_subtitle" position="40px -40px" size="1280px 30px" />
             <GuiElement profile="fs25_calendarContainer">
-                <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -80px"/>
-                <SmoothList profile="rt_table" id="cropHistoryTable" position="0px -85px" size="1550px 670px">
+                <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -120px"/>
+                <SmoothList profile="rt_table" id="cropHistoryTable" position="0px -125px" size="1550px 630px">
                     <ListItem profile="fs25_calendarListItem">
                         <ThreePartBitmap profile="fs25_calendarListItemBg" name="alternating"/>
                         <Text profile="fs25_calendarListItemFruitName" name="farmland"/>
@@ -284,10 +285,10 @@
                     </ListItem>
                 </SmoothList>
                 
-                <ThreePartBitmap profile="rt_slider_box_left" position="1570px -85px" size="6px 670px">
+                <ThreePartBitmap profile="rt_slider_box_left" position="1570px -125px" size="6px 630px">
                     <Slider profile="fs25_listSlider" dataElementId="cropHistoryTable" />
                 </ThreePartBitmap>
-                <BoxLayout profile="fs25_calendarHeaderBox" id="tableHeaderBox">
+                <BoxLayout profile="fs25_calendarHeaderBox" id="tableHeaderBox" position="250px -40px">
                     <Bitmap profile="fs25_calendarSeparator"/>
                     <Text profile="rt_crop_rotation_header" text="$l10n_rt_header_croprotation_previous3"/>
                     <Bitmap profile="fs25_calendarSeparator"/>

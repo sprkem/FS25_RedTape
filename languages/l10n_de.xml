@@ -22,6 +22,8 @@
 		<text name="rt_header_croprotation_previous1" text="Vorherige -1"/>
 		<text name="rt_header_croprotation_previous2" text="Vorherige -2"/>
 		<text name="rt_header_croprotation_previous3" text="Vorherige -3"/>
+		<text name="rt_header_croprotation_view_title" text="Erntehistorie"/>
+		<text name="rt_header_croprotation_view_subtitle" text="Die unten stehenden Daten werden von der Fruchtfolge-Richtlinie verwendet. Achten Sie bei der Planung der nächsten Kultur für ein Feld darauf, eine andere als die unten gezeigte Aktuellste zu wählen, um konform zu bleiben."/>
 		<text name="rt_header_current_tier" text="Aktuelle Stufe: %s"/>
 		<text name="rt_header_compliance_tier" text="Compliance-Leistung"/>
 		<text name="rt_header_policy_information" text="Richtlinieninformationen"/>
