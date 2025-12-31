@@ -14,7 +14,7 @@ function RTTaxStatement.new()
     self.taxRate = 0.2
     self.notes = {}
     self.paid = false
-    self.lossRolloverUsed = 0 -- Amount of previous losses applied this year
+    self.lossRolloverUsed = 0      -- Amount of previous losses applied this year
     self.lossRolloverGenerated = 0 -- New losses generated this year
 
     return self
@@ -64,6 +64,42 @@ function RTTaxStatement:loadFromXMLFile(xmlFile, key)
         table.insert(self.notes, note)
 
         i = i + 1
+    end
+
+    -- Handle backward compatibility for old save files
+    self:handleLegacyLossRollover(xmlFile, key)
+end
+
+-- TODO: eventually remove this function
+function RTTaxStatement:handleLegacyLossRollover(xmlFile, key)
+    -- Check if this is an old-style file by looking for the absence of lossRolloverUsed
+    if not hasXMLProperty(xmlFile, key .. "#lossRolloverUsed") then
+        local baseTaxableAmount = self.totalTaxedIncome - self.totalExpenses
+
+        if baseTaxableAmount < 0 then
+            -- This statement had a loss, we need to add it to the rollover system
+            local lossAmount = math.abs(baseTaxableAmount)
+
+            local taxSystem = g_currentMission.RedTape.TaxSystem
+            if taxSystem then
+                local existingRollover = taxSystem.lossRollover[self.farmId] or 0
+
+                local totalRollover = math.min(existingRollover + lossAmount, 5000000)
+                taxSystem.lossRollover[self.farmId] = totalRollover
+
+                self.lossRolloverGenerated = lossAmount
+                self.lossRolloverUsed = 0
+
+                table.insert(self.notes, string.format(
+                    g_i18n:getText("rt_notes_loss_generated"),
+                    g_i18n:formatMoney(lossAmount, 0, true, true),
+                    g_i18n:formatMoney(totalRollover, 0, true, true)
+                ))
+            end
+        else
+            self.lossRolloverGenerated = 0
+            self.lossRolloverUsed = 0
+        end
     end
 end
 
