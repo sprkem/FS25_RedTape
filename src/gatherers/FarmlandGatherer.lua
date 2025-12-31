@@ -201,7 +201,7 @@ function FarmlandGatherer:buildHarvestHistory()
                         if month == currentMonth then
                             continue
                         end
-                        
+
                         local isHarvestable = (fruitEntry.growthState == fruit.cutState) or
                             (fruitEntry.growthState >= fruit.minHarvestingGrowthState and
                                 fruitEntry.growthState <= fruit.maxHarvestingGrowthState)
@@ -249,16 +249,8 @@ function FarmlandGatherer:checkHarvestedState()
                 farmlandData.isHarvested = (growthState == currentFruit.cutState)
 
                 if farmlandData.isHarvested and not wasHarvested then
-                    local harvestEntry = {
-                        name = currentFruit.name,
-                        month = RedTape.getCumulativeMonth()
-                    }
-
-                    table.insert(farmlandData.harvestedCropsHistory, 1, harvestEntry)
-
-                    while #farmlandData.harvestedCropsHistory > 5 do
-                        table.remove(farmlandData.harvestedCropsHistory)
-                    end
+                    g_client:getServerConnection():sendEvent(RTHarvestHistoryUpdateEvent.new(farmland.id,
+                        currentFruit.name, RedTape.getCumulativeMonth()))
                 end
 
                 if currentFruit and fruitTypeIndexPos == FruitType.GRASS and growthState == currentFruit.cutState then
@@ -305,4 +297,51 @@ function FarmlandGatherer:wasFruitHarvestable(farmlandId, startMonth, endMonth, 
         end
     end
     return false
+end
+
+function FarmlandGatherer:writeInitialClientState(streamId, connection)
+    -- Write the number of farmlands with harvest history data
+    local farmlandCount = 0
+    for farmlandId, farmlandData in pairs(self.data) do
+        if #farmlandData.harvestedCropsHistory > 0 then
+            farmlandCount = farmlandCount + 1
+        end
+    end
+
+    streamWriteInt32(streamId, farmlandCount)
+
+    -- Write each farmland's harvest history
+    for farmlandId, farmlandData in pairs(self.data) do
+        if #farmlandData.harvestedCropsHistory > 0 then
+            streamWriteInt32(streamId, farmlandId)
+            streamWriteInt32(streamId, #farmlandData.harvestedCropsHistory)
+
+            for _, harvestEntry in ipairs(farmlandData.harvestedCropsHistory) do
+                streamWriteString(streamId, harvestEntry.name)
+                streamWriteInt32(streamId, harvestEntry.month)
+            end
+        end
+    end
+end
+
+function FarmlandGatherer:readInitialClientState(streamId, connection)
+    -- Read the number of farmlands with harvest history data
+    local farmlandCount = streamReadInt32(streamId)
+
+    -- Read each farmland's harvest history
+    for i = 1, farmlandCount do
+        local farmlandId = streamReadInt32(streamId)
+        local historyCount = streamReadInt32(streamId)
+
+        local farmlandData = self:getFarmlandData(farmlandId)
+        farmlandData.harvestedCropsHistory = {}
+
+        for j = 1, historyCount do
+            local harvestEntry = {
+                name = streamReadString(streamId),
+                month = streamReadInt32(streamId)
+            }
+            table.insert(farmlandData.harvestedCropsHistory, harvestEntry)
+        end
+    end
 end

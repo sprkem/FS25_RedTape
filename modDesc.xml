@@ -175,6 +175,7 @@ Journal des modifications:
         </fr>
     </description>
     <extraSourceFiles>
+        <sourceFile filename="src/events/HarvestHistoryUpdateEvent.lua"/>
         <sourceFile filename="src/events/InitialClientStateEvent.lua"/>
         <sourceFile filename="src/events/NewTaxLineItemEvent.lua"/>
         <sourceFile filename="src/events/NewTaxStatementEvent.lua"/>
