@@ -19,3 +19,7 @@ Some rough plans are:
 - More policies (as above)
 - A system to apply for Grants, e.g. to help towards a new cow shed
 - Long term: random events, e.g. your tractor was stolen.
+
+## Discord
+
+[![Discord](https://img.shields.io/discord/1415966930799693847?logo=discord)](https://discord.gg/eGyACAan)
