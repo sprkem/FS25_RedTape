@@ -29,6 +29,7 @@ Changelog:
 1.0.0.10:
 - Adds a new crop rotation view showing harvest history, to aid planning. Minor rework of the crop rotation policy.
 - Adds the idea of tax losses rolling over to future years. Upon loading an existing save, it will count losses from the previous statement.
+- Added filter to brand demo to avoid offering useless equipment. Currently this filters out frontloaders but will adjust based on feedback.
 - Add CZ translation.
 - Correctly pluralise months for each language
 
@@ -82,6 +83,13 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.10:
+- Fügt eine neue Fruchtfolgeansicht mit Erntehistorie zur besseren Planung hinzu. Die Fruchtfolgerichtlinie wurde leicht überarbeitet.
+- Fügt die Möglichkeit hinzu, Steuerverluste in die Folgejahre zu übertragen. Beim Laden eines bestehenden Spielstands werden die Verluste aus der vorherigen Steuererklärung berücksichtigt.
+- Dem Marken-Demo wurde ein Filter hinzugefügt, um das Anbieten unnützer Geräte zu vermeiden. Aktuell werden Frontlader herausgefiltert, dies wird jedoch basierend auf Feedback angepasst.
+- Tschechische Übersetzung hinzugefügt.
+- Monate in allen Sprachen korrekt im Plural dargestellt.
 
 1.0.0.9:
 - Behebung eines Problems, bei dem Traktor-Demos nicht korrekt endeten.
@@ -137,6 +145,13 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.0.10:
+- Ajout d'une nouvelle vue de rotation des cultures affichant l'historique des récoltes, pour faciliter la planification. Légère refonte de la politique de rotation des cultures.
+- Ajout du report des pertes fiscales sur les années suivantes. Lors du chargement d'une sauvegarde existante, les pertes de la déclaration précédente seront prises en compte.
+- Ajout d'un filtre à la démo de la marque pour éviter de proposer du matériel inutile. Actuellement, ce filtre exclut les chargeurs frontaux, mais il sera ajusté en fonction des retours.
+- Ajout de la traduction tchèque.
+- Correction du pluriel des mois dans chaque langue.
 
 1.0.0.9:
 - Correction d'un problème avec les démonstrations de tracteurs qui ne se terminaient pas correctement.

@@ -779,12 +779,21 @@ RTSchemes = {
             local chosenBrandIndex = g_brandManager.nameToBrand[chosenBrand].index
             local chosenDuration = tierInfo.durationMonths[math.random(1, #tierInfo.durationMonths)]
             local maxItems = tierInfo.itemCounts[math.random(1, #tierInfo.itemCounts)]
+            local skipCategories = { "FRONTLOADERS" }
 
             local options = {}
             for _, item in pairs(g_storeManager:getItems()) do
                 StoreItemUtil.loadSpecsFromXML(item)
                 if item.brandIndex == chosenBrandIndex then
-                    table.insert(options, item)
+                    local skip = false
+                    for _, name in pairs(item.categoryNames) do
+                        if RedTape.tableHasValue(skipCategories, name) then
+                            skip = true
+                        end
+                    end
+                    if not skip then
+                        table.insert(options, item)
+                    end
                 end
             end
 
