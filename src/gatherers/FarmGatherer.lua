@@ -537,9 +537,18 @@ function FarmGatherer:getHusbandryStats()
         stats.navigableArea = getNavMeshSurfaceArea(animalSpec.navigationMesh)
         stats.animalType = animalType
 
+        -- Add meadow area to navigable area if meadow exists
         if meadowSpec ~= nil then
             totalFood = meadowSpec.info.value
             stats.meadowFood = meadowSpec.info.value
+            
+            -- Calculate meadow area from grass field
+            local meadowArea = self:calculateMeadowArea(meadowSpec)
+            
+            -- Add meadow area to total navigable area
+            if meadowArea > 0 then
+                stats.navigableArea = stats.navigableArea + meadowArea
+            end
         end
 
         local food = g_currentMission.animalFoodSystem:getAnimalFood(animalType)
@@ -713,6 +722,38 @@ function FarmGatherer:onSnowApplied()
         farmData.saltCount = 0
     end
     self.saltData = {}
+end
+
+function FarmGatherer:calculateMeadowArea(meadowSpec)
+    if meadowSpec == nil then
+        return 0
+    end
+    
+    local meadowArea = 0
+    
+    -- Calculate area from capacity and literPerSqm
+    if meadowSpec.info ~= nil and meadowSpec.info.capacity ~= nil and meadowSpec.info.capacity > 0 then
+        -- Find literPerSqm from fruitTypeInfos
+        local literPerSqm = nil
+        if meadowSpec.fruitTypeInfos ~= nil then
+            for _, fruitTypeInfo in pairs(meadowSpec.fruitTypeInfos) do
+                if type(fruitTypeInfo) == "table" and fruitTypeInfo.fruitType ~= nil then
+                    local fruitType = fruitTypeInfo.fruitType
+                    if fruitType.literPerSqm ~= nil and fruitType.literPerSqm > 0 then
+                        literPerSqm = fruitType.literPerSqm
+                        break
+                    end
+                end
+            end
+        end
+        
+        -- Calculate area: capacity (liters) / literPerSqm = area (m²)
+        if literPerSqm ~= nil and literPerSqm > 0 then
+            meadowArea = meadowSpec.info.capacity / literPerSqm
+        end
+    end
+    
+    return meadowArea
 end
 
 function FarmGatherer:onSnowEnded()
