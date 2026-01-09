@@ -18,6 +18,7 @@ function RTInitialClientStateEvent:writeStream(streamId, connection)
     rt.PolicySystem:writeInitialClientState(streamId, connection)
     rt.SchemeSystem:writeInitialClientState(streamId, connection)
     rt.TaxSystem:writeInitialClientState(streamId, connection)
+    rt.GrantSystem:writeInitialClientState(streamId, connection)
     rt.InfoGatherer:writeInitialClientState(streamId, connection)
 end
 
@@ -28,6 +29,7 @@ function RTInitialClientStateEvent:readStream(streamId, connection)
     rt.PolicySystem:readInitialClientState(streamId, connection)
     rt.SchemeSystem:readInitialClientState(streamId, connection)
     rt.TaxSystem:readInitialClientState(streamId, connection)
+    rt.GrantSystem:readInitialClientState(streamId, connection)
     rt.InfoGatherer:readInitialClientState(streamId, connection)
 
     self:run(connection)

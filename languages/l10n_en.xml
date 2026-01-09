@@ -157,6 +157,12 @@
 		<text name="finance_policyFine" text="Policy Fine"/>
 		<text name="rt_ui_taxCost" text="Tax"/>
 		<text name="finance_taxCost" text="Tax"/>
+		<text name="rt_ui_grantReceived" text="Grant Received"/>
+		<text name="finance_grantReceived" text="Grant Received"/>
+		<text name="rt_ui_grantApplicationCost" text="Grant Application Fee"/>
+		<text name="finance_grantApplicationCost" text="Grant Application Fee"/>
+		<text name="rt_setting_grantsEnabled" text="Grants"/>
+		<text name="rt_toolTip_grantsEnabled" text="Enable or disable the grant system"/>
 		<text name="rt_no_vehicle_room" text="Not enough space for deliver vehicles for the scheme. Make some room and try again."/>
 		<text name="rt_info_scheme_selected" text="You have signed up for the scheme. Collect any vehicles from the shop."/>
 		<text name="rt_misc_year" text="Year"/>

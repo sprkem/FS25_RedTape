@@ -193,6 +193,8 @@ Journal des modifications:
     <extraSourceFiles>
         <sourceFile filename="src/events/HarvestHistoryUpdateEvent.lua"/>
         <sourceFile filename="src/events/InitialClientStateEvent.lua"/>
+        <sourceFile filename="src/events/GrantApplicationEvent.lua"/>
+        <sourceFile filename="src/events/GrantStatusUpdateEvent.lua"/>
         <sourceFile filename="src/events/NewTaxLineItemEvent.lua"/>
         <sourceFile filename="src/events/NewTaxStatementEvent.lua"/>
         <sourceFile filename="src/events/PolicyActivatedEvent.lua"/>
@@ -238,6 +240,7 @@ Journal des modifications:
         <sourceFile filename="src/instances/TaxLineItem.lua"/>
         <sourceFile filename="src/instances/TaxStatement.lua"/>
         <sourceFile filename="src/system/EventLog.lua"/>
+        <sourceFile filename="src/system/GrantSystem.lua"/>
         <sourceFile filename="src/system/InfoGatherer.lua"/>
         <sourceFile filename="src/system/PolicyList.lua"/>
         <sourceFile filename="src/system/PolicySystem.lua"/>

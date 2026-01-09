@@ -157,6 +157,12 @@
 		<text name="finance_policyFine" text="Richtlinienbußgeld"/>
 		<text name="rt_ui_taxCost" text="Steuern"/>
 		<text name="finance_taxCost" text="Steuern"/>
+		<text name="rt_ui_grantReceived" text="Zuschuss erhalten"/>
+		<text name="finance_grantReceived" text="Zuschuss erhalten"/>
+		<text name="rt_ui_grantApplicationCost" text="Zuschussantragsgebühr"/>
+		<text name="finance_grantApplicationCost" text="Zuschussantragsgebühr"/>
+		<text name="rt_setting_grantsEnabled" text="Zuschüsse"/>
+		<text name="rt_toolTip_grantsEnabled" text="Zuschusssystem aktivieren oder deaktivieren"/>
 		<text name="rt_no_vehicle_room" text="Nicht genug Platz für die Lieferung der Fahrzeuge für das Förderprogramm. Schaffen Sie Platz und versuchen Sie es erneut."/>
 		<text name="rt_info_scheme_selected" text="Sie haben sich für das Förderprogramm angemeldet. Holen Sie alle Fahrzeuge im Shop ab."/>
 		<text name="rt_misc_year" text="Jahr"/>

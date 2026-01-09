@@ -157,6 +157,12 @@
 		<text name="finance_policyFine" text="Amende de politique"/>
 		<text name="rt_ui_taxCost" text="Impôts"/>
 		<text name="finance_taxCost" text="Impôts"/>
+		<text name="rt_ui_grantReceived" text="Subvention reçue"/>
+		<text name="finance_grantReceived" text="Subvention reçue"/>
+		<text name="rt_ui_grantApplicationCost" text="Frais de demande de subvention"/>
+		<text name="finance_grantApplicationCost" text="Frais de demande de subvention"/>
+		<text name="rt_setting_grantsEnabled" text="Subventions"/>
+		<text name="rt_toolTip_grantsEnabled" text="Activer ou désactiver le système de subventions"/>
 		<text name="rt_no_vehicle_room" text="Pas assez d'espace pour livrer les véhicules du programme. Libérez de l'espace et réessayez."/>
 		<text name="rt_info_scheme_selected" text="Vous vous êtes inscrit au programme. Récupérez les véhicules au magasin."/>
 		<text name="rt_misc_year" text="Année"/>
