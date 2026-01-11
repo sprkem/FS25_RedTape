@@ -197,5 +197,17 @@
 		<text name="rt_setting_baseTaxRate" text="Grundsteuersatz"/>
 		<text name="rt_toolTip_baseTaxRate" text="Grundsteuersatz festlegen"/>
 		<text name="rt_system_disabled" text="Dieses System ist derzeit deaktiviert. Überprüfen Sie die Spieleinstellungen, um es wieder einzuschalten." />
+		<text name="rt_setting_grantsEnabled" text="Zuschüsse aktiviert"/>
+		<text name="rt_toolTip_grantsEnabled" text="Regierungszuschusssystem aktivieren oder deaktivieren"/>
+		<text name="rt_grant_button" text="Zuschuss beantragen" />
+		<text name="rt_grant_application_submitted" text="Ihr Zuschussantrag wurde eingereicht und kann im Zuschüsse-Tab eingesehen werden." />
+		<text name="rt_grant_confirm_application_dialog" text="Bitte bestätigen Sie, dass Sie einen Zuschuss für diese Konstruktion beantragen möchten. Es fallen Antragskosten an. Anträge können bis zu 6 Monate dauern und werden häufig abgelehnt." />
+		<text name="rt_grant_existing_application" text="Es ist nur ein aktiver Antrag gleichzeitig erlaubt. Sie können erneut beantragen, sobald Ihr bestehender Antrag bearbeitet wurde." />
+		<text name="rt_grant_approved_notification" text="Ihr Zuschussantrag wurde genehmigt! Sie erhalten %s beim Kauf des Gebäudes." />
+		<text name="rt_grant_rejected_notification" text="Ihr Zuschussantrag wurde abgelehnt." />
+		<text name="rt_grant_completed_notification" text="Zuschusszahlung von %s wurde Ihrem Betrieb gewährt." />
+		<text name="rt_event_type_grantapproved" text="Zuschuss genehmigt" />
+		<text name="rt_event_type_grantrejected" text="Zuschuss abgelehnt" />
+		<text name="rt_event_type_grantcompleted" text="Zuschuss abgeschlossen" />
 	</texts>
 </l10n>

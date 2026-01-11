@@ -10,7 +10,10 @@ RTEventLogItem.EVENT_TYPE = {
     SCHEME_PAYOUT = 6,
     SCHEME_EXPIRED = 7,
     POLICY_WARNING = 8,
-    POLICY_FINE = 9
+    POLICY_FINE = 9,
+    GRANT_APPROVED = 10,
+    GRANT_REJECTED = 11,
+    GRANT_COMPLETED = 12
 }
 
 RTEventLogItem.EVENT_TYPE_LABELS = {
@@ -22,7 +25,10 @@ RTEventLogItem.EVENT_TYPE_LABELS = {
     [RTEventLogItem.EVENT_TYPE.SCHEME_PAYOUT] = "rt_event_type_schemepayout",
     [RTEventLogItem.EVENT_TYPE.SCHEME_EXPIRED] = "rt_event_type_schemeexpired",
     [RTEventLogItem.EVENT_TYPE.POLICY_WARNING] = "rt_event_type_policywarning",
-    [RTEventLogItem.EVENT_TYPE.POLICY_FINE] = "rt_event_type_policyfine"
+    [RTEventLogItem.EVENT_TYPE.POLICY_FINE] = "rt_event_type_policyfine",
+    [RTEventLogItem.EVENT_TYPE.GRANT_APPROVED] = "rt_event_type_grantapproved",
+    [RTEventLogItem.EVENT_TYPE.GRANT_REJECTED] = "rt_event_type_grantrejected",
+    [RTEventLogItem.EVENT_TYPE.GRANT_COMPLETED] = "rt_event_type_grantcompleted"
 }
 
 function RTEventLogItem.new()

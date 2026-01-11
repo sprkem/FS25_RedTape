@@ -216,6 +216,8 @@ Journal des modifications:
         <sourceFile filename="src/events/TaxRateBenefitEvent.lua"/>
         <sourceFile filename="src/events/TaxStatementPaidEvent.lua"/>
         <sourceFile filename="src/extensions/BaleWrapperExtension.lua"/>
+        <sourceFile filename="src/extensions/BuyPlaceableEventExtension.lua"/>
+        <sourceFile filename="src/extensions/ConstructionScreenExtension.lua"/>
         <sourceFile filename="src/extensions/FarmExtension.lua"/>
         <sourceFile filename="src/extensions/FSBaseMissionExtension.lua"/>
         <sourceFile filename="src/extensions/I18NExtension.lua"/>

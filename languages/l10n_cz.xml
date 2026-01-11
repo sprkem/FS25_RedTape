@@ -197,5 +197,17 @@
 		<text name="rt_setting_baseTaxRate" text="Základní daňová sazba"/>
 		<text name="rt_toolTip_baseTaxRate" text="Nastavit základní daňovou sazbu"/>
 		<text name="rt_system_disabled" text="Tento systém je momentálně zakázán. Zkontrolujte nastavení hry a znovu jej zapněte." />
+		<text name="rt_setting_grantsEnabled" text="Dotace povoleny"/>
+		<text name="rt_toolTip_grantsEnabled" text="Povolit nebo zakázat systém vládních dotací"/>
+		<text name="rt_grant_button" text="Požádat o dotaci" />
+		<text name="rt_grant_application_submitted" text="Vaše žádost o dotaci byla podána a lze ji zobrazit na kartě Dotace." />
+		<text name="rt_grant_confirm_application_dialog" text="Potvrďte prosím, že chcete požádat o dotaci na tuto stavbu. Budou účtovány poplatky za žádost. Zpracování žádostí může trvat až 6 měsíců a často jsou zamítnuty." />
+		<text name="rt_grant_existing_application" text="Současně je povolena pouze jedna aktivní žádost. Můžete znovu požádat, jakmile bude vaše stávající žádost zpracována." />
+		<text name="rt_grant_approved_notification" text="Vaše žádost o dotaci byla schválena! Obdržíte %s při nákupu budovy." />
+		<text name="rt_grant_rejected_notification" text="Vaše žádost o dotaci byla zamítnuta." />
+		<text name="rt_grant_completed_notification" text="Dotační platba %s byla udělena vaší farmě." />
+		<text name="rt_event_type_grantapproved" text="Dotace schválena" />
+		<text name="rt_event_type_grantrejected" text="Dotace zamítnuta" />
+		<text name="rt_event_type_grantcompleted" text="Dotace dokončena" />
 	</texts>
 </l10n>

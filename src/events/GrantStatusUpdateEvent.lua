@@ -39,5 +39,5 @@ function RTGrantStatusUpdateEvent:run(connection)
 
     -- Execute the grant status update logic
     local grantSystem = g_currentMission.RedTape.GrantSystem
-    -- Status update logic will be implemented later
+    grantSystem:updateGrantStatus(self.grantId, self.newStatus, self.approvedAmount)
 end

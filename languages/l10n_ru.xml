@@ -197,5 +197,17 @@
 		<text name="rt_setting_baseTaxRate" text="Базовая налоговая ставка"/>
 		<text name="rt_toolTip_baseTaxRate" text="Установить базовую налоговую ставку"/>
 		<text name="rt_system_disabled" text="Эта система в настоящее время отключена. Проверьте настройки игры, чтобы включить её снова." />
+		<text name="rt_setting_grantsEnabled" text="Гранты включены"/>
+		<text name="rt_toolTip_grantsEnabled" text="Включить или отключить систему государственных грантов"/>
+		<text name="rt_grant_button" text="Подать заявку на грант" />
+		<text name="rt_grant_application_submitted" text="Ваша заявка на грант была подана и может быть просмотрена во вкладке Гранты." />
+		<text name="rt_grant_confirm_application_dialog" text="Пожалуйста, подтвердите, что вы хотите подать заявку на грант для этого строительства. Будут взиматься расходы на подачу заявки. Обработка заявок может занять до 6 месяцев и часто отклоняется." />
+		<text name="rt_grant_existing_application" text="Одновременно разрешена только одна активная заявка. Вы можете подать заявку снова после обработки существующей заявки." />
+		<text name="rt_grant_approved_notification" text="Ваша заявка на грант была одобрена! Вы получите %s при покупке здания." />
+		<text name="rt_grant_rejected_notification" text="Ваша заявка на грант была отклонена." />
+		<text name="rt_grant_completed_notification" text="Выплата гранта в размере %s была предоставлена вашей ферме." />
+		<text name="rt_event_type_grantapproved" text="Грант одобрен" />
+		<text name="rt_event_type_grantrejected" text="Грант отклонен" />
+		<text name="rt_event_type_grantcompleted" text="Грант завершен" />
 	</texts>
 </l10n>

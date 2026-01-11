@@ -197,5 +197,17 @@
 		<text name="rt_setting_baseTaxRate" text="Taxa de Imposto Base"/>
 		<text name="rt_toolTip_baseTaxRate" text="Definir a taxa de imposto base"/>
 		<text name="rt_system_disabled" text="Este sistema está atualmente desabilitado. Verifique as Configurações do Jogo para ligá-lo novamente." />
+		<text name="rt_setting_grantsEnabled" text="Subsídios Habilitados"/>
+		<text name="rt_toolTip_grantsEnabled" text="Habilitar ou desabilitar o sistema de Subsídios Governamentais"/>
+		<text name="rt_grant_button" text="Solicitar subsídio" />
+		<text name="rt_grant_application_submitted" text="Sua solicitação de subsídio foi enviada e pode ser visualizada na aba Subsídios." />
+		<text name="rt_grant_confirm_application_dialog" text="Por favor, confirme que deseja solicitar um subsídio para esta construção. Haverá custos de solicitação. As solicitações podem levar até 6 meses para serem processadas e são frequentemente rejeitadas." />
+		<text name="rt_grant_existing_application" text="Apenas uma solicitação ativa é permitida por vez. Você pode solicitar novamente assim que sua solicitação existente for processada." />
+		<text name="rt_grant_approved_notification" text="Sua solicitação de subsídio foi aprovada! Você receberá %s quando comprar o edifício." />
+		<text name="rt_grant_rejected_notification" text="Sua solicitação de subsídio foi rejeitada." />
+		<text name="rt_grant_completed_notification" text="Pagamento de subsídio de %s foi concedido à sua fazenda." />
+		<text name="rt_event_type_grantapproved" text="Subsídio aprovado" />
+		<text name="rt_event_type_grantrejected" text="Subsídio rejeitado" />
+		<text name="rt_event_type_grantcompleted" text="Subsídio concluído" />
 	</texts>
 </l10n>
