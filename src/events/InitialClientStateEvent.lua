@@ -36,6 +36,5 @@ function RTInitialClientStateEvent:readStream(streamId, connection)
 end
 
 function RTInitialClientStateEvent:run(connection)
-    g_messageCenter:publish(MessageType.EVENT_LOG_UPDATED)
-    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end

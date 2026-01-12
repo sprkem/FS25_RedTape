@@ -36,7 +36,7 @@ function RTEventLog:addEvent(farmId, eventType, detail, sendNotification)
     if sendNotification then
         g_currentMission:addIngameNotification(FSBaseMission.INGAME_NOTIFICATION_CRITICAL, detail)
     end
-    g_messageCenter:publish(MessageType.EVENT_LOG_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 function RTEventLog:pruneOld()

@@ -248,6 +248,10 @@ function RTGrantSystem:applyForGrant(farmId, xmlFile, price, grantId)
     }
 
     self.grants[grantId] = grant
+    
+    -- Publish data updated message
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
+    
     return grant.id
 end
 
@@ -339,6 +343,9 @@ function RTGrantSystem:updateGrantStatus(grantId, newStatus, approvedAmount)
         local sendNotification = (grant.farmId == currentFarmId)
         eventLog:addEvent(grant.farmId, RTEventLogItem.EVENT_TYPE.GRANT_COMPLETED, detail, sendNotification)
     end
+
+    -- Publish data updated message
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 function RTGrantSystem:findGrantById(grantId)

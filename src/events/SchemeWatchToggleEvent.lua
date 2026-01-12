@@ -39,5 +39,5 @@ function RTSchemeWatchToggleEvent:run(connection)
             end
         end
     end
-    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end

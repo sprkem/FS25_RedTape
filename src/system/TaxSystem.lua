@@ -517,7 +517,7 @@ function RTTaxSystem:storeTaxStatement(taxStatement)
     end
 
     table.insert(self.taxStatements, taxStatement)
-    g_messageCenter:publish(MessageType.TAXES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 function RTTaxSystem:processTaxStatements()
@@ -539,7 +539,7 @@ function RTTaxSystem:markTaxStatementAsPaid(farmId)
     for _, taxStatement in ipairs(self.taxStatements) do
         if taxStatement.farmId == farmId then
             taxStatement.paid = true
-            g_messageCenter:publish(MessageType.TAXES_UPDATED)
+            g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
             return
         end
     end

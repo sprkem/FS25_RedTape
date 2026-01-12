@@ -7,10 +7,7 @@ source(RedTape.dir .. "src/gui/MenuRedTape.lua")
 function RedTape:loadMap()
     g_currentMission.RedTape = self
 
-    MessageType.EVENT_LOG_UPDATED = nextMessageTypeId()
-    MessageType.SCHEMES_UPDATED = nextMessageTypeId()
-    MessageType.TAXES_UPDATED = nextMessageTypeId()
-    MessageType.POLICIES_UPDATED = nextMessageTypeId()
+    MessageType.RT_DATA_UPDATED = nextMessageTypeId()
 
     self.monthStarted = 0
     self.leaseDeals = {}
@@ -401,10 +398,7 @@ function RedTape:onStartMission()
 end
 
 function RedTape:playerFarmChanged()
-    g_messageCenter:publish(MessageType.EVENT_LOG_UPDATED)
-    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
-    g_messageCenter:publish(MessageType.TAXES_UPDATED)
-    g_messageCenter:publish(MessageType.POLICIES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 FSBaseMission.sendInitialClientState = Utils.appendedFunction(FSBaseMission.sendInitialClientState,

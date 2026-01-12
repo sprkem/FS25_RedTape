@@ -7,7 +7,8 @@ MenuRedTape.SUB_CATEGORY = {
     SCHEMES = 2,
     TAX = 3,
     EVENTLOG = 4,
-    CROP_ROTATION = 5
+    CROP_ROTATION = 5,
+    GRANTS = 6
 }
 
 MenuRedTape.SCHEME_LIST_TYPE = {
@@ -22,6 +23,7 @@ MenuRedTape.HEADER_SLICES = {
     [MenuRedTape.SUB_CATEGORY.TAX] = "gui.icon_ingameMenu_prices",
     [MenuRedTape.SUB_CATEGORY.EVENTLOG] = "gui.icon_ingameMenu_contracts",
     [MenuRedTape.SUB_CATEGORY.CROP_ROTATION] = "gui.icon_ingameMenu_calendar",
+    [MenuRedTape.SUB_CATEGORY.GRANTS] = "gui.icon_ingameMenu_finances",
 }
 MenuRedTape.HEADER_TITLES = {
     [MenuRedTape.SUB_CATEGORY.POLICIES] = "rt_header_policies",
@@ -29,6 +31,7 @@ MenuRedTape.HEADER_TITLES = {
     [MenuRedTape.SUB_CATEGORY.TAX] = "rt_header_tax",
     [MenuRedTape.SUB_CATEGORY.EVENTLOG] = "rt_header_eventlog",
     [MenuRedTape.SUB_CATEGORY.CROP_ROTATION] = "rt_header_croprotation",
+    [MenuRedTape.SUB_CATEGORY.GRANTS] = "rt_header_grants",
 }
 
 function MenuRedTape.new(i18n, messageCenter)
@@ -46,6 +49,7 @@ function MenuRedTape.new(i18n, messageCenter)
     self.taxNotesRenderer = RTTaxNotesRenderer.new()
     self.currentYearTaxNotesRenderer = RTTaxNotesRenderer.new()
     self.cropRotationRenderer = RTCropRotationRenderer.new()
+    self.grantsRenderer = RTGrantsRenderer.new()
 
     self.vehicleElements = {}
 
@@ -218,6 +222,16 @@ function MenuRedTape:onGuiSetupFinished()
 
     self.cropHistoryTable:setDataSource(self.cropRotationRenderer)
     self.cropHistoryTable:setDelegate(self.cropRotationRenderer)
+
+    -- Setup grants tables
+    self.pendingGrantsTable:setDataSource(self.grantsRenderer)
+    self.pendingGrantsTable:setDelegate(self.grantsRenderer)
+    
+    self.approvedGrantsTable:setDataSource(self.grantsRenderer)
+    self.approvedGrantsTable:setDelegate(self.grantsRenderer)
+    
+    self.historicalGrantsTable:setDataSource(self.grantsRenderer)
+    self.historicalGrantsTable:setDelegate(self.grantsRenderer)
 end
 
 function MenuRedTape:initialize()
@@ -256,6 +270,7 @@ function MenuRedTape:initialize()
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.EVENTLOG] = self.menuButtonInfoDefault
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.CROP_ROTATION] = self.menuButtonInfoDefault
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.TAX] = self.menuButtonInfoDefault
+    self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.GRANTS] = self.menuButtonInfoDefault
 
     self.btnSelectSchemeForFarm = {
         inputAction = InputAction.MENU_ACTIVATE,
@@ -312,10 +327,7 @@ function MenuRedTape:onFrameOpen()
 
     self:onMoneyChange()
     g_messageCenter:subscribe(MessageType.MONEY_CHANGED, self.onMoneyChange, self)
-    g_messageCenter:subscribe(MessageType.EVENT_LOG_UPDATED, self.updateContent, self)
-    g_messageCenter:subscribe(MessageType.SCHEMES_UPDATED, self.updateContent, self)
-    g_messageCenter:subscribe(MessageType.TAXES_UPDATED, self.updateContent, self)
-    g_messageCenter:subscribe(MessageType.POLICIES_UPDATED, self.updateContent, self)
+    g_messageCenter:subscribe(MessageType.RT_DATA_UPDATED, self.updateContent, self)
     self:updateContent()
     self:setMenuButtonInfoDirty()
     -- FocusManager:setFocus(self.subCategoryPaging)
@@ -352,6 +364,12 @@ end
 
 function MenuRedTape:onClickCropRotation()
     self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.CROP_ROTATION, true)
+
+    self:setMenuButtonInfoDirty()
+end
+
+function MenuRedTape:onClickGrants()
+    self.subCategoryPaging:setState(MenuRedTape.SUB_CATEGORY.GRANTS, true)
 
     self:setMenuButtonInfoDirty()
 end
@@ -566,6 +584,61 @@ function MenuRedTape:updateContent()
 
         self.cropRotationRenderer:setData(cropHistoryData)
         self.cropHistoryTable:reloadData()
+    elseif state == MenuRedTape.SUB_CATEGORY.GRANTS then
+        if (not g_currentMission.RedTape.settings.grantsEnabled) then
+            self.grantSystemDisabledMessage:setVisible(true)
+            self.grantSystemEnabledInfo:setVisible(false)
+            return
+        end
+
+        self.grantSystemDisabledMessage:setVisible(false)
+        self.grantSystemEnabledInfo:setVisible(true)
+
+        local grantSystem = g_currentMission.RedTape.GrantSystem
+        local currentFarmId = g_currentMission:getFarmId()
+        local farmGrants = grantSystem:getGrantsForFarm(currentFarmId)
+
+        -- Prepare data for renderer with historical grants (rejected + completed)
+        local grantsData = {
+            pending = farmGrants.pending or {},
+            approved = farmGrants.approved or {},
+            historical = {}
+        }
+
+        -- Combine rejected and completed grants for historical view
+        for _, grant in pairs(grantSystem.grants) do
+            if grant.farmId == currentFarmId and 
+               (grant.status == RTGrantSystem.STATUS.REJECTED or grant.status == RTGrantSystem.STATUS.COMPLETE) then
+                table.insert(grantsData.historical, grant)
+            end
+        end
+
+        -- Update pending grants table
+        self.grantsRenderer:setCurrentSection("pending")
+        self.grantsRenderer:setData(grantsData)
+        self.pendingGrantsTable:reloadData()
+        
+        local hasPendingGrants = #grantsData.pending > 0
+        self.pendingGrantsContainer:setVisible(hasPendingGrants)
+        self.noPendingGrantsContainer:setVisible(not hasPendingGrants)
+
+        -- Update approved grants table
+        self.grantsRenderer:setCurrentSection("approved")
+        self.grantsRenderer:setData(grantsData)
+        self.approvedGrantsTable:reloadData()
+        
+        local hasApprovedGrants = #grantsData.approved > 0
+        self.approvedGrantsContainer:setVisible(hasApprovedGrants)
+        self.noApprovedGrantsContainer:setVisible(not hasApprovedGrants)
+
+        -- Update historical grants table
+        self.grantsRenderer:setCurrentSection("historical")
+        self.grantsRenderer:setData(grantsData)
+        self.historicalGrantsTable:reloadData()
+        
+        local hasHistoricalGrants = #grantsData.historical > 0
+        self.historicalGrantsContainer:setVisible(hasHistoricalGrants)
+        self.noHistoricalGrantsContainer:setVisible(not hasHistoricalGrants)
     end
 
     self:updateMenuButtons()
