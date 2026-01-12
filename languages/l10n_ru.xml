@@ -191,5 +191,6 @@
 		<text name="rt_setting_baseTaxRate" text="Базовая налоговая ставка"/>
 		<text name="rt_toolTip_baseTaxRate" text="Установить базовую налоговую ставку"/>
 		<text name="rt_system_disabled" text="Эта система в настоящее время отключена. Проверьте настройки игры, чтобы включить её снова." />
+		<text name="permission_redTape_redTapeSettings" text="Настройки Red Tape" />
 	</texts>
 </l10n>

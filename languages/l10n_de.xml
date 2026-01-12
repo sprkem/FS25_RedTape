@@ -191,5 +191,6 @@
 		<text name="rt_setting_baseTaxRate" text="Grundsteuersatz"/>
 		<text name="rt_toolTip_baseTaxRate" text="Grundsteuersatz festlegen"/>
 		<text name="rt_system_disabled" text="Dieses System ist derzeit deaktiviert. Überprüfen Sie die Spieleinstellungen, um es wieder einzuschalten." />
+		<text name="permission_redTape_redTapeSettings" text="Red Tape Einstellungen" />
 	</texts>
 </l10n>

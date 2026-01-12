@@ -191,5 +191,6 @@
 		<text name="rt_setting_baseTaxRate" text="Taxa de Imposto Base"/>
 		<text name="rt_toolTip_baseTaxRate" text="Definir a taxa de imposto base"/>
 		<text name="rt_system_disabled" text="Este sistema está atualmente desabilitado. Verifique as Configurações do Jogo para ligá-lo novamente." />
+		<text name="permission_redTape_redTapeSettings" text="Configurações Red Tape" />
 	</texts>
 </l10n>

@@ -191,5 +191,6 @@
 		<text name="rt_setting_baseTaxRate" text="Základní daňová sazba"/>
 		<text name="rt_toolTip_baseTaxRate" text="Nastavit základní daňovou sazbu"/>
 		<text name="rt_system_disabled" text="Tento systém je momentálně zakázán. Zkontrolujte nastavení hry a znovu jej zapněte." />
+		<text name="permission_redTape_redTapeSettings" text="Nastavení Red Tape" />
 	</texts>
 </l10n>
