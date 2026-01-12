@@ -201,7 +201,7 @@
 		<text name="rt_toolTip_grantsEnabled" text="Включить или отключить систему государственных грантов"/>
 		<text name="rt_grant_button" text="Подать заявку на грант" />
 		<text name="rt_grant_application_submitted" text="Ваша заявка на грант была подана и может быть просмотрена во вкладке Гранты." />
-		<text name="rt_grant_confirm_application_dialog" text="Пожалуйста, подтвердите, что вы хотите подать заявку на грант для этого строительства. Будут взиматься расходы на подачу заявки. Обработка заявок может занять до 6 месяцев и часто отклоняется." />
+		<text name="rt_grant_confirm_application_dialog" text="Хотите подать заявку на грант для этого строительства? Будут взиматься расходы на подачу заявки в размере %s. Обработка заявок может занять до 6 месяцев и имеет шанс одобрения 35-45%%, который может зависеть от вашего рейтинга соответствия." />
 		<text name="rt_grant_existing_application" text="Одновременно разрешена только одна активная заявка. Вы можете подать заявку снова после обработки существующей заявки." />
 		<text name="rt_grant_approved_notification" text="Ваша заявка на грант была одобрена! Вы получите %s при покупке здания." />
 		<text name="rt_grant_rejected_notification" text="Ваша заявка на грант была отклонена." />
@@ -210,5 +210,23 @@
 		<text name="rt_event_type_grantrejected" text="Грант отклонен" />
 		<text name="rt_event_type_grantcompleted" text="Грант завершен" />
 		<text name="permission_redTape_redTapeSettings" text="Настройки Red Tape" />
+		<text name="rt_header_grants" text="Гранты" />
+		<text name="rt_label_pending_grants" text="Ожидающие заявки" />
+		<text name="rt_label_approved_grants" text="Одобренные гранты" />
+		<text name="rt_label_historical_grants" text="Исторические гранты" />
+		<text name="rt_tableheader_building" text="Здание" />
+		<text name="rt_tableheader_price" text="Цена" />
+		<text name="rt_tableheader_applied" text="Подано" />
+		<text name="rt_tableheader_assessment" text="Оценка" />
+		<text name="rt_tableheader_amount" text="Сумма" />
+		<text name="rt_tableheader_approved" text="Одобрено" />
+		<text name="rt_tableheader_status" text="Статус" />
+		<text name="rt_no_pending_grants" text="Нет ожидающих заявок на гранты" />
+		<text name="rt_no_approved_grants" text="Нет одобренных грантов" />
+		<text name="rt_no_historical_grants" text="Нет исторических грантов" />
+		<text name="rt_grant_status_pending" text="Ожидает" />
+		<text name="rt_grant_status_approved" text="Одобрено" />
+		<text name="rt_grant_status_rejected" text="Отклонено" />
+		<text name="rt_grant_status_completed" text="Завершено" />
 	</texts>
 </l10n>

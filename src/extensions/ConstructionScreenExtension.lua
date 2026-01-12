@@ -30,7 +30,7 @@ function RTConstructionScreenExtension:setBrush(brush, skipMenuUpdate)
                 InfoDialog.show(g_i18n:getText("rt_grant_existing_application"))
             else
                 local dText = string.format(g_i18n:getText("rt_grant_confirm_application_dialog"),
-                    g_i18n:formatMoney(RTGrantSystem.APPLICATION_COST, 0, true, true),)
+                    g_i18n:formatMoney(RTGrantSystem.APPLICATION_COST, 0, true, true))
                 YesNoDialog.show(
                     function(self, clickOk)
                         if clickOk then

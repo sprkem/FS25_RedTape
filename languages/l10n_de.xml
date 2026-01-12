@@ -201,7 +201,7 @@
 		<text name="rt_toolTip_grantsEnabled" text="Regierungszuschusssystem aktivieren oder deaktivieren"/>
 		<text name="rt_grant_button" text="Zuschuss beantragen" />
 		<text name="rt_grant_application_submitted" text="Ihr Zuschussantrag wurde eingereicht und kann im Zuschüsse-Tab eingesehen werden." />
-		<text name="rt_grant_confirm_application_dialog" text="Bitte bestätigen Sie, dass Sie einen Zuschuss für diese Konstruktion beantragen möchten. Es fallen Antragskosten an. Anträge können bis zu 6 Monate dauern und werden häufig abgelehnt." />
+		<text name="rt_grant_confirm_application_dialog" text="Möchten Sie einen Zuschuss für diese Konstruktion beantragen? Es fallen Antragskosten von %s an. Anträge können bis zu 6 Monate dauern und haben eine Genehmigungswahrscheinlichkeit von 35-45%%, die durch Ihre Compliance-Bewertung beeinflusst werden kann." />
 		<text name="rt_grant_existing_application" text="Es ist nur ein aktiver Antrag gleichzeitig erlaubt. Sie können erneut beantragen, sobald Ihr bestehender Antrag bearbeitet wurde." />
 		<text name="rt_grant_approved_notification" text="Ihr Zuschussantrag wurde genehmigt! Sie erhalten %s beim Kauf des Gebäudes." />
 		<text name="rt_grant_rejected_notification" text="Ihr Zuschussantrag wurde abgelehnt." />
@@ -210,5 +210,23 @@
 		<text name="rt_event_type_grantrejected" text="Zuschuss abgelehnt" />
 		<text name="rt_event_type_grantcompleted" text="Zuschuss abgeschlossen" />
 		<text name="permission_redTape_redTapeSettings" text="Red Tape Einstellungen" />
+		<text name="rt_header_grants" text="Zuschüsse" />
+		<text name="rt_label_pending_grants" text="Ausstehende Anträge" />
+		<text name="rt_label_approved_grants" text="Genehmigte Zuschüsse" />
+		<text name="rt_label_historical_grants" text="Historische Zuschüsse" />
+		<text name="rt_tableheader_building" text="Gebäude" />
+		<text name="rt_tableheader_price" text="Preis" />
+		<text name="rt_tableheader_applied" text="Beantragt" />
+		<text name="rt_tableheader_assessment" text="Bewertung" />
+		<text name="rt_tableheader_amount" text="Betrag" />
+		<text name="rt_tableheader_approved" text="Genehmigt" />
+		<text name="rt_tableheader_status" text="Status" />
+		<text name="rt_no_pending_grants" text="Keine ausstehenden Zuschussanträge" />
+		<text name="rt_no_approved_grants" text="Keine genehmigten Zuschüsse" />
+		<text name="rt_no_historical_grants" text="Keine historischen Zuschüsse" />
+		<text name="rt_grant_status_pending" text="Ausstehend" />
+		<text name="rt_grant_status_approved" text="Genehmigt" />
+		<text name="rt_grant_status_rejected" text="Abgelehnt" />
+		<text name="rt_grant_status_completed" text="Abgeschlossen" />
 	</texts>
 </l10n>

@@ -201,7 +201,7 @@
 		<text name="rt_toolTip_grantsEnabled" text="Habilitar ou desabilitar o sistema de Subsídios Governamentais"/>
 		<text name="rt_grant_button" text="Solicitar subsídio" />
 		<text name="rt_grant_application_submitted" text="Sua solicitação de subsídio foi enviada e pode ser visualizada na aba Subsídios." />
-		<text name="rt_grant_confirm_application_dialog" text="Por favor, confirme que deseja solicitar um subsídio para esta construção. Haverá custos de solicitação. As solicitações podem levar até 6 meses para serem processadas e são frequentemente rejeitadas." />
+		<text name="rt_grant_confirm_application_dialog" text="Deseja solicitar um subsídio para esta construção? Haverá custos de solicitação de %s. As solicitações podem levar até 6 meses para serem processadas e têm uma chance de aprovação de 35-45%%, que pode ser afetada pela sua classificação de conformidade." />
 		<text name="rt_grant_existing_application" text="Apenas uma solicitação ativa é permitida por vez. Você pode solicitar novamente assim que sua solicitação existente for processada." />
 		<text name="rt_grant_approved_notification" text="Sua solicitação de subsídio foi aprovada! Você receberá %s quando comprar o edifício." />
 		<text name="rt_grant_rejected_notification" text="Sua solicitação de subsídio foi rejeitada." />
@@ -210,5 +210,23 @@
 		<text name="rt_event_type_grantrejected" text="Subsídio rejeitado" />
 		<text name="rt_event_type_grantcompleted" text="Subsídio concluído" />
 		<text name="permission_redTape_redTapeSettings" text="Configurações Red Tape" />
+		<text name="rt_header_grants" text="Subsídios" />
+		<text name="rt_label_pending_grants" text="Solicitações Pendentes" />
+		<text name="rt_label_approved_grants" text="Subsídios Aprovados" />
+		<text name="rt_label_historical_grants" text="Subsídios Históricos" />
+		<text name="rt_tableheader_building" text="Edifício" />
+		<text name="rt_tableheader_price" text="Preço" />
+		<text name="rt_tableheader_applied" text="Solicitado" />
+		<text name="rt_tableheader_assessment" text="Avaliação" />
+		<text name="rt_tableheader_amount" text="Valor" />
+		<text name="rt_tableheader_approved" text="Aprovado" />
+		<text name="rt_tableheader_status" text="Status" />
+		<text name="rt_no_pending_grants" text="Nenhuma solicitação de subsídio pendente" />
+		<text name="rt_no_approved_grants" text="Nenhum subsídio aprovado" />
+		<text name="rt_no_historical_grants" text="Nenhum subsídio histórico" />
+		<text name="rt_grant_status_pending" text="Pendente" />
+		<text name="rt_grant_status_approved" text="Aprovado" />
+		<text name="rt_grant_status_rejected" text="Rejeitado" />
+		<text name="rt_grant_status_completed" text="Concluído" />
 	</texts>
 </l10n>

@@ -312,7 +312,7 @@
             </GuiElement>
             <GuiElement id="grantSystemEnabledInfo" position="0px -20px">
                 <!-- Pending Grants Section -->
-                <Text profile="rtLabelTopLeft" text="$l10n_rt_label_pending_grants" position="0px 20px"/>
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_pending_grants" position="0px 20px"/>
                 <GuiElement id="pendingGrantsContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox">
                         <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_building" handleFocus="false" />
@@ -333,12 +333,11 @@
                     </ThreePartBitmap>
                 </GuiElement>
                 <GuiElement id="noPendingGrantsContainer">
-                    <Text profile="rt_header_top_left" text="$l10n_rt_no_pending_grants" position="0px -60px" width="750px" />
-                    <ThreePartBitmap profile="fs25_contractsContentSeparator"/>
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_pending_grants" position="0px -60px" width="750px" />
                 </GuiElement>
 
                 <!-- Approved Grants Section -->
-                <Text profile="rtLabelTopLeft" text="$l10n_rt_label_approved_grants" position="0px -280px"/>
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_approved_grants" position="0px -280px"/>
                 <GuiElement id="approvedGrantsContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox" position="0px -300px">
                         <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_building" handleFocus="false" />
@@ -359,12 +358,11 @@
                     </ThreePartBitmap>
                 </GuiElement>
                 <GuiElement id="noApprovedGrantsContainer">
-                    <Text profile="rt_header_top_left" text="$l10n_rt_no_approved_grants" position="0px -340px" width="750px" />
-                    <ThreePartBitmap profile="fs25_contractsContentSeparator" position="0px -320px"/>
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_approved_grants" position="0px -340px" width="750px" />
                 </GuiElement>
 
                 <!-- Historical Grants Section -->
-                <Text profile="rtLabelTopLeft" text="$l10n_rt_label_historical_grants" position="0px -560px"/>
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_historical_grants" position="0px -560px"/>
                 <GuiElement id="historicalGrantsContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox" position="0px -580px">
                         <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_building" handleFocus="false" />
@@ -385,8 +383,7 @@
                     </ThreePartBitmap>
                 </GuiElement>
                 <GuiElement id="noHistoricalGrantsContainer">
-                    <Text profile="rt_header_top_left" text="$l10n_rt_no_historical_grants" position="0px -620px" width="750px" />
-                    <ThreePartBitmap profile="fs25_contractsContentSeparator" position="0px -600px"/>
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_historical_grants" position="0px -620px" width="750px" />
                 </GuiElement>
             </GuiElement>
         </GuiElement>
