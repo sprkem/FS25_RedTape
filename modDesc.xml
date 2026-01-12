@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.0.10</version>
+    <version>1.0.0.11</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,10 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.0.11:
+- Add a grant system. Use the construction menu to apply for grants.
+- Add safety check and mitigations for mod conflicts that can impact tax.
 
 1.0.0.10:
 - Adds a new crop rotation view showing harvest history, to aid planning. Minor rework of the crop rotation policy.
