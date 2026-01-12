@@ -308,11 +308,11 @@
         </GuiElement>
         <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[6]">
             <GuiElement id="grantSystemDisabledMessage" position="0px -20px">
-                <Text profile="rt_scheme_policy_info" text="$l10n_rt_system_disabled" position="40px -200px" width="800px" />
+                <Text profile="rt_scheme_policy_info" text="$l10n_rt_system_disabled" position="0px -200px" width="800px" />
             </GuiElement>
             <GuiElement id="grantSystemEnabledInfo" position="0px -20px">
                 <!-- Pending Grants Section -->
-                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_pending_grants" position="40px 20px"/>
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_pending_grants" position="0px 20px"/>
                 <GuiElement id="pendingGrantsContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox" position="40px 0px">
                         <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_building" handleFocus="false" />
@@ -337,7 +337,7 @@
                 </GuiElement>
 
                 <!-- Approved Grants Section -->
-                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_approved_grants" position="40px -280px"/>
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_approved_grants" position="0px -280px"/>
                 <GuiElement id="approvedGrantsContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox" position="40px -300px">
                         <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_building" handleFocus="false" />
@@ -362,7 +362,7 @@
                 </GuiElement>
 
                 <!-- Historical Grants Section -->
-                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_historical_grants" position="40px -560px"/>
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_historical_grants" position="0px -560px"/>
                 <GuiElement id="historicalGrantsContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox" position="40px -580px">
                         <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_building" handleFocus="false" />
