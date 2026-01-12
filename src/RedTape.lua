@@ -11,12 +11,12 @@ function RedTape:loadMap()
 
     self.monthStarted = 0
     self.leaseDeals = {}
-    self.constantChecksUpdateIntervalMs = 2000     -- interval for constant checks
-    self.constantChecksUpdateTime = 5000           -- initial interval post load
+    self.constantChecksUpdateIntervalMs = 2000    -- interval for constant checks
+    self.constantChecksUpdateTime = 5000          -- initial interval post load
     self.infrequentChecksUpdateIntervalMs = 30000 -- interval for infrequent checks
-    self.infrequentChecksUpdateTime = 30000        -- initial interval for infrequent checks
-    self.sprayAreaCheckInterval = 500              -- interval for spray area checks
-    self.sprayCheckTime = 0                        -- initial time for spray area checks
+    self.infrequentChecksUpdateTime = 30000       -- initial interval for infrequent checks
+    self.sprayAreaCheckInterval = 500             -- interval for spray area checks
+    self.sprayCheckTime = 0                       -- initial time for spray area checks
     self.fillTypeCache = nil
 
     g_gui:loadProfiles(RedTape.dir .. "src/gui/guiProfiles.xml")
@@ -370,6 +370,7 @@ end
 function RedTape:onStartMission()
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed,
         RTMissionManagerExtension.getIsMissionWorkAllowed)
+    Farm.changeBalance = Utils.appendedFunction(Farm.changeBalance, RTFarmExtension.changeBalance)
     local rt = g_currentMission.RedTape
     rt.missionStarted = true
     local ig = rt.InfoGatherer

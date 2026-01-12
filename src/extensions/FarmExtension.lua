@@ -13,4 +13,3 @@ function RTFarmExtension.changeBalance(farm, amount, moneyType)
     end
 end
 
-Farm.changeBalance = Utils.appendedFunction(Farm.changeBalance, RTFarmExtension.changeBalance)
