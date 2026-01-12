@@ -197,6 +197,7 @@
 		<text name="rt_setting_baseTaxRate" text="Базовая налоговая ставка"/>
 		<text name="rt_toolTip_baseTaxRate" text="Установить базовую налоговую ставку"/>
 		<text name="rt_system_disabled" text="Эта система в настоящее время отключена. Проверьте настройки игры, чтобы включить её снова." />
+<<<<<<< HEAD
 		<text name="rt_setting_grantsEnabled" text="Гранты включены"/>
 		<text name="rt_toolTip_grantsEnabled" text="Включить или отключить систему государственных грантов"/>
 		<text name="rt_grant_button" text="Подать заявку на грант" />
@@ -209,5 +210,8 @@
 		<text name="rt_event_type_grantapproved" text="Грант одобрен" />
 		<text name="rt_event_type_grantrejected" text="Грант отклонен" />
 		<text name="rt_event_type_grantcompleted" text="Грант завершен" />
+=======
+		<text name="permission_redTape_redTapeSettings" text="Настройки Red Tape" />
+>>>>>>> main
 	</texts>
 </l10n>

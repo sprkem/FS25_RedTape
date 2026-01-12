@@ -209,5 +209,6 @@
 		<text name="rt_event_type_grantapproved" text="Subsídio aprovado" />
 		<text name="rt_event_type_grantrejected" text="Subsídio rejeitado" />
 		<text name="rt_event_type_grantcompleted" text="Subsídio concluído" />
+		<text name="permission_redTape_redTapeSettings" text="Configurações Red Tape" />
 	</texts>
 </l10n>

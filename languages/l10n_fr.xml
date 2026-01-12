@@ -197,6 +197,7 @@
 		<text name="rt_setting_baseTaxRate" text="Taux d'imposition de base"/>
 		<text name="rt_toolTip_baseTaxRate" text="Définir le taux d'imposition de base"/>
 		<text name="rt_system_disabled" text="Ce système est actuellement désactivé. Vérifiez les paramètres du jeu pour le réactiver." />
+<<<<<<< HEAD
 		<text name="rt_setting_grantsEnabled" text="Subventions activées"/>
 		<text name="rt_toolTip_grantsEnabled" text="Activer ou désactiver le système de subventions gouvernementales"/>
 		<text name="rt_grant_button" text="Demander une subvention" />
@@ -209,5 +210,8 @@
 		<text name="rt_event_type_grantapproved" text="Subvention approuvée" />
 		<text name="rt_event_type_grantrejected" text="Subvention rejetée" />
 		<text name="rt_event_type_grantcompleted" text="Subvention terminée" />
+=======
+		<text name="permission_redTape_redTapeSettings" text="Paramètres Red Tape" />
+>>>>>>> main
 	</texts>
 </l10n>

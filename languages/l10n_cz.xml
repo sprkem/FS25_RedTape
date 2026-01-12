@@ -209,5 +209,6 @@
 		<text name="rt_event_type_grantapproved" text="Dotace schválena" />
 		<text name="rt_event_type_grantrejected" text="Dotace zamítnuta" />
 		<text name="rt_event_type_grantcompleted" text="Dotace dokončena" />
+		<text name="permission_redTape_redTapeSettings" text="Nastavení Red Tape" />
 	</texts>
 </l10n>

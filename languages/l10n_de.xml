@@ -209,5 +209,6 @@
 		<text name="rt_event_type_grantapproved" text="Zuschuss genehmigt" />
 		<text name="rt_event_type_grantrejected" text="Zuschuss abgelehnt" />
 		<text name="rt_event_type_grantcompleted" text="Zuschuss abgeschlossen" />
+		<text name="permission_redTape_redTapeSettings" text="Red Tape Einstellungen" />
 	</texts>
 </l10n>
