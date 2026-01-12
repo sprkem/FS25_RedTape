@@ -197,7 +197,6 @@
 		<text name="rt_setting_baseTaxRate" text="Base Tax Rate"/>
 		<text name="rt_toolTip_baseTaxRate" text="Set the base tax rate"/>
 		<text name="rt_system_disabled" text="This system is currently disabled. Check Game Settings to turn it back on." />
-<<<<<<< HEAD
 		<text name="rt_setting_grantsEnabled" text="Grants Enabled"/>
 		<text name="rt_toolTip_grantsEnabled" text="Enable or disable the Government Grants system"/>
 		<text name="rt_grant_button" text="Apply for grant" />
@@ -210,8 +209,6 @@
 		<text name="rt_event_type_grantapproved" text="Grant Approved" />
 		<text name="rt_event_type_grantrejected" text="Grant Rejected" />
 		<text name="rt_event_type_grantcompleted" text="Grant Completed" />
-=======
 		<text name="permission_redTape_redTapeSettings" text="Red Tape Settings" />
->>>>>>> main
 	</texts>
 </l10n>
