@@ -59,7 +59,7 @@ function RTGrantSystem:loadFromXMLFile(xmlFile)
         end
 
         local grant = {
-            id = xmlFile:getValue(grantKey .. "#id", RedTape.generateId()),
+            id = getXMLString(xmlFile, grantKey .. "#id") or RedTape.generateId(),
             farmId = xmlFile:getValue(grantKey .. "#farmId", 1),
             xmlFile = xmlFile:getValue(grantKey .. "#xmlFile", ""),
             price = xmlFile:getValue(grantKey .. "#price", 0),
