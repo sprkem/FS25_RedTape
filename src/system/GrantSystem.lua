@@ -279,6 +279,18 @@ function RTGrantSystem:getGrantsForFarm(farmId)
     return farmGrants
 end
 
+function RTGrantSystem:getApprovedGrantByXmlFilename(farmId, xmlFilename)
+    for _, grant in pairs(self.grants) do
+        if grant.farmId == farmId then
+            if grant.status == RTGrantSystem.STATUS.APPROVED then
+                if grant.xmlFile == xmlFilename then
+                    return grant
+                end
+            end
+        end
+    end
+end
+
 function RTGrantSystem:onPlaceablePurchased(farmId, xmlFilename)
     if not g_currentMission:getIsServer() then
         return
