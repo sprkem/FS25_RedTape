@@ -60,14 +60,14 @@ function RTGrantSystem:loadFromXMLFile(xmlFile)
 
         local grant = {
             id = getXMLString(xmlFile, grantKey .. "#id") or RedTape.generateId(),
-            farmId = xmlFile:getValue(grantKey .. "#farmId", 1),
-            xmlFile = xmlFile:getValue(grantKey .. "#xmlFile", ""),
-            price = xmlFile:getValue(grantKey .. "#price", 0),
-            status = xmlFile:getValue(grantKey .. "#status", RTGrantSystem.STATUS.PENDING),
-            applicationMonth = xmlFile:getValue(grantKey .. "#applicationMonth", 0),
-            assessmentMonth = xmlFile:getValue(grantKey .. "#assessmentMonth", 0),
-            amount = xmlFile:getValue(grantKey .. "#amount", 0),
-            completionMonth = xmlFile:getValue(grantKey .. "#completionMonth", 0)
+            farmId = getXMLInt(xmlFile, grantKey .. "#farmId") or 1,
+            xmlFile = getXMLString(xmlFile, grantKey .. "#xmlFile") or "",
+            price = getXMLFloat(xmlFile, grantKey .. "#price") or 0,
+            status = getXMLInt(xmlFile, grantKey .. "#status") or RTGrantSystem.STATUS.PENDING,
+            applicationMonth = getXMLInt(xmlFile, grantKey .. "#applicationMonth") or 0,
+            assessmentMonth = getXMLInt(xmlFile, grantKey .. "#assessmentMonth") or 0,
+            amount = getXMLFloat(xmlFile, grantKey .. "#amount") or 0,
+            completionMonth = getXMLInt(xmlFile, grantKey .. "#completionMonth") or 0
         }
 
         self.grants[grant.id] = grant
@@ -105,15 +105,15 @@ function RTGrantSystem:saveToXmlFile(xmlFile)
 
         if shouldSave then
             local grantKey = string.format("%s.grant(%d)", key, counter)
-            xmlFile:setValue(grantKey .. "#id", grant.id)
-            xmlFile:setValue(grantKey .. "#farmId", grant.farmId)
-            xmlFile:setValue(grantKey .. "#xmlFile", grant.xmlFile)
-            xmlFile:setValue(grantKey .. "#price", grant.price)
-            xmlFile:setValue(grantKey .. "#status", grant.status)
-            xmlFile:setValue(grantKey .. "#applicationMonth", grant.applicationMonth or 0)
-            xmlFile:setValue(grantKey .. "#assessmentMonth", grant.assessmentMonth or 0)
-            xmlFile:setValue(grantKey .. "#amount", grant.amount or 0)
-            xmlFile:setValue(grantKey .. "#completionMonth", grant.completionMonth or 0)
+            setXMLString(xmlFile, grantKey .. "#id", grant.id)
+            setXMLInt(xmlFile, grantKey .. "#farmId", grant.farmId)
+            setXMLString(xmlFile, grantKey .. "#xmlFile", grant.xmlFile)
+            setXMLFloat(xmlFile, grantKey .. "#price", grant.price)
+            setXMLInt(xmlFile, grantKey .. "#status", grant.status)
+            setXMLInt(xmlFile, grantKey .. "#applicationMonth", grant.applicationMonth or 0)
+            setXMLInt(xmlFile, grantKey .. "#assessmentMonth", grant.assessmentMonth or 0)
+            setXMLFloat(xmlFile, grantKey .. "#amount", grant.amount or 0)
+            setXMLInt(xmlFile, grantKey .. "#completionMonth", grant.completionMonth or 0)
             counter = counter + 1
         end
     end
