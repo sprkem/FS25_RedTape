@@ -21,6 +21,7 @@ RTGrantSystem.ALLOWED_CATEGORIES = {
 RTGrantSystem.MIN_PRICE_FOR_GRANT = 100000
 RTGrantSystem.APPLICATION_COST = 500
 RTGrantSystem.GRANT_RETENTION_MONTHS = 36
+RTGrantSystem.COOLDOWN_PERIOD_MONTHS = 6
 
 table.insert(FinanceStats.statNames, "grantReceived")
 FinanceStats.statNameToIndex["grantReceived"] = #FinanceStats.statNames
@@ -354,4 +355,30 @@ function RTGrantSystem:findGrantById(grantId)
         return grant, grant.status
     end
     return nil, nil
+end
+
+function RTGrantSystem:canFarmApplyForGrant(farmId)
+    local currentMonth = RedTape.getCumulativeMonth()
+    
+    -- Check all grants for this farm
+    for _, grant in pairs(self.grants) do
+        if grant.farmId == farmId then
+            -- Block if farm has an approved grant
+            if grant.status == RTGrantSystem.STATUS.APPROVED then
+                return false
+            end
+            
+            -- Block if farm has a completed grant within cooldown period
+            if grant.status == RTGrantSystem.STATUS.COMPLETE then
+                if grant.completionMonth then
+                    local monthsSinceCompletion = currentMonth - grant.completionMonth
+                    if monthsSinceCompletion < RTGrantSystem.COOLDOWN_PERIOD_MONTHS then
+                        return false
+                    end
+                end
+            end
+        end
+    end
+    
+    return true
 end

@@ -596,7 +596,15 @@ function MenuRedTape:updateContent()
 
         local grantSystem = g_currentMission.RedTape.GrantSystem
         local currentFarmId = g_currentMission:getFarmId()
+        local canApply = grantSystem:canFarmApplyForGrant(currentFarmId)
         local farmGrants = grantSystem:getGrantsForFarm(currentFarmId)
+
+        -- Update eligibility status text
+        if canApply then
+            self.grantEligibilityStatus:setText(g_i18n:getText("rt_grant_eligible"))
+        else
+            self.grantEligibilityStatus:setText(g_i18n:getText("rt_grant_not_eligible"))
+        end
 
         -- Prepare data for renderer with historical grants (rejected + completed)
         local grantsData = {

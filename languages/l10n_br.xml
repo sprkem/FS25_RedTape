@@ -228,5 +228,7 @@
 		<text name="rt_grant_status_approved" text="Aprovado" />
 		<text name="rt_grant_status_rejected" text="Rejeitado" />
 		<text name="rt_grant_status_completed" text="Concluído" />
+		<text name="rt_grant_eligible" text="✓ Sua fazenda está atualmente elegível para solicitar subsídios" />
+		<text name="rt_grant_not_eligible" text="✗ Sua fazenda não pode solicitar subsídios no momento (subsídio ativo ou recentemente concluído)" />
 	</texts>
 </l10n>

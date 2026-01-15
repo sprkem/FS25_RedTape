@@ -228,5 +228,7 @@
 		<text name="rt_grant_status_approved" text="Approved" />
 		<text name="rt_grant_status_rejected" text="Rejected" />
 		<text name="rt_grant_status_completed" text="Completed" />
+		<text name="rt_grant_eligible" text="Your farm is currently eligible to apply for a new grant." />
+		<text name="rt_grant_not_eligible" text="Your farm cannot apply for new grants at this time." />
 	</texts>
 </l10n>

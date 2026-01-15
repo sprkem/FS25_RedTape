@@ -68,5 +68,12 @@ function RTConstructionScreenExtension.getGrantButtonVisibility(brush)
         return false
     end
 
+    -- Check if farm is allowed to apply for new grants (cooldown check)
+    local farmId = g_currentMission:getFarmId()
+    local grantSystem = g_currentMission.RedTape.GrantSystem
+    if not grantSystem:canFarmApplyForGrant(farmId) then
+        return false
+    end
+
     return true
 end

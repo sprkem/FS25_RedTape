@@ -311,8 +311,11 @@
                 <Text profile="rt_scheme_policy_info" text="$l10n_rt_system_disabled" position="0px -200px" width="800px" />
             </GuiElement>
             <GuiElement id="grantSystemEnabledInfo" position="0px -20px">
+                <!-- Grant Eligibility Status -->
+                <Text profile="rt_header_top_left_l" id="grantEligibilityStatus" text="" position="0px 20px" width="800px"/>
+                
                 <!-- Pending Grants Section -->
-                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_pending_grants" position="0px 20px"/>
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_pending_grants" position="0px -20px"/>
                 <GuiElement id="pendingGrantsContainer">
                     <GuiElement profile="fs25_statisticsHeaderBox" position="40px 0px">
                         <Button profile="rtTableHeader" position="20px -20px" text="$l10n_rt_tableheader_building" handleFocus="false" />
@@ -320,7 +323,7 @@
                         <Button profile="rtTableHeader" position="450px -20px" text="$l10n_rt_tableheader_applied" handleFocus="false" />
                         <Button profile="rtTableHeader" position="600px -20px" text="$l10n_rt_tableheader_assessment" handleFocus="false" />
                     </GuiElement>
-                    <SmoothList id="pendingGrantsTable" profile="rt_table" position="40px -50px" size="750px 200px">
+                    <SmoothList id="pendingGrantsTable" profile="rt_table" position="40px -50px" size="750px 100px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="280px 32px" name="building"/>
                             <Text profile="rtListRowCellLeft" position="300px 0px" size="150px 32px" name="price"/>
@@ -328,9 +331,6 @@
                             <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="assessment"/>
                         </ListItem>
                     </SmoothList>
-                    <ThreePartBitmap profile="rt_slider_box_left" position="810px -50px" size="6px 200px">
-                        <Slider profile="fs25_listSlider" dataElementId="pendingGrantsTable" />
-                    </ThreePartBitmap>
                 </GuiElement>
                 <GuiElement id="noPendingGrantsContainer">
                     <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_pending_grants" position="40px -60px" width="750px" />
@@ -345,7 +345,7 @@
                         <Button profile="rtTableHeader" position="450px -20px" text="$l10n_rt_tableheader_amount" handleFocus="false" />
                         <Button profile="rtTableHeader" position="600px -20px" text="$l10n_rt_tableheader_approved" handleFocus="false" />
                     </GuiElement>
-                    <SmoothList id="approvedGrantsTable" profile="rt_table" position="40px -330px" size="750px 200px">
+                    <SmoothList id="approvedGrantsTable" profile="rt_table" position="40px -330px" size="750px 100px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="280px 32px" name="building"/>
                             <Text profile="rtListRowCellLeft" position="300px 0px" size="150px 32px" name="price"/>
@@ -353,9 +353,6 @@
                             <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="approved"/>
                         </ListItem>
                     </SmoothList>
-                    <ThreePartBitmap profile="rt_slider_box_left" position="810px -330px" size="6px 200px">
-                        <Slider profile="fs25_listSlider" dataElementId="approvedGrantsTable" />
-                    </ThreePartBitmap>
                 </GuiElement>
                 <GuiElement id="noApprovedGrantsContainer">
                     <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_approved_grants" position="40px -340px" width="750px" />

@@ -228,5 +228,7 @@
 		<text name="rt_grant_status_approved" text="Schváleno" />
 		<text name="rt_grant_status_rejected" text="Zamítnuto" />
 		<text name="rt_grant_status_completed" text="Dokončeno" />
+		<text name="rt_grant_eligible" text="✓ Vaše farma je v současné době způsobilá žádat o dotace" />
+		<text name="rt_grant_not_eligible" text="✗ Vaše farma nemůže v tuto chvíli žádat o dotace (aktivní nebo nedávno dokončená dotace)" />
 	</texts>
 </l10n>

@@ -228,5 +228,7 @@
 		<text name="rt_grant_status_approved" text="Одобрено" />
 		<text name="rt_grant_status_rejected" text="Отклонено" />
 		<text name="rt_grant_status_completed" text="Завершено" />
+		<text name="rt_grant_eligible" text="✓ Ваша ферма в настоящее время имеет право подавать заявки на гранты" />
+		<text name="rt_grant_not_eligible" text="✗ Ваша ферма не может подавать заявки на гранты в данный момент (активный или недавно завершенный грант)" />
 	</texts>
 </l10n>

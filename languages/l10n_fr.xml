@@ -228,5 +228,7 @@
 		<text name="rt_grant_status_approved" text="Approuvé" />
 		<text name="rt_grant_status_rejected" text="Rejeté" />
 		<text name="rt_grant_status_completed" text="Terminé" />
+		<text name="rt_grant_eligible" text="✓ Votre ferme est actuellement éligible pour demander des subventions" />
+		<text name="rt_grant_not_eligible" text="✗ Votre ferme ne peut pas demander de subventions pour le moment (subvention active ou récemment terminée)" />
 	</texts>
 </l10n>
