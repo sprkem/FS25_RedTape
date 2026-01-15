@@ -228,7 +228,8 @@
 		<text name="rt_grant_status_approved" text="Aprovado" />
 		<text name="rt_grant_status_rejected" text="Rejeitado" />
 		<text name="rt_grant_status_completed" text="Concluído" />
-		<text name="rt_grant_eligible" text="✓ Sua fazenda está atualmente elegível para solicitar subsídios" />
-		<text name="rt_grant_not_eligible" text="✗ Sua fazenda não pode solicitar subsídios no momento (subsídio ativo ou recentemente concluído)" />
+		<text name="rt_grant_eligible" text="STATUS: ELEGÍVEL" />
+		<text name="rt_grant_not_eligible" text="STATUS: NÃO ELEGÍVEL" />
+		<text name="rt_grant_eligible_description" text="A elegibilidade para solicitar novos subsídios depende de várias condições. Você não pode solicitar se tiver uma solicitação pendente atual ou uma solicitação aprovada aguardando conclusão. Há também um período de espera de 6 meses após a conclusão de um subsídio (ou seja, quando você recebe os fundos do subsídio)." />
 	</texts>
 </l10n>

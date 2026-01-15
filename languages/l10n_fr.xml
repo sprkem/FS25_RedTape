@@ -228,7 +228,8 @@
 		<text name="rt_grant_status_approved" text="Approuvé" />
 		<text name="rt_grant_status_rejected" text="Rejeté" />
 		<text name="rt_grant_status_completed" text="Terminé" />
-		<text name="rt_grant_eligible" text="✓ Votre ferme est actuellement éligible pour demander des subventions" />
-		<text name="rt_grant_not_eligible" text="✗ Votre ferme ne peut pas demander de subventions pour le moment (subvention active ou récemment terminée)" />
+		<text name="rt_grant_eligible" text="STATUT: ÉLIGIBLE" />
+		<text name="rt_grant_not_eligible" text="STATUT: NON ÉLIGIBLE" />
+		<text name="rt_grant_eligible_description" text="L'éligibilité pour demander de nouvelles subventions dépend de nombreuses conditions. Vous ne pouvez pas faire de demande si vous avez une demande en attente actuelle, ou une demande approuvée en attente d'achèvement. Il y a également une période de refroidissement de 6 mois après l'achèvement d'une subvention (c'est-à-dire lorsque vous recevez les fonds de subvention)." />
 	</texts>
 </l10n>

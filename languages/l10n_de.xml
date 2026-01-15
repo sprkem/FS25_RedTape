@@ -228,7 +228,8 @@
 		<text name="rt_grant_status_approved" text="Genehmigt" />
 		<text name="rt_grant_status_rejected" text="Abgelehnt" />
 		<text name="rt_grant_status_completed" text="Abgeschlossen" />
-		<text name="rt_grant_eligible" text="✓ Ihr Betrieb ist derzeit berechtigt, Zuschüsse zu beantragen" />
-		<text name="rt_grant_not_eligible" text="✗ Ihr Betrieb kann derzeit keine Zuschüsse beantragen (aktiver oder kürzlich abgeschlossener Zuschuss)" />
+		<text name="rt_grant_eligible" text="STATUS: BERECHTIGT" />
+		<text name="rt_grant_not_eligible" text="STATUS: NICHT BERECHTIGT" />
+		<text name="rt_grant_eligible_description" text="Die Berechtigung zur Beantragung neuer Zuschüsse hängt von zahlreichen Bedingungen ab. Sie können nicht beantragen, wenn Sie einen aktuellen ausstehenden Antrag oder einen genehmigten Antrag haben, der auf Abschluss wartet. Es gibt auch eine Abkühlungsperiode von 6 Monaten nach Abschluss eines Zuschusses (d.h. wenn Sie Zuschussmittel erhalten)." />
 	</texts>
 </l10n>

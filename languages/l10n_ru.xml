@@ -228,7 +228,8 @@
 		<text name="rt_grant_status_approved" text="Одобрено" />
 		<text name="rt_grant_status_rejected" text="Отклонено" />
 		<text name="rt_grant_status_completed" text="Завершено" />
-		<text name="rt_grant_eligible" text="✓ Ваша ферма в настоящее время имеет право подавать заявки на гранты" />
-		<text name="rt_grant_not_eligible" text="✗ Ваша ферма не может подавать заявки на гранты в данный момент (активный или недавно завершенный грант)" />
+		<text name="rt_grant_eligible" text="СТАТУС: ПОДХОДИТ" />
+		<text name="rt_grant_not_eligible" text="СТАТУС: НЕ ПОДХОДИТ" />
+		<text name="rt_grant_eligible_description" text="Право на подачу заявок на новые гранты зависит от многих условий. Вы не можете подавать заявку, если у вас есть текущая ожидающая заявка или одобренная заявка, ожидающая завершения. Также существует период ожидания в 6 месяцев после завершения гранта (т.е. когда вы получаете грантовые средства)." />
 	</texts>
 </l10n>

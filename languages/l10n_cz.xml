@@ -228,7 +228,8 @@
 		<text name="rt_grant_status_approved" text="Schváleno" />
 		<text name="rt_grant_status_rejected" text="Zamítnuto" />
 		<text name="rt_grant_status_completed" text="Dokončeno" />
-		<text name="rt_grant_eligible" text="✓ Vaše farma je v současné době způsobilá žádat o dotace" />
-		<text name="rt_grant_not_eligible" text="✗ Vaše farma nemůže v tuto chvíli žádat o dotace (aktivní nebo nedávno dokončená dotace)" />
+		<text name="rt_grant_eligible" text="STAV: ZPŮSOBILÝ" />
+		<text name="rt_grant_not_eligible" text="STAV: NEZPŮSOBILÝ" />
+		<text name="rt_grant_eligible_description" text="Způsobilost k žádosti o nové dotace závisí na mnoha podmínkách. Nemůžete žádat, pokud máte aktuální čekající žádost nebo schválenou žádost čekající na dokončení. Existuje také ochranná lhůta 6 měsíců po dokončení dotace (tj. když obdržíte dotační prostředky)." />
 	</texts>
 </l10n>
