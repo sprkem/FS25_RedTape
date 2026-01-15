@@ -249,10 +249,10 @@ function RTGrantSystem:applyForGrant(farmId, xmlFile, price, grantId)
     }
 
     self.grants[grantId] = grant
-    
+
     -- Publish data updated message
     g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
-    
+
     return grant.id
 end
 
@@ -359,16 +359,17 @@ end
 
 function RTGrantSystem:canFarmApplyForGrant(farmId)
     local currentMonth = RedTape.getCumulativeMonth()
-    
-    -- Check all grants for this farm
+
     for _, grant in pairs(self.grants) do
         if grant.farmId == farmId then
-            -- Block if farm has an approved grant
+            if grant.status == RTGrantSystem.STATUS.PENDING then
+                return false
+            end
+
             if grant.status == RTGrantSystem.STATUS.APPROVED then
                 return false
             end
-            
-            -- Block if farm has a completed grant within cooldown period
+
             if grant.status == RTGrantSystem.STATUS.COMPLETE then
                 if grant.completionMonth then
                     local monthsSinceCompletion = currentMonth - grant.completionMonth
@@ -379,6 +380,6 @@ function RTGrantSystem:canFarmApplyForGrant(farmId)
             end
         end
     end
-    
+
     return true
 end

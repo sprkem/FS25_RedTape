@@ -48,12 +48,18 @@ function RTGrantsRenderer:populateCellForItemInSection(list, section, index, cel
     -- Format price
     cell:getAttribute("price"):setText(g_i18n:formatMoney(grant.price, 0, true, true))
 
+    local applied = grant.applicationMonth % 12
+    if applied == 0 then applied = 12 end
+
+    local assessment = grant.assessmentMonth % 12
+    if assessment == 0 then assessment = 12 end
+
     if self.currentSection == "pending" then
-        cell:getAttribute("applied"):setText(RedTape.monthToString(grant.applicationMonth % 12))
-        cell:getAttribute("assessment"):setText(RedTape.monthToString(grant.assessmentMonth % 12))
+        cell:getAttribute("applied"):setText(RedTape.monthToString(applied))
+        cell:getAttribute("assessment"):setText(RedTape.monthToString(assessment))
     elseif self.currentSection == "approved" then
         cell:getAttribute("amount"):setText(g_i18n:formatMoney(grant.amount or 0, 0, true, true))
-        cell:getAttribute("approved"):setText(RedTape.monthToString(grant.assessmentMonth % 12))
+        cell:getAttribute("approved"):setText(RedTape.monthToString(assessment))
     elseif self.currentSection == "historical" then
         local amount = grant.amount or 0
         cell:getAttribute("amount"):setText(g_i18n:formatMoney(amount, 0, true, true))
