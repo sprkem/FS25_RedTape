@@ -132,7 +132,7 @@
 		<text name="rt_scheme_set_aside" text="Mise en jachère"/>
 		<text name="rt_scheme_desc_delayed_mowing" text="Ne coupez pas votre herbe pendant les mois de printemps (mars à juin) pour protéger la faune. En juillet, vous serez indemnisé pour toute herbe non coupée."/>
 		<text name="rt_scheme_desc_crop_promotion" text="Une initiative gouvernementale pour promouvoir la culture de %s par des incitations financières. Vous pourrez recevoir de l'équipement pour la durée de l'initiative et obtenir un bonus financier pour chaque champ où vous plantez la culture."/>
-		<text name="rt_scheme_desc_reduce_bale_wrapping" text="L'enrubannage des balles consomme du plastique et empêche la dispersion des graines pendant le transport. Ce programme ne vous pénalise pas pour l'enrubannage des balles - il vous récompense uniquement lorsque vous choisissez une alternative comme faire des balles de foin ou utiliser une autochargeuse."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="L'emballage des balles de foin consomme du plastique et empêche la dissémination des graines pendant le transport. Ce système pénalise l'emballage des balles, mais récompense le choix d'alternatives comme la fabrication de balles de foin ou l'utilisation d'une remorque fourragère."/>
 		<text name="rt_scheme_desc_tractor_demo" text="%s offre à votre ferme l'opportunité d'essayer un %s pendant %s mois. La spécification exacte du véhicule de démonstration est déterminée au moment de votre inscription au programme."/>
 		<text name="rt_scheme_desc_natural_grazing" text="Un programme pour encourager le pâturage des animaux dans un pré sans alimentation supplémentaire. Le paiement est destiné à compenser toute perte de revenus. Vous recevrez un bonus pour le temps que vos animaux passent à paître dans un pré. Le montant du bonus varie selon le type d'animal."/>
 		<text name="rt_scheme_desc_natural_fertiliser" text="Un programme pour encourager l'utilisation d'engrais naturels tels que le fumier, le lisier et le digestat. Vous recevrez un bonus pour la quantité d'engrais naturel que vous utilisez par rapport aux alternatives synthétiques. Cela s'applique à tout l'engrais que vous épandez, que ce soit sur votre ferme ou pour un contrat."/>
@@ -157,6 +157,12 @@
 		<text name="finance_policyFine" text="Amende de politique"/>
 		<text name="rt_ui_taxCost" text="Impôts"/>
 		<text name="finance_taxCost" text="Impôts"/>
+		<text name="rt_ui_grantReceived" text="Subvention reçue"/>
+		<text name="finance_grantReceived" text="Subvention reçue"/>
+		<text name="rt_ui_grantApplicationCost" text="Frais de demande de subvention"/>
+		<text name="finance_grantApplicationCost" text="Frais de demande de subvention"/>
+		<text name="rt_setting_grantsEnabled" text="Subventions"/>
+		<text name="rt_toolTip_grantsEnabled" text="Activer ou désactiver le système de subventions"/>
 		<text name="rt_no_vehicle_room" text="Pas assez d'espace pour livrer les véhicules du programme. Libérez de l'espace et réessayez."/>
 		<text name="rt_info_scheme_selected" text="Vous vous êtes inscrit au programme. Récupérez les véhicules au magasin."/>
 		<text name="rt_misc_year" text="Année"/>
@@ -172,6 +178,7 @@
 		<text name="rt_help_title_policies" text="Politiques"/>
 		<text name="rt_help_title_schemes" text="Programmes"/>
 		<text name="rt_help_title_tax" text="Impôts"/>
+		<text name="rt_help_title_grants" text="Subventions"/>
 		<text name="rt_help_intro_intro" text="Paperasserie est un mod qui introduit les Politiques, les Programmes et la Fiscalité dans Farming Simulator. Ces systèmes sont conçus pour ajouter de la profondeur et du défi à votre expérience agricole, encourageant les pratiques durables et la planification stratégique."/>
 		<text name="rt_help_intro_intro_2" text="Toutes les informations relatives à Paperasserie sont contenues dans le nouveau menu ajouté au menu principal. Cherchez l'icône du bâtiment gouvernemental."/>
 		<text name="rt_help_policies_intro" text="Les politiques sont essentiellement des lois que vous devez respecter lors de l'exploitation agricole. Elles régissent des aspects tels que le traitement des animaux et l'utilisation appropriée des terres."/>
@@ -184,6 +191,10 @@
 		<text name="rt_help_tax_intro_2" text="Dans l'onglet Impôts, vous pouvez voir une déclaration finalisée sur le côté gauche de la vue. Sur le côté droit, vous pouvez voir les totaux en cours pour votre année fiscale actuelle. Vous pouvez l'utiliser pour planifier et réduire votre facture fiscale. Par exemple, si vous voyez que vos bénéfices sont élevés pour l'année, vous pourriez choisir d'acheter du nouveau matériel pour réduire les bénéfices, et donc vos impôts."/>
 		<text name="rt_help_tax_intro_3" text="Parfois, vous verrez des notes fiscales. Celles-ci vous indiquent quand votre déclaration fiscale est modifiée par une condition non standard. Par exemple, un programme pourrait vous offrir une réduction d'impôt future. Cela sera indiqué dans les notes fiscales pour vous aider à comprendre votre facture."/>
 		<text name="rt_help_tax_intro_4" text="Si vous subissez une perte au cours d'une année fiscale, vous verrez que ces pertes se 'reportent' sur les années futures. Si vous réalisez ensuite un bénéfice au cours d'une année ultérieure, les pertes antérieures seront utilisées pour réduire votre charge fiscale. Cela peut entraîner le non-paiement d'impôts malgré la réalisation de bénéfices. Les pertes antérieures se reportent et sont plafonnées à 5 millions."/>
+		<text name="rt_help_grants_intro" text="Les subventions sont un moyen de demander au gouvernement un financement supplémentaire pour de nouvelles constructions, par exemple une nouvelle étable à vaches."/>
+		<text name="rt_help_grants_intro_2" text="Pour commencer, ouvrez le menu de construction pour les articles applicables, il y aura un bouton Demander une subvention. Choisissez-le et confirmez, et votre demande est lancée."/>
+		<text name="rt_help_grants_intro_3" text="Consultez l'écran Subventions dans le menu Paperasserie et il vous indiquera quand votre demande sera traitée. Elle sera soit approuvée soit rejetée. Si elle est approuvée, utilisez le menu de construction pour placer le bâtiment et vous recevrez les fonds attribués."/>
+		<text name="rt_help_grants_intro_4" text="Vous pouvez avoir une demande active à un moment donné, et il y a une période de refroidissement de 6 mois après qu'une subvention réussie soit traitée."/>
 		<text name="rt_setting_taxEnabled" text="Impôts activés"/>
 		<text name="rt_toolTip_taxEnabled" text="Activer ou désactiver le système fiscal"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Politiques/Programmes activés"/>
@@ -191,6 +202,39 @@
 		<text name="rt_setting_baseTaxRate" text="Taux d'imposition de base"/>
 		<text name="rt_toolTip_baseTaxRate" text="Définir le taux d'imposition de base"/>
 		<text name="rt_system_disabled" text="Ce système est actuellement désactivé. Vérifiez les paramètres du jeu pour le réactiver." />
+		<text name="rt_setting_grantsEnabled" text="Subventions activées"/>
+		<text name="rt_toolTip_grantsEnabled" text="Activer ou désactiver le système de subventions gouvernementales"/>
+		<text name="rt_grant_button" text="Demander une subvention" />
+		<text name="rt_grant_application_submitted" text="Votre demande de subvention a été soumise et peut être consultée dans l'onglet Subventions." />
+		<text name="rt_grant_confirm_application_dialog" text="Souhaitez-vous demander une subvention pour cette construction ? Il y aura des frais de demande de %s. Les demandes peuvent prendre jusqu'à 6 mois à traiter et ont une chance d'approbation de 35-45%%, qui peut être impactée par votre note de conformité." />
+		<text name="rt_grant_existing_application" text="Une seule demande active est autorisée à la fois. Vous pouvez redemander une fois votre demande existante traitée." />
+		<text name="rt_grant_approved_notification" text="Votre demande de subvention a été approuvée ! Vous recevrez %s lors de l'achat du bâtiment." />
+		<text name="rt_grant_rejected_notification" text="Votre demande de subvention a été rejetée." />
+		<text name="rt_grant_completed_notification" text="Le paiement de subvention de %s a été accordé à votre ferme." />
+		<text name="rt_event_type_grantapproved" text="Subvention approuvée" />
+		<text name="rt_event_type_grantrejected" text="Subvention rejetée" />
+		<text name="rt_event_type_grantcompleted" text="Subvention terminée" />
 		<text name="permission_redTape_redTapeSettings" text="Paramètres Red Tape" />
+		<text name="rt_header_grants" text="Subventions" />
+		<text name="rt_label_pending_grants" text="Demandes en attente" />
+		<text name="rt_label_approved_grants" text="Subventions approuvées" />
+		<text name="rt_label_historical_grants" text="Subventions historiques" />
+		<text name="rt_tableheader_building" text="Bâtiment" />
+		<text name="rt_tableheader_price" text="Prix" />
+		<text name="rt_tableheader_applied" text="Demandé" />
+		<text name="rt_tableheader_assessment" text="Évaluation" />
+		<text name="rt_tableheader_amount" text="Montant" />
+		<text name="rt_tableheader_approved" text="Approuvé" />
+		<text name="rt_tableheader_status" text="Statut" />
+		<text name="rt_no_pending_grants" text="Aucune demande de subvention en attente" />
+		<text name="rt_no_approved_grants" text="Aucune subvention approuvée" />
+		<text name="rt_no_historical_grants" text="Aucune subvention historique" />
+		<text name="rt_grant_status_pending" text="En attente" />
+		<text name="rt_grant_status_approved" text="Approuvé" />
+		<text name="rt_grant_status_rejected" text="Rejeté" />
+		<text name="rt_grant_status_completed" text="Terminé" />
+		<text name="rt_grant_eligible" text="STATUT: ÉLIGIBLE" />
+		<text name="rt_grant_not_eligible" text="STATUT: NON ÉLIGIBLE" />
+		<text name="rt_grant_eligible_description" text="L'éligibilité pour demander de nouvelles subventions dépend de nombreuses conditions. Vous ne pouvez pas faire de demande si vous avez une demande en attente actuelle, ou une demande approuvée en attente d'achèvement. Il y a également une période de refroidissement de 6 mois après l'achèvement d'une subvention (c'est-à-dire lorsque vous recevez les fonds de subvention)." />
 	</texts>
 </l10n>

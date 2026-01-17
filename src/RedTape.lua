@@ -7,19 +7,16 @@ source(RedTape.dir .. "src/gui/MenuRedTape.lua")
 function RedTape:loadMap()
     g_currentMission.RedTape = self
 
-    MessageType.EVENT_LOG_UPDATED = nextMessageTypeId()
-    MessageType.SCHEMES_UPDATED = nextMessageTypeId()
-    MessageType.TAXES_UPDATED = nextMessageTypeId()
-    MessageType.POLICIES_UPDATED = nextMessageTypeId()
+    MessageType.RT_DATA_UPDATED = nextMessageTypeId()
 
     self.monthStarted = 0
     self.leaseDeals = {}
-    self.constantChecksUpdateIntervalMs = 2000     -- interval for constant checks
-    self.constantChecksUpdateTime = 5000           -- initial interval post load
+    self.constantChecksUpdateIntervalMs = 2000    -- interval for constant checks
+    self.constantChecksUpdateTime = 5000          -- initial interval post load
     self.infrequentChecksUpdateIntervalMs = 30000 -- interval for infrequent checks
-    self.infrequentChecksUpdateTime = 30000        -- initial interval for infrequent checks
-    self.sprayAreaCheckInterval = 500              -- interval for spray area checks
-    self.sprayCheckTime = 0                        -- initial time for spray area checks
+    self.infrequentChecksUpdateTime = 30000       -- initial interval for infrequent checks
+    self.sprayAreaCheckInterval = 500             -- interval for spray area checks
+    self.sprayCheckTime = 0                       -- initial time for spray area checks
     self.fillTypeCache = nil
 
     g_gui:loadProfiles(RedTape.dir .. "src/gui/guiProfiles.xml")
@@ -34,6 +31,7 @@ function RedTape:loadMap()
     self.TaxSystem = RTTaxSystem.new()
     self.SchemeSystem = RTSchemeSystem.new()
     self.PolicySystem = RTPolicySystem.new()
+    self.GrantSystem = RTGrantSystem.new()
     self.InfoGatherer = RTInfoGatherer.new()
     self.EventLog = RTEventLog.new()
     self.RedTapeMenu = guiRedTape
@@ -87,6 +85,7 @@ function RedTape:periodChanged()
     rt.PolicySystem:periodChanged()
     rt.SchemeSystem:periodChanged()
     rt.TaxSystem:periodChanged()
+    rt.GrantSystem:periodChanged()
     rt.InfoGatherer:resetMonthlyData()
 
     local month = RedTape.periodToMonth(g_currentMission.environment.currentPeriod)
@@ -124,6 +123,7 @@ function RedTape:loadFromXMLFile()
         g_currentMission.RedTape.PolicySystem:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.SchemeSystem:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.TaxSystem:loadFromXMLFile(xmlFile)
+        g_currentMission.RedTape.GrantSystem:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.EventLog:loadFromXMLFile(xmlFile)
         g_currentMission.RedTape.InfoGatherer:loadFromXMLFile(xmlFile)
 
@@ -176,6 +176,7 @@ function RedTape:saveToXmlFile()
     g_currentMission.RedTape.PolicySystem:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.SchemeSystem:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.TaxSystem:saveToXmlFile(xmlFile)
+    g_currentMission.RedTape.GrantSystem:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.EventLog:saveToXmlFile(xmlFile)
     g_currentMission.RedTape.InfoGatherer:saveToXmlFile(xmlFile)
 
@@ -366,9 +367,22 @@ function RedTape.getGridPosition(x, y, z, gridSize)
     return gridX, gridY, gridZ
 end
 
+function RedTape.getGrassTypes()
+    local result = { FruitType.GRASS, FruitType.MEADOW }
+
+    if FruitType.ALFALFA ~= nil then
+        table.insert(result, FruitType.ALFALFA)
+    end
+    if FruitType.CLOVER ~= nil then
+        table.insert(result, FruitType.CLOVER)
+    end
+    return result
+end
+
 function RedTape:onStartMission()
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed,
         RTMissionManagerExtension.getIsMissionWorkAllowed)
+    Farm.changeBalance = Utils.appendedFunction(Farm.changeBalance, RTFarmExtension.changeBalance)
     local rt = g_currentMission.RedTape
     rt.missionStarted = true
     local ig = rt.InfoGatherer
@@ -397,10 +411,7 @@ function RedTape:onStartMission()
 end
 
 function RedTape:playerFarmChanged()
-    g_messageCenter:publish(MessageType.EVENT_LOG_UPDATED)
-    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
-    g_messageCenter:publish(MessageType.TAXES_UPDATED)
-    g_messageCenter:publish(MessageType.POLICIES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 FSBaseMission.sendInitialClientState = Utils.appendedFunction(FSBaseMission.sendInitialClientState,

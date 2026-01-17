@@ -132,7 +132,7 @@
 		<text name="rt_scheme_set_aside" text="Set-aside"/>
 		<text name="rt_scheme_desc_delayed_mowing" text="Do not cut your grass during the spring months (March to June) to protect wildlife. In July, you will be compensated for any uncut grass."/>
 		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You may be provided equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
-		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Wrapping bales consumes plastic and prevents the spread of seeds during transportation. This scheme does not punish you for wrapping bales - it only rewards you when you choose an alternative such as making hay bales or using a forage wagon."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Wrapping bales consumes plastic and prevents the spread of seeds during transportation. This scheme punishes you for wrapping bales, but rewards you when you choose an alternative such as making hay bales or using a forage wagon."/>
 		<text name="rt_scheme_desc_tractor_demo" text="%s are offering your farm the opportunity to demo a %s for %s month%s. The exact specification of the demo vehicle is determined at the point that you sign up to the scheme."/>
 		<text name="rt_scheme_desc_natural_grazing" text="A scheme to encourage letting animals graze in a pasture without additional feed. The payment is intended to offset any loss of earnings. You will receive a bonus for the time that your animals spend grazing in a pasture. The bonus amount is variable depending on the type of animal."/>
 		<text name="rt_scheme_desc_natural_fertiliser" text="A scheme to encourage the use of natural fertilisers such as manure, slurry, and digestate. You will receive a bonus for the amount of natural fertiliser you use compared to synthetic alternatives. This applies to all fertiliser you spread, whether it is on your farm or for a contract."/>
@@ -157,6 +157,12 @@
 		<text name="finance_policyFine" text="Policy Fine"/>
 		<text name="rt_ui_taxCost" text="Tax"/>
 		<text name="finance_taxCost" text="Tax"/>
+		<text name="rt_ui_grantReceived" text="Grant Received"/>
+		<text name="finance_grantReceived" text="Grant Received"/>
+		<text name="rt_ui_grantApplicationCost" text="Grant Application Fee"/>
+		<text name="finance_grantApplicationCost" text="Grant Application Fee"/>
+		<text name="rt_setting_grantsEnabled" text="Grants"/>
+		<text name="rt_toolTip_grantsEnabled" text="Enable or disable the grant system"/>
 		<text name="rt_no_vehicle_room" text="Not enough space for deliver vehicles for the scheme. Make some room and try again."/>
 		<text name="rt_info_scheme_selected" text="You have signed up for the scheme. Collect any vehicles from the shop."/>
 		<text name="rt_misc_year" text="Year"/>
@@ -172,6 +178,7 @@
 		<text name="rt_help_title_policies" text="Policies"/>
 		<text name="rt_help_title_schemes" text="Schemes"/>
 		<text name="rt_help_title_tax" text="Tax"/>
+		<text name="rt_help_title_grants" text="Grants"/>
 		<text name="rt_help_intro_intro" text="Red Tape is a mod that introduces Policies, Schemes, and Taxation to Farming Simulator. These systems are designed to add depth and challenge to your farming experience, encouraging sustainable practices and strategic planning."/>
 		<text name="rt_help_intro_intro_2" text="All information relating to Red Tape is contained in the new menu added to the main menu. Look for the government building icon."/>
 		<text name="rt_help_policies_intro" text="Policies are essentially laws that you must comply with when farming. They govern things such as how you treat animals and appropriate use of land."/>
@@ -184,6 +191,10 @@
 		<text name="rt_help_tax_intro_2" text="In the Tax tab, you can see a finalised statement in the left side of the view. On the right hand side you can see running totals for your current financial year. You can use this to plan ahead and reduce your tax bill. For example if you see your profits are high for the year, you might choose to purchase new equipment to reduce profit, and therefore your tax."/>
 		<text name="rt_help_tax_intro_3" text="Sometimes you will see Tax Notes. These tell you when your tax statement is modified by some non-standard condition. For example, a Scheme might offer you a future tax break. This will be indicated in Tax Notes to help you understand your bill."/>
 		<text name="rt_help_tax_intro_4" text="If you make a loss in once financial year, you will see that these losses 'rollover' into future years. If you then make a profit in a subsequent year, previous losses will be used to reduce your tax burden. This can result in paying no tax despite making profits. Previous losses rollover, and are capped at 5 million."/>
+		<text name="rt_help_grants_intro" text="Grants is a way for you to apply to the government for additional funding towards new constructions, e.g. a new cow barn."/>
+		<text name="rt_help_grants_intro_2" text="To get started, open the construction menu for applicable items, there will be an Apply for Grant button. Choose that and confirm and your application is started."/>
+		<text name="rt_help_grants_intro_3" text="Check the Grants screen in the Red Tape menu and it will tell you when your application will be processed. It will either be approved or rejected. If approved, use the construction menu to place the building and you will receive the awarded funds."/>
+		<text name="rt_help_grants_intro_4" text="You can have one active application at a given time, and there is a cooldown period of 6 months after a successful grant is processed."/>
 		<text name="rt_setting_taxEnabled" text="Tax Enabled"/>
 		<text name="rt_toolTip_taxEnabled" text="Enable or disable the Tax System"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Policies/Schemes Enabled"/>
@@ -191,6 +202,39 @@
 		<text name="rt_setting_baseTaxRate" text="Base Tax Rate"/>
 		<text name="rt_toolTip_baseTaxRate" text="Set the base tax rate"/>
 		<text name="rt_system_disabled" text="This system is currently disabled. Check Game Settings to turn it back on." />
+		<text name="rt_setting_grantsEnabled" text="Grants Enabled"/>
+		<text name="rt_toolTip_grantsEnabled" text="Enable or disable the Government Grants system"/>
+		<text name="rt_grant_button" text="Apply for grant" />
+		<text name="rt_grant_application_submitted" text="Your grant application has been submitted and can be viewed in the Grants tab." />
+		<text name="rt_grant_confirm_application_dialog" text="Do you wish to apply for a grant towards this construction? There will be an application cost of %s. Applications may take up to 6 months to be processed and have an approval chance of 35-45%%, which may be impacted by your compliance rating." />
+		<text name="rt_grant_existing_application" text="Only one active application is allowed at a time. You can apply again once your existing application is processed." />
+		<text name="rt_grant_approved_notification" text="Your grant application has been approved! You will receive %s when you purchase the building." />
+		<text name="rt_grant_rejected_notification" text="Your grant application has been rejected." />
+		<text name="rt_grant_completed_notification" text="Grant payment of %s has been awarded to your farm." />
+		<text name="rt_event_type_grantapproved" text="Grant Approved" />
+		<text name="rt_event_type_grantrejected" text="Grant Rejected" />
+		<text name="rt_event_type_grantcompleted" text="Grant Completed" />
 		<text name="permission_redTape_redTapeSettings" text="Red Tape Settings" />
+		<text name="rt_header_grants" text="Grants" />
+		<text name="rt_label_pending_grants" text="Pending Applications" />
+		<text name="rt_label_approved_grants" text="Approved Grants" />
+		<text name="rt_label_historical_grants" text="Historical Grants" />
+		<text name="rt_tableheader_building" text="Building" />
+		<text name="rt_tableheader_price" text="Price" />
+		<text name="rt_tableheader_applied" text="Applied" />
+		<text name="rt_tableheader_assessment" text="Assessment" />
+		<text name="rt_tableheader_amount" text="Amount" />
+		<text name="rt_tableheader_approved" text="Approved" />
+		<text name="rt_tableheader_status" text="Status" />
+		<text name="rt_no_pending_grants" text="No pending grant applications" />
+		<text name="rt_no_approved_grants" text="No approved grants" />
+		<text name="rt_no_historical_grants" text="No historical grants" />
+		<text name="rt_grant_status_pending" text="Pending" />
+		<text name="rt_grant_status_approved" text="Approved" />
+		<text name="rt_grant_status_rejected" text="Rejected" />
+		<text name="rt_grant_status_completed" text="Completed" />
+		<text name="rt_grant_eligible" text="STATUS: ELIGIBLE" />
+		<text name="rt_grant_not_eligible" text="STATUS: NOT ELIGIBLE" />
+		<text name="rt_grant_eligible_description" text="Eligibility to apply for new grants depends on numerous conditions. You may not apply if you have a current pending application, or an approved application awaiting completion. There is also a cooldown period of 6 months after completion of a grant (i.e. when you receive grant funds)." />
 	</texts>
 </l10n>

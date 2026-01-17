@@ -28,6 +28,9 @@
             <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[5]" text="$l10n_rt_header_croprotation" onClick="onClickCropRotation">
                 <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
             </Button>
+            <Button profile="fs25_subCategorySelectorTabbedTab" id="subCategoryTabs[6]" text="$l10n_rt_header_grants" onClick="onClickGrants">
+                <ThreePartBitmap profile="fs25_subCategorySelectorTabbedTabBg" name="background"/>
+            </Button>
         </BoxLayout>
         <ThreePartBitmap profile="fs25_lineSeparatorTopHighlighted" position="0px -57px"/>
         <MultiTextOption profile="fs25_subCategorySelectorTabbed" id="subCategoryPaging" position="0px -10px" onClick="updateSubCategoryPages"/>
@@ -301,6 +304,84 @@
                     <Text profile="rt_crop_rotation_header" text="$l10n_rt_header_croprotation_mostrecent"/>
                     <Bitmap profile="fs25_calendarSeparator"/>
                 </BoxLayout>
+            </GuiElement>
+        </GuiElement>
+        <GuiElement profile="fs25_subCategorySelectorTabbedContainer" id="subCategoryPages[6]">
+            <GuiElement id="grantSystemDisabledMessage" position="0px -20px">
+                <Text profile="rt_scheme_policy_info" text="$l10n_rt_system_disabled" position="0px -200px" width="800px" />
+            </GuiElement>
+            <GuiElement id="grantSystemEnabledInfo" position="0px -20px">
+                <Text profile="rt_header_top_left_l" id="grantEligibilityStatus" text="" position="0px 20px" width="800px"/>
+                <Text profile="rt_scheme_policy_info" text="$l10n_rt_grant_eligible_description" position="40px -20px" width="1100px"/>
+                
+                <!-- Pending Grants Section -->
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_pending_grants" position="0px -90px"/>
+                <GuiElement id="pendingGrantsContainer" position="0px -120px">
+                    <GuiElement profile="fs25_statisticsHeaderBox" position="40px 0px">
+                        <Button profile="rtTableHeader" position="20px 0px" text="$l10n_rt_tableheader_building" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="300px 0px" text="$l10n_rt_tableheader_price" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="450px 0px" text="$l10n_rt_tableheader_applied" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="600px 0px" text="$l10n_rt_tableheader_assessment" handleFocus="false" />
+                    </GuiElement>
+                    <SmoothList id="pendingGrantsTable" profile="rt_table" position="40px -30px" size="750px 100px">
+                        <ListItem profile="rtTableListItem">
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="280px 32px" name="building"/>
+                            <Text profile="rtListRowCellLeft" position="300px 0px" size="150px 32px" name="price"/>
+                            <Text profile="rtListRowCellLeft" position="450px 0px" size="150px 32px" name="applied"/>
+                            <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="assessment"/>
+                        </ListItem>
+                    </SmoothList>
+                </GuiElement>
+                <GuiElement id="noPendingGrantsContainer">
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_pending_grants" position="40px -130px" width="750px" />
+                </GuiElement>
+
+                <!-- Approved Grants Section -->
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_approved_grants" position="0px -270px"/>
+                <GuiElement id="approvedGrantsContainer" position="0px -300px">
+                    <GuiElement profile="fs25_statisticsHeaderBox" position="40px 0px">
+                        <Button profile="rtTableHeader" position="20px 0px" text="$l10n_rt_tableheader_building" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="300px 0px" text="$l10n_rt_tableheader_price" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="450px 0px" text="$l10n_rt_tableheader_amount" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="600px 0px" text="$l10n_rt_tableheader_approved" handleFocus="false" />
+                    </GuiElement>
+                    <SmoothList id="approvedGrantsTable" profile="rt_table" position="40px -30px" size="750px 100px">
+                        <ListItem profile="rtTableListItem">
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="280px 32px" name="building"/>
+                            <Text profile="rtListRowCellLeft" position="300px 0px" size="150px 32px" name="price"/>
+                            <Text profile="rtListRowCellLeft" position="450px 0px" size="150px 32px" name="amount"/>
+                            <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="approved"/>
+                        </ListItem>
+                    </SmoothList>
+                </GuiElement>
+                <GuiElement id="noApprovedGrantsContainer">
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_approved_grants" position="40px -310px" width="750px" />
+                </GuiElement>
+
+                <!-- Historical Grants Section -->
+                <Text profile="rt_header_top_left_l" text="$l10n_rt_label_historical_grants" position="0px -460px"/>
+                <GuiElement id="historicalGrantsContainer" position="0px -490px">
+                    <GuiElement profile="fs25_statisticsHeaderBox" position="40px 0px">
+                        <Button profile="rtTableHeader" position="20px 0px" text="$l10n_rt_tableheader_building" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="300px 0px" text="$l10n_rt_tableheader_price" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="450px 0px" text="$l10n_rt_tableheader_amount" handleFocus="false" />
+                        <Button profile="rtTableHeader" position="600px 0px" text="$l10n_rt_tableheader_status" handleFocus="false" />
+                    </GuiElement>
+                    <SmoothList id="historicalGrantsTable" profile="rt_table" position="40px -30px" size="750px 300px">
+                        <ListItem profile="rtTableListItem">
+                            <Text profile="rtListRowCellLeft" position="20px 0px" size="280px 32px" name="building"/>
+                            <Text profile="rtListRowCellLeft" position="300px 0px" size="150px 32px" name="price"/>
+                            <Text profile="rtListRowCellLeft" position="450px 0px" size="150px 32px" name="amount"/>
+                            <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="status"/>
+                        </ListItem>
+                    </SmoothList>
+                    <ThreePartBitmap profile="rt_slider_box_left" position="810px -30px" size="6px 300px">
+                        <Slider profile="fs25_listSlider" dataElementId="historicalGrantsTable" />
+                    </ThreePartBitmap>
+                </GuiElement>
+                <GuiElement id="noHistoricalGrantsContainer">
+                    <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_historical_grants" position="40px -500px" width="750px" />
+                </GuiElement>
             </GuiElement>
         </GuiElement>
     </GuiElement>

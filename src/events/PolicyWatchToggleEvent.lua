@@ -40,5 +40,5 @@ function RTPolicyWatchToggleEvent:run(connection)
             break
         end
     end
-    g_messageCenter:publish(MessageType.POLICIES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end

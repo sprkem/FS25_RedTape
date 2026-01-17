@@ -4,6 +4,7 @@ RedTape.CONTROLS = {}
 RedTape.menuItems = {
     'taxEnabled',
     'policiesAndSchemesEnabled',
+    'grantsEnabled',
     'baseTaxRate'
 }
 
@@ -27,6 +28,17 @@ RedTape.SETTINGS.taxEnabled = {
 }
 
 RedTape.SETTINGS.policiesAndSchemesEnabled = {
+    ['default'] = 1,
+    ['serverOnly'] = true,
+    ['permission'] = 'redTapeSettings',
+    ['values'] = { true, false },
+    ['strings'] = {
+        g_i18n:getText("ui_on"),
+        g_i18n:getText("ui_off")
+    }
+}
+
+RedTape.SETTINGS.grantsEnabled = {
     ['default'] = 1,
     ['serverOnly'] = true,
     ['permission'] = 'redTapeSettings',

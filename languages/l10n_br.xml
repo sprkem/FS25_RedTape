@@ -132,7 +132,7 @@
 		<text name="rt_scheme_set_aside" text="Área de pousio"/>
 		<text name="rt_scheme_desc_delayed_mowing" text="Não corte sua grama durante os meses de primavera (Março a Junho) para proteger a vida selvagem. Em Julho, você será compensado por qualquer grama não cortada."/>
 		<text name="rt_scheme_desc_crop_promotion" text="Uma iniciativa governamental para promover o cultivo de %s por meio de incentivos financeiros. Você pode receber equipamento pela duração da iniciativa e receber um bônus financeiro por cada campo onde plantar a cultura."/>
-		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Embalar fardos consome plástico e impede a disseminação de sementes durante o transporte. Este programa não pune você por embalar fardos — ele apenas recompensa quando você escolhe uma alternativa, como fazer fardos de feno ou usar um reboque de forragem."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Envolver os fardos em plástico consome plástico e evita a dispersão de sementes durante o transporte. Este sistema penaliza quem envolve os fardos, mas recompensa quem opta por uma alternativa, como fazer fardos de feno ou usar um vagão forrageiro."/>
 		<text name="rt_scheme_desc_tractor_demo" text="%s está oferecendo à sua fazenda a oportunidade de testar um %s por %s mês%s. A especificação exata do veículo de demonstração é determinada no momento em que você se inscreve no programa."/>
 		<text name="rt_scheme_desc_natural_grazing" text="Um programa para incentivar que animais pastem em um campo sem alimentação adicional. O pagamento destina-se a compensar qualquer perda de renda. Você receberá um bônus pelo tempo que seus animais passarem pastando. O valor do bônus varia conforme o tipo de animal."/>
 		<text name="rt_scheme_desc_natural_fertiliser" text="Um programa para incentivar o uso de fertilizantes naturais como estrume, chorume e biofertilizante. Você receberá um bônus pela quantidade de fertilizante natural que usar em comparação com alternativas sintéticas. Isso se aplica a todo fertilizante que você espalhar, seja em sua fazenda ou em contrato."/>
@@ -157,6 +157,12 @@
 		<text name="finance_policyFine" text="Multa de Política"/>
 		<text name="rt_ui_taxCost" text="Imposto"/>
 		<text name="finance_taxCost" text="Imposto"/>
+		<text name="rt_ui_grantReceived" text="Subsídio Recebido"/>
+		<text name="finance_grantReceived" text="Subsídio Recebido"/>
+		<text name="rt_ui_grantApplicationCost" text="Taxa de Solicitação de Subsídio"/>
+		<text name="finance_grantApplicationCost" text="Taxa de Solicitação de Subsídio"/>
+		<text name="rt_setting_grantsEnabled" text="Subsídios"/>
+		<text name="rt_toolTip_grantsEnabled" text="Ativar ou desativar o sistema de subsídios"/>
 		<text name="rt_no_vehicle_room" text="Não há espaço suficiente para entregar os veículos do programa. Libere espaço e tente novamente."/>
 		<text name="rt_info_scheme_selected" text="Você se inscreveu no programa. Recolha os veículos na loja."/>
 		<text name="rt_misc_year" text="Ano"/>
@@ -184,6 +190,11 @@
 		<text name="rt_help_tax_intro_2" text="Na aba Imposto, você pode ver uma declaração finalizada no lado esquerdo da tela. No lado direito você pode ver totais em andamento para seu ano fiscal atual. Você pode usar isso para planejar e reduzir sua conta de imposto. Por exemplo, se perceber que seus lucros estão altos no ano, pode optar por comprar novos equipamentos para reduzir o lucro e, portanto, seu imposto."/>
 		<text name="rt_help_tax_intro_3" text="Às vezes você verá Observações Fiscais. Elas indicam quando sua declaração fiscal foi modificada por alguma condição não padrão. Por exemplo, um Programa pode oferecer uma redução de imposto futura. Isso será indicado em Observações Fiscais para ajudá-lo a entender sua conta."/>
 		<text name="rt_help_tax_intro_4" text="Se você tiver prejuízo em um ano fiscal, verá que essas perdas 'se transferem' para anos futuros. Se então obtiver lucro em um ano subsequente, perdas anteriores serão usadas para reduzir sua carga tributária. Isso pode resultar em não pagar impostos apesar de ter lucros. Perdas anteriores se transferem e são limitadas a 5 milhões."/>
+		<text name="rt_help_title_grants" text="Subsídios"/>
+		<text name="rt_help_grants_intro" text="Subsídios são uma forma de solicitar ao governo financiamento adicional para novas construções, por exemplo, um novo estábulo para vacas."/>
+		<text name="rt_help_grants_intro_2" text="Para começar, abra o menu de construção para itens aplicáveis, haverá um botão Solicitar Subsídio. Escolha-o e confirme e sua solicitação será iniciada."/>
+		<text name="rt_help_grants_intro_3" text="Verifique a tela de Subsídios no menu Red Tape e ela informará quando sua solicitação será processada. Ela será aprovada ou rejeitada. Se aprovada, use o menu de construção para colocar o edifício e você receberá os fundos concedidos."/>
+		<text name="rt_help_grants_intro_4" text="Você pode ter uma solicitação ativa por vez, e há um período de espera de 6 meses após um subsídio bem-sucedido ser processado."/>
 		<text name="rt_setting_taxEnabled" text="Impostos Habilitados"/>
 		<text name="rt_toolTip_taxEnabled" text="Habilitar ou desabilitar o Sistema de Impostos"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Políticas/Programas Habilitados"/>
@@ -191,6 +202,39 @@
 		<text name="rt_setting_baseTaxRate" text="Taxa de Imposto Base"/>
 		<text name="rt_toolTip_baseTaxRate" text="Definir a taxa de imposto base"/>
 		<text name="rt_system_disabled" text="Este sistema está atualmente desabilitado. Verifique as Configurações do Jogo para ligá-lo novamente." />
+		<text name="rt_setting_grantsEnabled" text="Subsídios Habilitados"/>
+		<text name="rt_toolTip_grantsEnabled" text="Habilitar ou desabilitar o sistema de Subsídios Governamentais"/>
+		<text name="rt_grant_button" text="Solicitar subsídio" />
+		<text name="rt_grant_application_submitted" text="Sua solicitação de subsídio foi enviada e pode ser visualizada na aba Subsídios." />
+		<text name="rt_grant_confirm_application_dialog" text="Deseja solicitar um subsídio para esta construção? Haverá custos de solicitação de %s. As solicitações podem levar até 6 meses para serem processadas e têm uma chance de aprovação de 35-45%%, que pode ser afetada pela sua classificação de conformidade." />
+		<text name="rt_grant_existing_application" text="Apenas uma solicitação ativa é permitida por vez. Você pode solicitar novamente assim que sua solicitação existente for processada." />
+		<text name="rt_grant_approved_notification" text="Sua solicitação de subsídio foi aprovada! Você receberá %s quando comprar o edifício." />
+		<text name="rt_grant_rejected_notification" text="Sua solicitação de subsídio foi rejeitada." />
+		<text name="rt_grant_completed_notification" text="Pagamento de subsídio de %s foi concedido à sua fazenda." />
+		<text name="rt_event_type_grantapproved" text="Subsídio aprovado" />
+		<text name="rt_event_type_grantrejected" text="Subsídio rejeitado" />
+		<text name="rt_event_type_grantcompleted" text="Subsídio concluído" />
 		<text name="permission_redTape_redTapeSettings" text="Configurações Red Tape" />
+		<text name="rt_header_grants" text="Subsídios" />
+		<text name="rt_label_pending_grants" text="Solicitações Pendentes" />
+		<text name="rt_label_approved_grants" text="Subsídios Aprovados" />
+		<text name="rt_label_historical_grants" text="Subsídios Históricos" />
+		<text name="rt_tableheader_building" text="Edifício" />
+		<text name="rt_tableheader_price" text="Preço" />
+		<text name="rt_tableheader_applied" text="Solicitado" />
+		<text name="rt_tableheader_assessment" text="Avaliação" />
+		<text name="rt_tableheader_amount" text="Valor" />
+		<text name="rt_tableheader_approved" text="Aprovado" />
+		<text name="rt_tableheader_status" text="Status" />
+		<text name="rt_no_pending_grants" text="Nenhuma solicitação de subsídio pendente" />
+		<text name="rt_no_approved_grants" text="Nenhum subsídio aprovado" />
+		<text name="rt_no_historical_grants" text="Nenhum subsídio histórico" />
+		<text name="rt_grant_status_pending" text="Pendente" />
+		<text name="rt_grant_status_approved" text="Aprovado" />
+		<text name="rt_grant_status_rejected" text="Rejeitado" />
+		<text name="rt_grant_status_completed" text="Concluído" />
+		<text name="rt_grant_eligible" text="STATUS: ELEGÍVEL" />
+		<text name="rt_grant_not_eligible" text="STATUS: NÃO ELEGÍVEL" />
+		<text name="rt_grant_eligible_description" text="A elegibilidade para solicitar novos subsídios depende de várias condições. Você não pode solicitar se tiver uma solicitação pendente atual ou uma solicitação aprovada aguardando conclusão. Há também um período de espera de 6 meses após a conclusão de um subsídio (ou seja, quando você recebe os fundos do subsídio)." />
 	</texts>
 </l10n>

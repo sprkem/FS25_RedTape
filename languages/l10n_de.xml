@@ -132,7 +132,7 @@
 		<text name="rt_scheme_set_aside" text="Flächenstilllegung"/>
 		<text name="rt_scheme_desc_delayed_mowing" text="Schneiden Sie Ihr Gras nicht während der Frühlingsmonate (März bis Juni), um die Tierwelt zu schützen. Im Juli werden Sie für nicht gemähtes Gras entschädigt."/>
 		<text name="rt_scheme_desc_crop_promotion" text="Eine Regierungsinitiative zur Förderung des Anbaus von %s durch finanzielle Anreize. Sie erhalten möglicherweise Ausrüstung für die Dauer der Initiative und einen finanziellen Bonus für jedes Feld, auf dem Sie die Kultur anbauen."/>
-		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Das Wickeln von Ballen verbraucht Plastik und verhindert die Verbreitung von Samen während des Transports. Dieses Förderprogramm bestraft Sie nicht für das Wickeln von Ballen - es belohnt Sie nur, wenn Sie eine Alternative wählen, wie z.B. Heuballen herstellen oder einen Ladewagen verwenden."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Das Einwickeln von Ballen verbraucht Plastik und verhindert die Verbreitung von Samen während des Transports. Dieses System bestraft das Einwickeln von Ballen, belohnt aber Alternativen wie das Pressen von Heuballen oder die Verwendung eines Futterwagens."/>
 		<text name="rt_scheme_desc_tractor_demo" text="%s bietet Ihrem Hof die Möglichkeit, einen %s für %s Monat%s zu testen. Die genaue Spezifikation des Vorführfahrzeugs wird zum Zeitpunkt Ihrer Anmeldung zum Förderprogramm festgelegt."/>
 		<text name="rt_scheme_desc_natural_grazing" text="Ein Förderprogramm zur Förderung der Weidehaltung von Tieren ohne zusätzliches Futter. Die Zahlung soll etwaige Einkommensverluste ausgleichen. Sie erhalten einen Bonus für die Zeit, die Ihre Tiere auf einer Weide verbringen. Der Bonusbetrag variiert je nach Tierart."/>
 		<text name="rt_scheme_desc_natural_fertiliser" text="Ein Förderprogramm zur Förderung der Verwendung von Naturdüngern wie Mist, Gülle und Gärrest. Sie erhalten einen Bonus für die Menge an Naturdünger, die Sie im Vergleich zu synthetischen Alternativen verwenden. Dies gilt für allen Dünger, den Sie ausbringen, ob auf Ihrem Hof oder für einen Auftrag."/>
@@ -157,6 +157,12 @@
 		<text name="finance_policyFine" text="Richtlinienbußgeld"/>
 		<text name="rt_ui_taxCost" text="Steuern"/>
 		<text name="finance_taxCost" text="Steuern"/>
+		<text name="rt_ui_grantReceived" text="Zuschuss erhalten"/>
+		<text name="finance_grantReceived" text="Zuschuss erhalten"/>
+		<text name="rt_ui_grantApplicationCost" text="Zuschussantragsgebühr"/>
+		<text name="finance_grantApplicationCost" text="Zuschussantragsgebühr"/>
+		<text name="rt_setting_grantsEnabled" text="Zuschüsse"/>
+		<text name="rt_toolTip_grantsEnabled" text="Zuschusssystem aktivieren oder deaktivieren"/>
 		<text name="rt_no_vehicle_room" text="Nicht genug Platz für die Lieferung der Fahrzeuge für das Förderprogramm. Schaffen Sie Platz und versuchen Sie es erneut."/>
 		<text name="rt_info_scheme_selected" text="Sie haben sich für das Förderprogramm angemeldet. Holen Sie alle Fahrzeuge im Shop ab."/>
 		<text name="rt_misc_year" text="Jahr"/>
@@ -172,6 +178,7 @@
 		<text name="rt_help_title_policies" text="Richtlinien"/>
 		<text name="rt_help_title_schemes" text="Förderprogramme"/>
 		<text name="rt_help_title_tax" text="Steuern"/>
+		<text name="rt_help_title_grants" text="Zuschüsse"/>
 		<text name="rt_help_intro_intro" text="Papierkram ist ein Mod, der Richtlinien, Förderprogramme und Besteuerung in den Landwirtschafts-Simulator einführt. Diese Systeme sind darauf ausgelegt, Ihrem Farmerlebnis mehr Tiefe und Herausforderung zu verleihen und nachhaltige Praktiken sowie strategische Planung zu fördern."/>
 		<text name="rt_help_intro_intro_2" text="Alle Informationen zu Papierkram finden Sie im neuen Menü, das dem Hauptmenü hinzugefügt wurde. Suchen Sie nach dem Regierungsgebäude-Symbol."/>
 		<text name="rt_help_policies_intro" text="Richtlinien sind im Wesentlichen Gesetze, die Sie bei der Landwirtschaft einhalten müssen. Sie regeln Dinge wie die Behandlung von Tieren und die angemessene Nutzung von Land."/>
@@ -184,6 +191,10 @@
 		<text name="rt_help_tax_intro_2" text="Im Reiter Steuern können Sie auf der linken Seite der Ansicht einen abgeschlossenen Bescheid sehen. Auf der rechten Seite können Sie laufende Summen für Ihr aktuelles Steuerjahr sehen. Sie können dies nutzen, um vorauszuplanen und Ihre Steuerrechnung zu reduzieren. Wenn Sie zum Beispiel sehen, dass Ihre Gewinne für das Jahr hoch sind, könnten Sie sich entscheiden, neue Ausrüstung zu kaufen, um den Gewinn und damit Ihre Steuern zu reduzieren."/>
 		<text name="rt_help_tax_intro_3" text="Manchmal werden Sie Steuerhinweise sehen. Diese sagen Ihnen, wenn Ihr Steuerbescheid durch eine nicht standardmäßige Bedingung geändert wird. Zum Beispiel könnte ein Förderprogramm Ihnen eine zukünftige Steuererleichterung bieten. Dies wird in den Steuerhinweisen angezeigt, um Ihnen zu helfen, Ihre Rechnung zu verstehen."/>
 		<text name="rt_help_tax_intro_4" text="Wenn Sie in einem Steuerjahr einen Verlust machen, werden Sie sehen, dass diese Verluste in zukünftige Jahre 'übertragen' werden. Wenn Sie dann in einem nachfolgenden Jahr einen Gewinn erzielen, werden vorherige Verluste verwendet, um Ihre Steuerlast zu reduzieren. Dies kann dazu führen, dass Sie trotz Gewinnen keine Steuern zahlen. Vorherige Verluste werden übertragen und sind auf 5 Millionen begrenzt."/>
+		<text name="rt_help_grants_intro" text="Zuschüsse sind eine Möglichkeit, bei der Regierung zusätzliche Mittel für neue Bauten zu beantragen, z.B. einen neuen Kuhstall."/>
+		<text name="rt_help_grants_intro_2" text="Um zu beginnen, öffnen Sie das Baumenü für anwendbare Gegenstände. Es wird eine Schaltfläche 'Zuschuss beantragen' geben. Wählen Sie diese aus, bestätigen Sie, und Ihr Antrag wird gestartet."/>
+		<text name="rt_help_grants_intro_3" text="Überprüfen Sie den Zuschüsse-Bildschirm im Papierkram-Menü, und er wird Ihnen sagen, wann Ihr Antrag bearbeitet wird. Er wird entweder genehmigt oder abgelehnt. Wenn er genehmigt wird, verwenden Sie das Baumenü, um das Gebäude zu platzieren, und Sie erhalten die zugewiesenen Mittel."/>
+		<text name="rt_help_grants_intro_4" text="Sie können zu einem bestimmten Zeitpunkt einen aktiven Antrag haben, und es gibt eine Abkühlungsperiode von 6 Monaten, nachdem ein erfolgreicher Zuschuss bearbeitet wurde."/>
 		<text name="rt_setting_taxEnabled" text="Steuern aktiviert"/>
 		<text name="rt_toolTip_taxEnabled" text="Steuersystem aktivieren oder deaktivieren"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Richtlinien/Förderprogramme aktiviert"/>
@@ -191,6 +202,39 @@
 		<text name="rt_setting_baseTaxRate" text="Grundsteuersatz"/>
 		<text name="rt_toolTip_baseTaxRate" text="Grundsteuersatz festlegen"/>
 		<text name="rt_system_disabled" text="Dieses System ist derzeit deaktiviert. Überprüfen Sie die Spieleinstellungen, um es wieder einzuschalten." />
+		<text name="rt_setting_grantsEnabled" text="Zuschüsse aktiviert"/>
+		<text name="rt_toolTip_grantsEnabled" text="Regierungszuschusssystem aktivieren oder deaktivieren"/>
+		<text name="rt_grant_button" text="Zuschuss beantragen" />
+		<text name="rt_grant_application_submitted" text="Ihr Zuschussantrag wurde eingereicht und kann im Zuschüsse-Tab eingesehen werden." />
+		<text name="rt_grant_confirm_application_dialog" text="Möchten Sie einen Zuschuss für diese Konstruktion beantragen? Es fallen Antragskosten von %s an. Anträge können bis zu 6 Monate dauern und haben eine Genehmigungswahrscheinlichkeit von 35-45%%, die durch Ihre Compliance-Bewertung beeinflusst werden kann." />
+		<text name="rt_grant_existing_application" text="Es ist nur ein aktiver Antrag gleichzeitig erlaubt. Sie können erneut beantragen, sobald Ihr bestehender Antrag bearbeitet wurde." />
+		<text name="rt_grant_approved_notification" text="Ihr Zuschussantrag wurde genehmigt! Sie erhalten %s beim Kauf des Gebäudes." />
+		<text name="rt_grant_rejected_notification" text="Ihr Zuschussantrag wurde abgelehnt." />
+		<text name="rt_grant_completed_notification" text="Zuschusszahlung von %s wurde Ihrem Betrieb gewährt." />
+		<text name="rt_event_type_grantapproved" text="Zuschuss genehmigt" />
+		<text name="rt_event_type_grantrejected" text="Zuschuss abgelehnt" />
+		<text name="rt_event_type_grantcompleted" text="Zuschuss abgeschlossen" />
 		<text name="permission_redTape_redTapeSettings" text="Red Tape Einstellungen" />
+		<text name="rt_header_grants" text="Zuschüsse" />
+		<text name="rt_label_pending_grants" text="Ausstehende Anträge" />
+		<text name="rt_label_approved_grants" text="Genehmigte Zuschüsse" />
+		<text name="rt_label_historical_grants" text="Historische Zuschüsse" />
+		<text name="rt_tableheader_building" text="Gebäude" />
+		<text name="rt_tableheader_price" text="Preis" />
+		<text name="rt_tableheader_applied" text="Beantragt" />
+		<text name="rt_tableheader_assessment" text="Bewertung" />
+		<text name="rt_tableheader_amount" text="Betrag" />
+		<text name="rt_tableheader_approved" text="Genehmigt" />
+		<text name="rt_tableheader_status" text="Status" />
+		<text name="rt_no_pending_grants" text="Keine ausstehenden Zuschussanträge" />
+		<text name="rt_no_approved_grants" text="Keine genehmigten Zuschüsse" />
+		<text name="rt_no_historical_grants" text="Keine historischen Zuschüsse" />
+		<text name="rt_grant_status_pending" text="Ausstehend" />
+		<text name="rt_grant_status_approved" text="Genehmigt" />
+		<text name="rt_grant_status_rejected" text="Abgelehnt" />
+		<text name="rt_grant_status_completed" text="Abgeschlossen" />
+		<text name="rt_grant_eligible" text="STATUS: BERECHTIGT" />
+		<text name="rt_grant_not_eligible" text="STATUS: NICHT BERECHTIGT" />
+		<text name="rt_grant_eligible_description" text="Die Berechtigung zur Beantragung neuer Zuschüsse hängt von zahlreichen Bedingungen ab. Sie können nicht beantragen, wenn Sie einen aktuellen ausstehenden Antrag oder einen genehmigten Antrag haben, der auf Abschluss wartet. Es gibt auch eine Abkühlungsperiode von 6 Monaten nach Abschluss eines Zuschusses (d.h. wenn Sie Zuschussmittel erhalten)." />
 	</texts>
 </l10n>

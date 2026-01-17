@@ -2,6 +2,10 @@ RTFarmExtension = {}
 
 function RTFarmExtension.changeBalance(farm, amount, moneyType)
     if g_currentMission:getIsServer() then
+        if moneyType == nil then
+            return
+        end
+
         local farmId = farm.farmId
         local statistic = moneyType.statistic
 
@@ -13,4 +17,3 @@ function RTFarmExtension.changeBalance(farm, amount, moneyType)
     end
 end
 
-Farm.changeBalance = Utils.appendedFunction(Farm.changeBalance, RTFarmExtension.changeBalance)

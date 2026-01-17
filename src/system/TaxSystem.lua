@@ -370,7 +370,8 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         "loanInterest",
         "vehicleRunningCost",
         "propertyMaintenance",
-        "productionCosts"
+        "productionCosts",
+        "grantApplicationCost"
     }
 
     local incomeStats = {
@@ -390,11 +391,17 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         "expenses"
     }
 
+    local ignoreStats = {
+        "policyFine",
+        "schemePayout",
+        "grantReceived"
+    }
+
     if g_modIsLoaded["FS25_RealisticLivestock"] then
         table.insert(expenseStats, "herdsmanWages")
         table.insert(expenseStats, "semenPurchase")
-        table.insert(incomeStats, "medicine")
-        table.insert(incomeStats, "monitorSubscriptions")
+        table.insert(expenseStats, "medicine")
+        table.insert(expenseStats, "monitorSubscriptions")
     end
 
     if RedTape.tableHasValue(expenseStats, lineItem.statistic) then
@@ -403,7 +410,7 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         taxStatement.totalTaxableIncome = taxStatement.totalTaxableIncome + math.abs(lineItem.amount)
         taxStatement.totalTaxedIncome = taxStatement.totalTaxedIncome + self:getTaxedAmount(lineItem, taxStatement)
     else
-        if not RedTape.tableHasValue({ "policyFine", "schemePayout" }, lineItem.statistic) then
+        if not RedTape.tableHasValue(ignoreStats, lineItem.statistic) then
             print("Warning: Uncategorised tax line item statistic '" .. tostring(lineItem.statistic) .. "'")
         end
     end
@@ -517,7 +524,7 @@ function RTTaxSystem:storeTaxStatement(taxStatement)
     end
 
     table.insert(self.taxStatements, taxStatement)
-    g_messageCenter:publish(MessageType.TAXES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 function RTTaxSystem:processTaxStatements()
@@ -539,7 +546,7 @@ function RTTaxSystem:markTaxStatementAsPaid(farmId)
     for _, taxStatement in ipairs(self.taxStatements) do
         if taxStatement.farmId == farmId then
             taxStatement.paid = true
-            g_messageCenter:publish(MessageType.TAXES_UPDATED)
+            g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
             return
         end
     end

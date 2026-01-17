@@ -132,7 +132,7 @@
         <text name="rt_scheme_set_aside" text="Plochy vyňaté z produkce / Úhor"/>
 		<text name="rt_scheme_desc_delayed_mowing" text="Nesečte svou trávu během jarních měsíců (březen až červen), abyste chránili volně žijící zvířata. V červenci budete kompenzováni za nesečenou trávu."/>
         <text name="rt_scheme_desc_crop_promotion" text="Vládní iniciativa na podporu pěstování %s poskytováním finančních pobídek. Můžete obdržet vybavení po dobu trvání iniciativy a finanční bonus za každé pole, na kterém plodinu pěstujete."/>
-        <text name="rt_scheme_desc_reduce_bale_wrapping" text="Balení balíků spotřebovává plast a zabraňuje šíření semen během přepravy. Tento dotační program vás netrestá za balení balíků – odměňuje vás, pouze pokud zvolíte alternativu, jako je výroba senných balíků nebo použití sběracího vozu."/>
+        <text name="rt_scheme_desc_reduce_bale_wrapping" text="Balení balíků spotřebovává plast a zabraňuje šíření semen během přepravy. Tento systém vás trestá za balení balíků, ale odměňuje vás, když zvolíte alternativu, jako je výroba balíků sena nebo použití vozu na sklizeň píce."/>
         <text name="rt_scheme_desc_tractor_demo" text="%s nabízí vaší farmě možnost vyzkoušet si traktor %s po dobu %s měsíc%s. Přesná specifikace předváděcího vozidla bude stanovena v době vaší registrace do dotačního programu."/>
         <text name="rt_scheme_desc_natural_grazing" text="Dotační program na podporu pastvy zvířat bez doplňkového krmiva. Platba je určena k vyrovnání jakékoli ztráty příjmu. Získáte bonus za čas, který vaše zvířata stráví na pastvě. Výše bonusu se liší podle druhu zvířete."/>
         <text name="rt_scheme_desc_natural_fertiliser" text="Dotační program na podporu používání přírodních hnojiv, jako je hnůj, kejda a digestát. Získáte bonus za množství přírodního hnojiva, které použijete ve srovnání se syntetickými alternativami. Toto platí pro všechna hnojiva, která aplikujete, ať už na své farmě nebo pro zakázku."/>
@@ -157,6 +157,12 @@
         <text name="finance_policyFine" text="Pokuta za směrnici"/>
         <text name="rt_ui_taxCost" text="Daně"/>
         <text name="finance_taxCost" text="Daně"/>
+        <text name="rt_ui_grantReceived" text="Dotace přijata"/>
+        <text name="finance_grantReceived" text="Dotace přijata"/>
+        <text name="rt_ui_grantApplicationCost" text="Poplatek za žádost o dotaci"/>
+        <text name="finance_grantApplicationCost" text="Poplatek za žádost o dotaci"/>
+        <text name="rt_setting_grantsEnabled" text="Dotace"/>
+        <text name="rt_toolTip_grantsEnabled" text="Povolit nebo zakázat systém dotací"/>
         <text name="rt_no_vehicle_room" text="Nedostatek místa pro doručení vozidel pro dotační program. Uvolněte místo a zkuste to znovu."/>
         <text name="rt_info_scheme_selected" text="Zaregistrovali jste se do dotačního programu. Vyzvedněte všechna vozidla v obchodě."/>
         <text name="rt_misc_year" text="Rok"/>
@@ -172,6 +178,7 @@
         <text name="rt_help_title_policies" text="Směrnice"/>
         <text name="rt_help_title_schemes" text="Dotační programy"/>
         <text name="rt_help_title_tax" text="Daně"/>
+        <text name="rt_help_title_grants" text="Dotace"/>
 		<text name="rt_help_intro_intro" text="Byrokracie (Papierkram) je mod, který zavádí směrnice, dotační programy a zdanění do hry Farming Simulator. Tyto systémy jsou navrženy tak, aby dodaly vašemu farmářskému zážitku větší hloubku a výzvu a podpořily udržitelné postupy a strategické plánování."/>
         <text name="rt_help_intro_intro_2" text="Všechny informace o Byrokracii naleznete v nové nabídce, která byla přidána do hlavního menu. Hledejte ikonu vládní budovy."/>
         <text name="rt_help_policies_intro" text="Směrnice jsou v podstatě zákony, které musíte při farmaření dodržovat. Řídí věci, jako je zacházení se zvířaty a vhodné využívání půdy."/>
@@ -184,6 +191,10 @@
         <text name="rt_help_tax_intro_2" text="Na kartě Daně můžete vidět uzavřené daňové přiznání na levé straně pohledu. Na pravé straně můžete vidět průběžné součty za váš aktuální daňový rok. Můžete to použít k plánování dopředu a snížení daňového účtu. Například, pokud vidíte, že vaše zisky za rok jsou vysoké, můžete se rozhodnout koupit nové vybavení, abyste snížili zisk, a tím i své daně."/>
         <text name="rt_help_tax_intro_3" text="Někdy uvidíte daňové poznámky. Ty vám řeknou, pokud je vaše daňové přiznání změněno neštandardní podmínkou. Například, dotační program by vám mohl nabídnout budoucí daňovou úlevu. To se zobrazí v daňových poznámkách, aby vám pomohlo porozumět vaší účtu."/>
         <text name="rt_help_tax_intro_4" text="Pokud uděláte ztrátu v jednom daňovém roce, uvidíte, že se tyto ztráty 'převádějí' do budoucích let. Pokud pak dosáhnete zisku v následujícím roce, předchozí ztráty budou použity ke snížení vašeho daňového zatížení. To může vést k neplacení daní navzdory dosažení zisků. Předchozí ztráty se převádějí a jsou omezeny na 5 milionů."/>
+        <text name="rt_help_grants_intro" text="Dotace jsou způsob, jak požádat vládu o dodatečné financování nových staveb, např. nové kravína."/>
+        <text name="rt_help_grants_intro_2" text="Chcete-li začít, otevřete stavební menu pro příslušné položky, bude tam tlačítko Požádat o dotaci. Vyberte ho a potvrďte a vaše žádost je zahájena."/>
+        <text name="rt_help_grants_intro_3" text="Zkontrolujte obrazovku Dotace v menu Byrokracie a řekne vám, kdy bude vaše žádost zpracována. Bude buď schválena nebo zamítnuta. Pokud je schválena, použijte stavební menu k umístění budovy a obdržíte přidělené prostředky."/>
+        <text name="rt_help_grants_intro_4" text="V daném okamžiku můžete mít jednu aktivní žádost a po zpracování úspěšné dotace existuje ochranná lhůta 6 měsíců."/>
 		<text name="rt_setting_taxEnabled" text="Daně povoleny"/>
 		<text name="rt_toolTip_taxEnabled" text="Povolit nebo zakázat daňový systém"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Směrnice/Dotační programy povoleny"/>
@@ -191,6 +202,39 @@
 		<text name="rt_setting_baseTaxRate" text="Základní daňová sazba"/>
 		<text name="rt_toolTip_baseTaxRate" text="Nastavit základní daňovou sazbu"/>
 		<text name="rt_system_disabled" text="Tento systém je momentálně zakázán. Zkontrolujte nastavení hry a znovu jej zapněte." />
+		<text name="rt_setting_grantsEnabled" text="Dotace povoleny"/>
+		<text name="rt_toolTip_grantsEnabled" text="Povolit nebo zakázat systém vládních dotací"/>
+		<text name="rt_grant_button" text="Požádat o dotaci" />
+		<text name="rt_grant_application_submitted" text="Vaše žádost o dotaci byla podána a lze ji zobrazit na kartě Dotace." />
+		<text name="rt_grant_confirm_application_dialog" text="Chcete požádat o dotaci na tuto stavbu? Budou účtovány poplatky za žádost ve výši %s. Zpracování žádostí může trvat až 6 měsíců a mají šanci na schválení 35-45%%, která může být ovlivněna vaším hodnocením dodržování předpisů." />
+		<text name="rt_grant_existing_application" text="Současně je povolena pouze jedna aktivní žádost. Můžete znovu požádat, jakmile bude vaše stávající žádost zpracována." />
+		<text name="rt_grant_approved_notification" text="Vaše žádost o dotaci byla schválena! Obdržíte %s při nákupu budovy." />
+		<text name="rt_grant_rejected_notification" text="Vaše žádost o dotaci byla zamítnuta." />
+		<text name="rt_grant_completed_notification" text="Dotační platba %s byla udělena vaší farmě." />
+		<text name="rt_event_type_grantapproved" text="Dotace schválena" />
+		<text name="rt_event_type_grantrejected" text="Dotace zamítnuta" />
+		<text name="rt_event_type_grantcompleted" text="Dotace dokončena" />
 		<text name="permission_redTape_redTapeSettings" text="Nastavení Red Tape" />
+		<text name="rt_header_grants" text="Dotace" />
+		<text name="rt_label_pending_grants" text="Čekající žádosti" />
+		<text name="rt_label_approved_grants" text="Schválené dotace" />
+		<text name="rt_label_historical_grants" text="Historické dotace" />
+		<text name="rt_tableheader_building" text="Budova" />
+		<text name="rt_tableheader_price" text="Cena" />
+		<text name="rt_tableheader_applied" text="Požádáno" />
+		<text name="rt_tableheader_assessment" text="Hodnocení" />
+		<text name="rt_tableheader_amount" text="Částka" />
+		<text name="rt_tableheader_approved" text="Schváleno" />
+		<text name="rt_tableheader_status" text="Stav" />
+		<text name="rt_no_pending_grants" text="Žádné čekající žádosti o dotace" />
+		<text name="rt_no_approved_grants" text="Žádné schválené dotace" />
+		<text name="rt_no_historical_grants" text="Žádné historické dotace" />
+		<text name="rt_grant_status_pending" text="Čekající" />
+		<text name="rt_grant_status_approved" text="Schváleno" />
+		<text name="rt_grant_status_rejected" text="Zamítnuto" />
+		<text name="rt_grant_status_completed" text="Dokončeno" />
+		<text name="rt_grant_eligible" text="STAV: ZPŮSOBILÝ" />
+		<text name="rt_grant_not_eligible" text="STAV: NEZPŮSOBILÝ" />
+		<text name="rt_grant_eligible_description" text="Způsobilost k žádosti o nové dotace závisí na mnoha podmínkách. Nemůžete žádat, pokud máte aktuální čekající žádost nebo schválenou žádost čekající na dokončení. Existuje také ochranná lhůta 6 měsíců po dokončení dotace (tj. když obdržíte dotační prostředky)." />
 	</texts>
 </l10n>

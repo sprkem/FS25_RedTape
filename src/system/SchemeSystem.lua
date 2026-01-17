@@ -256,7 +256,7 @@ function RTSchemeSystem:registerActivatedScheme(scheme)
     local tierName = RTPolicySystem.TIER_NAMES[scheme.tier]
     g_currentMission.RedTape.EventLog:addEvent(nil, RTEventLogItem.EVENT_TYPE.SCHEME_ACTIVATED,
         string.format(g_i18n:getText("rt_notify_active_scheme"), scheme:getName(), tierName), available)
-    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 -- Called by SchemeSelectedEvent, runs on Server only
@@ -270,14 +270,14 @@ function RTSchemeSystem:registerSelectedScheme(scheme, farmId)
     local schemeForFarm = scheme:createFarmScheme(farmId)
     table.insert(activeSchemes, schemeForFarm)
     schemeForFarm:selected()
-    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 function RTSchemeSystem:storeSelectedSchemeOnClient(scheme)
     if (g_currentMission:getIsServer()) then return end
     local activeSchemes = self:getActiveSchemesForFarm(scheme.farmId)
     table.insert(activeSchemes, scheme)
-    g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
 -- Called by SchemeNoLongerAvailableEvent, runs on Client and Server
@@ -286,7 +286,7 @@ function RTSchemeSystem:removeAvailableScheme(id)
         for i, scheme in pairs(schemes) do
             if scheme.id == id then
                 table.remove(schemes, i)
-                g_messageCenter:publish(MessageType.SCHEMES_UPDATED)
+                g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
                 local tierName = RTPolicySystem.TIER_NAMES[scheme.tier]
                 g_currentMission.RedTape.EventLog:addEvent(nil, RTEventLogItem.EVENT_TYPE.SCHEME_EXPIRED,
                     string.format(g_i18n:getText("rt_notify_expired_scheme"), scheme:getName(), tierName),

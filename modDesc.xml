@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.0.10</version>
+    <version>1.0.0.11</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,13 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.0.11:
+- Add a grant system. Use the construction menu to apply for grants.
+- Add safety check and mitigations for mod conflicts that can impact tax.
+- Treat Alfalfa and Clover as grass when present.
+- Fix 24 hour productivity exceptions when moving animals via a trailer. Exceptions were previously only working correctly when buying new animals.
+- Fix description of the bale wrapping scheme to correctly indicate potential penalties.
 
 1.0.0.10:
 - Adds a new crop rotation view showing harvest history, to aid planning. Minor rework of the crop rotation policy.
@@ -83,6 +90,13 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.11:
+- Ein Fördersystem wurde hinzugefügt. Fördergelder können über das Baumenü beantragt werden.
+- Sicherheitsprüfungen und Maßnahmen zur Behebung von Mod-Konflikten, die sich auf die Steuern auswirken können, wurden hinzugefügt.
+- Luzerne und Klee werden, sofern vorhanden, als Gras behandelt.
+- Die Produktivitätsausnahmen von 24 Stunden beim Transport von Tieren mit einem Anhänger wurden behoben. Zuvor funktionierten die Ausnahmen nur beim Kauf neuer Tiere korrekt.
+- Die Beschreibung des Ballenwickelverfahrens wurde korrigiert, um mögliche Strafen korrekt anzugeben.
 
 1.0.0.10:
 - Fügt eine neue Fruchtfolgeansicht mit Erntehistorie zur besseren Planung hinzu. Die Fruchtfolgerichtlinie wurde leicht überarbeitet.
@@ -146,6 +160,13 @@ https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
 
+1.0.0.11:
+- Ajout d'un système de subventions. Utilisez le menu Construction pour faire une demande de subvention.
+- Ajout d'un contrôle de sécurité et de mesures d'atténuation pour les conflits de mods pouvant impacter les taxes.
+- La luzerne et le trèfle sont désormais considérés comme de l'herbe lorsqu'ils sont présents.
+- Correction des exceptions de productivité sur 24 heures lors du transport d'animaux par remorque. Auparavant, ces exceptions ne fonctionnaient correctement que lors de l'achat de nouveaux animaux.
+- Correction de la description du système d'enrubannage des balles afin d'indiquer correctement les pénalités potentielles.
+
 1.0.0.10:
 - Ajout d'une nouvelle vue de rotation des cultures affichant l'historique des récoltes, pour faciliter la planification. Légère refonte de la politique de rotation des cultures.
 - Ajout du report des pertes fiscales sur les années suivantes. Lors du chargement d'une sauvegarde existante, les pertes de la déclaration précédente seront prises en compte.
@@ -193,6 +214,8 @@ Journal des modifications:
     <extraSourceFiles>
         <sourceFile filename="src/events/HarvestHistoryUpdateEvent.lua"/>
         <sourceFile filename="src/events/InitialClientStateEvent.lua"/>
+        <sourceFile filename="src/events/GrantApplicationEvent.lua"/>
+        <sourceFile filename="src/events/GrantStatusUpdateEvent.lua"/>
         <sourceFile filename="src/events/NewTaxLineItemEvent.lua"/>
         <sourceFile filename="src/events/NewTaxStatementEvent.lua"/>
         <sourceFile filename="src/events/PolicyActivatedEvent.lua"/>
@@ -213,7 +236,11 @@ Journal des modifications:
         <sourceFile filename="src/events/SchemeWatchToggleEvent.lua"/>
         <sourceFile filename="src/events/TaxRateBenefitEvent.lua"/>
         <sourceFile filename="src/events/TaxStatementPaidEvent.lua"/>
+        <sourceFile filename="src/extensions/AnimalMoveEventExtension.lua"/>
         <sourceFile filename="src/extensions/BaleWrapperExtension.lua"/>
+        <sourceFile filename="src/extensions/BuyPlaceableEventExtension.lua"/>
+        <sourceFile filename="src/extensions/ConstructionBrushPlaceableExtension.lua"/>
+        <sourceFile filename="src/extensions/ConstructionScreenExtension.lua"/>
         <sourceFile filename="src/extensions/FarmExtension.lua"/>
         <sourceFile filename="src/extensions/FSBaseMissionExtension.lua"/>
         <sourceFile filename="src/extensions/I18NExtension.lua"/>
@@ -228,9 +255,10 @@ Journal des modifications:
         <sourceFile filename="src/gatherers/FarmlandGatherer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/ActivePoliciesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/CropRotationRenderer.lua"/>
-        <sourceFile filename="src/gui/tableRenderers/SchemesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/EventLogRenderer.lua"/>
+        <sourceFile filename="src/gui/tableRenderers/GrantsRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/ReportRenderer.lua"/>
+        <sourceFile filename="src/gui/tableRenderers/SchemesRenderer.lua"/>
         <sourceFile filename="src/gui/tableRenderers/TaxNotesRenderer.lua"/>
         <sourceFile filename="src/instances/EventLogItem.lua"/>
         <sourceFile filename="src/instances/Policy.lua"/>
@@ -238,6 +266,7 @@ Journal des modifications:
         <sourceFile filename="src/instances/TaxLineItem.lua"/>
         <sourceFile filename="src/instances/TaxStatement.lua"/>
         <sourceFile filename="src/system/EventLog.lua"/>
+        <sourceFile filename="src/system/GrantSystem.lua"/>
         <sourceFile filename="src/system/InfoGatherer.lua"/>
         <sourceFile filename="src/system/PolicyList.lua"/>
         <sourceFile filename="src/system/PolicySystem.lua"/>
