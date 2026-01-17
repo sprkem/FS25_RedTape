@@ -132,7 +132,7 @@
 		<text name="rt_scheme_set_aside" text="Set-aside"/>
 		<text name="rt_scheme_desc_delayed_mowing" text="Do not cut your grass during the spring months (March to June) to protect wildlife. In July, you will be compensated for any uncut grass."/>
 		<text name="rt_scheme_desc_crop_promotion" text="A government initiative to promote the growth of %s through financial incentives. You may be provided equipment for the duration of the initiative and receive a financial bonus for each field where you plant the crop."/>
-		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Wrapping bales consumes plastic and prevents the spread of seeds during transportation. This scheme punishes you for wrapping bales and rewards you when you choose an alternative such as making hay bales or using a forage wagon."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Wrapping bales consumes plastic and prevents the spread of seeds during transportation. This scheme does not punish you for wrapping bales - it only rewards you when you choose an alternative such as making hay bales or using a forage wagon."/>
 		<text name="rt_scheme_desc_tractor_demo" text="%s are offering your farm the opportunity to demo a %s for %s month%s. The exact specification of the demo vehicle is determined at the point that you sign up to the scheme."/>
 		<text name="rt_scheme_desc_natural_grazing" text="A scheme to encourage letting animals graze in a pasture without additional feed. The payment is intended to offset any loss of earnings. You will receive a bonus for the time that your animals spend grazing in a pasture. The bonus amount is variable depending on the type of animal."/>
 		<text name="rt_scheme_desc_natural_fertiliser" text="A scheme to encourage the use of natural fertilisers such as manure, slurry, and digestate. You will receive a bonus for the amount of natural fertiliser you use compared to synthetic alternatives. This applies to all fertiliser you spread, whether it is on your farm or for a contract."/>
@@ -178,6 +178,7 @@
 		<text name="rt_help_title_policies" text="Policies"/>
 		<text name="rt_help_title_schemes" text="Schemes"/>
 		<text name="rt_help_title_tax" text="Tax"/>
+		<text name="rt_help_title_grants" text="Grants"/>
 		<text name="rt_help_intro_intro" text="Red Tape is a mod that introduces Policies, Schemes, and Taxation to Farming Simulator. These systems are designed to add depth and challenge to your farming experience, encouraging sustainable practices and strategic planning."/>
 		<text name="rt_help_intro_intro_2" text="All information relating to Red Tape is contained in the new menu added to the main menu. Look for the government building icon."/>
 		<text name="rt_help_policies_intro" text="Policies are essentially laws that you must comply with when farming. They govern things such as how you treat animals and appropriate use of land."/>
@@ -190,6 +191,10 @@
 		<text name="rt_help_tax_intro_2" text="In the Tax tab, you can see a finalised statement in the left side of the view. On the right hand side you can see running totals for your current financial year. You can use this to plan ahead and reduce your tax bill. For example if you see your profits are high for the year, you might choose to purchase new equipment to reduce profit, and therefore your tax."/>
 		<text name="rt_help_tax_intro_3" text="Sometimes you will see Tax Notes. These tell you when your tax statement is modified by some non-standard condition. For example, a Scheme might offer you a future tax break. This will be indicated in Tax Notes to help you understand your bill."/>
 		<text name="rt_help_tax_intro_4" text="If you make a loss in once financial year, you will see that these losses 'rollover' into future years. If you then make a profit in a subsequent year, previous losses will be used to reduce your tax burden. This can result in paying no tax despite making profits. Previous losses rollover, and are capped at 5 million."/>
+		<text name="rt_help_grants_intro" text="Grants is a way for you to apply to the government for additional funding towards new constructions, e.g. a new cow barn."/>
+		<text name="rt_help_grants_intro_2" text="To get started, open the construction menu for applicable items, there will be an Apply for Grant button. Choose that and confirm and your application is started."/>
+		<text name="rt_help_grants_intro_3" text="Check the Grants screen in the Red Tape menu and it will tell you when your application will be processed. It will either be approved or rejected. If approved, use the construction menu to place the building and you will receive the awarded funds."/>
+		<text name="rt_help_grants_intro_4" text="You can have one active application at a given time, and there is a cooldown period of 6 months after a successful grant is processed."/>
 		<text name="rt_setting_taxEnabled" text="Tax Enabled"/>
 		<text name="rt_toolTip_taxEnabled" text="Enable or disable the Tax System"/>
 		<text name="rt_setting_policiesAndSchemesEnabled" text="Policies/Schemes Enabled"/>

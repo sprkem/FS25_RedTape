@@ -18,7 +18,7 @@ RTGrantSystem.ALLOWED_CATEGORIES = {
     ["SELLINGPOINTS"] = true,
 }
 
-RTGrantSystem.MIN_PRICE_FOR_GRANT = 100000
+RTGrantSystem.MIN_PRICE_FOR_GRANT = 80000
 RTGrantSystem.APPLICATION_COST = 500
 RTGrantSystem.GRANT_RETENTION_MONTHS = 36
 RTGrantSystem.COOLDOWN_PERIOD_MONTHS = 6
@@ -60,14 +60,14 @@ function RTGrantSystem:loadFromXMLFile(xmlFile)
 
         local grant = {
             id = getXMLString(xmlFile, grantKey .. "#id") or RedTape.generateId(),
-            farmId = getXMLInt(xmlFile, grantKey .. "#farmId") or 1,
-            xmlFile = getXMLString(xmlFile, grantKey .. "#xmlFile") or "",
-            price = getXMLFloat(xmlFile, grantKey .. "#price") or 0,
-            status = getXMLInt(xmlFile, grantKey .. "#status") or RTGrantSystem.STATUS.PENDING,
-            applicationMonth = getXMLInt(xmlFile, grantKey .. "#applicationMonth") or 0,
-            assessmentMonth = getXMLInt(xmlFile, grantKey .. "#assessmentMonth") or 0,
-            amount = getXMLFloat(xmlFile, grantKey .. "#amount") or 0,
-            completionMonth = getXMLInt(xmlFile, grantKey .. "#completionMonth") or 0
+            farmId = xmlFile:getValue(grantKey .. "#farmId", 1),
+            xmlFile = xmlFile:getValue(grantKey .. "#xmlFile", ""),
+            price = xmlFile:getValue(grantKey .. "#price", 0),
+            status = xmlFile:getValue(grantKey .. "#status", RTGrantSystem.STATUS.PENDING),
+            applicationMonth = xmlFile:getValue(grantKey .. "#applicationMonth", 0),
+            assessmentMonth = xmlFile:getValue(grantKey .. "#assessmentMonth", 0),
+            amount = xmlFile:getValue(grantKey .. "#amount", 0),
+            completionMonth = xmlFile:getValue(grantKey .. "#completionMonth", 0)
         }
 
         self.grants[grant.id] = grant
@@ -105,15 +105,15 @@ function RTGrantSystem:saveToXmlFile(xmlFile)
 
         if shouldSave then
             local grantKey = string.format("%s.grant(%d)", key, counter)
-            setXMLString(xmlFile, grantKey .. "#id", grant.id)
-            setXMLInt(xmlFile, grantKey .. "#farmId", grant.farmId)
-            setXMLString(xmlFile, grantKey .. "#xmlFile", grant.xmlFile)
-            setXMLFloat(xmlFile, grantKey .. "#price", grant.price)
-            setXMLInt(xmlFile, grantKey .. "#status", grant.status)
-            setXMLInt(xmlFile, grantKey .. "#applicationMonth", grant.applicationMonth or 0)
-            setXMLInt(xmlFile, grantKey .. "#assessmentMonth", grant.assessmentMonth or 0)
-            setXMLFloat(xmlFile, grantKey .. "#amount", grant.amount or 0)
-            setXMLInt(xmlFile, grantKey .. "#completionMonth", grant.completionMonth or 0)
+            xmlFile:setValue(grantKey .. "#id", grant.id)
+            xmlFile:setValue(grantKey .. "#farmId", grant.farmId)
+            xmlFile:setValue(grantKey .. "#xmlFile", grant.xmlFile)
+            xmlFile:setValue(grantKey .. "#price", grant.price)
+            xmlFile:setValue(grantKey .. "#status", grant.status)
+            xmlFile:setValue(grantKey .. "#applicationMonth", grant.applicationMonth or 0)
+            xmlFile:setValue(grantKey .. "#assessmentMonth", grant.assessmentMonth or 0)
+            xmlFile:setValue(grantKey .. "#amount", grant.amount or 0)
+            xmlFile:setValue(grantKey .. "#completionMonth", grant.completionMonth or 0)
             counter = counter + 1
         end
     end
@@ -279,24 +279,11 @@ function RTGrantSystem:getGrantsForFarm(farmId)
     return farmGrants
 end
 
-function RTGrantSystem:getApprovedGrantByXmlFilename(farmId, xmlFilename)
-    for _, grant in pairs(self.grants) do
-        if grant.farmId == farmId then
-            if grant.status == RTGrantSystem.STATUS.APPROVED then
-                if grant.xmlFile == xmlFilename then
-                    return grant
-                end
-            end
-        end
-    end
-end
-
 function RTGrantSystem:onPlaceablePurchased(farmId, xmlFilename)
     if not g_currentMission:getIsServer() then
         return
     end
 
-    -- Find matching approved grant for this farm and building type
     local matchingGrant = nil
     for _, grant in pairs(self.grants) do
         if grant.farmId == farmId and grant.xmlFile == xmlFilename and grant.status == RTGrantSystem.STATUS.APPROVED then
@@ -306,13 +293,10 @@ function RTGrantSystem:onPlaceablePurchased(farmId, xmlFilename)
     end
 
     if matchingGrant then
-        -- Award grant money to the farm
         if g_currentMission:getIsServer() then
             g_currentMission:addMoneyChange(matchingGrant.amount, farmId, MoneyType.GRANT_RECEIVED, true)
         end
         g_farmManager:getFarmById(farmId):changeBalance(matchingGrant.amount, MoneyType.GRANT_RECEIVED)
-
-        -- Send completion event
         g_client:getServerConnection():sendEvent(RTGrantStatusUpdateEvent.new(farmId, matchingGrant.id,
             RTGrantSystem.STATUS.COMPLETE, matchingGrant.amount))
     end
@@ -322,35 +306,28 @@ function RTGrantSystem:updateGrantStatus(grantId, newStatus, approvedAmount)
     local grant = self.grants[grantId]
 
     if not grant then
-        return -- Grant not found
+        return
     end
 
     local currentFarmId = g_currentMission:getFarmId()
     local eventLog = g_currentMission.RedTape.EventLog
+    grant.status = newStatus
 
     if newStatus == RTGrantSystem.STATUS.APPROVED then
-        -- Update grant to approved status
-        grant.status = RTGrantSystem.STATUS.APPROVED
         grant.amount = approvedAmount
 
-        -- Add event log entry
         local detail = string.format(g_i18n:getText("rt_grant_approved_notification"), g_i18n:formatMoney(approvedAmount))
         local sendNotification = (grant.farmId == currentFarmId)
         eventLog:addEvent(grant.farmId, RTEventLogItem.EVENT_TYPE.GRANT_APPROVED, detail, sendNotification)
     elseif newStatus == RTGrantSystem.STATUS.REJECTED then
-        -- Remove rejected grant from system
-        self.grants[grantId] = nil
+        grant.completionMonth = RedTape.getCumulativeMonth()
 
-        -- Add event log entry
         local detail = g_i18n:getText("rt_grant_rejected_notification")
         local sendNotification = (grant.farmId == currentFarmId)
         eventLog:addEvent(grant.farmId, RTEventLogItem.EVENT_TYPE.GRANT_REJECTED, detail, sendNotification)
     elseif newStatus == RTGrantSystem.STATUS.COMPLETE then
-        -- Update grant to completed status
-        grant.status = RTGrantSystem.STATUS.COMPLETE
         grant.completionMonth = RedTape.getCumulativeMonth()
 
-        -- Add event log entry
         local detail = string.format(g_i18n:getText("rt_grant_completed_notification"),
             g_i18n:formatMoney(approvedAmount))
         local sendNotification = (grant.farmId == currentFarmId)
@@ -394,4 +371,13 @@ function RTGrantSystem:canFarmApplyForGrant(farmId)
     end
 
     return true
+end
+
+function RTGrantSystem:onDisabled()
+    for grantId, grant in pairs(self.grants) do
+        if grant.status == RTGrantSystem.STATUS.PENDING or grant.status == RTGrantSystem.STATUS.APPROVED then
+            self.grants[grantId] = nil
+        end
+    end
+    g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
