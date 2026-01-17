@@ -60,14 +60,14 @@ function RTGrantSystem:loadFromXMLFile(xmlFile)
 
         local grant = {
             id = getXMLString(xmlFile, grantKey .. "#id") or RedTape.generateId(),
-            farmId = xmlFile:getValue(grantKey .. "#farmId", 1),
-            xmlFile = xmlFile:getValue(grantKey .. "#xmlFile", ""),
-            price = xmlFile:getValue(grantKey .. "#price", 0),
-            status = xmlFile:getValue(grantKey .. "#status", RTGrantSystem.STATUS.PENDING),
-            applicationMonth = xmlFile:getValue(grantKey .. "#applicationMonth", 0),
-            assessmentMonth = xmlFile:getValue(grantKey .. "#assessmentMonth", 0),
-            amount = xmlFile:getValue(grantKey .. "#amount", 0),
-            completionMonth = xmlFile:getValue(grantKey .. "#completionMonth", 0)
+            farmId = getXMLInt(xmlFile, grantKey .. "#farmId") or 1,
+            xmlFile = getXMLString(xmlFile, grantKey .. "#xmlFile") or "",
+            price = getXMLFloat(xmlFile, grantKey .. "#price") or 0,
+            status = getXMLInt(xmlFile, grantKey .. "#status") or RTGrantSystem.STATUS.PENDING,
+            applicationMonth = getXMLInt(xmlFile, grantKey .. "#applicationMonth") or 0,
+            assessmentMonth = getXMLInt(xmlFile, grantKey .. "#assessmentMonth") or 0,
+            amount = getXMLFloat(xmlFile, grantKey .. "#amount") or 0,
+            completionMonth = getXMLInt(xmlFile, grantKey .. "#completionMonth") or 0
         }
 
         self.grants[grant.id] = grant
