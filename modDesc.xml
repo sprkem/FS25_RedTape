@@ -30,6 +30,7 @@ Changelog:
 - Add a grant system. Use the construction menu to apply for grants.
 - Add safety check and mitigations for mod conflicts that can impact tax.
 - Treat Alfalfa and Clover as grass when present.
+- Fix 24 hour productivity exceptions when moving animals via a trailer. Exceptions were previously only working correctly when buying new animals.
 - Fix description of the bale wrapping scheme to correctly indicate potential penalties.
 
 1.0.0.10:
@@ -89,6 +90,13 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.0.11:
+- Ein Fördersystem wurde hinzugefügt. Fördergelder können über das Baumenü beantragt werden.
+- Sicherheitsprüfungen und Maßnahmen zur Behebung von Mod-Konflikten, die sich auf die Steuern auswirken können, wurden hinzugefügt.
+- Luzerne und Klee werden, sofern vorhanden, als Gras behandelt.
+- Die Produktivitätsausnahmen von 24 Stunden beim Transport von Tieren mit einem Anhänger wurden behoben. Zuvor funktionierten die Ausnahmen nur beim Kauf neuer Tiere korrekt.
+- Die Beschreibung des Ballenwickelverfahrens wurde korrigiert, um mögliche Strafen korrekt anzugeben.
 
 1.0.0.10:
 - Fügt eine neue Fruchtfolgeansicht mit Erntehistorie zur besseren Planung hinzu. Die Fruchtfolgerichtlinie wurde leicht überarbeitet.
@@ -151,6 +159,13 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.0.11:
+- Ajout d'un système de subventions. Utilisez le menu Construction pour faire une demande de subvention.
+- Ajout d'un contrôle de sécurité et de mesures d'atténuation pour les conflits de mods pouvant impacter les taxes.
+- La luzerne et le trèfle sont désormais considérés comme de l'herbe lorsqu'ils sont présents.
+- Correction des exceptions de productivité sur 24 heures lors du transport d'animaux par remorque. Auparavant, ces exceptions ne fonctionnaient correctement que lors de l'achat de nouveaux animaux.
+- Correction de la description du système d'enrubannage des balles afin d'indiquer correctement les pénalités potentielles.
 
 1.0.0.10:
 - Ajout d'une nouvelle vue de rotation des cultures affichant l'historique des récoltes, pour faciliter la planification. Légère refonte de la politique de rotation des cultures.
@@ -221,6 +236,7 @@ Journal des modifications:
         <sourceFile filename="src/events/SchemeWatchToggleEvent.lua"/>
         <sourceFile filename="src/events/TaxRateBenefitEvent.lua"/>
         <sourceFile filename="src/events/TaxStatementPaidEvent.lua"/>
+        <sourceFile filename="src/extensions/AnimalMoveEventExtension.lua"/>
         <sourceFile filename="src/extensions/BaleWrapperExtension.lua"/>
         <sourceFile filename="src/extensions/BuyPlaceableEventExtension.lua"/>
         <sourceFile filename="src/extensions/ConstructionBrushPlaceableExtension.lua"/>
