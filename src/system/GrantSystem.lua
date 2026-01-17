@@ -105,15 +105,15 @@ function RTGrantSystem:saveToXmlFile(xmlFile)
 
         if shouldSave then
             local grantKey = string.format("%s.grant(%d)", key, counter)
-            xmlFile:setValue(grantKey .. "#id", grant.id)
-            xmlFile:setValue(grantKey .. "#farmId", grant.farmId)
-            xmlFile:setValue(grantKey .. "#xmlFile", grant.xmlFile)
-            xmlFile:setValue(grantKey .. "#price", grant.price)
-            xmlFile:setValue(grantKey .. "#status", grant.status)
-            xmlFile:setValue(grantKey .. "#applicationMonth", grant.applicationMonth or 0)
-            xmlFile:setValue(grantKey .. "#assessmentMonth", grant.assessmentMonth or 0)
-            xmlFile:setValue(grantKey .. "#amount", grant.amount or 0)
-            xmlFile:setValue(grantKey .. "#completionMonth", grant.completionMonth or 0)
+            setXMLString(xmlFile, grantKey .. "#id", grant.id)
+            setXMLInt(xmlFile, grantKey .. "#farmId", grant.farmId)
+            setXMLString(xmlFile, grantKey .. "#xmlFile", grant.xmlFile)
+            setXMLFloat(xmlFile, grantKey .. "#price", grant.price)
+            setXMLInt(xmlFile, grantKey .. "#status", grant.status)
+            setXMLInt(xmlFile, grantKey .. "#applicationMonth", grant.applicationMonth or 0)
+            setXMLInt(xmlFile, grantKey .. "#assessmentMonth", grant.assessmentMonth or 0)
+            setXMLFloat(xmlFile, grantKey .. "#amount", grant.amount or 0)
+            setXMLInt(xmlFile, grantKey .. "#completionMonth", grant.completionMonth or 0)
             counter = counter + 1
         end
     end
@@ -277,6 +277,18 @@ function RTGrantSystem:getGrantsForFarm(farmId)
     end
 
     return farmGrants
+end
+
+function RTGrantSystem:getApprovedGrantByXmlFilename(farmId, xmlFilename)
+    for _, grant in pairs(self.grants) do
+        if grant.farmId == farmId then
+            if grant.status == RTGrantSystem.STATUS.APPROVED then
+                if grant.xmlFile == xmlFilename then
+                    return grant
+                end
+            end
+        end
+    end
 end
 
 function RTGrantSystem:onPlaceablePurchased(farmId, xmlFilename)
