@@ -234,7 +234,6 @@ function RTGrantSystem:applyForGrant(farmId, xmlFile, price, grantId)
     end
     g_farmManager:getFarmById(farmId):changeBalance(-applicationCost, MoneyType.GRANT_APPLICATION_COST)
 
-    -- Create new grant application with provided ID and assessment date
     local currentMonth = RedTape.getCumulativeMonth()
     local assessmentDelay = 3 + math.random(3) -- 3-6 months delay
 

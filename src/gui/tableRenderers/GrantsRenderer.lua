@@ -45,7 +45,6 @@ function RTGrantsRenderer:populateCellForItemInSection(list, section, index, cel
     local buildingName = g_storeManager:getItemByXMLFilename(grant.xmlFile).name
     cell:getAttribute("building"):setText(buildingName)
 
-    -- Format price
     cell:getAttribute("price"):setText(g_i18n:formatMoney(grant.price, 0, true, true))
 
     local applied = grant.applicationMonth % 12

@@ -223,7 +223,6 @@ function MenuRedTape:onGuiSetupFinished()
     self.cropHistoryTable:setDataSource(self.cropRotationRenderer)
     self.cropHistoryTable:setDelegate(self.cropRotationRenderer)
 
-    -- Setup grants tables
     self.pendingGrantsTable:setDataSource(self.grantsRenderer)
     self.pendingGrantsTable:setDelegate(self.grantsRenderer)
     
@@ -599,21 +598,18 @@ function MenuRedTape:updateContent()
         local canApply = grantSystem:canFarmApplyForGrant(currentFarmId)
         local farmGrants = grantSystem:getGrantsForFarm(currentFarmId)
 
-        -- Update eligibility status text
         if canApply then
             self.grantEligibilityStatus:setText(g_i18n:getText("rt_grant_eligible"))
         else
             self.grantEligibilityStatus:setText(g_i18n:getText("rt_grant_not_eligible"))
         end
 
-        -- Prepare data for renderer with historical grants (rejected + completed)
         local grantsData = {
             pending = farmGrants.pending or {},
             approved = farmGrants.approved or {},
             historical = {}
         }
 
-        -- Combine rejected and completed grants for historical view
         for _, grant in pairs(grantSystem.grants) do
             if grant.farmId == currentFarmId and 
                (grant.status == RTGrantSystem.STATUS.REJECTED or grant.status == RTGrantSystem.STATUS.COMPLETE) then
@@ -621,7 +617,6 @@ function MenuRedTape:updateContent()
             end
         end
 
-        -- Update pending grants table
         self.grantsRenderer:setCurrentSection("pending")
         self.grantsRenderer:setData(grantsData)
         self.pendingGrantsTable:reloadData()
@@ -630,7 +625,6 @@ function MenuRedTape:updateContent()
         self.pendingGrantsContainer:setVisible(hasPendingGrants)
         self.noPendingGrantsContainer:setVisible(not hasPendingGrants)
 
-        -- Update approved grants table
         self.grantsRenderer:setCurrentSection("approved")
         self.grantsRenderer:setData(grantsData)
         self.approvedGrantsTable:reloadData()
@@ -639,7 +633,6 @@ function MenuRedTape:updateContent()
         self.approvedGrantsContainer:setVisible(hasApprovedGrants)
         self.noApprovedGrantsContainer:setVisible(not hasApprovedGrants)
 
-        -- Update historical grants table
         self.grantsRenderer:setCurrentSection("historical")
         self.grantsRenderer:setData(grantsData)
         self.historicalGrantsTable:reloadData()
