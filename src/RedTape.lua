@@ -367,6 +367,18 @@ function RedTape.getGridPosition(x, y, z, gridSize)
     return gridX, gridY, gridZ
 end
 
+function RedTape.getGrassTypes()
+    local result = { FruitType.GRASS, FruitType.MEADOW }
+
+    if FruitType.ALFALFA ~= nil then
+        table.insert(result, FruitType.ALFALFA)
+    end
+    if FruitType.CLOVER ~= nil then
+        table.insert(result, FruitType.CLOVER)
+    end
+    return result
+end
+
 function RedTape:onStartMission()
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed,
         RTMissionManagerExtension.getIsMissionWorkAllowed)

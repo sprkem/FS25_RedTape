@@ -29,6 +29,8 @@ Changelog:
 1.0.0.11:
 - Add a grant system. Use the construction menu to apply for grants.
 - Add safety check and mitigations for mod conflicts that can impact tax.
+- Treat Alfalfa and Clover as grass when present.
+- Fix description of the bale wrapping scheme to correctly indicate potential penalties.
 
 1.0.0.10:
 - Adds a new crop rotation view showing harvest history, to aid planning. Minor rework of the crop rotation policy.

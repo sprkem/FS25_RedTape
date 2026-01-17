@@ -64,6 +64,12 @@ RTSchemes = {
             local farmId = scheme.farmId
             local invalidMonths = { cumulativeMonth - 1, cumulativeMonth - 2, cumulativeMonth - 3 }
 
+            local grassTypes = RedTape.getGrassTypes()
+            local grassTypeNames = {}
+            for _, f in pairs(grassTypes) do
+                table.insert(grassTypeNames, g_fruitTypeManager:getFruitTypeByIndex(f).name)
+            end
+
             local report = {}
             local totalReward = 0
             for _, farmland in pairs(g_farmlandManager.farmlands) do
@@ -74,10 +80,9 @@ RTSchemes = {
                     local mayFruit = farmlandData.fruitHistory[cumulativeMonth - 2]
                     local aprilFruit = farmlandData.fruitHistory[cumulativeMonth - 3]
 
-                    local grassName = g_fruitTypeManager:getFruitTypeByIndex(FruitType.GRASS).name
-                    local retainedGrass = juneFruit ~= nil and juneFruit.name == grassName and
-                        mayFruit ~= nil and mayFruit.name == grassName and
-                        aprilFruit ~= nil and aprilFruit.name == grassName
+                    local retainedGrass = juneFruit ~= nil and RedTape.tableHasValue(grassTypeNames, juneFruit.name) and
+                        mayFruit ~= nil and RedTape.tableHasValue(grassTypeNames, mayFruit.name) and
+                        aprilFruit ~= nil and RedTape.tableHasValue(grassTypeNames, aprilFruit.name)
 
                     local didHarvest = RedTape.tableHasValue(invalidMonths, farmlandData.lastGrassHarvest)
                     if retainedGrass and not didHarvest then
