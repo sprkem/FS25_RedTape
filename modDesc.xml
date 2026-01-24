@@ -26,7 +26,7 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.1.0 [WIP]:
+1.0.1.0:
 - Purchased farmlands are exempt from the next evaluation of the Crop Rotation policy.
 - Update grant eligibility text to explain minimum grant amount.
 - Added Italian translation, thanks to FirenzeIT.
@@ -97,6 +97,12 @@ https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
 
+1.0.1.0:
+- Erworbene landwirtschaftliche Flächen sind von der nächsten Überprüfung der Fruchtfolgeregelung ausgenommen.
+- Der Text zu den Förderkriterien wurde aktualisiert und erläutert nun den Mindestförderbetrag.
+- Italienische Übersetzung hinzugefügt (mit freundlicher Genehmigung von FirenzeIT).
+- Spanische Übersetzung hinzugefügt.
+
 1.0.0.11:
 - Ein Fördersystem wurde hinzugefügt. Fördergelder können über das Baumenü beantragt werden.
 - Sicherheitsprüfungen und Maßnahmen zur Behebung von Mod-Konflikten, die sich auf die Steuern auswirken können, wurden hinzugefügt.
@@ -165,6 +171,12 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.1.0:
+- Les terres agricoles acquises sont exemptées de la prochaine évaluation de la politique de rotation des cultures.
+- Mise à jour des critères d'admissibilité aux subventions afin de préciser le montant minimal.
+- Ajout de la traduction italienne (merci à FirenzeIT).
+- Ajout de la traduction espagnole.
 
 1.0.0.11:
 - Ajout d'un système de subventions. Utilisez le menu Construction pour faire une demande de subvention.
