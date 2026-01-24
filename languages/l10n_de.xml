@@ -235,6 +235,6 @@
 		<text name="rt_grant_status_completed" text="Abgeschlossen" />
 		<text name="rt_grant_eligible" text="STATUS: BERECHTIGT" />
 		<text name="rt_grant_not_eligible" text="STATUS: NICHT BERECHTIGT" />
-		<text name="rt_grant_eligible_description" text="Die Berechtigung zur Beantragung neuer Zuschüsse hängt von zahlreichen Bedingungen ab. Sie können nicht beantragen, wenn Sie einen aktuellen ausstehenden Antrag oder einen genehmigten Antrag haben, der auf Abschluss wartet. Es gibt auch eine Abkühlungsperiode von 6 Monaten nach Abschluss eines Zuschusses (d.h. wenn Sie Zuschussmittel erhalten)." />
+		<text name="rt_grant_eligible_description" text="Die Berechtigung zur Beantragung neuer Zuschüsse hängt von zahlreichen Bedingungen ab. Sie können nicht beantragen, wenn Sie einen aktuellen ausstehenden Antrag oder einen genehmigten Antrag haben, der auf Abschluss wartet. Es gibt auch eine Abkühlungsperiode von 6 Monaten nach Abschluss eines Zuschusses (d.h. wenn Sie Zuschussmittel erhalten). Hinweis: Zuschüsse sind nicht verfügbar für Bauwerke mit Kosten unter 80.000." />
 	</texts>
 </l10n>

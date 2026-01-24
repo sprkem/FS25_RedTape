@@ -235,6 +235,6 @@
 		<text name="rt_grant_status_completed" text="Completed" />
 		<text name="rt_grant_eligible" text="STATUS: ELIGIBLE" />
 		<text name="rt_grant_not_eligible" text="STATUS: NOT ELIGIBLE" />
-		<text name="rt_grant_eligible_description" text="Eligibility to apply for new grants depends on numerous conditions. You may not apply if you have a current pending application, or an approved application awaiting completion. There is also a cooldown period of 6 months after completion of a grant (i.e. when you receive grant funds)." />
+		<text name="rt_grant_eligible_description" text="Eligibility to apply for new grants depends on numerous conditions. You may not apply if you have a current pending application, or an approved application awaiting completion. There is also a cooldown period of 6 months after completion of a grant (i.e. when you receive grant funds). Note grants are not available for constructions under 80,000 cost." />
 	</texts>
 </l10n>

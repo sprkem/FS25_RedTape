@@ -235,6 +235,6 @@
 		<text name="rt_grant_status_completed" text="Completado" />
 		<text name="rt_grant_eligible" text="ESTADO: ELEGIBLE" />
 		<text name="rt_grant_not_eligible" text="ESTADO: NO ELEGIBLE" />
-		<text name="rt_grant_eligible_description" text="La elegibilidad para solicitar nuevas subvenciones depende de numerosas condiciones. No puedes solicitar si tienes una solicitud pendiente actual, o una solicitud aprobada en espera de completarse. También hay un período de espera de 6 meses después de completar una subvención (es decir, cuando recibes fondos de subvención)." />
+		<text name="rt_grant_eligible_description" text="La elegibilidad para solicitar nuevas subvenciones depende de numerosas condiciones. No puedes solicitar si tienes una solicitud pendiente actual, o una solicitud aprobada en espera de completarse. También hay un período de espera de 6 meses después de completar una subvención (es decir, cuando recibes fondos de subvención). Nota: las subvenciones no están disponibles para construcciones con un costo inferior a 80.000." />
 	</texts>
 </l10n>

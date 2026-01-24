@@ -235,6 +235,6 @@
 		<text name="rt_grant_status_completed" text="Dokončeno" />
 		<text name="rt_grant_eligible" text="STAV: ZPŮSOBILÝ" />
 		<text name="rt_grant_not_eligible" text="STAV: NEZPŮSOBILÝ" />
-		<text name="rt_grant_eligible_description" text="Způsobilost k žádosti o nové dotace závisí na mnoha podmínkách. Nemůžete žádat, pokud máte aktuální čekající žádost nebo schválenou žádost čekající na dokončení. Existuje také ochranná lhůta 6 měsíců po dokončení dotace (tj. když obdržíte dotační prostředky)." />
+		<text name="rt_grant_eligible_description" text="Způsobilost k žádosti o nové dotace závisí na mnoha podmínkách. Nemůžete žádat, pokud máte aktuální čekající žádost nebo schválenou žádost čekající na dokončení. Existuje také ochranná lhůta 6 měsíců po dokončení dotace (tj. když obdržíte dotační prostředky). Upozorňujeme, že dotace nejsou k dispozici pro stavby s cenou nižší než 80 000." />
 	</texts>
 </l10n>

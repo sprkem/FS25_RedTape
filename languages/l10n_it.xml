@@ -235,6 +235,6 @@
 		<text name="rt_grant_status_completed" text="Completato" />
 		<text name="rt_grant_eligible" text="STATO: IDONEO" />
 		<text name="rt_grant_not_eligible" text="STATO: NON IDONEO" />
-		<text name="rt_grant_eligible_description" text="L’idoneità a richiedere nuovi contributi dipende da diverse condizioni. Non puoi fare domanda se hai una richiesta in sospeso o una richiesta approvata in attesa di completamento. È inoltre previsto un periodo di attesa di 6 mesi dopo il completamento di un contributo (ovvero quando ricevi i fondi)." />
+		<text name="rt_grant_eligible_description" text="L'idoneità a richiedere nuovi contributi dipende da diverse condizioni. Non puoi fare domanda se hai una richiesta in sospeso o una richiesta approvata in attesa di completamento. È inoltre previsto un periodo di attesa di 6 mesi dopo il completamento di un contributo (ovvero quando ricevi i fondi). Nota: i contributi non sono disponibili per costruzioni con un costo inferiore a 80.000." />
 	</texts>
 </l10n>

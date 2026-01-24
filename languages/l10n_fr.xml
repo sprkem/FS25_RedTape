@@ -235,6 +235,6 @@
 		<text name="rt_grant_status_completed" text="Terminé" />
 		<text name="rt_grant_eligible" text="STATUT: ÉLIGIBLE" />
 		<text name="rt_grant_not_eligible" text="STATUT: NON ÉLIGIBLE" />
-		<text name="rt_grant_eligible_description" text="L'éligibilité pour demander de nouvelles subventions dépend de nombreuses conditions. Vous ne pouvez pas faire de demande si vous avez une demande en attente actuelle, ou une demande approuvée en attente d'achèvement. Il y a également une période de refroidissement de 6 mois après l'achèvement d'une subvention (c'est-à-dire lorsque vous recevez les fonds de subvention)." />
+		<text name="rt_grant_eligible_description" text="L'éligibilité pour demander de nouvelles subventions dépend de nombreuses conditions. Vous ne pouvez pas faire de demande si vous avez une demande en attente actuelle, ou une demande approuvée en attente d'achèvement. Il y a également une période de refroidissement de 6 mois après l'achèvement d'une subvention (c'est-à-dire lorsque vous recevez les fonds de subvention). Remarque: les subventions ne sont pas disponibles pour les constructions dont le coût est inférieur à 80 000." />
 	</texts>
 </l10n>

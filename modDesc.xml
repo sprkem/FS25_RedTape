@@ -28,6 +28,7 @@ Changelog:
 
 1.0.1.0 [WIP]:
 - Purchased farmlands are exempt from the next evaluation of the Crop Rotation policy.
+- Update grant eligibility text to explain minimum grant amount.
 - Added Italian translation, thanks to FirenzeIT.
 - Added Spanish translation.
 
