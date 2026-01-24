@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+	<translationContributors/>
+	<texts>
+		<text name="rt_notify_active_policy" text="È stata attivata una nuova politica: %s"/>
+		<text name="rt_notify_active_scheme" text="È disponibile un nuovo schema: %s (Livello %s)"/>
+		<text name="rt_notify_ended_scheme" text="Uno schema è terminato: %s"/>
+		<text name="rt_notify_expired_scheme" text="Uno schema non è più disponibile: %s (Livello %s)"/>
+		<text name="rt_policy_reason_evaluation" text="%s punti assegnati durante la valutazione della politica %s"/>
+		<text name="rt_notify_scheme_payout" text="Lo schema %s ti ha pagato: %s"/>
+		<text name="rt_notify_policy_warning" text="Hai ricevuto un avviso per aver violato la politica %s"/>
+		<text name="rt_notify_policy_fine" text="Hai ricevuto una multa di %s per aver violato la politica %s"/>
+		<text name="rt_label_active_policies" text="Politiche attive"/>
+		<text name="rt_label_tax_statement" text="Dichiarazione fiscale"/>
+		<text name="rt_header_policies" text="Politiche"/>
+		<text name="rt_header_schemes" text="Schemi"/>
+		<text name="rt_header_tax" text="Tasse"/>
+		<text name="rt_header_eventlog" text="Registro eventi"/>
+		<text name="rt_header_croprotation" text="Rotazione"/>
+		<text name="rt_header_croprotation_mostrecent" text="Più recente"/>
+		<text name="rt_header_croprotation_previous" text="Precedente"/>
+		<text name="rt_header_croprotation_previous1" text="Precedente -1"/>
+		<text name="rt_header_croprotation_previous2" text="Precedente -2"/>
+		<text name="rt_header_croprotation_previous3" text="Precedente -3"/>
+		<text name="rt_header_croprotation_view_title" text="Storico raccolti"/>
+		<text name="rt_header_croprotation_view_subtitle" text="I dati sottostanti sono utilizzati dalla politica di Rotazione delle Colture. Quando pianifichi la prossima coltura da seminare in un campo, assicurati di sceglierne una diversa da quella indicata come Più Recente per rimanere conforme."/>
+		<text name="rt_header_current_tier" text="Livello attuale: %s"/>
+		<text name="rt_header_compliance_tier" text="Prestazioni di conformità"/>
+		<text name="rt_header_policy_information" text="Informazioni politica"/>
+		<text name="rt_header_scheme_information" text="Informazioni schema"/>
+		<text name="rt_header_latest_report" text="Ultimo rapporto"/>
+		<text name="rt_header_no_selected_policy" text="Seleziona una politica attiva per visualizzare le informazioni rilevanti"/>
+		<text name="rt_header_no_report_information" text="Non sono disponibili informazioni sul rapporto. Potrebbe non esserci nulla da riportare oppure non è stata effettuata alcuna valutazione."/>
+		<text name="rt_header_scheme_equipment" text="Il seguente equipaggiamento sarà fornito per la durata dello schema:"/>
+		<text name="rt_header_next_evaluation_date" text="Prossima data di valutazione: %s"/>
+		<text name="rt_header_no_tax_statement" text="Al momento non è disponibile alcuna dichiarazione fiscale. Le dichiarazioni vengono generate annualmente in aprile e il pagamento avviene a settembre."/>
+		<text name="rt_header_finalised_statement" text="Dichiarazione anno precedente:"/>
+		<text name="rt_header_tax_estimate" text="Totali anno corrente:"/>
+		<text name="rt_header_tax_notes" text="Note fiscali:"/>
+		<text name="rt_header_tax_notes_info" text="Un elenco di annotazioni rilevanti che possono aiutare a spiegare la tua dichiarazione fiscale."/>
+		<text name="rt_header_no_tax_notes" text="Nessuna nota fiscale è contenuta nella dichiarazione."/>
+		<text name="rt_header_total_expenses" text="Spese:"/>
+		<text name="rt_header_total_taxable_income" text="Reddito imponibile:"/>
+		<text name="rt_header_total_taxed_income" text="Reddito tassato:"/>
+		<text name="rt_header_total_tax_rate" text="Aliquota fiscale:"/>
+		<text name="rt_header_total_tax_due" text="Imposta dovuta:"/>
+		<text name="rt_header_tax_status" text="Stato fiscale:"/>
+		<text name="rt_header_tax_payment_info" text="Le dichiarazioni fiscali vengono calcolate in aprile e il pagamento avviene a settembre."/>
+		<text name="rt_tax_statement_status_paid" text="Pagato"/>
+		<text name="rt_tax_statement_status_unpaid" text="Non pagato"/>
+		<text name="rt_event_type_none" text="-"/>
+		<text name="rt_event_type_policypoints" text="Punti politica"/>
+		<text name="rt_event_type_policyactivated" text="Politica attivata"/>
+		<text name="rt_event_type_policycompleted" text="Politica completata"/>
+		<text name="rt_event_type_schemeactivated" text="Schema attivato"/>
+		<text name="rt_event_type_schemepayout" text="Pagamento schema"/>
+		<text name="rt_event_type_schemeexpired" text="Schema scaduto"/>
+		<text name="rt_event_type_policywarning" text="Avviso politica"/>
+		<text name="rt_event_type_policyfine" text="Multa politica"/>
+		<text name="rt_tableheader_timestamp" text="Data/Ora"/>
+		<text name="rt_tableheader_eventtype" text="Tipo evento"/>
+		<text name="rt_tableheader_detail" text="Dettaglio"/>
+		<text name="rt_tableheader_name" text="Nome"/>
+		<text name="rt_tableheader_description" text="Descrizione"/>
+		<text name="rt_tableheader_next" text="Prossimo controllo"/>
+		<text name="rt_policy_croprotation" text="Rotazione delle colture"/>
+		<text name="rt_policy_sprayviolation" text="Contaminazione dell’acqua"/>
+		<text name="rt_policy_empty_food" text="Alimentazione animali"/>
+		<text name="rt_policy_empty_straw" text="Lettiera animali"/>
+		<text name="rt_policy_full_slurry" text="Gestione liquami"/>
+		<text name="rt_policy_animal_productivity" text="Condizioni animali"/>
+		<text name="rt_policy_animal_space" text="Spazio animale"/>
+		<text name="rt_policy_manure_spreading" text="Gestione letame"/>
+		<text name="rt_policy_restricted_slurry" text="Applicazione liquami limitata"/>
+		<text name="rt_policy_sustainable_forestry" text="Silvicoltura sostenibile"/>
+		<text name="rt_policy_description_croprotation" text="Richiede la rotazione delle colture tra campi e stagioni per mantenere la fertilità del suolo, interrompere cicli di parassiti e malattie, migliorare l’equilibrio dei nutrienti e proteggere le rese a lungo termine."/>
+		<text name="rt_policy_description_sprayviolation" text="Vieta l’uso di prodotti chimici (fertilizzante solido, liquami, calce, letame, erbicida) entro 14 m dai corsi d’acqua per prevenire ruscellamento e contaminazione che possono danneggiare la fauna acquatica, degradare la qualità dell’acqua e mettere a rischio la salute umana. Le violazioni sono penalizzate."/>
+		<text name="rt_policy_description_empty_food" text="Richiede che gli animali abbiano sempre cibo sufficiente; mantieni le mangiatoie sempre piene e accessibili per prevenire la fame e rispettare gli standard di benessere."/>
+		<text name="rt_policy_description_empty_straw" text="Richiede che agli animali venga fornita lettiera di paglia adeguata per garantire comfort, isolamento e igiene. La paglia riduce lesioni e stress, aiuta a mantenere la temperatura corporea e assorbe l’umidità per proteggere il benessere animale."/>
+		<text name="rt_policy_description_full_slurry" text="Richiede che i serbatoi dei liquami siano mantenuti sotto la capacità massima per prevenire traboccamenti e sversamenti. I traboccamenti possono contaminare suolo e corsi d’acqua causando danni ambientali."/>
+		<text name="rt_policy_description_animal_productivity" text="Incoraggia il mantenimento della produttività animale, un indicatore generale di buon benessere."/>
+		<text name="rt_policy_description_animal_space" text="Richiede che gli animali abbiano spazio sufficiente per muoversi, riposare e accedere a cibo e acqua; prevenire il sovraffollamento riduce stress, lesioni e diffusione di malattie. Non si applica se l’allevamento ha un solo animale. Gli animali giovani richiedono meno spazio degli adulti."/>
+		<text name="rt_policy_description_manure_spreading" text="Non dovresti lasciare il letame inutilizzato indefinitamente. Assicurati di non immagazzinare più del 50% del letame prodotto in un periodo di 6 mesi. Se non produci letame, questa politica non ti riguarda. Il rapporto si aggiorna mensilmente, mentre valutazione completa e pagamenti o multe avverranno a maggio e novembre."/>
+		<text name="rt_policy_description_restricted_slurry" text="Non è consentito applicare liquami nei mesi da settembre a dicembre. Ogni violazione sarà penalizzata."/>
+		<text name="rt_policy_description_sustainable_forestry" text="Incoraggia pratiche forestali sostenibili, premiando la piantumazione netta positiva e multando la deforestazione complessiva. La politica si applica ai tuoi terreni. Il lavoro in conto terzi non influisce sulla valutazione. Il rapporto si aggiorna mensilmente con totali semestrali, mentre valutazione completa e pagamenti o multe avverranno a giugno e dicembre."/>
+		<text name="rt_policy_report_description_croprotation" text="Il rapporto mostra i totali delle superfici conformi e non conformi."/>
+		<text name="rt_policy_report_description_sprayviolation" text="Il rapporto mostra quante violazioni di irrorazione sono avvenute nell’ultimo mese."/>
+		<text name="rt_policy_report_description_empty_food" text="Il rapporto mostra quante ore complessive il cibo è mancato nei recinti degli animali."/>
+		<text name="rt_policy_report_description_empty_straw" text="Il rapporto mostra quante ore complessive la paglia è mancata nei recinti degli animali."/>
+		<text name="rt_policy_report_description_full_slurry" text="Il rapporto mostra quante ore complessive i serbatoi dei liquami sono stati pieni."/>
+		<text name="rt_policy_report_description_animal_productivity" text="Il rapporto mostra quante ore complessive gli animali sono stati improduttivi."/>
+		<text name="rt_policy_report_description_animal_space" text="Il rapporto mostra prima quante ore di violazione sono state registrate. Poi, per ogni allevamento, mostra lo spazio disponibile e lo spazio massimo richiesto nel mese precedente."/>
+		<text name="rt_policy_report_description_manure_spreading" text="Il rapporto mostra la quantità di letame prodotta negli ultimi 6 mesi. Mostra anche il totale prodotto e il massimo consentito in stoccaggio negli ultimi 6 mesi. Nota che i dati del Mese 1 non saranno inclusi nel prossimo rapporto e che qualsiasi letame prodotto nel mese corrente dovrà essere considerato."/>
+		<text name="rt_policy_report_description_restricted_slurry" text="Il rapporto mostra quante volte i liquami sono stati applicati durante i mesi con restrizioni."/>
+		<text name="rt_policy_report_description_sustainable_forestry" text="Il rapporto mostra quanti alberi sono stati piantati e abbattuti nel periodo semestrale corrente."/>
+		<text name="rt_report_name_farmland" text="Terreno agricolo %s"/>
+		<text name="rt_report_name_total_area" text="Area totale"/>
+		<text name="rt_report_name_non_compliant_area" text="Area non conforme"/>
+		<text name="rt_report_name_spray_violations" text="Violazioni di irrorazione"/>
+		<text name="rt_report_name_empty_food" text="Ore senza cibo"/>
+		<text name="rt_report_name_empty_straw" text="Ore senza paglia"/>
+		<text name="rt_report_name_full_slurry" text="Ore con liquami al massimo"/>
+		<text name="rt_report_name_low_productivity_hours" text="Ore con bassa produttività"/>
+		<text name="rt_report_name_animal_space_violations" text="Violazioni spazio animale"/>
+		<text name="rt_report_name_manure_total_produced" text="Letame totale prodotto"/>
+		<text name="rt_report_name_manure_stored_amount" text="Letame attualmente stoccato"/>
+		<text name="rt_report_name_manure_max_stored_amount" text="Massimo stoccaggio consentito"/>
+		<text name="rt_report_name_restricted_slurry_violations" text="Violazioni applicazione liquami"/>
+		<text name="rt_report_name_bale_penalty" text="Penalità balle"/>
+		<text name="rt_report_name_total_payout" text="Importo totale pagato"/>
+		<text name="rt_report_name_animal_count" text="Numero animali idonei"/>
+		<text name="rt_report_name_harvest_reward" text="Ricompensa raccolto"/>
+		<text name="rt_report_name_natural_usage" text="Uso fertilizzante naturale"/>
+		<text name="rt_report_name_other_usage" text="Uso altri fertilizzanti"/>
+		<text name="rt_report_name_points" text="Punti"/>
+		<text name="rt_report_name_trees_planted" text="Alberi piantati"/>
+		<text name="rt_report_name_trees_cut" text="Alberi abbattuti"/>
+		<text name="rt_report_name_note" text="Nota:"/>
+		<text name="rt_report_name_additional_tax_benefit" text="Idoneo al beneficio fiscale"/>
+		<text name="rt_report_value_true" text="Vero"/>
+		<text name="rt_report_value_false" text="Falso"/>
+		<text name="rt_report_value_not_enough_months_elapsed" text="La valutazione completa è stata saltata questo mese."/>
+		<text name="rt_scheme_delayed_mowing" text="Evitare lo sfalcio in primavera"/>
+		<text name="rt_scheme_crop_promotion" text="Promozione coltura"/>
+		<text name="rt_scheme_reduce_bale_wrapping" text="Riduzione imballaggio balle"/>
+		<text name="rt_scheme_tractor_demo" text="Demo trattore"/>
+		<text name="rt_scheme_natural_grazing" text="Pascicolo naturale"/>
+		<text name="rt_scheme_natural_fertiliser" text="Fertilizzante naturale"/>
+		<text name="rt_scheme_winter_cover_crops" text="Colture di copertura invernali"/>
+		<text name="rt_scheme_road_snow_clearing" text="Pulizia neve strade"/>
+		<text name="rt_scheme_brand_demo" text="Demo marchio"/>
+		<text name="rt_scheme_set_aside" text="Messa a riposo"/>
+		<text name="rt_scheme_desc_delayed_mowing" text="Non tagliare l’erba durante i mesi primaverili (marzo-giugno) per proteggere la fauna. A luglio riceverai un compenso per l’erba non tagliata."/>
+		<text name="rt_scheme_desc_crop_promotion" text="Un’iniziativa governativa per promuovere la coltivazione di %s tramite incentivi economici. Potresti ricevere attrezzature per la durata dell’iniziativa e un bonus per ogni campo in cui semini la coltura."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Imballare le balle consuma plastica e impedisce la diffusione dei semi durante il trasporto. Questo schema penalizza l’imballaggio delle balle ma premia alternative come produrre balle di fieno o usare un carro foraggero."/>
+		<text name="rt_scheme_desc_tractor_demo" text="%s offre alla tua azienda agricola l’opportunità di provare un %s per %s mese%s. La specifica esatta del veicolo demo viene determinata al momento dell’adesione allo schema."/>
+		<text name="rt_scheme_desc_natural_grazing" text="Uno schema che incoraggia a lasciare gli animali al pascolo senza alimentazione aggiuntiva. Il pagamento compensa eventuali perdite di guadagno. Riceverai un bonus per il tempo trascorso dagli animali al pascolo, variabile in base al tipo di animale."/>
+		<text name="rt_scheme_desc_natural_fertiliser" text="Uno schema che incoraggia l’uso di fertilizzanti naturali come letame, liquami e digestato. Riceverai un bonus per la quantità di fertilizzante naturale utilizzato rispetto alle alternative sintetiche. Si applica a tutto il fertilizzante distribuito, sia in azienda che in conto terzi."/>
+		<text name="rt_scheme_desc_winter_cover_crops" text="Incoraggia la semina di colture di copertura durante i mesi invernali per ridurre erosione e lisciviazione dei nutrienti. Riceverai un bonus per ogni campo in cui semini una coltura di copertura approvata."/>
+		<text name="rt_scheme_desc_road_snow_clearing" text="A causa delle recenti nevicate, il consiglio locale chiede agli agricoltori di spargere sale per mantenere le strade sicure. Assicurati che la velocità non superi %s%s durante lo spargimento per garantire una copertura adeguata."/>
+		<text name="rt_scheme_desc_brand_demo" text="%s offre alla tua azienda agricola l’opportunità di provare alcune attrezzature per %s mese%s. La specifica esatta del veicolo demo viene determinata al momento dell’adesione allo schema."/>
+		<text name="rt_scheme_desc_set_aside" text="Incoraggia a mettere a riposo una parte dei terreni agricoli, permettendo una pausa dal lavoro continuo. Riceverai un bonus per i terreni lasciati senza colture per almeno %d mesi fino a dicembre. Se oltre %s soddisfano i requisiti, tutte le colture vendute nell’anno fiscale successivo avranno un’aliquota del 5%%."/>
+		<text name="rt_scheme_report_desc_delayed_mowing" text="Il rapporto mostra un elenco dei terreni agricoli e l’importo pagato durante l’ultima valutazione."/>
+		<text name="rt_scheme_report_desc_crop_promotion" text="Il rapporto mostra un elenco dei terreni agricoli e l’importo pagato durante l’ultima valutazione."/>
+		<text name="rt_scheme_report_desc_reduce_bale_wrapping" text="Il rapporto mostra un elenco dei terreni agricoli e l’importo pagato durante l’ultima valutazione."/>
+		<text name="rt_scheme_report_desc_natural_grazing" text="Il rapporto mostra l’importo totale pagato durante l’ultima valutazione."/>
+		<text name="rt_scheme_report_desc_natural_fertiliser" text="Il rapporto mostra l’uso di fertilizzanti naturali e altri fertilizzanti durante l’ultimo mese."/>
+		<text name="rt_scheme_report_desc_winter_cover_crops" text="Il rapporto mostra un elenco dei terreni agricoli e l’importo pagato durante l’ultima valutazione."/>
+		<text name="rt_scheme_report_desc_road_snow_clearing" text="Non esiste un rapporto per questo schema. Una volta terminata la neve, riceverai un pagamento proporzionale alla quantità di sale distribuito."/>
+		<text name="rt_scheme_report_desc_set_aside" text="Il rapporto mostra il pagamento per ciascuno dei tuoi campi e indica se hai diritto all’aliquota fiscale speciale del 5%."/>
+		<text name="rt_btn_select_scheme" text="Seleziona schema"/>
+		<text name="rt_btn_watch_scheme_policy" text="Attiva monitoraggio"/>
+		<text name="rt_unit_meter_square" text="m²"/>
+		<text name="rt_ui_schemePayout" text="Pagamento schema"/>
+		<text name="finance_schemePayout" text="Pagamento schema"/>
+		<text name="rt_ui_policyFine" text="Multa politica"/>
+		<text name="finance_policyFine" text="Multa politica"/>
+		<text name="rt_ui_taxCost" text="Tasse"/>
+		<text name="finance_taxCost" text="Tasse"/>
+		<text name="rt_ui_grantReceived" text="Contributo ricevuto"/>
+		<text name="finance_grantReceived" text="Contributo ricevuto"/>
+		<text name="rt_ui_grantApplicationCost" text="Costo domanda contributo"/>
+		<text name="finance_grantApplicationCost" text="Costo domanda contributo"/>
+		<text name="rt_setting_grantsEnabled" text="Contributi"/>
+		<text name="rt_toolTip_grantsEnabled" text="Abilita o disabilita il sistema dei contributi"/>
+		<text name="rt_no_vehicle_room" text="Non c’è abbastanza spazio per consegnare i veicoli dello schema. Libera spazio e riprova."/>
+		<text name="rt_info_scheme_selected" text="Hai aderito allo schema. Ritira eventuali veicoli dal negozio."/>
+		<text name="rt_misc_year" text="Anno"/>
+		<text name="rt_misc_month" text="Mese"/>
+		<text name="rt_misc_month_plural_suffix" text="i"/>
+		<text name="rt_misc_spreading_too_fast" text="Stai guidando troppo veloce per spargere il sale in modo efficace. Limita la velocità a %s%s."/>
+		<text name="rt_misc_confirm_scheme_selection" text="Sei sicuro di voler aderire a questo schema?"/>
+		<text name="rt_notes_additional_tax_benefit" text="Aliquota fiscale effettiva"/>
+		<text name="rt_notes_loss_generated" text="Perdite annuali: %s (Perdite cumulative totali: %s)"/>
+		<text name="rt_notes_loss_applied" text="Profitto compensato da perdite precedenti: %s (Rimanenti: %s)"/>
+		<text name="rt_help_title_red_tape" text="Red Tape"/>
+		<text name="rt_help_title_intro" text="Introduzione"/>
+		<text name="rt_help_title_policies" text="Politiche"/>
+		<text name="rt_help_title_schemes" text="Schemi"/>
+		<text name="rt_help_title_tax" text="Tasse"/>
+		<text name="rt_help_title_grants" text="Contributi"/>
+		<text name="rt_help_intro_intro" text="Red Tape è una mod che introduce Politiche, Schemi e Tassazione in Farming Simulator. Questi sistemi aggiungono profondità e sfida alla tua esperienza agricola, incoraggiando pratiche sostenibili e pianificazione strategica."/>
+		<text name="rt_help_intro_intro_2" text="Tutte le informazioni relative a Red Tape si trovano nel nuovo menu aggiunto al menu principale. Cerca l’icona dell’edificio governativo."/>
+		<text name="rt_help_policies_intro" text="Le politiche sono essenzialmente leggi che devi rispettare durante l’attività agricola. Regolano aspetti come il trattamento degli animali e l’uso appropriato del terreno."/>
+		<text name="rt_help_policies_intro_2" text="Nella scheda Politiche vedrai un elenco di politiche. Seleziona ciascuna per vedere la descrizione su come rispettarla. Più in basso vedrai un rapporto sulle tue prestazioni. Alcune politiche vengono controllate ogni mese, altre meno frequentemente. La maggior parte delle politiche produce un rapporto mensile per monitorare i tuoi progressi."/>
+		<text name="rt_help_policies_intro_3" text="Se rispetti una politica, guadagnerai punti che contribuiscono al tuo livello di conformità. Livelli più alti portano a benefici come ricompense migliori negli Schemi e possibili agevolazioni fiscali. Se violi una politica, potresti ricevere avvisi o multe a seconda della gravità. Quando ricevi un avviso, un’icona apparirà accanto al nome della politica e riceverai una notifica in gioco. Risolvi il problema per evitare una futura multa."/>
+		<text name="rt_help_schemes_intro" text="Gli schemi sono opzionali e diventano disponibili durante l’anno. Puoi aderire a quelli che preferisci. Di solito richiedono di svolgere determinate attività per qualificarsi e ricevere benefici proporzionati. Come per le Politiche, vengono generati rapporti per spiegare le tue prestazioni. Tutte le ricompense scalano in base alla tua Difficoltà Economica."/>
+		<text name="rt_help_schemes_intro_2" text="Gli schemi possono anche essere situazionali, come un marchio che offre una demo in cui puoi usare attrezzature gratuitamente per un periodo. In tutti i casi, il tuo livello di conformità alle Politiche influisce direttamente sulle ricompense degli Schemi. Gli schemi di livello D danno le ricompense più basse, quelli di livello A le più alte."/>
+		<text name="rt_help_schemes_intro_3" text="Gli schemi solitamente durano un periodo definito, spesso un anno o un certo numero di valutazioni. Diventeranno nuovamente disponibili col tempo, ma dovrai iscriverti di nuovo se vuoi partecipare. Alcuni schemi hanno una finestra limitata di disponibilità. Ad esempio, lo schema Promozione Coltura è disponibile solo nei primi mesi dell’anno."/>
+		<text name="rt_help_tax_intro" text="Il sistema fiscale prevede che una parte dei tuoi profitti venga versata al governo. La dichiarazione fiscale viene finalizzata ogni aprile e il pagamento avviene automaticamente a settembre. Se non hai abbastanza denaro per pagare, il saldo andrà in negativo."/>
+		<text name="rt_help_tax_intro_2" text="Nella scheda Tasse puoi vedere la dichiarazione finalizzata sul lato sinistro della schermata. Sul lato destro puoi vedere i totali in corso per l’anno fiscale corrente. Puoi usarli per pianificare e ridurre il tuo carico fiscale. Ad esempio, se i profitti sono alti, potresti acquistare nuove attrezzature per ridurre il profitto e quindi le tasse."/>
+		<text name="rt_help_tax_intro_3" text="A volte vedrai delle Note Fiscali. Indicano quando la tua dichiarazione è modificata da condizioni particolari. Ad esempio, uno schema potrebbe offrirti una futura agevolazione fiscale. Questo sarà indicato nelle Note Fiscali per aiutarti a capire il tuo conteggio."/>
+		<text name="rt_help_tax_intro_4" text="Se registri una perdita in un anno fiscale, questa verrà riportata negli anni successivi. Se poi realizzi un profitto, le perdite precedenti verranno utilizzate per ridurre il carico fiscale. Questo può portare a non pagare tasse pur avendo profitti. Le perdite riportate sono limitate a 5 milioni."/>
+		<text name="rt_help_grants_intro" text="I contributi sono un modo per richiedere finanziamenti aggiuntivi al governo per nuove costruzioni, ad esempio una nuova stalla per mucche."/>
+		<text name="rt_help_grants_intro_2" text="Per iniziare, apri il menu costruzioni per gli elementi idonei: troverai un pulsante Richiedi Contributo. Selezionalo, conferma e la tua domanda sarà avviata."/>
+		<text name="rt_help_grants_intro_3" text="Controlla la schermata Contributi nel menu Red Tape per sapere quando la tua domanda verrà elaborata. Sarà approvata o rifiutata. Se approvata, usa il menu costruzioni per posizionare l’edificio e riceverai i fondi assegnati."/>
+		<text name="rt_help_grants_intro_4" text="Puoi avere una sola domanda attiva alla volta e c’è un periodo di attesa di 6 mesi dopo l’approvazione di un contributo."/>
+		<text name="rt_setting_taxEnabled" text="Tasse abilitate"/>
+		<text name="rt_toolTip_taxEnabled" text="Abilita o disabilita il sistema fiscale"/>
+		<text name="rt_setting_policiesAndSchemesEnabled" text="Politiche/Schemi abilitati"/>
+		<text name="rt_toolTip_policiesAndSchemesEnabled" text="Abilita o disabilita il sistema di Politiche e Schemi. Disattivarlo terminerà immediatamente tutti gli Schemi attivi."/>
+		<text name="rt_setting_baseTaxRate" text="Aliquota fiscale base"/>
+		<text name="rt_toolTip_baseTaxRate" text="Imposta l’aliquota fiscale base"/>
+		<text name="rt_system_disabled" text="Questo sistema è attualmente disattivato. Controlla le Impostazioni di Gioco per riattivarlo." />
+		<text name="rt_setting_grantsEnabled" text="Contributi abilitati"/>
+		<text name="rt_toolTip_grantsEnabled" text="Abilita o disabilita il sistema dei contributi governativi"/>
+		<text name="rt_grant_button" text="Richiedi contributo" />
+		<text name="rt_grant_application_submitted" text="La tua domanda di contributo è stata inviata e può essere visualizzata nella scheda Contributi." />
+		<text name="rt_grant_confirm_application_dialog" text="Vuoi richiedere un contributo per questa costruzione? Ci sarà un costo di domanda pari a %s. Le domande possono richiedere fino a 6 mesi per essere elaborate e hanno una probabilità di approvazione del 35-45%%, influenzata dal tuo livello di conformità." />
+		<text name="rt_grant_existing_application" text="È consentita una sola domanda attiva alla volta. Potrai fare una nuova richiesta quando la domanda attuale sarà elaborata." />
+		<text name="rt_grant_approved_notification" text="La tua domanda di contributo è stata approvata! Riceverai %s quando acquisterai l’edificio." />
+		<text name="rt_grant_rejected_notification" text="La tua domanda di contributo è stata rifiutata." />
+		<text name="rt_grant_completed_notification" text="Un pagamento di %s è stato assegnato alla tua azienda agricola." />
+		<text name="rt_event_type_grantapproved" text="Contributo approvato" />
+		<text name="rt_event_type_grantrejected" text="Contributo rifiutato" />
+		<text name="rt_event_type_grantcompleted" text="Contributo completato" />
+		<text name="permission_redTape_redTapeSettings" text="Impostazioni Red Tape" />
+		<text name="rt_header_grants" text="Contributi" />
+		<text name="rt_label_pending_grants" text="Domande in sospeso" />
+		<text name="rt_label_approved_grants" text="Contributi approvati" />
+		<text name="rt_label_historical_grants" text="Storico contributi" />
+		<text name="rt_tableheader_building" text="Edificio" />
+		<text name="rt_tableheader_price" text="Prezzo" />
+		<text name="rt_tableheader_applied" text="Richiesto" />
+		<text name="rt_tableheader_assessment" text="Valutazione" />
+		<text name="rt_tableheader_amount" text="Importo" />
+		<text name="rt_tableheader_approved" text="Approvato" />
+		<text name="rt_tableheader_status" text="Stato" />
+		<text name="rt_no_pending_grants" text="Nessuna domanda di contributo in sospeso" />
+		<text name="rt_no_approved_grants" text="Nessun contributo approvato" />
+		<text name="rt_no_historical_grants" text="Nessun contributo storico" />
+		<text name="rt_grant_status_pending" text="In sospeso" />
+		<text name="rt_grant_status_approved" text="Approvato" />
+		<text name="rt_grant_status_rejected" text="Rifiutato" />
+		<text name="rt_grant_status_completed" text="Completato" />
+		<text name="rt_grant_eligible" text="STATO: IDONEO" />
+		<text name="rt_grant_not_eligible" text="STATO: NON IDONEO" />
+		<text name="rt_grant_eligible_description" text="L’idoneità a richiedere nuovi contributi dipende da diverse condizioni. Non puoi fare domanda se hai una richiesta in sospeso o una richiesta approvata in attesa di completamento. È inoltre previsto un periodo di attesa di 6 mesi dopo il completamento di un contributo (ovvero quando ricevi i fondi)." />
+	</texts>
+</l10n>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.0.11</version>
+    <version>1.0.1.0</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,11 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.1.0 [WIP]:
+- Purchased farmlands are exempt from the next evaluation of the Crop Rotation policy.
+- Added Italian translation, thanks to FirenzeIT.
+- Added Spanish translation.
 
 1.0.0.11:
 - Add a grant system. Use the construction menu to apply for grants.
@@ -242,6 +247,7 @@ Journal des modifications:
         <sourceFile filename="src/extensions/ConstructionBrushPlaceableExtension.lua"/>
         <sourceFile filename="src/extensions/ConstructionScreenExtension.lua"/>
         <sourceFile filename="src/extensions/FarmExtension.lua"/>
+        <sourceFile filename="src/extensions/FarmlandExtension.lua"/>
         <sourceFile filename="src/extensions/FSBaseMissionExtension.lua"/>
         <sourceFile filename="src/extensions/I18NExtension.lua"/>
         <sourceFile filename="src/extensions/MissionManagerExtension.lua"/>

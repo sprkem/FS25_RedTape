@@ -64,7 +64,8 @@ function FarmlandGatherer:getFarmlandData(farmlandId)
             monthlyWrappedBales = 0,
             fruitHistory = {},
             isHarvested = false,
-            harvestedCropsHistory = {}
+            harvestedCropsHistory = {},
+            rotationExceptions = 0
         }
     end
     return self.data[farmlandId]
@@ -72,6 +73,7 @@ end
 
 function FarmlandGatherer:saveToXmlFile(xmlFile, key)
     local farmlandGathererKey = string.format("%s.farmlandGatherer", key)
+
     local i = 0
     for farmlandId, farmlandData in pairs(self.data) do
         local farmlandKey = string.format("%s.farmlands.farmland(%d)", farmlandGathererKey, i)
@@ -81,6 +83,7 @@ function FarmlandGatherer:saveToXmlFile(xmlFile, key)
         setXMLInt(xmlFile, farmlandKey .. "#lastGrassHarvest", farmlandData.lastGrassHarvest)
         setXMLInt(xmlFile, farmlandKey .. "#monthlyWrappedBales", farmlandData.monthlyWrappedBales)
         setXMLBool(xmlFile, farmlandKey .. "#isHarvested", farmlandData.isHarvested)
+        setXMLInt(xmlFile, farmlandKey .. "#rotationExceptions", farmlandData.rotationExceptions)
 
         local j = 0
         for month, fruitEntry in pairs(farmlandData.fruitHistory) do
@@ -92,7 +95,7 @@ function FarmlandGatherer:saveToXmlFile(xmlFile, key)
         end
 
         local k = 0
-        for _, harvestEntry in ipairs(farmlandData.harvestedCropsHistory) do
+        for _, harvestEntry in pairs(farmlandData.harvestedCropsHistory) do
             local harvestKey = string.format("%s.harvestedCropsHistory.harvest(%d)", farmlandKey, k)
             setXMLString(xmlFile, harvestKey .. "#name", harvestEntry.name)
             setXMLInt(xmlFile, harvestKey .. "#month", harvestEntry.month)
@@ -121,6 +124,7 @@ function FarmlandGatherer:loadFromXMLFile(xmlFile, key)
                 getXMLInt(xmlFile, farmlandKey .. "#lastHarvestMonth") or 0,
             monthlyWrappedBales = getXMLInt(xmlFile, farmlandKey .. "#monthlyWrappedBales") or 0,
             isHarvested = getXMLBool(xmlFile, farmlandKey .. "#isHarvested") or false,
+            rotationExceptions = getXMLInt(xmlFile, farmlandKey .. "#rotationExceptions") or 0,
             harvestedCropsHistory = {}
         }
 
@@ -297,6 +301,16 @@ function FarmlandGatherer:wasFruitHarvestable(farmlandId, startMonth, endMonth, 
         end
     end
     return false
+end
+
+function FarmlandGatherer:addRotationException(farmlandId, count)
+    local farmlandData = self:getFarmlandData(farmlandId)
+    farmlandData.rotationExceptions = farmlandData.rotationExceptions + count
+end
+
+function FarmlandGatherer:setRotationException(farmlandId, count)
+    local farmlandData = self:getFarmlandData(farmlandId)
+    farmlandData.rotationExceptions =  count
 end
 
 -- Add any data required on clients

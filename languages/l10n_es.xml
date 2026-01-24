@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+	<translationContributors/>
+	<texts>
+		<text name="rt_notify_active_policy" text="Se ha activado una nueva política: %s"/>
+		<text name="rt_notify_active_scheme" text="Un nuevo plan está disponible: %s (Nivel %s)"/>
+		<text name="rt_notify_ended_scheme" text="Un plan ha terminado: %s"/>
+		<text name="rt_notify_expired_scheme" text="Un plan ya no está disponible: %s (Nivel %s)"/>
+		<text name="rt_policy_reason_evaluation" text="%s puntos otorgados durante la evaluación de la política %s"/>
+		<text name="rt_notify_scheme_payout" text="El plan %s te ha pagado: %s"/>
+		<text name="rt_notify_policy_warning" text="Has recibido una advertencia por violar la política %s"/>
+		<text name="rt_notify_policy_fine" text="Has recibido una multa de %s por violar la política %s"/>
+		<text name="rt_label_active_policies" text="Políticas activas"/>
+		<text name="rt_label_tax_statement" text="Declaración de impuestos"/>
+		<text name="rt_header_policies" text="Políticas"/>
+		<text name="rt_header_schemes" text="Planes"/>
+		<text name="rt_header_tax" text="Impuestos"/>
+		<text name="rt_header_eventlog" text="Registro de eventos"/>
+		<text name="rt_header_croprotation" text="Rotación"/>
+		<text name="rt_header_croprotation_mostrecent" text="Más reciente"/>
+		<text name="rt_header_croprotation_previous" text="Anterior"/>
+		<text name="rt_header_croprotation_previous1" text="Anterior -1"/>
+		<text name="rt_header_croprotation_previous2" text="Anterior -2"/>
+		<text name="rt_header_croprotation_previous3" text="Anterior -3"/>
+		<text name="rt_header_croprotation_view_title" text="Historial de cosechas"/>
+		<text name="rt_header_croprotation_view_subtitle" text="Los datos siguientes son utilizados por la política de Rotación de Cultivos. Al planificar el próximo cultivo para un campo, asegúrate de elegir uno diferente al Más Reciente mostrado a continuación para mantener el cumplimiento."/>
+		<text name="rt_header_current_tier" text="Nivel actual: %s"/>
+		<text name="rt_header_compliance_tier" text="Rendimiento de cumplimiento"/>
+		<text name="rt_header_policy_information" text="Información de política"/>
+		<text name="rt_header_scheme_information" text="Información del plan"/>
+		<text name="rt_header_latest_report" text="Último informe"/>
+		<text name="rt_header_no_selected_policy" text="Selecciona una política activa para ver información relevante"/>
+		<text name="rt_header_no_report_information" text="No hay información de informe disponible. O no hay nada que reportar o no se ha realizado ninguna evaluación."/>
+		<text name="rt_header_scheme_equipment" text="El siguiente equipo se proporcionará durante la duración del plan:"/>
+		<text name="rt_header_next_evaluation_date" text="Próxima fecha de evaluación: %s"/>
+		<text name="rt_header_no_tax_statement" text="Actualmente no hay ninguna declaración de impuestos disponible. Las declaraciones se generan anualmente en abril y el pago se realiza en septiembre."/>
+		<text name="rt_header_finalised_statement" text="Declaración del año anterior:"/>
+		<text name="rt_header_tax_estimate" text="Totales del año actual:"/>
+		<text name="rt_header_tax_notes" text="Notas fiscales:"/>
+		<text name="rt_header_tax_notes_info" text="Una lista de anotaciones relevantes que pueden ayudar a explicar tu declaración de impuestos."/>
+		<text name="rt_header_no_tax_notes" text="No hay notas fiscales en la declaración."/>
+		<text name="rt_header_total_expenses" text="Gastos:"/>
+		<text name="rt_header_total_taxable_income" text="Ingresos imponibles:"/>
+		<text name="rt_header_total_taxed_income" text="Ingresos gravados:"/>
+		<text name="rt_header_total_tax_rate" text="Tasa impositiva:"/>
+		<text name="rt_header_total_tax_due" text="Impuesto adeudado:"/>
+		<text name="rt_header_tax_status" text="Estado fiscal:"/>
+		<text name="rt_header_tax_payment_info" text="Las declaraciones de impuestos se calculan en abril y el pago se realiza en septiembre."/>
+		<text name="rt_tax_statement_status_paid" text="Pagado"/>
+		<text name="rt_tax_statement_status_unpaid" text="Sin pagar"/>
+		<text name="rt_event_type_none" text="-"/>
+		<text name="rt_event_type_policypoints" text="Puntos de política"/>
+		<text name="rt_event_type_policyactivated" text="Política activada"/>
+		<text name="rt_event_type_policycompleted" text="Política completada"/>
+		<text name="rt_event_type_schemeactivated" text="Plan activado"/>
+		<text name="rt_event_type_schemepayout" text="Pago de plan"/>
+		<text name="rt_event_type_schemeexpired" text="Plan expirado"/>
+		<text name="rt_event_type_policywarning" text="Advertencia de política"/>
+		<text name="rt_event_type_policyfine" text="Multa de política"/>
+		<text name="rt_tableheader_timestamp" text="Marca de tiempo"/>
+		<text name="rt_tableheader_eventtype" text="Tipo de evento"/>
+		<text name="rt_tableheader_detail" text="Detalle"/>
+		<text name="rt_tableheader_name" text="Nombre"/>
+		<text name="rt_tableheader_description" text="Descripción"/>
+		<text name="rt_tableheader_next" text="Próxima revisión"/>
+		<text name="rt_policy_croprotation" text="Rotación de cultivos"/>
+		<text name="rt_policy_sprayviolation" text="Contaminación del agua"/>
+		<text name="rt_policy_empty_food" text="Alimentación animal"/>
+		<text name="rt_policy_empty_straw" text="Cama de animales"/>
+		<text name="rt_policy_full_slurry" text="Gestión de purines"/>
+		<text name="rt_policy_animal_productivity" text="Condiciones animales"/>
+		<text name="rt_policy_animal_space" text="Espacio animal"/>
+		<text name="rt_policy_manure_spreading" text="Gestión de estiércol"/>
+		<text name="rt_policy_restricted_slurry" text="Aplicación restringida de purines"/>
+		<text name="rt_policy_sustainable_forestry" text="Silvicultura sostenible"/>
+		<text name="rt_policy_description_croprotation" text="Requiere rotar cultivos entre campos y temporadas para mantener la fertilidad del suelo, romper ciclos de plagas y enfermedades, mejorar el equilibrio de nutrientes y proteger los rendimientos a largo plazo."/>
+		<text name="rt_policy_description_sprayviolation" text="Prohíbe la aplicación de productos químicos (fertilizante sólido, purín, cal, estiércol, herbicida) dentro de zonas de amortiguamiento de 14m de cuerpos de agua para prevenir escorrentía y contaminación que puede dañar la vida acuática, degradar la calidad del agua y poner en peligro la salud humana. Las violaciones son penalizadas."/>
+		<text name="rt_policy_description_empty_food" text="Requiere que los animales siempre tengan suficiente alimento disponible; mantén los comederos llenos y accesibles en todo momento para prevenir el hambre y cumplir con los estándares de bienestar."/>
+		<text name="rt_policy_description_empty_straw" text="Requiere que los animales reciban cama de paja adecuada para garantizar comodidad, aislamiento e higiene. La paja reduce lesiones y estrés, ayuda a mantener la temperatura corporal y absorbe la humedad para proteger el bienestar animal."/>
+		<text name="rt_policy_description_full_slurry" text="Requiere que los tanques de purín se mantengan por debajo de la capacidad para prevenir desbordamientos y derrames. Los desbordamientos pueden liberar purín en campos y cursos de agua, contaminando el suelo y el agua y causando daño ambiental."/>
+		<text name="rt_policy_description_animal_productivity" text="Fomenta el mantenimiento de la productividad animal, que es un indicador general de buen bienestar animal."/>
+		<text name="rt_policy_description_animal_space" text="Requiere que los animales tengan suficiente espacio para moverse, descansar y acceder a comida y agua; prevenir el hacinamiento reduce el estrés, lesiones y propagación de enfermedades. No aplica si una ganadería solo tiene un animal. Los animales jóvenes requieren menos espacio que los adultos."/>
+		<text name="rt_policy_description_manure_spreading" text="No debes dejar el estiércol inactivo indefinidamente. Asegúrate de no almacenar más del 50% del estiércol que produces en un período de 6 meses. Si no produces estiércol, no te afectará esta política. El informe se actualizará mensualmente, sin embargo, la evaluación completa y el pago o multas ocurrirán en mayo y noviembre."/>
+		<text name="rt_policy_description_restricted_slurry" text="No está permitido aplicar purín durante los meses de septiembre a diciembre. Serás penalizado por cada violación."/>
+		<text name="rt_policy_description_sustainable_forestry" text="Fomenta prácticas forestales sostenibles, recompensando la plantación neta positiva de árboles y multando por la deforestación general. La política se aplica a tu propia tierra. Hacer trabajo por contrato no afectará tu evaluación. El informe se actualizará mensualmente con totales semestrales, sin embargo, la evaluación completa y el pago o multas ocurrirán en junio y diciembre."/>
+		<text name="rt_policy_report_description_croprotation" text="El informe muestra totales de tierra cumpliente y no cumpliente."/>
+		<text name="rt_policy_report_description_sprayviolation" text="El informe muestra cuántas violaciones de fumigación ocurrieron en el último mes."/>
+		<text name="rt_policy_report_description_empty_food" text="El informe muestra cuántas horas combinadas estuvo vacía la comida en los corrales de animales."/>
+		<text name="rt_policy_report_description_empty_straw" text="El informe muestra cuántas horas combinadas estuvo vacía la paja en los corrales de animales."/>
+		<text name="rt_policy_report_description_full_slurry" text="El informe muestra cuántas horas combinadas estuvieron llenos los tanques de purín."/>
+		<text name="rt_policy_report_description_animal_productivity" text="El informe muestra cuántas horas combinadas los animales fueron improductivos."/>
+		<text name="rt_policy_report_description_animal_space" text="El informe muestra primero cuántas horas de violación se registraron. Luego, para cada ganadería, muestra el espacio disponible y el espacio máximo requerido en el mes anterior."/>
+		<text name="rt_policy_report_description_manure_spreading" text="El informe muestra la cantidad de estiércol producido durante los últimos 6 meses. También muestra el total producido y el almacenamiento máximo permitido durante los últimos 6 meses. Ten en cuenta que los datos del Mes 1 mostrados no se incluirán en el próximo informe, y cualquier estiércol producido en el mes actual deberá contabilizarse."/>
+		<text name="rt_policy_report_description_restricted_slurry" text="El informe muestra cuántas veces se aplicó purín durante los meses restringidos."/>
+		<text name="rt_policy_report_description_sustainable_forestry" text="El informe muestra cuántos árboles fueron plantados y talados en el período semestral actual."/>
+		<text name="rt_report_name_farmland" text="Terreno agrícola %s"/>
+		<text name="rt_report_name_total_area" text="Área total"/>
+		<text name="rt_report_name_non_compliant_area" text="Área no cumpliente"/>
+		<text name="rt_report_name_spray_violations" text="Violaciones de fumigación"/>
+		<text name="rt_report_name_empty_food" text="Horas sin comida"/>
+		<text name="rt_report_name_empty_straw" text="Horas sin paja"/>
+		<text name="rt_report_name_full_slurry" text="Horas con purín lleno"/>
+		<text name="rt_report_name_low_productivity_hours" text="Horas con baja productividad"/>
+		<text name="rt_report_name_animal_space_violations" text="Violaciones de espacio animal"/>
+		<text name="rt_report_name_manure_total_produced" text="Estiércol total producido"/>
+		<text name="rt_report_name_manure_stored_amount" text="Estiércol actualmente almacenado"/>
+		<text name="rt_report_name_manure_max_stored_amount" text="Almacenamiento máximo permitido"/>
+		<text name="rt_report_name_restricted_slurry_violations" text="Violaciones de purín restringido"/>
+		<text name="rt_report_name_bale_penalty" text="Penalización por pacas"/>
+		<text name="rt_report_name_total_payout" text="Cantidad total pagada"/>
+		<text name="rt_report_name_animal_count" text="Recuento de animales elegibles"/>
+		<text name="rt_report_name_harvest_reward" text="Recompensa de cosecha"/>
+		<text name="rt_report_name_natural_usage" text="Uso de fertilizante natural"/>
+		<text name="rt_report_name_other_usage" text="Uso de otros fertilizantes"/>
+		<text name="rt_report_name_points" text="Puntos"/>
+		<text name="rt_report_name_trees_planted" text="Árboles plantados"/>
+		<text name="rt_report_name_trees_cut" text="Árboles talados"/>
+		<text name="rt_report_name_note" text="Nota:"/>
+		<text name="rt_report_name_additional_tax_benefit" text="Calificado para beneficio fiscal"/>
+		<text name="rt_report_value_true" text="Verdadero"/>
+		<text name="rt_report_value_false" text="Falso"/>
+		<text name="rt_report_value_not_enough_months_elapsed" text="La evaluación completa se omitió este mes."/>
+		<text name="rt_scheme_delayed_mowing" text="Evitar siega durante primavera"/>
+		<text name="rt_scheme_crop_promotion" text="Promoción de cultivo"/>
+		<text name="rt_scheme_reduce_bale_wrapping" text="Reducción de envoltura de pacas"/>
+		<text name="rt_scheme_tractor_demo" text="Demostración de tractor"/>
+		<text name="rt_scheme_natural_grazing" text="Pastoreo natural"/>
+		<text name="rt_scheme_natural_fertiliser" text="Fertilizante natural"/>
+		<text name="rt_scheme_winter_cover_crops" text="Cultivos de cobertura invernal"/>
+		<text name="rt_scheme_road_snow_clearing" text="Limpieza de nieve en carreteras"/>
+		<text name="rt_scheme_brand_demo" text="Demostración de marca"/>
+		<text name="rt_scheme_set_aside" text="Barbecho"/>
+		<text name="rt_scheme_desc_delayed_mowing" text="No cortes tu hierba durante los meses de primavera (marzo a junio) para proteger la vida silvestre. En julio, serás compensado por cualquier hierba sin cortar."/>
+		<text name="rt_scheme_desc_crop_promotion" text="Una iniciativa gubernamental para promover el crecimiento de %s a través de incentivos financieros. Puedes recibir equipo durante la duración de la iniciativa y recibir un bono financiero por cada campo donde plantes el cultivo."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="Envolver pacas consume plástico y previene la dispersión de semillas durante el transporte. Este plan te penaliza por envolver pacas, pero te recompensa cuando eliges una alternativa como hacer pacas de heno o usar un remolque forrajero."/>
+		<text name="rt_scheme_desc_tractor_demo" text="%s ofrece a tu granja la oportunidad de probar un %s durante %s mes%s. La especificación exacta del vehículo de demostración se determina en el momento en que te inscribes en el plan."/>
+		<text name="rt_scheme_desc_natural_grazing" text="Un plan para fomentar que los animales pasten en un pastizal sin alimento adicional. El pago está destinado a compensar cualquier pérdida de ganancias. Recibirás un bono por el tiempo que tus animales pasen pastando. La cantidad del bono es variable según el tipo de animal."/>
+		<text name="rt_scheme_desc_natural_fertiliser" text="Un plan para fomentar el uso de fertilizantes naturales como estiércol, purín y digestato. Recibirás un bono por la cantidad de fertilizante natural que uses en comparación con alternativas sintéticas. Esto se aplica a todo el fertilizante que esparzas, ya sea en tu granja o para un contrato."/>
+		<text name="rt_scheme_desc_winter_cover_crops" text="Fomenta la siembra de cultivos de cobertura durante los meses de invierno para reducir la erosión del suelo y la lixiviación de nutrientes. Recibirás un bono por cada campo donde plantes un cultivo de cobertura aprobado durante la temporada de invierno."/>
+		<text name="rt_scheme_desc_road_snow_clearing" text="Debido a las recientes nevadas, el ayuntamiento local pide a los agricultores que esparzan sal para ayudar a mantener las carreteras despejadas y seguras. Asegúrate de que al esparcir, tu velocidad no supere los %s%s para garantizar una cobertura adecuada."/>
+		<text name="rt_scheme_desc_brand_demo" text="%s ofrece a tu granja la oportunidad de probar equipo durante %s mes%s. La especificación exacta del vehículo de demostración se determina en el momento en que te inscribes en el plan."/>
+		<text name="rt_scheme_desc_set_aside" text="Fomenta dejar en barbecho una porción de tu tierra agrícola, proporcionando un descanso del trabajo constante. Recibirás un bono por la tierra dejada sin cultivos durante al menos %d meses hasta diciembre. Si más del %s califica, todos los cultivos vendidos en el siguiente año fiscal calificarán para una tasa impositiva del 5%%."/>
+		<text name="rt_scheme_report_desc_delayed_mowing" text="El informe muestra una lista de terrenos agrícolas y la cantidad pagada durante la última evaluación."/>
+		<text name="rt_scheme_report_desc_crop_promotion" text="El informe muestra una lista de terrenos agrícolas y la cantidad pagada durante la última evaluación."/>
+		<text name="rt_scheme_report_desc_reduce_bale_wrapping" text="El informe muestra una lista de terrenos agrícolas y la cantidad pagada durante la última evaluación."/>
+		<text name="rt_scheme_report_desc_natural_grazing" text="El informe muestra la cantidad total pagada durante la última evaluación."/>
+		<text name="rt_scheme_report_desc_natural_fertiliser" text="El informe muestra el uso de fertilizantes naturales y otros durante el último mes."/>
+		<text name="rt_scheme_report_desc_winter_cover_crops" text="El informe muestra una lista de terrenos agrícolas y la cantidad pagada durante la última evaluación."/>
+		<text name="rt_scheme_report_desc_road_snow_clearing" text="No hay informe para este plan. Una vez que termine la nieve, recibirás un pago relativo a cuánta sal has esparcido."/>
+		<text name="rt_scheme_report_desc_set_aside" text="El informe muestra el pago para cada uno de tus campos. También muestra si has calificado para la tasa impositiva especial del 5%."/>
+		<text name="rt_btn_select_scheme" text="Seleccionar plan"/>
+		<text name="rt_btn_watch_scheme_policy" text="Alternar observación"/>
+		<text name="rt_unit_meter_square" text="m²"/>
+		<text name="rt_ui_schemePayout" text="Pago de plan"/>
+		<text name="finance_schemePayout" text="Pago de plan"/>
+		<text name="rt_ui_policyFine" text="Multa de política"/>
+		<text name="finance_policyFine" text="Multa de política"/>
+		<text name="rt_ui_taxCost" text="Impuestos"/>
+		<text name="finance_taxCost" text="Impuestos"/>
+		<text name="rt_ui_grantReceived" text="Subvención recibida"/>
+		<text name="finance_grantReceived" text="Subvención recibida"/>
+		<text name="rt_ui_grantApplicationCost" text="Tarifa de solicitud de subvención"/>
+		<text name="finance_grantApplicationCost" text="Tarifa de solicitud de subvención"/>
+		<text name="rt_setting_grantsEnabled" text="Subvenciones"/>
+		<text name="rt_toolTip_grantsEnabled" text="Habilitar o deshabilitar el sistema de subvenciones"/>
+		<text name="rt_no_vehicle_room" text="No hay suficiente espacio para entregar vehículos para el plan. Haz espacio e inténtalo de nuevo."/>
+		<text name="rt_info_scheme_selected" text="Te has inscrito en el plan. Recoge los vehículos de la tienda."/>
+		<text name="rt_misc_year" text="Año"/>
+		<text name="rt_misc_month" text="Mes"/>
+		<text name="rt_misc_month_plural_suffix" text="es"/>
+		<text name="rt_misc_spreading_too_fast" text="Estás conduciendo demasiado rápido para esparcir sal de manera efectiva. Limita tu velocidad a %s%s."/>
+		<text name="rt_misc_confirm_scheme_selection" text="¿Estás seguro de que quieres inscribirte en este plan?"/>
+		<text name="rt_notes_additional_tax_benefit" text="Tasa impositiva efectiva"/>
+		<text name="rt_notes_loss_generated" text="Pérdidas del año: %s (Pérdidas acumuladas totales: %s)"/>
+		<text name="rt_notes_loss_applied" text="Beneficio compensado por pérdidas anteriores: %s (Restante: %s)"/>
+		<text name="rt_help_title_red_tape" text="Red Tape"/>
+		<text name="rt_help_title_intro" text="Introducción"/>
+		<text name="rt_help_title_policies" text="Políticas"/>
+		<text name="rt_help_title_schemes" text="Planes"/>
+		<text name="rt_help_title_tax" text="Impuestos"/>
+		<text name="rt_help_title_grants" text="Subvenciones"/>
+		<text name="rt_help_intro_intro" text="Red Tape es un mod que introduce Políticas, Planes e Impuestos a Farming Simulator. Estos sistemas están diseñados para agregar profundidad y desafío a tu experiencia agrícola, fomentando prácticas sostenibles y planificación estratégica."/>
+		<text name="rt_help_intro_intro_2" text="Toda la información relacionada con Red Tape está contenida en el nuevo menú agregado al menú principal. Busca el icono del edificio gubernamental."/>
+		<text name="rt_help_policies_intro" text="Las políticas son esencialmente leyes que debes cumplir al cultivar. Rigen cosas como el trato a los animales y el uso apropiado de la tierra."/>
+		<text name="rt_help_policies_intro_2" text="En la pestaña Políticas verás una lista de políticas. Selecciona cada una para ver la descripción de cómo cumplir. Más abajo verás un informe sobre tu desempeño. Algunas políticas se verifican cada mes, mientras que otras con menos frecuencia. La mayoría de las veces, una política producirá un informe cada mes para que puedas seguir tu progreso."/>
+		<text name="rt_help_policies_intro_3" text="Si cumples con una política, ganarás puntos que contribuyen a tu nivel de cumplimiento. Niveles más altos de cumplimiento conducen a beneficios como mejores recompensas de planes y posiblemente exenciones fiscales. Si violas una política, puedes recibir advertencias o multas dependiendo de la gravedad de la violación. Cuando hayas recibido una advertencia, aparecerá un icono junto al nombre de la política y recibirás una notificación en el juego. Aborda el problema para evitar una multa futura."/>
+		<text name="rt_help_schemes_intro" text="Los planes son opcionales y se vuelven disponibles durante el año. Puedes inscribirte en los que desees. Típicamente los planes requieren que hagas ciertas cosas para calificar y recibir beneficios proporcionales. Como las políticas, se generan informes para explicar tu desempeño. Todas las recompensas se escalan según tu Configuración de Dificultad Económica."/>
+		<text name="rt_help_schemes_intro_2" text="Los planes también pueden ser situacionales, como una marca que ofrece una demostración donde puedes usar equipo por un tiempo sin costo. En todos los casos, tu nivel de cumplimiento de políticas afecta directamente las recompensas de planes disponibles. Los planes de nivel D dan las recompensas más bajas, mientras que los planes de nivel A dan las mayores recompensas."/>
+		<text name="rt_help_schemes_intro_3" text="Los planes típicamente se ejecutan por un período determinado, a menudo un año o un número de evaluaciones. Los planes volverán a estar disponibles con el tiempo, pero debes inscribirte nuevamente si lo deseas. Algunos planes tienen una ventana limitada en la que están disponibles. Por ejemplo, el plan de Promoción de Cultivo solo está disponible en los primeros meses del año."/>
+		<text name="rt_help_tax_intro" text="Los impuestos son un sistema que entrega una porción de tus beneficios al gobierno. Una declaración de impuestos se finaliza en abril de cada año, y pagarás automáticamente el impuesto adeudado en septiembre. Si no tienes suficiente dinero para pagar la factura de impuestos, tu saldo se volverá negativo."/>
+		<text name="rt_help_tax_intro_2" text="En la pestaña Impuestos, puedes ver una declaración finalizada en el lado izquierdo de la vista. En el lado derecho puedes ver totales actuales para tu año fiscal actual. Puedes usar esto para planificar con anticipación y reducir tu factura de impuestos. Por ejemplo, si ves que tus beneficios son altos para el año, podrías optar por comprar equipo nuevo para reducir el beneficio y, por lo tanto, tus impuestos."/>
+		<text name="rt_help_tax_intro_3" text="A veces verás Notas Fiscales. Estas te dicen cuándo tu declaración de impuestos se modifica por alguna condición no estándar. Por ejemplo, un plan podría ofrecerte una exención fiscal futura. Esto se indicará en las Notas Fiscales para ayudarte a entender tu factura."/>
+		<text name="rt_help_tax_intro_4" text="Si tienes una pérdida en un año fiscal, verás que estas pérdidas se 'transfieren' a años futuros. Si luego obtienes un beneficio en un año posterior, las pérdidas anteriores se usarán para reducir tu carga fiscal. Esto puede resultar en no pagar impuestos a pesar de obtener beneficios. Las pérdidas anteriores se transfieren y están limitadas a 5 millones."/>
+		<text name="rt_help_grants_intro" text="Las subvenciones son una forma de solicitar al gobierno financiación adicional para nuevas construcciones, por ejemplo, un nuevo establo para vacas."/>
+		<text name="rt_help_grants_intro_2" text="Para comenzar, abre el menú de construcción para artículos aplicables, habrá un botón Solicitar Subvención. Elige eso y confirma y tu solicitud comienza."/>
+		<text name="rt_help_grants_intro_3" text="Revisa la pantalla de Subvenciones en el menú Red Tape y te dirá cuándo se procesará tu solicitud. Será aprobada o rechazada. Si es aprobada, usa el menú de construcción para colocar el edificio y recibirás los fondos otorgados."/>
+		<text name="rt_help_grants_intro_4" text="Puedes tener una solicitud activa a la vez, y hay un período de espera de 6 meses después de que se procesa una subvención exitosa."/>
+		<text name="rt_setting_taxEnabled" text="Impuestos habilitados"/>
+		<text name="rt_toolTip_taxEnabled" text="Habilitar o deshabilitar el sistema de impuestos"/>
+		<text name="rt_setting_policiesAndSchemesEnabled" text="Políticas/Planes habilitados"/>
+		<text name="rt_toolTip_policiesAndSchemesEnabled" text="Habilitar o deshabilitar el sistema de Políticas y Planes. Desactivar esto terminará inmediatamente todos los planes activos."/>
+		<text name="rt_setting_baseTaxRate" text="Tasa impositiva base"/>
+		<text name="rt_toolTip_baseTaxRate" text="Establecer la tasa impositiva base"/>
+		<text name="rt_system_disabled" text="Este sistema está actualmente deshabilitado. Revisa la Configuración del Juego para activarlo nuevamente." />
+		<text name="rt_setting_grantsEnabled" text="Subvenciones habilitadas"/>
+		<text name="rt_toolTip_grantsEnabled" text="Habilitar o deshabilitar el sistema de subvenciones gubernamentales"/>
+		<text name="rt_grant_button" text="Solicitar subvención" />
+		<text name="rt_grant_application_submitted" text="Tu solicitud de subvención ha sido enviada y puede verse en la pestaña Subvenciones." />
+		<text name="rt_grant_confirm_application_dialog" text="¿Deseas solicitar una subvención para esta construcción? Habrá un costo de solicitud de %s. Las solicitudes pueden tardar hasta 6 meses en procesarse y tienen una probabilidad de aprobación del 35-45%%, que puede verse afectada por tu calificación de cumplimiento." />
+		<text name="rt_grant_existing_application" text="Solo se permite una solicitud activa a la vez. Puedes solicitar nuevamente una vez que se procese tu solicitud existente." />
+		<text name="rt_grant_approved_notification" text="¡Tu solicitud de subvención ha sido aprobada! Recibirás %s cuando compres el edificio." />
+		<text name="rt_grant_rejected_notification" text="Tu solicitud de subvención ha sido rechazada." />
+		<text name="rt_grant_completed_notification" text="Se ha otorgado un pago de subvención de %s a tu granja." />
+		<text name="rt_event_type_grantapproved" text="Subvención aprobada" />
+		<text name="rt_event_type_grantrejected" text="Subvención rechazada" />
+		<text name="rt_event_type_grantcompleted" text="Subvención completada" />
+		<text name="permission_redTape_redTapeSettings" text="Configuración Red Tape" />
+		<text name="rt_header_grants" text="Subvenciones" />
+		<text name="rt_label_pending_grants" text="Solicitudes pendientes" />
+		<text name="rt_label_approved_grants" text="Subvenciones aprobadas" />
+		<text name="rt_label_historical_grants" text="Historial de subvenciones" />
+		<text name="rt_tableheader_building" text="Edificio" />
+		<text name="rt_tableheader_price" text="Precio" />
+		<text name="rt_tableheader_applied" text="Solicitado" />
+		<text name="rt_tableheader_assessment" text="Evaluación" />
+		<text name="rt_tableheader_amount" text="Cantidad" />
+		<text name="rt_tableheader_approved" text="Aprobado" />
+		<text name="rt_tableheader_status" text="Estado" />
+		<text name="rt_no_pending_grants" text="No hay solicitudes de subvención pendientes" />
+		<text name="rt_no_approved_grants" text="No hay subvenciones aprobadas" />
+		<text name="rt_no_historical_grants" text="No hay historial de subvenciones" />
+		<text name="rt_grant_status_pending" text="Pendiente" />
+		<text name="rt_grant_status_approved" text="Aprobado" />
+		<text name="rt_grant_status_rejected" text="Rechazado" />
+		<text name="rt_grant_status_completed" text="Completado" />
+		<text name="rt_grant_eligible" text="ESTADO: ELEGIBLE" />
+		<text name="rt_grant_not_eligible" text="ESTADO: NO ELEGIBLE" />
+		<text name="rt_grant_eligible_description" text="La elegibilidad para solicitar nuevas subvenciones depende de numerosas condiciones. No puedes solicitar si tienes una solicitud pendiente actual, o una solicitud aprobada en espera de completarse. También hay un período de espera de 6 meses después de completar una subvención (es decir, cuando recibes fondos de subvención)." />
+	</texts>
+</l10n>

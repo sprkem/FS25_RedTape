@@ -40,6 +40,11 @@ RTPolicies = {
                 if farmland.farmId == farmId and farmland.field ~= nil then
                     local farmLandData = gatherer:getFarmlandData(farmland.id)
 
+                    if farmLandData.rotationExceptions > 0 then
+                        farmLandData.rotationExceptions = farmLandData.rotationExceptions - 1
+                        continue
+                    end
+
                     if farmLandData.fallowMonths > 10 then
                         continue
                     end
