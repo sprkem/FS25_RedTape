@@ -23,13 +23,14 @@ function FarmGatherer:hourChanged()
     for husbandry, stats in pairs(husbandryData) do
         local farmId = husbandry:getOwnerFarmId()
         local farmData = self:getFarmData(farmId)
+        local knownFencelessPatures = { "FS25_FencelessPastures", "FS25_buildableFeedlotPack" }
 
         if stats.slurry and stats.slurry > 0 and stats.slurry == stats.slurryCapacity then
             farmData.monthlyFullSlurryCount = farmData.monthlyFullSlurryCount + 1
         end
 
         local isFencelessPasture = false
-        if husbandry.customEnvironment ~= nil and husbandry.customEnvironment == 'FS25_FencelessPastures' then
+        if husbandry.customEnvironment ~= nil and RedTape.tableHasValue(knownFencelessPatures, husbandry.customEnvironment) then
             isFencelessPasture = true
         end
 
@@ -46,7 +47,13 @@ function FarmGatherer:hourChanged()
 
             if not self:isExemptFromProductivityCheck(husbandry) then
                 if stats.productivity and stats.productivity < 0.40 then
-                    farmData.monthlyLowProductivityHusbandry = farmData.monthlyLowProductivityHusbandry + 1
+                    if not isFencelessPasture then
+                        farmData.monthlyLowProductivityHusbandry = farmData.monthlyLowProductivityHusbandry + 1
+                    else
+                        if stats.totalFood == 0 then
+                            farmData.monthlyLowProductivityHusbandry = farmData.monthlyLowProductivityHusbandry + 1
+                        end
+                    end
                 end
             end
 

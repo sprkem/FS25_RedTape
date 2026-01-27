@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="105">
     <author>Ozz</author>
-    <version>1.0.1.0</version>
+    <version>1.0.1.1</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,9 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.1.0 [WIP]:
+- Add fenceless pasture definition for FS25_buildableFeedlotPack.
 
 1.0.1.0:
 - Purchased farmlands are exempt from the next evaluation of the Crop Rotation policy.
