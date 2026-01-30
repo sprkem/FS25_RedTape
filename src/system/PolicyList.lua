@@ -519,10 +519,9 @@ RTPolicies = {
         report_description = "rt_policy_report_description_restricted_slurry",
         probability = 0.4,
         periodicReward = 20,
-        periodicPenaltyPerViolation = -2,
-        maxPenaltyPerEvaluation = -300,
+        periodicPenaltyPerViolation = -3,
         evaluationInterval = 1,
-        finePerViolation = 20,
+        finePerViolation = 30,
         warningThreshold = 50,
         maxWarnings = 1,
         restrictedMonths = { 9, 10, 11, 12 },
@@ -539,9 +538,6 @@ RTPolicies = {
             local reward = 0
             if pendingViolations > 0 then
                 reward = policyInfo.periodicPenaltyPerViolation * pendingViolations
-                if reward < policyInfo.maxPenaltyPerEvaluation then
-                    reward = policyInfo.maxPenaltyPerEvaluation
-                end
 
                 local fineAmount = pendingViolations * policyInfo.finePerViolation
                 local skipWarning = pendingViolations > policyInfo.warningThreshold

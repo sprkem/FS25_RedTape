@@ -28,7 +28,7 @@ Changelog:
 
 1.0.1.0 [WIP]:
 - Add fenceless pasture definition for FS25_buildableFeedlotPack.
-- Lower slurry violation penalty, and capped the maximum penalty per evaluation.
+- For slurry violations, decrease the points loss but increase the fine.
 
 1.0.1.0:
 - Purchased farmlands are exempt from the next evaluation of the Crop Rotation policy.
