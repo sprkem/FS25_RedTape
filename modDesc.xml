@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="106">
     <author>Ozz</author>
-    <version>1.0.1.1</version>
+    <version>1.0.1.2</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,9 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.1.2 [WIP]:
+- Reduced the bonus for net positive tree planting to match the penalty for excess cutting.
 
 1.0.1.1:
 - Add fenceless pasture definition for FS25_buildableFeedlotPack.
