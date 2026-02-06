@@ -29,6 +29,7 @@ Changelog:
 1.0.1.0 [WIP]:
 - Add fenceless pasture definition for FS25_buildableFeedlotPack.
 - For slurry violations, decrease the points loss but increase the fine.
+- Added additional safety check when scanning for creeks to prevent error in certain map/equipment combinations.
 
 1.0.1.0:
 - Purchased farmlands are exempt from the next evaluation of the Crop Rotation policy.

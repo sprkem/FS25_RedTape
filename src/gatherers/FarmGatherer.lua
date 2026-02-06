@@ -471,7 +471,7 @@ function FarmGatherer:checkCreekByOverlap(sprayer, workingWidth)
     local overlapResult = {
         overlapCallback = function(self, hitObjectId, x, y, z, distance)
             local originalHitObjectId = hitObjectId
-            if not entityExists(hitObjectId) then
+            if hitObjectId == 0 or not entityExists(hitObjectId) then
                 ig.knownCreeks[originalHitObjectId] = nil
                 return
             end
