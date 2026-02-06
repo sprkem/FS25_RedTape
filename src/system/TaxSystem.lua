@@ -532,20 +532,21 @@ function RTTaxSystem:processTaxStatements()
         for _, taxStatement in ipairs(self.taxStatements) do
             if not taxStatement.paid then
                 if taxStatement.totalTax > 0 then
-                    g_currentMission:addMoneyChange(taxStatement.totalTax, taxStatement.farmId, MoneyType.TAX_PAID,
+                    g_currentMission:addMoneyChange(-taxStatement.totalTax, taxStatement.farmId, MoneyType.TAX_PAID,
                         true)
                 end
-                g_client:getServerConnection():sendEvent(RTTaxStatementPaidEvent.new(taxStatement.farmId))
+                g_client:getServerConnection():sendEvent(RTTaxStatementPaidEvent.new(taxStatement.farmId, taxStatement.totalTax))
             end
         end
     end
 end
 
 -- Called via RTTaxStatementPaidEvent to mark as paid on client and server
-function RTTaxSystem:markTaxStatementAsPaid(farmId)
+function RTTaxSystem:markTaxStatementAsPaid(farmId, amountPaid)
     for _, taxStatement in ipairs(self.taxStatements) do
         if taxStatement.farmId == farmId then
             taxStatement.paid = true
+            taxStatement.amountPaid = amountPaid
             g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
             return
         end
