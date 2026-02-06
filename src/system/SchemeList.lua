@@ -406,7 +406,9 @@ RTSchemes = {
             for _, item in pairs(g_storeManager:getItems()) do
                 for i = 1, #item.categoryNames do
                     if chosenCategory == item.categoryNames[i] then
-                        table.insert(options, item)
+                        if not string.find(item.xmlFilename, "/pdlc/") then
+                            table.insert(options, item)
+                        end
                     end
                 end
             end
@@ -536,7 +538,9 @@ RTSchemes = {
             for _, item in pairs(g_storeManager:getItems()) do
                 for i = 1, #item.categoryNames do
                     if chosenCategory == item.categoryNames[i] then
-                        table.insert(options, item)
+                        if not string.find(item.xmlFilename, "/pdlc/") then
+                            table.insert(options, item)
+                        end
                     end
                 end
             end
@@ -688,7 +692,9 @@ RTSchemes = {
                     if chosenCategory == item.categoryNames[i] then
                         StoreItemUtil.loadSpecsFromXML(item)
                         if item.specs and item.specs.fillTypes and item.specs.fillTypes.fillTypeNames == "roadsalt" then
-                            table.insert(options, item)
+                            if not string.find(item.xmlFilename, "/pdlc/") then
+                                table.insert(options, item)
+                            end
                         end
                     end
                 end
@@ -796,7 +802,7 @@ RTSchemes = {
                             skip = true
                         end
                     end
-                    if not skip then
+                    if not skip and not string.find(item.xmlFilename, "/pdlc/") then
                         table.insert(options, item)
                     end
                 end

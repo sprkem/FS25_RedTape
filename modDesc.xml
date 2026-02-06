@@ -26,10 +26,12 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.1.0 [WIP]:
+1.0.1.1:
 - Add fenceless pasture definition for FS25_buildableFeedlotPack.
 - For slurry violations, decrease the points loss but increase the fine.
 - Added additional safety check when scanning for creeks to prevent error in certain map/equipment combinations.
+- Fix some issues with taking tax payments.
+- Exclude pdlc equipment from schemes as they cause loading issues.
 
 1.0.1.0:
 - Purchased farmlands are exempt from the next evaluation of the Crop Rotation policy.
@@ -101,6 +103,13 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.1.1:
+- Definition für zaunlose Weiden für FS25_buildableFeedlotPack hinzugefügt.
+- Bei Gülleverstößen wurden die Punktabzüge verringert, aber die Bußgelder erhöht.
+- Zusätzliche Sicherheitsprüfung beim Scannen von Bächen hinzugefügt, um Fehler bei bestimmten Karten-/Gerätekombinationen zu vermeiden.
+- Einige Probleme bei Steuerzahlungen behoben.
+- PDLC-Geräte von Programmen ausgeschlossen, da sie Ladeprobleme verursachen.
 
 1.0.1.0:
 - Erworbene landwirtschaftliche Flächen sind von der nächsten Überprüfung der Fruchtfolgeregelung ausgenommen.
@@ -176,6 +185,13 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.1.1:
+- Ajout d'une définition de pâturage sans clôture pour FS25_buildableFeedlotPack.
+- Pour les violations de lisier, réduction de la perte de points mais augmentation de l'amende.
+- Ajout d'un contrôle de sécurité supplémentaire lors de l'analyse des cours d'eau pour éviter les erreurs avec certaines combinaisons de cartes/équipements.
+- Correction de certains problèmes liés aux paiements d'impôts.
+- Exclusion des équipements DLC des programmes car ils causent des problèmes de chargement.
 
 1.0.1.0:
 - Les terres agricoles acquises sont exemptées de la prochaine évaluation de la politique de rotation des cultures.
