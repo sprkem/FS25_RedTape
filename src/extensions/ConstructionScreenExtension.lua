@@ -1,11 +1,22 @@
 RTConstructionScreenExtension = {}
 
 function RTConstructionScreenExtension:setBrush(brush, skipMenuUpdate)
-    local showGrantButton = RTConstructionScreenExtension.getGrantButtonVisibility(brush)
+    local grantSystem = g_currentMission.RedTape.GrantSystem
+    local grantsEnabled = grantSystem:isEnabled()
 
     local sourceButton = self.buttonBack
     local grantsButton = self.dealsButton
 
+    -- If system is disabled, delete the button if it exists
+    if not grantsEnabled then
+        if grantsButton ~= nil then
+            grantsButton:delete()
+            self.dealsButton = nil
+        end
+        return
+    end
+
+    -- System is enabled, create button if it doesn't exist
     if not grantsButton and sourceButton then
         local parent = sourceButton.parent
         grantsButton = sourceButton:clone(parent)
@@ -15,6 +26,7 @@ function RTConstructionScreenExtension:setBrush(brush, skipMenuUpdate)
     end
 
     if grantsButton ~= nil then
+        local showGrantButton = RTConstructionScreenExtension.getGrantButtonVisibility(brush)
         grantsButton:setDisabled(not showGrantButton)
 
         grantsButton.onClick = "onClickGrantButton"
