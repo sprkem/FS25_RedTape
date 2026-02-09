@@ -27,7 +27,7 @@ https://github.com/sprkem/FS25_RedTape
 Changelog:
 
 1.0.1.2:
-- Reduced the bonus for net positive tree planting to match the penalty for excess cutting.
+- Reduced the bonus for net positive tree.
 - Fixed issues with crop promotion not ending, and not correctly detecting certain crops were grown.
 - Additional safety checks on creeks and water detection.
 
