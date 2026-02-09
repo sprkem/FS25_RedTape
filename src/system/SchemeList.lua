@@ -443,6 +443,11 @@ RTSchemes = {
             local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
             local farmId = scheme.farmId
 
+            -- As we eval in december, we can end if the year has advanced
+            if currentYear > evaluationYear then
+                g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, farmId))
+            end
+
             if currentMonth ~= 12 then
                 return
             end
@@ -453,9 +458,9 @@ RTSchemes = {
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId and farmland.field ~= nil then
                     local farmlandData = gatherer:getFarmlandData(farmland.id)
-                    local wasFruitHarvestable = gatherer:wasFruitHarvestable(farmland.id, cumulativeMonth - 12,
+                    local wasFruitPresent = gatherer:wasFruitPresent(farmland.id, cumulativeMonth - 12,
                         cumulativeMonth, fruitType)
-                    if wasFruitHarvestable then
+                    if wasFruitPresent then
                         local bonusPerHa = schemeInfo.tiers[tier].bonusPerHa
                         local payout = farmlandData.areaHa * bonusPerHa * EconomyManager.getPriceMultiplier()
                         table.insert(report, {
@@ -470,11 +475,6 @@ RTSchemes = {
                         })
                     end
                 end
-            end
-
-            -- As we eval in december, we can end if the year has advanced
-            if currentYear > evaluationYear then
-                g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, farmId))
             end
 
             return report

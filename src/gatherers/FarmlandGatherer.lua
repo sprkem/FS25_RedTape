@@ -286,7 +286,7 @@ function FarmlandGatherer:hasRecordedFruit(farmlandId, startMonth, endMonth, ign
     return false
 end
 
-function FarmlandGatherer:wasFruitHarvestable(farmlandId, startMonth, endMonth, fruitType)
+function FarmlandGatherer:wasFruitPresent(farmlandId, startMonth, endMonth, fruitType)
     local fruit = g_fruitTypeManager:getFruitTypeByIndex(fruitType)
     if fruit == nil then
         return false
@@ -295,9 +295,7 @@ function FarmlandGatherer:wasFruitHarvestable(farmlandId, startMonth, endMonth, 
     for month = startMonth, endMonth do
         local fruitEntry = farmlandData.fruitHistory[month]
         if fruitEntry ~= nil and fruitEntry.name == fruit.name then
-            if fruitEntry.growthState >= fruit.minHarvestingGrowthState then
-                return true
-            end
+            return true
         end
     end
     return false

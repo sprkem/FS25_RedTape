@@ -26,8 +26,10 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.1.2 [WIP]:
+1.0.1.2:
 - Reduced the bonus for net positive tree planting to match the penalty for excess cutting.
+- Fixed issues with crop promotion not ending, and not correctly detecting certain crops were grown.
+- Additional safety checks on creeks and water detection.
 
 1.0.1.1:
 - Add fenceless pasture definition for FS25_buildableFeedlotPack.
@@ -106,6 +108,11 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.1.2:
+- Der Bonus für netto-positive Baumpflanzungen wurde reduziert, um der Strafe für übermäßiges Fällen zu entsprechen.
+- Probleme mit der Crop-Promotion behoben, die nicht endete und bestimmte angebaute Kulturen nicht korrekt erkannte.
+- Zusätzliche Sicherheitsprüfungen für Bäche und Wassererkennung hinzugefügt.
 
 1.0.1.1:
 - Definition für zaunlose Weiden für FS25_buildableFeedlotPack hinzugefügt.
@@ -188,6 +195,11 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.1.2:
+- Réduction du bonus pour la plantation nette positive d'arbres afin qu'il corresponde à la pénalité pour coupe excessive.
+- Correction des problèmes de promotion des cultures qui ne se terminaient pas et ne détectaient pas correctement certaines cultures cultivées.
+- Contrôles de sécurité supplémentaires sur les cours d'eau et la détection de l'eau.
 
 1.0.1.1:
 - Ajout d'une définition de pâturage sans clôture pour FS25_buildableFeedlotPack.
