@@ -161,8 +161,6 @@
         <text name="finance_grantReceived" text="Dotace přijata"/>
         <text name="rt_ui_grantApplicationCost" text="Poplatek za žádost o dotaci"/>
         <text name="finance_grantApplicationCost" text="Poplatek za žádost o dotaci"/>
-        <text name="rt_setting_grantsEnabled" text="Dotace"/>
-        <text name="rt_toolTip_grantsEnabled" text="Povolit nebo zakázat systém dotací"/>
         <text name="rt_no_vehicle_room" text="Nedostatek místa pro doručení vozidel pro dotační program. Uvolněte místo a zkuste to znovu."/>
         <text name="rt_info_scheme_selected" text="Zaregistrovali jste se do dotačního programu. Vyzvedněte všechna vozidla v obchodě."/>
         <text name="rt_misc_year" text="Rok"/>
