@@ -7,7 +7,6 @@
         <en>Red Tape</en>
         <de>Papierkram</de>
         <fr>Paperasserie</fr>
-        <hu>Red Tape</hu>
     </title>
     <description>
         <en><![CDATA[Red Tape
@@ -265,90 +264,6 @@ Journal des modifications:
 - Correction d'un problème où les semoirs qui fertilisaient provoquaient des erreurs sans conséquence dans le journal.
 ]]>
         </fr>
-        <hu><![CDATA[Red Tape
-
-Egy mod, amely mélységet ad a játékhoz a Szabályzatok, Programok és Adók bevezetésével.
-
-A Szabályzatok az állatjóléti és környezetvédelmi előírásokat tartalmazzák, amelyeket be kell tartani, különben bírság vagy más szankció lehet a következmény.
-A Programok lehetőséget kínálnak további bevételre vagy előnyökre, de saját feltételeik is lehetnek.
-Az Adózás pénzügyi menedzsment réteget ad a játékhoz: a játékosnak a farm jövedelme és tevékenységei alapján rendszeres adófizetésekre kell terveznie.
-
-A Szabályzatok betartásában elért teljesítmény befolyásolhatja a Programok jutalmának minőségét, és akár adókedvezményeket is nyújthat.
-
-További információért nézd meg a játékban a súgó menüt.
-
-GitHub:
-https://github.com/sprkem/FS25_RedTape
-
-Változások listája:
-
-1.0.1.2:
-- Csökkentve a nettó pozitív fa bónusz.
-- Javítva a problémák, amikor a növényprogram nem ért véget, illetve bizonyos növények termesztését nem érzékelte helyesen.
-- További biztonsági ellenőrzések a patakoknál és vízészlelésnél.
-
-1.0.1.1:
-- Kerítés nélküli legelő definiálása a FS25_buildableFeedlotPack számára.
-- Trágyaszerű szabályszegésnél csökkentett pontvesztés, de megnövelt bírság.
-- További biztonsági ellenőrzés patakok vizsgálatánál a hibák megelőzése érdekében bizonyos térkép-/felszereléskombinációk esetén.
-- Javítva adófizetéssel kapcsolatos problémák.
-- A pdlc felszerelést kizárva a programokból, mert betöltési problémát okoznak.
-
-1.0.1.0:
-- A megvásárolt földek mentesülnek a Növényforgó szabályzat következő értékelése alól.
-- A támogatási jogosultság szövegének frissítése a minimális támogatási összeg magyarázatával.
-- Olasz fordítás hozzáadva, köszönet FirenzeIT-nek.
-- Spanyol fordítás hozzáadva.
-
-1.0.0.11:
-- Támogatási rendszer hozzáadása. A támogatás igényléséhez használd az építési menüt.
-- Biztonsági ellenőrzések és konfliktusok kezelésének hozzáadása, amelyek hatással lehetnek az adóra.
-- Lucerna és lóhere fűként kezelése, ha jelen van.
-- Javítva a 24 órás termelékenység kivételei állatok szállításakor utánfutóval. A kivételek korábban csak új állat vásárlásakor működtek helyesen.
-- A bálázási program leírásának javítása, hogy a potenciális büntetéseket helyesen jelezze.
-
-1.0.0.10:
-- Új növényforgó nézet hozzáadása, amely a betakarítási előzményeket mutatja a tervezés segítésére. Kis módosítás a növényforgó szabályzaton.
-- Bevezetve az adóveszteségek áthozatalának lehetősége a következő évekre. Létező mentés betöltésekor figyelembe veszi az előző kimutatás veszteségeit.
-- Szűrő hozzáadva a márkademóhoz a haszontalan felszerelések elkerülésére. Jelenleg a homlokrakodókat szűri, de a visszajelzések alapján módosul.
-- Cseh fordítás hozzáadva.
-- A hónapok helyes többes számának javítása minden nyelven.
-
-1.0.0.9:
-- Javítva a traktor demók helytelen befejeződése.
-- Javítva a multiplayer probléma a programok kiválasztásakor.
-
-1.0.0.8:
-- Több multiplayer javítás.
-- Javítva a túlzott adókulcs számítás, amelyet a beállításoknál adtam.
-
-1.0.0.7:
-- További javítás a multiplayer előrehaladási problémák kezelésére.
-- Beállítások hozzáadva a rendszerek kikapcsolásához és az adókulcs beállításához.
-
-1.0.0.6:
-- Küszöbérték hozzáadva a trágyatárolás szabályzathoz: csak 5 ezer liter feletti tárolt trágya esetén van szabálysértés.
-- Javítva egy multiplayer probléma, amely megakadályozta az állatok megfelelő öregedését.
-
-1.0.0.5:
-- Megoldás hozzáadva a Realistic Weather mod által okozott szórás problémára.
-
-1.0.0.4:
-- Biztonsági intézkedés hozzáadva, hogy a sózás program ne jelenjen meg többször egyszerre.
-- Trágya szabályzat átdolgozása. A jelentés kezdetben pontatlan lesz, de így engedékenyebb, amíg minden adat rögzítésre nem kerül.
-- Állattér szabályzat átdolgozása. Az életkort most figyelembe veszik, pl. egy 2 hónapos tehén kevesebb helyet igényel, mint egy 24 hónapos. A figyelmeztetést adó hónapokban nem vonnak le pontot.
-- A 14 m-es biztonsági sáv tisztázása a permetezési szabálysértés leírásában.
-
-1.0.0.3:
-- Multiplayer-only probléma javítása műtrágyázáskor.
-- Disznók és lovak kihagyása az állat termelékenység szabályzatnál.
-- Brazíliai fordítás hozzáadva, köszönet MuhWalker-nek.
-- Orosz fordítás hozzáadva, köszönet Martin-nak.
-
-1.0.0.2:
-- Javítva egy probléma, amikor az ültetőgépek trágyázáskor ártalmatlan hibákat okoztak a logban.
-]]>
-        </hu>
     </description>
     <extraSourceFiles>
         <sourceFile filename="src/events/HarvestHistoryUpdateEvent.lua"/>
