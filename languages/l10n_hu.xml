@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <l10n>
+	<translationContributors/>
 	<texts>
 		<text name="rt_notify_active_policy" text="Új irányelv aktiválva: %s"/>
 		<text name="rt_notify_active_scheme" text="Új program elérhető: %s (Szint %s)"/>
@@ -160,8 +161,6 @@
 		<text name="finance_grantReceived" text="Támogatás megérkezett"/>
 		<text name="rt_ui_grantApplicationCost" text="Támogatási kérelem díja"/>
 		<text name="finance_grantApplicationCost" text="Támogatási kérelem díja"/>
-		<text name="rt_setting_grantsEnabled" text="Támogatások"/>
-		<text name="rt_toolTip_grantsEnabled" text="A támogatási rendszer engedélyezése vagy letiltása"/>
 		<text name="rt_no_vehicle_room" text="Nincs elég hely a program járműveinek. Törölj valamit és próbáld újra."/>
 		<text name="rt_info_scheme_selected" text="Jelentkeztél a programra. Gyűjtsd össze a járműveket a boltban."/>
 		<text name="rt_misc_year" text="Év"/>
@@ -236,4 +235,5 @@
 		<text name="rt_grant_not_eligible" text="STÁTUSZ: NEM JOGOSULT" />
 		<text name="rt_grant_eligible_description" text="Új támogatásokra való jogosultság számos feltételtől függ. Nem nyújthatsz be kérelmet, ha van aktuálisan feldolgozás alatt lévő kérelem, vagy jóváhagyott kérelem, amely még nem teljesült. Sikeres kérelem kifizetése után 6 hónapos várakozási idő van. A támogatások nem vehetők igénybe 80 000 alatti építési költség esetén." />
 	</texts>
+
 </l10n>
