@@ -394,7 +394,8 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
     local ignoreStats = {
         "policyFine",
         "schemePayout",
-        "grantReceived"
+        "grantReceived",
+        "taxCost"
     }
 
     if g_modIsLoaded["FS25_RealisticLivestock"] then

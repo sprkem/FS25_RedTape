@@ -161,8 +161,6 @@
 		<text name="finance_grantReceived" text="Subvención recibida"/>
 		<text name="rt_ui_grantApplicationCost" text="Tarifa de solicitud de subvención"/>
 		<text name="finance_grantApplicationCost" text="Tarifa de solicitud de subvención"/>
-		<text name="rt_setting_grantsEnabled" text="Subvenciones"/>
-		<text name="rt_toolTip_grantsEnabled" text="Habilitar o deshabilitar el sistema de subvenciones"/>
 		<text name="rt_no_vehicle_room" text="No hay suficiente espacio para entregar vehículos para el plan. Haz espacio e inténtalo de nuevo."/>
 		<text name="rt_info_scheme_selected" text="Te has inscrito en el plan. Recoge los vehículos de la tienda."/>
 		<text name="rt_misc_year" text="Año"/>

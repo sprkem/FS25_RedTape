@@ -161,8 +161,6 @@
 		<text name="finance_grantReceived" text="Грант получен"/>
 		<text name="rt_ui_grantApplicationCost" text="Плата за подачу заявки на грант"/>
 		<text name="finance_grantApplicationCost" text="Плата за подачу заявки на грант"/>
-		<text name="rt_setting_grantsEnabled" text="Гранты"/>
-		<text name="rt_toolTip_grantsEnabled" text="Включить или отключить систему грантов"/>
 		<text name="rt_no_vehicle_room" text="Для доставки транспортных средств по программе недостаточно места. Освободите немного места и повторите попытку."/>
 		<text name="rt_info_scheme_selected" text="Вы зарегистрировались в программе. Заберите все транспортные средства из магазина."/>
 		<text name="rt_misc_year" text="Год"/>

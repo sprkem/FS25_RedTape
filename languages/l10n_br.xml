@@ -161,8 +161,6 @@
 		<text name="finance_grantReceived" text="Subsídio Recebido"/>
 		<text name="rt_ui_grantApplicationCost" text="Taxa de Solicitação de Subsídio"/>
 		<text name="finance_grantApplicationCost" text="Taxa de Solicitação de Subsídio"/>
-		<text name="rt_setting_grantsEnabled" text="Subsídios"/>
-		<text name="rt_toolTip_grantsEnabled" text="Ativar ou desativar o sistema de subsídios"/>
 		<text name="rt_no_vehicle_room" text="Não há espaço suficiente para entregar os veículos do programa. Libere espaço e tente novamente."/>
 		<text name="rt_info_scheme_selected" text="Você se inscreveu no programa. Recolha os veículos na loja."/>
 		<text name="rt_misc_year" text="Ano"/>

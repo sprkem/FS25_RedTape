@@ -161,8 +161,7 @@
 		<text name="finance_grantReceived" text="Contributo ricevuto"/>
 		<text name="rt_ui_grantApplicationCost" text="Costo domanda contributo"/>
 		<text name="finance_grantApplicationCost" text="Costo domanda contributo"/>
-		<text name="rt_setting_grantsEnabled" text="Contributi"/>
-		<text name="rt_toolTip_grantsEnabled" text="Abilita o disabilita il sistema dei contributi"/>
+
 		<text name="rt_no_vehicle_room" text="Non c’è abbastanza spazio per consegnare i veicoli dello schema. Libera spazio e riprova."/>
 		<text name="rt_info_scheme_selected" text="Hai aderito allo schema. Ritira eventuali veicoli dal negozio."/>
 		<text name="rt_misc_year" text="Anno"/>
