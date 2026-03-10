@@ -225,10 +225,10 @@ function MenuRedTape:onGuiSetupFinished()
 
     self.pendingGrantsTable:setDataSource(self.grantsRenderer)
     self.pendingGrantsTable:setDelegate(self.grantsRenderer)
-    
+
     self.approvedGrantsTable:setDataSource(self.grantsRenderer)
     self.approvedGrantsTable:setDelegate(self.grantsRenderer)
-    
+
     self.historicalGrantsTable:setDataSource(self.grantsRenderer)
     self.historicalGrantsTable:setDelegate(self.grantsRenderer)
 end
@@ -275,7 +275,7 @@ function MenuRedTape:initialize()
         inputAction = InputAction.MENU_ACTIVATE,
         text = g_i18n:getText("rt_btn_select_scheme"),
         callback = function()
-            self:onSelectScheme()
+            self:onSelectOrEndScheme()
         end
     }
 
@@ -388,8 +388,13 @@ function MenuRedTape:onSwitchSchemeDisplay()
         self.schemesTable:setSelectedIndex(1)
     end
     self:displaySelectedScheme()
-    self.btnSelectSchemeForFarm.disabled = self.schemeDisplaySwitcher:getState() ~=
-        MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE
+    if self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE then
+        self.btnSelectSchemeForFarm.text = g_i18n:getText("rt_btn_end_scheme")
+    else
+        self.btnSelectSchemeForFarm.text = g_i18n:getText("rt_btn_select_scheme")
+    end
+
+
     self.btnWatchSchemeOrPolicy.disabled = self.schemeDisplaySwitcher:getState() ~=
         MenuRedTape.SCHEME_LIST_TYPE.ACTIVE
     self:setMenuButtonInfoDirty()
@@ -611,8 +616,8 @@ function MenuRedTape:updateContent()
         }
 
         for _, grant in pairs(grantSystem.grants) do
-            if grant.farmId == currentFarmId and 
-               (grant.status == RTGrantSystem.STATUS.REJECTED or grant.status == RTGrantSystem.STATUS.COMPLETE) then
+            if grant.farmId == currentFarmId and
+                (grant.status == RTGrantSystem.STATUS.REJECTED or grant.status == RTGrantSystem.STATUS.COMPLETE) then
                 table.insert(grantsData.historical, grant)
             end
         end
@@ -620,7 +625,7 @@ function MenuRedTape:updateContent()
         self.grantsRenderer:setCurrentSection("pending")
         self.grantsRenderer:setData(grantsData)
         self.pendingGrantsTable:reloadData()
-        
+
         local hasPendingGrants = #grantsData.pending > 0
         self.pendingGrantsContainer:setVisible(hasPendingGrants)
         self.noPendingGrantsContainer:setVisible(not hasPendingGrants)
@@ -628,7 +633,7 @@ function MenuRedTape:updateContent()
         self.grantsRenderer:setCurrentSection("approved")
         self.grantsRenderer:setData(grantsData)
         self.approvedGrantsTable:reloadData()
-        
+
         local hasApprovedGrants = #grantsData.approved > 0
         self.approvedGrantsContainer:setVisible(hasApprovedGrants)
         self.noApprovedGrantsContainer:setVisible(not hasApprovedGrants)
@@ -636,7 +641,7 @@ function MenuRedTape:updateContent()
         self.grantsRenderer:setCurrentSection("historical")
         self.grantsRenderer:setData(grantsData)
         self.historicalGrantsTable:reloadData()
-        
+
         local hasHistoricalGrants = #grantsData.historical > 0
         self.historicalGrantsContainer:setVisible(hasHistoricalGrants)
         self.noHistoricalGrantsContainer:setVisible(not hasHistoricalGrants)
@@ -666,34 +671,42 @@ function MenuRedTape:onMoneyChange()
     end
 end
 
-function MenuRedTape:onSelectScheme()
+function MenuRedTape:onSelectOrEndScheme()
     if self.schemesRenderer.selectedRow == -1 then
         return
     end
-
-    if self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE then
-        return
-    end
-
-    local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE][self.schemesRenderer.selectedRow]
-    local vehicles = scheme:getVehiclesToSpawn()
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
 
-    -- TODO test full shop
-    if not schemeSystem.isSpawnSpaceAvailable(vehicles) then
-        InfoDialog.show(g_i18n:getText("rt_no_vehicle_room"))
-        return
-    end
+    if self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE then
+        local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.ACTIVE][self.schemesRenderer.selectedRow]
+        YesNoDialog.show(
+            function(self, clickOk)
+                if clickOk then
+                    local farmId = g_currentMission:getFarmId()
+                    g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, farmId))
+                end
+            end, self,
+            g_i18n:getText("rt_misc_confirm_scheme_end"))
+    else
+        local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.AVAILABLE]
+            [self.schemesRenderer.selectedRow]
+        local vehicles = scheme:getVehiclesToSpawn()
 
-    YesNoDialog.show(
-        function(self, clickOk)
-            if clickOk then
-                local farmId = g_currentMission:getFarmId()
-                g_client:getServerConnection():sendEvent(RTSchemeSelectedEvent.new(scheme, farmId))
-                InfoDialog.show(g_i18n:getText("rt_info_scheme_selected"))
-            end
-        end, self,
-        g_i18n:getText("rt_misc_confirm_scheme_selection"))
+        if not schemeSystem.isSpawnSpaceAvailable(vehicles) then
+            InfoDialog.show(g_i18n:getText("rt_no_vehicle_room"))
+            return
+        end
+
+        YesNoDialog.show(
+            function(self, clickOk)
+                if clickOk then
+                    local farmId = g_currentMission:getFarmId()
+                    g_client:getServerConnection():sendEvent(RTSchemeSelectedEvent.new(scheme, farmId))
+                    InfoDialog.show(g_i18n:getText("rt_info_scheme_selected"))
+                end
+            end, self,
+            g_i18n:getText("rt_misc_confirm_scheme_selection"))
+    end
 end
 
 function MenuRedTape:onToggleWatch()
