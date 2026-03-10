@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+	<translationContributors/>
+	<texts>
+		<text name="rt_notify_active_policy" text="Új irányelv aktiválva: %s"/>
+		<text name="rt_notify_active_scheme" text="Új program elérhető: %s (Szint %s)"/>
+		<text name="rt_notify_ended_scheme" text="Egy program véget ért: %s"/>
+		<text name="rt_notify_expired_scheme" text="Egy program már nem elérhető: %s (Szint %s)"/>
+		<text name="rt_policy_reason_evaluation" text="%s pont jóváírva a(z) %s irányelv értékelése során"/>
+		<text name="rt_notify_scheme_payout" text="A(z) %s program kifizetése: %s"/>
+		<text name="rt_notify_policy_warning" text="Figyelmeztetést kaptál a(z) %s irányelv megsértése miatt"/>
+		<text name="rt_notify_policy_fine" text="%s bírságot kaptál a(z) %s irányelv megsértése miatt"/>
+		<text name="rt_label_active_policies" text="Aktív irányelvek"/>
+		<text name="rt_label_tax_statement" text="Adókimutatás"/>
+		<text name="rt_header_policies" text="Irányelvek"/>
+		<text name="rt_header_schemes" text="Programok"/>
+		<text name="rt_header_tax" text="Adó"/>
+		<text name="rt_header_eventlog" text="Eseménynapló"/>
+		<text name="rt_header_croprotation" text="Vetésforgó"/>
+		<text name="rt_header_croprotation_mostrecent" text="Legutóbbi"/>
+		<text name="rt_header_croprotation_previous" text="Előző"/>
+		<text name="rt_header_croprotation_previous1" text="Előző -1"/>
+		<text name="rt_header_croprotation_previous2" text="Előző -2"/>
+		<text name="rt_header_croprotation_previous3" text="Előző -3"/>
+		<text name="rt_header_croprotation_view_title" text="Betakarítási előzmények"/>
+		<text name="rt_header_croprotation_view_subtitle" text="Az alábbi adatok a Vetésforgó irányelvhez kapcsolódnak. A következő növény tervezésekor válassz eltérőt a legutóbb betakarított növénytől, hogy megfelelj az irányelvnek."/>
+		<text name="rt_header_current_tier" text="Jelenlegi szint: %s"/>
+		<text name="rt_header_compliance_tier" text="Megfelelési szint"/>
+		<text name="rt_header_policy_information" text="Irányelv információk"/>
+		<text name="rt_header_scheme_information" text="Program információk"/>
+		<text name="rt_header_latest_report" text="Legfrissebb jelentés"/>
+		<text name="rt_header_no_selected_policy" text="Válassz egy aktív irányelvet a részletek megtekintéséhez"/>
+		<text name="rt_header_no_report_information" text="Nincs elérhető jelentési információ. Vagy nincs mit jelenteni, vagy még nem történt értékelés."/>
+		<text name="rt_header_scheme_equipment" text="A program ideje alatt az alábbi eszközök állnak rendelkezésre:"/>
+		<text name="rt_header_next_evaluation_date" text="Következő értékelés dátuma: %s"/>
+		<text name="rt_header_no_tax_statement" text="Jelenleg nincs elérhető adókimutatás. Az adókimutatások évente áprilisban készülnek, a befizetés szeptemberben történik."/>
+		<text name="rt_header_finalised_statement" text="Előző évi kimutatás:"/>
+		<text name="rt_header_tax_estimate" text="Aktuális évi összesítés:"/>
+		<text name="rt_header_tax_notes" text="Adó megjegyzések:"/>
+		<text name="rt_header_tax_notes_info" text="Az adókimutatást magyarázó megjegyzések listája."/>
+		<text name="rt_header_no_tax_notes" text="A kimutatás nem tartalmaz adó megjegyzéseket."/>
+		<text name="rt_header_total_expenses" text="Kiadások:"/>
+		<text name="rt_header_total_taxable_income" text="Adóköteles jövedelem:"/>
+		<text name="rt_header_total_taxed_income" text="Megadóztatott jövedelem:"/>
+		<text name="rt_header_total_tax_rate" text="Adókulcs:"/>
+		<text name="rt_header_total_tax_due" text="Fizetendő adó:"/>
+		<text name="rt_header_tax_status" text="Adó státusz:"/>
+		<text name="rt_header_tax_payment_info" text="Az adókimutatást áprilisban számítják ki, a befizetés szeptemberben történik."/>
+		<text name="rt_tax_statement_status_paid" text="Kifizetve"/>
+		<text name="rt_tax_statement_status_unpaid" text="Nincs kifizetve"/>
+		<text name="rt_event_type_none" text="-"/>
+		<text name="rt_event_type_policypoints" text="Irányelv pontok"/>
+		<text name="rt_event_type_policyactivated" text="Irányelv aktiválva"/>
+		<text name="rt_event_type_policycompleted" text="Irányelv teljesítve"/>
+		<text name="rt_event_type_schemeactivated" text="Program aktiválva"/>
+		<text name="rt_event_type_schemepayout" text="Program kifizetés"/>
+		<text name="rt_event_type_schemeexpired" text="Program lejárt"/>
+		<text name="rt_event_type_policywarning" text="Irányelv figyelmeztetés"/>
+		<text name="rt_event_type_policyfine" text="Irányelv bírság"/>
+		<text name="rt_tableheader_timestamp" text="Időbélyeg"/>
+		<text name="rt_tableheader_eventtype" text="Esemény típusa"/>
+		<text name="rt_tableheader_detail" text="Részletek"/>
+		<text name="rt_tableheader_name" text="Név"/>
+		<text name="rt_tableheader_description" text="Leírás"/>
+		<text name="rt_tableheader_next" text="Következő ellenőrzés"/>
+		<text name="rt_policy_croprotation" text="Vetésforgó"/>
+		<text name="rt_policy_sprayviolation" text="Vízszennyezés"/>
+		<text name="rt_policy_empty_food" text="Állateledel"/>
+		<text name="rt_policy_empty_straw" text="Állatszéna"/>
+		<text name="rt_policy_full_slurry" text="Trágyakezelés"/>
+		<text name="rt_policy_animal_productivity" text="Állatok állapota"/>
+		<text name="rt_policy_animal_space" text="Állathely"/>
+		<text name="rt_policy_manure_spreading" text="Trágya kijuttatás"/>
+		<text name="rt_policy_restricted_slurry" text="Korlátozott trágyázás"/>
+		<text name="rt_policy_sustainable_forestry" text="Fenntartható erdőgazdálkodás"/>
+		<text name="rt_policy_description_croprotation" text="Megköveteli a vetésforgó alkalmazását a talaj termékenységének megőrzésére, a kártevők és betegségek ciklusának megszakítására, a tápanyag-egyensúly javítására és a hosszú távú hozam védelmére."/>
+		<text name="rt_policy_description_sprayviolation" text="Tiltja a vegyszerek (műtrágya, trágyalé, mész, trágyázó anyag, gyomirtó) kijuttatását 14 méteres vízparti védőzónán belül, hogy megakadályozza a vízszennyezést. A szabályszegéseket büntetik."/>
+		<text name="rt_policy_description_empty_food" text="Megköveteli, hogy az állatoknak mindig elegendő takarmány álljon rendelkezésre; a tálakat folyamatosan töltsd fel, hogy elkerüld az éhezést és biztosítsd a jólétet."/>
+		<text name="rt_policy_description_empty_straw" text="Megköveteli, hogy az állatoknak megfelelő szénabedőlt biztosítva legyen a kényelem, hőszigetelés és higiénia érdekében. A széna csökkenti a sérüléseket és stresszt, segít fenntartani a testhőmérsékletet, és felszívja a nedvességet."/>
+		<text name="rt_policy_description_full_slurry" text="Megköveteli, hogy a trágyatárolók ne legyenek telítve, hogy elkerüld a kiömlést. A túlcsordulás szennyezheti a talajt és a vizet."/>
+		<text name="rt_policy_description_animal_productivity" text="Bátorítja az állatok termelékenységének fenntartását, ami az állatjólét általános mutatója."/>
+		<text name="rt_policy_description_animal_space" text="Megköveteli, hogy az állatoknak elegendő hely legyen a mozgáshoz, pihenéshez és ételhez/vízhez való hozzáféréshez. A túlzsúfoltság stresszt, sérüléseket és betegségek terjedését okozhat. Egyetlen állat esetén nem alkalmazandó."/>
+		<text name="rt_policy_description_manure_spreading" text="Ne hagyd a trágyát állandóan tárolva. Legfeljebb a termelt trágya 50%-át tárold 6 hónapon belül. Ha nem termelsz trágyát, nem érint ez az irányelv. A jelentés havonta frissül, a teljes értékelés és kifizetés/bírság májusban és novemberben történik."/>
+		<text name="rt_policy_description_restricted_slurry" text="Szeptember és december között nem alkalmazhatsz trágyát. Minden szabályszegésért büntetést kapsz."/>
+		<text name="rt_policy_description_sustainable_forestry" text="Bátorítja a fenntartható erdőgazdálkodást, jutalmazza a fák ültetését és bünteti az erdőirtást. Az irányelv a saját földedre vonatkozik; szerződéses munka nem befolyásolja az értékelést. A jelentés havonta frissül, a teljes értékelés és kifizetés/bírság júniusban és decemberben történik."/>
+		<text name="rt_policy_report_description_croprotation" text="A jelentés összesíti a szabálykövető és nem szabálykövető területeket."/>
+		<text name="rt_policy_report_description_sprayviolation" text="A jelentés mutatja, hány permetezési szabálysértés történt az elmúlt hónapban."/>
+		<text name="rt_policy_report_description_empty_food" text="A jelentés mutatja, hány órán keresztül volt üres az állatok etetője."/>
+		<text name="rt_policy_report_description_empty_straw" text="A jelentés mutatja, hány órán keresztül nem volt széna az állatoknál."/>
+		<text name="rt_policy_report_description_full_slurry" text="A jelentés mutatja, hány órán keresztül volt tele a trágyatároló."/>
+		<text name="rt_policy_report_description_animal_productivity" text="A jelentés mutatja, hány órán keresztül voltak az állatok alacsony termelékenységűek."/>
+		<text name="rt_policy_report_description_animal_space" text="A jelentés először a szabályszegési órák számát mutatja. Ezután minden tartásnál megmutatja a rendelkezésre álló és a korábban szükséges helyet."/>
+		<text name="rt_policy_report_description_manure_spreading" text="A jelentés mutatja a termelt trágya mennyiségét az elmúlt 6 hónapban, valamint a maximálisan tárolható mennyiséget. Az 1. havi adat nem kerül bele a következő jelentésbe, a jelenlegi hónapban termelt trágya később kerül elszámolásra."/>
+		<text name="rt_policy_report_description_restricted_slurry" text="A jelentés mutatja, hányszor történt trágyázás a korlátozott hónapokban."/>
+		<text name="rt_policy_report_description_sustainable_forestry" text="A jelentés mutatja, hány fát ültettek és vágtak ki az aktuális félévben."/>
+		<text name="rt_report_name_farmland" text="Földterület %s"/>
+		<text name="rt_report_name_total_area" text="Teljes terület"/>
+		<text name="rt_report_name_non_compliant_area" text="Nem megfelelő terület"/>
+		<text name="rt_report_name_spray_violations" text="Permetezési szabálysértések"/>
+		<text name="rt_report_name_empty_food" text="Órák étel nélkül"/>
+		<text name="rt_report_name_empty_straw" text="Órák széna nélkül"/>
+		<text name="rt_report_name_full_slurry" text="Órák tele trágyatárolóval"/>
+		<text name="rt_report_name_low_productivity_hours" text="Órák alacsony termelékenységgel"/>
+		<text name="rt_report_name_animal_space_violations" text="Állathely szabálysértések"/>
+		<text name="rt_report_name_manure_total_produced" text="Összes termelt trágya"/>
+		<text name="rt_report_name_manure_stored_amount" text="Jelenleg tárolt trágya"/>
+		<text name="rt_report_name_manure_max_stored_amount" text="Maximálisan engedélyezett tárolás"/>
+		<text name="rt_report_name_restricted_slurry_violations" text="Korlátozott trágyázás szabálysértések"/>
+		<text name="rt_report_name_bale_penalty" text="Bálabírság"/>
+		<text name="rt_report_name_total_payout" text="Összes kifizetés"/>
+		<text name="rt_report_name_animal_count" text="Jogosult állatok száma"/>
+		<text name="rt_report_name_harvest_reward" text="Betakarítási jutalom"/>
+		<text name="rt_report_name_natural_usage" text="Természetes műtrágya használat"/>
+		<text name="rt_report_name_other_usage" text="Egyéb műtrágya használat"/>
+		<text name="rt_report_name_points" text="Pontok"/>
+		<text name="rt_report_name_trees_planted" text="Ültetett fák"/>
+		<text name="rt_report_name_trees_cut" text="Kivágott fák"/>
+		<text name="rt_report_name_note" text="Megjegyzés:"/>
+		<text name="rt_report_name_additional_tax_benefit" text="Adókedvezmény jogosult"/>
+		<text name="rt_report_value_true" text="Igen"/>
+		<text name="rt_report_value_false" text="Nem"/>
+		<text name="rt_report_value_not_enough_months_elapsed" text="Ebben a hónapban a teljes értékelés elmaradt."/>
+		<text name="rt_scheme_delayed_mowing" text="Tavaszi kaszálás kerülése"/>
+		<text name="rt_scheme_crop_promotion" text="Növénypromóció"/>
+		<text name="rt_scheme_reduce_bale_wrapping" text="Bálázás csökkentése"/>
+		<text name="rt_scheme_tractor_demo" text="Traktor bemutató"/>
+		<text name="rt_scheme_natural_grazing" text="Természetes legeltetés"/>
+		<text name="rt_scheme_natural_fertiliser" text="Természetes műtrágya"/>
+		<text name="rt_scheme_winter_cover_crops" text="Téli takarónövény"/>
+		<text name="rt_scheme_road_snow_clearing" text="Úttisztítás hó esetén"/>
+		<text name="rt_scheme_brand_demo" text="Márkademó"/>
+		<text name="rt_scheme_set_aside" text="Kihagyott terület"/>
+		<text name="rt_scheme_desc_delayed_mowing" text="Ne kaszáld a füvet tavasszal (március–június) a vadvilág védelme érdekében. Júliusban kártalanítanak minden el nem kaszált terület után."/>
+		<text name="rt_scheme_desc_crop_promotion" text="Állami program a %s növények termesztésének ösztönzésére pénzügyi támogatással. A program idejére felszerelést kaphatsz, és minden tábláért pénzjutalmat kapsz, ahol ülteted a növényt."/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="A bálázás műanyagot használ és megakadályozza a magok terjedését szállítás közben. Ez a program nem bünteti a bálázást – csak jutalmaz alternatívák, mint a széna bálázása vagy takarmánykocsi használata esetén."/>
+		<text name="rt_scheme_desc_tractor_demo" text="%s lehetőséget kínál farmodnak, hogy kipróbálj egy %s típusú traktort %s hónapra. A pontos specifikáció a programra való jelentkezéskor kerül meghatározásra."/>
+		<text name="rt_scheme_desc_natural_grazing" text="A program ösztönzi az állatok legeltetését táplálék kiegészítés nélkül. A kifizetés kompenzálja a bevételkiesést. Jutalmat kapsz az állatok legeltetett ideje alapján, az állat típusától függően."/>
+		<text name="rt_scheme_desc_natural_fertiliser" text="A program ösztönzi a természetes műtrágyák (trágya, trágyalé, digestát) használatát. Jutalmat kapsz a természetes anyag használatért a szintetikus alternatívákhoz képest, a teljes területen, legyen az saját vagy szerződéses munka."/>
+		<text name="rt_scheme_desc_winter_cover_crops" text="Bátorítja a takarónövények telepítését télen a talajerózió és tápanyag-kimosódás csökkentésére. Minden jóváhagyott tábla után jutalmat kapsz."/>
+		<text name="rt_scheme_desc_road_snow_clearing" text="A helyi önkormányzat a friss hó miatt kéri a sózás elvégzését az utak tisztán tartására. A szórásnál a sebességed ne haladja meg a %s%s-t a megfelelő fedés érdekében."/>
+		<text name="rt_scheme_desc_brand_demo" text="%s lehetőséget kínál farmodnak néhány eszköz kipróbálására %s hónapra. A pontos specifikáció a programra való jelentkezéskor kerül meghatározásra."/>
+		<text name="rt_scheme_desc_set_aside" text="Bátorítja a föld egy részének pihentetését. Jutalmat kapsz, ha a föld legalább %d hónapig üres marad december előtt. Ha több, mint %s tábla megfelel, az összes eladott növény az adott adóévben 5%-os adókulcs alá esik."/>
+		<text name="rt_scheme_report_desc_delayed_mowing" text="A jelentés listázza a földterületeket és az utolsó értékelés során kifizetett összegeket."/>
+		<text name="rt_scheme_report_desc_crop_promotion" text="A jelentés listázza a földterületeket és az utolsó értékelés során kifizetett összegeket."/>
+		<text name="rt_scheme_report_desc_reduce_bale_wrapping" text="A jelentés listázza a földterületeket és az utolsó értékelés során kifizetett összegeket."/>
+		<text name="rt_scheme_report_desc_natural_grazing" text="A jelentés az utolsó értékelés során kifizetett összeg teljes értékét mutatja."/>
+		<text name="rt_scheme_report_desc_natural_fertiliser" text="A jelentés az elmúlt hónapban használt természetes és egyéb műtrágyák mennyiségét mutatja."/>
+		<text name="rt_scheme_report_desc_winter_cover_crops" text="A jelentés listázza a földterületeket és az utolsó értékelés során kifizetett összegeket."/>
+		<text name="rt_scheme_report_desc_road_snow_clearing" text="Ehhez a programhoz nincs jelentés. A hó elmúltával az elterített só mennyisége alapján kapod a kifizetést."/>
+		<text name="rt_scheme_report_desc_set_aside" text="A jelentés mutatja az egyes táblák kifizetését. Megmutatja, ha jogosult vagy az 5%-os adókulcsra."/>
+		<text name="rt_btn_select_scheme" text="Program kiválasztása"/>
+		<text name="rt_btn_watch_scheme_policy" text="Megfigyelés váltása"/>
+		<text name="rt_unit_meter_square" text="m²"/>
+		<text name="rt_ui_schemePayout" text="Program kifizetés"/>
+		<text name="finance_schemePayout" text="Program kifizetés"/>
+		<text name="rt_ui_policyFine" text="Irányelv büntetés"/>
+		<text name="finance_policyFine" text="Irányelv büntetés"/>
+		<text name="rt_ui_taxCost" text="Adó"/>
+		<text name="finance_taxCost" text="Adó"/>
+		<text name="rt_ui_grantReceived" text="Támogatás megérkezett"/>
+		<text name="finance_grantReceived" text="Támogatás megérkezett"/>
+		<text name="rt_ui_grantApplicationCost" text="Támogatási kérelem díja"/>
+		<text name="finance_grantApplicationCost" text="Támogatási kérelem díja"/>
+		<text name="rt_no_vehicle_room" text="Nincs elég hely a program járműveinek. Törölj valamit és próbáld újra."/>
+		<text name="rt_info_scheme_selected" text="Jelentkeztél a programra. Gyűjtsd össze a járműveket a boltban."/>
+		<text name="rt_misc_year" text="Év"/>
+		<text name="rt_misc_month" text="Hónap"/>
+		<text name="rt_misc_month_plural_suffix" text="k"/>
+		<text name="rt_misc_spreading_too_fast" text="Túl gyorsan haladsz a sózásnál. Sebességed maximum %s%s lehet."/>
+		<text name="rt_misc_confirm_scheme_selection" text="Biztosan jelentkezel erre a programra?"/>
+		<text name="rt_notes_additional_tax_benefit" text="Hatékony adókulcs"/>
+		<text name="rt_notes_loss_generated" text="Éves veszteség: %s (Összes halmozott veszteség: %s)"/>
+		<text name="rt_notes_loss_applied" text="Profit csökkentése előző veszteségekkel: %s (Maradék: %s)"/>
+		<text name="rt_help_title_red_tape" text="Bürokrácia"/>
+		<text name="rt_help_title_intro" text="Bevezetés"/>
+		<text name="rt_help_title_policies" text="Irányelvek"/>
+		<text name="rt_help_title_schemes" text="Programok"/>
+		<text name="rt_help_title_tax" text="Adó"/>
+		<text name="rt_help_title_grants" text="Támogatások"/>
+		<text name="rt_help_intro_intro" text="A Red Tape mod irányelveket, programokat és adózást vezet be a Farming Simulatorba. Ezek a rendszerek mélységet és kihívást adnak a farm élményhez, ösztönözve a fenntartható gyakorlatokat és a stratégiai tervezést."/>
+		<text name="rt_help_intro_intro_2" text="Minden információ a Red Tape-ről az új menüben található, a főmenüben. Keresd a kormányépület ikonját."/>
+		<text name="rt_help_policies_intro" text="Az irányelvek lényegében törvények, amelyeknek meg kell felelned a farmon. Az irányelvek szabályozzák, hogyan bánsz az állatokkal és hogyan használod a földet."/>
+		<text name="rt_help_policies_intro_2" text="Az Irányelvek fülön listázva látod az irányelveket. Válassz ki egyet, hogy lásd a megfelelési leírást. Lent jelentés mutatja az eddigi teljesítést. Egyes irányelvek havonta ellenőriznek, mások ritkábban."/>
+		<text name="rt_help_policies_intro_3" text="Ha megfelelsz egy irányelvnek, pontokat kapsz, amelyek a megfelelési szintedet növelik. Magasabb szintek jobb jutalmakhoz és adókedvezményekhez vezetnek. Ha megszeged, figyelmeztetést vagy bírságot kaphatsz. Figyelmeztetés esetén ikon jelenik meg a név mellett."/>
+		<text name="rt_help_schemes_intro" text="A programok opcionálisak és az év során elérhetőek. Jelentkezz bármelyikre. A programok meghatározott feladatok teljesítését igénylik, jutalom arányos. A jelentések mutatják az eredményeket. A jutalom az Gazdasági Nehézség beállítás alapján változik."/>
+		<text name="rt_help_schemes_intro_2" text="A programok helyzetfüggőek is lehetnek, például márkademó, ahol ingyen használhatsz eszközt. Az irányelvek megfelelési szintje közvetlenül befolyásolja a program jutalmat. A D szintű program alacsony jutalmat ad, az A szintű a legmagasabb jutalmat."/>
+		<text name="rt_help_schemes_intro_3" text="A programok időszakosan futnak. Újra elérhetőek, de újra jelentkezni kell. Néhány programnak van korlátozott ablak, pl. a növénypromóció csak az év első hónapjaiban érhető el."/>
+		<text name="rt_help_tax_intro" text="Az adó a profit egy részét a kormánynak adja. Az adóbevallás áprilisban készül el, a befizetés szeptemberben automatikusan történik. Ha nincs elég pénz, az egyenleg negatív lesz."/>
+		<text name="rt_help_tax_intro_2" text="Az Adó fülön bal oldalon a véglegesített bevallást látod, jobb oldalon az aktuális év összesítését. Ezzel tervezheted az adót, pl. nagy profit esetén új eszközök vásárlásával csökkentheted a profitot és így az adót."/>
+		<text name="rt_help_tax_intro_3" text="Néha adó megjegyzéseket láthatsz, amelyek jelzik, ha a bevallás valami nem standard feltétel miatt módosul. Pl. egy program jövőbeni adókedvezményt biztosíthat."/>
+		<text name="rt_help_tax_intro_4" text="Ha veszteséges évet zársz, a veszteség áthúzódik a következő évekre. Ha később profitot érsz el, a korábbi veszteségek csökkentik az adódat. A veszteség áthúzódás maximuma 5 millió."/>
+		<text name="rt_help_grants_intro" text="A támogatások lehetőséget adnak arra, hogy az államtól további forrást igényelj új építkezésekhez, például egy új tehénistállóhoz."/>
+		<text name="rt_help_grants_intro_2" text="A kezdéshez nyisd meg az építési menüt az érintett elemeknél; ott megjelenik egy „Támogatás igénylése” gomb. Válaszd ki, erősítsd meg, és ezzel elindul a kérelmed."/>
+		<text name="rt_help_grants_intro_3" text="A kérelmed feldolgozásának idejét a Bürokrácia menü Támogatások képernyőjén ellenőrizheted. A kérelem vagy jóváhagyásra, vagy elutasításra kerül. Jóváhagyás esetén az építési menüben helyezd el az épületet, és megkapod a megítélt összeget."/>
+		<text name="rt_help_grants_intro_4" text="Egyszerre csak egy aktív kérelmed lehet, és egy sikeresen feldolgozott támogatás után 6 hónapos várakozási idő lép életbe."/>
+		<text name="rt_setting_taxEnabled" text="Adórendszer engedélyezve"/>
+		<text name="rt_toolTip_taxEnabled" text="Engedélyezd vagy tiltsd az adórendszert"/>
+		<text name="rt_setting_policiesAndSchemesEnabled" text="Irányelvek/Programok engedélyezve"/>
+		<text name="rt_toolTip_policiesAndSchemesEnabled" text="Engedélyezd vagy tiltsd az Irányelvek és Programok rendszerét. Kikapcsoláskor minden aktív program azonnal véget ér."/>
+		<text name="rt_setting_baseTaxRate" text="Alap adókulcs"/>
+		<text name="rt_toolTip_baseTaxRate" text="Állítsd be az alap adókulcsot"/>
+		<text name="rt_system_disabled" text="Ez a rendszer jelenleg ki van kapcsolva. Ellenőrizd a játékbeállításokat a visszakapcsoláshoz." />
+		<text name="rt_setting_grantsEnabled" text="Támogatások engedélyezve"/>
+		<text name="rt_toolTip_grantsEnabled" text="Az állami támogatási rendszer engedélyezése vagy letiltása"/>
+		<text name="rt_grant_button" text="Támogatás igénylése" />
+		<text name="rt_grant_application_submitted" text="A támogatási kérelmedet benyújtottuk, és megtekinthető a Támogatások fülön." />
+		<text name="rt_grant_confirm_application_dialog" text="Szeretnél támogatást igényelni ehhez az építkezéshez? A kérelem díja %s. A kérelmek feldolgozása akár 6 hónapot is igénybe vehet, a jóváhagyás esélye 35–45%, amit befolyásolhat a megfelelőségi értéked." />
+		<text name="rt_grant_existing_application" text="Egyszerre csak egy aktív kérelem engedélyezett. Új kérelmet csak a meglévő feldolgozása után nyújthatsz be." />
+		<text name="rt_grant_approved_notification" text="A támogatási kérelmed jóváhagyásra került! %s összeget kapsz az épület megvásárlásakor." />
+		<text name="rt_grant_rejected_notification" text="A támogatási kérelmedet elutasították." />
+		<text name="rt_grant_completed_notification" text="%s támogatási összeg jóváírva a farmodnál." />
+		<text name="rt_event_type_grantapproved" text="Támogatás jóváhagyva" />
+		<text name="rt_event_type_grantrejected" text="Támogatás elutasítva" />
+		<text name="rt_event_type_grantcompleted" text="Támogatás kifizetve" />
+		<text name="permission_redTape_redTapeSettings" text="Bürokrácia beállítások" />
+		<text name="rt_header_grants" text="Támogatások" />
+		<text name="rt_label_pending_grants" text="Feldolgozás alatt" />
+		<text name="rt_label_approved_grants" text="Jóváhagyott támogatások" />
+		<text name="rt_label_historical_grants" text="Korábbi támogatások" />
+		<text name="rt_tableheader_building" text="Épület" />
+		<text name="rt_tableheader_price" text="Ár" />
+		<text name="rt_tableheader_applied" text="Kérelem" />
+		<text name="rt_tableheader_assessment" text="Értékelés" />
+		<text name="rt_tableheader_amount" text="Összeg" />
+		<text name="rt_tableheader_approved" text="Jóváhagyva" />
+		<text name="rt_tableheader_status" text="Státusz" />
+		<text name="rt_no_pending_grants" text="Nincsenek feldolgozás alatt lévő támogatási kérelmek" />
+		<text name="rt_no_approved_grants" text="Nincsenek jóváhagyott támogatások" />
+		<text name="rt_no_historical_grants" text="Nincsenek korábbi támogatások" />
+		<text name="rt_grant_status_pending" text="Feldolgozás alatt" />
+		<text name="rt_grant_status_approved" text="Jóváhagyva" />
+		<text name="rt_grant_status_rejected" text="Elutasítva" />
+		<text name="rt_grant_status_completed" text="Kifizetve" />
+		<text name="rt_grant_eligible" text="STÁTUSZ: JOGOSULT" />
+		<text name="rt_grant_not_eligible" text="STÁTUSZ: NEM JOGOSULT" />
+		<text name="rt_grant_eligible_description" text="Új támogatásokra való jogosultság számos feltételtől függ. Nem nyújthatsz be kérelmet, ha van aktuálisan feldolgozás alatt lévő kérelem, vagy jóváhagyott kérelem, amely még nem teljesült. Sikeres kérelem kifizetése után 6 hónapos várakozási idő van. A támogatások nem vehetők igénybe 80 000 alatti építési költség esetén." />
+	</texts>
+
+</l10n>
