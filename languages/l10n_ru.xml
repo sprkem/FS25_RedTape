@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="Отчёта по этой схеме нет. Как только снег растает, вы получите выплату в зависимости от того, сколько соли вы разбросали."/>
 		<text name="rt_scheme_report_desc_set_aside" text="В отчёте указана сумма выплат по каждому из ваших полей. Также указано, имеете ли вы право на специальную ставку налога в размере 5 %."/>
 		<text name="rt_btn_select_scheme" text="Выбор программы"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Переключать часы"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Выплаты за программы"/>
@@ -168,6 +169,7 @@
 		<text name="rt_misc_month_plural_suffix" text="ев"/>
 		<text name="rt_misc_spreading_too_fast" text="Вы едете слишком быстро, чтобы эффективно распределять соль. Ограничьте скорость до %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Вы уверены, что хотите подписаться на эту программу?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Эффективная налоговая ставка"/>
 		<text name="rt_notes_loss_generated" text="Убытки года: %s (Общие переносимые убытки: %s)"/>
 		<text name="rt_notes_loss_applied" text="Прибыль компенсирована предыдущими убытками: %s (Остаток: %s)"/>

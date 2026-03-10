@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="Ehhez a programhoz nincs jelentés. A hó elmúltával az elterített só mennyisége alapján kapod a kifizetést."/>
 		<text name="rt_scheme_report_desc_set_aside" text="A jelentés mutatja az egyes táblák kifizetését. Megmutatja, ha jogosult vagy az 5%-os adókulcsra."/>
 		<text name="rt_btn_select_scheme" text="Program kiválasztása"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Megfigyelés váltása"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Program kifizetés"/>
@@ -168,6 +169,7 @@
 		<text name="rt_misc_month_plural_suffix" text="k"/>
 		<text name="rt_misc_spreading_too_fast" text="Túl gyorsan haladsz a sózásnál. Sebességed maximum %s%s lehet."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Biztosan jelentkezel erre a programra?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Hatékony adókulcs"/>
 		<text name="rt_notes_loss_generated" text="Éves veszteség: %s (Összes halmozott veszteség: %s)"/>
 		<text name="rt_notes_loss_applied" text="Profit csökkentése előző veszteségekkel: %s (Maradék: %s)"/>

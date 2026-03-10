@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="Non esiste un rapporto per questo schema. Una volta terminata la neve, riceverai un pagamento proporzionale alla quantità di sale distribuito."/>
 		<text name="rt_scheme_report_desc_set_aside" text="Il rapporto mostra il pagamento per ciascuno dei tuoi campi e indica se hai diritto all’aliquota fiscale speciale del 5%."/>
 		<text name="rt_btn_select_scheme" text="Seleziona schema"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Attiva monitoraggio"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Pagamento schema"/>
@@ -169,6 +170,7 @@
 		<text name="rt_misc_month_plural_suffix" text="i"/>
 		<text name="rt_misc_spreading_too_fast" text="Stai guidando troppo veloce per spargere il sale in modo efficace. Limita la velocità a %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Sei sicuro di voler aderire a questo schema?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Aliquota fiscale effettiva"/>
 		<text name="rt_notes_loss_generated" text="Perdite annuali: %s (Perdite cumulative totali: %s)"/>
 		<text name="rt_notes_loss_applied" text="Profitto compensato da perdite precedenti: %s (Rimanenti: %s)"/>

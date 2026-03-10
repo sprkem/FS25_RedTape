@@ -26,6 +26,11 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
+1.0.2.0 [WIP]:
+- You can now end schemes early through the menu.
+- Grapes and Olives no longer need to be rotated.
+- Add Hungarian translation. Thanks to  MathiasHun.
+
 1.0.1.3:
 - Don't show grants button when the system is disabled.
 - Remove log warning for tax statement payments.

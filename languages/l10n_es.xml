@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="No hay informe para este plan. Una vez que termine la nieve, recibirás un pago relativo a cuánta sal has esparcido."/>
 		<text name="rt_scheme_report_desc_set_aside" text="El informe muestra el pago para cada uno de tus campos. También muestra si has calificado para la tasa impositiva especial del 5%."/>
 		<text name="rt_btn_select_scheme" text="Seleccionar plan"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Alternar observación"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Pago de plan"/>
@@ -168,6 +169,7 @@
 		<text name="rt_misc_month_plural_suffix" text="es"/>
 		<text name="rt_misc_spreading_too_fast" text="Estás conduciendo demasiado rápido para esparcir sal de manera efectiva. Limita tu velocidad a %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="¿Estás seguro de que quieres inscribirte en este plan?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Tasa impositiva efectiva"/>
 		<text name="rt_notes_loss_generated" text="Pérdidas del año: %s (Pérdidas acumuladas totales: %s)"/>
 		<text name="rt_notes_loss_applied" text="Beneficio compensado por pérdidas anteriores: %s (Restante: %s)"/>

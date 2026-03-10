@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="Não há relatório para este programa. Quando a neve terminar, você receberá um pagamento proporcional à quantidade de sal que espalhou."/>
 		<text name="rt_scheme_report_desc_set_aside" text="O relatório mostra o pagamento para cada um de seus campos. Também mostra se você se qualificou para a alíquota especial de 5%."/>
 		<text name="rt_btn_select_scheme" text="Selecionar Programa"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Ativar/Desativar Acompanhamento"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Pagamento do Programa"/>
@@ -168,6 +169,7 @@
 		<text name="rt_misc_month_plural_suffix" text="es"/>
 		<text name="rt_misc_spreading_too_fast" text="Você está dirigindo rápido demais para espalhar sal efetivamente. Limite sua velocidade para %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Tem certeza de que deseja se inscrever neste programa?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Alíquota efetiva"/>
 		<text name="rt_notes_loss_generated" text="Perdas do ano: %s (Total de perdas acumuladas: %s)"/>
 		<text name="rt_notes_loss_applied" text="Lucro compensado por perdas anteriores: %s (Restante: %s)"/>

@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="There is no report for this scheme. Once the snow ends, you will receive a payout relative to how much salt you have spread."/>
 		<text name="rt_scheme_report_desc_set_aside" text="The report shows the payout for each of your fields. It also shows if you have qualified for the special 5% tax rate."/>
 		<text name="rt_btn_select_scheme" text="Select Scheme"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Toggle Watch"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Scheme Payout"/>
@@ -168,6 +169,7 @@
 		<text name="rt_misc_month_plural_suffix" text="s"/>
 		<text name="rt_misc_spreading_too_fast" text="You are driving too fast to spread salt effectively. Limit your speed to %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Are you sure you want to sign up to this scheme?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Effective tax rate"/>
 		<text name="rt_notes_loss_generated" text="Year losses: %s (Total rolling losses: %s)"/>
 		<text name="rt_notes_loss_applied" text="Profit offset by previous losses: %s (Remaining: %s)"/>

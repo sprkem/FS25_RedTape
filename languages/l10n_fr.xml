@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="Il n'y a pas de rapport pour ce programme. Une fois la neige terminée, vous recevrez un versement proportionnel à la quantité de sel que vous avez épandu."/>
 		<text name="rt_scheme_report_desc_set_aside" text="Le rapport montre le versement pour chacun de vos champs. Il indique également si vous avez bénéficié du taux d'imposition spécial de 5%."/>
 		<text name="rt_btn_select_scheme" text="Sélectionner le programme"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Activer/Désactiver le suivi"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Versement du programme"/>
@@ -168,6 +169,7 @@
 		<text name="rt_misc_month_plural_suffix" text=""/>
 		<text name="rt_misc_spreading_too_fast" text="Vous roulez trop vite pour épandre le sel efficacement. Limitez votre vitesse à %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Êtes-vous sûr de vouloir vous inscrire à ce programme ?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Taux d'imposition effectif"/>
 		<text name="rt_notes_loss_generated" text="Pertes de l'année : %s (Total des pertes reportées : %s)"/>
 		<text name="rt_notes_loss_applied" text="Bénéfice compensé par les pertes antérieures : %s (Restant : %s)"/>
