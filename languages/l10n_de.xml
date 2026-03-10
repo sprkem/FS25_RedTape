@@ -149,6 +149,7 @@
 		<text name="rt_scheme_report_desc_road_snow_clearing" text="Es gibt keinen Bericht für dieses Förderprogramm. Sobald der Schnee endet, erhalten Sie eine Auszahlung entsprechend der Menge an Salz, die Sie gestreut haben."/>
 		<text name="rt_scheme_report_desc_set_aside" text="Der Bericht zeigt die Auszahlung für jedes Ihrer Felder. Er zeigt auch, ob Sie sich für den speziellen Steuersatz von 5% qualifiziert haben."/>
 		<text name="rt_btn_select_scheme" text="Förderprogramm auswählen"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Beobachtung umschalten"/>
 		<text name="rt_unit_meter_square" text="m²"/>
 		<text name="rt_ui_schemePayout" text="Förderprogramm-Auszahlung"/>
@@ -168,6 +169,7 @@
 		<text name="rt_misc_month_plural_suffix" text="e"/>
 		<text name="rt_misc_spreading_too_fast" text="Sie fahren zu schnell, um Salz effektiv zu streuen. Begrenzen Sie Ihre Geschwindigkeit auf %s%s."/>
 		<text name="rt_misc_confirm_scheme_selection" text="Sind Sie sicher, dass Sie sich für dieses Förderprogramm anmelden möchten?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
 		<text name="rt_notes_additional_tax_benefit" text="Effektiver Steuersatz"/>
 		<text name="rt_notes_loss_generated" text="Jahresverluste: %s (Gesamte Verlustvorträge: %s)"/>
 		<text name="rt_notes_loss_applied" text="Gewinn durch vorherige Verluste ausgeglichen: %s (Verbleibend: %s)"/>

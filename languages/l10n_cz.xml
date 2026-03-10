@@ -149,6 +149,7 @@
         <text name="rt_scheme_report_desc_road_snow_clearing" text="Pro tento dotační program neexistuje žádná zpráva. Jakmile sníh skončí, obdržíte platbu odpovídající množství posypané soli."/>
         <text name="rt_scheme_report_desc_set_aside" text="Zpráva ukazuje výplatu pro každé z vašich polí. Také ukazuje, zda jste se kvalifikovali pro speciální daňovou sazbu 5 %."/>
         <text name="rt_btn_select_scheme" text="Vybrat dotační program"/>
+		<text name="rt_btn_end_scheme" text="End Scheme"/>
 		<text name="rt_btn_watch_scheme_policy" text="Přepnout sledování"/>
         <text name="rt_unit_meter_square" text="m²"/>
         <text name="rt_ui_schemePayout" text="Výplata dotačního programu"/>
@@ -168,6 +169,7 @@
         <text name="rt_misc_month_plural_suffix" text="ů"/>
         <text name="rt_misc_spreading_too_fast" text="Jedete příliš rychle na efektivní sypání soli. Omezte rychlost na %s%s."/>
         <text name="rt_misc_confirm_scheme_selection" text="Jste si jisti, že se chcete přihlásit do tohoto dotačního programu?"/>
+		<text name="rt_misc_confirm_scheme_end" text="Are you sure you want to end this scheme early? You will lose any remaining benefits."/>
         <text name="rt_notes_additional_tax_benefit" text="Efektivní daňová sazba"/>
         <text name="rt_notes_loss_generated" text="Ztráty roku: %s (Celkové převáděné ztráty: %s)"/>
         <text name="rt_notes_loss_applied" text="Zisk kompenzován předchozími ztrátami: %s (Zbývá: %s)"/>
