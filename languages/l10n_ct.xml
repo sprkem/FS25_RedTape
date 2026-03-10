@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n language="zh">
+	<translationContributors/>
+	<texts>
+		<text name="rt_notify_active_policy" text="新政策已啟用：%s"/>
+		<text name="rt_notify_active_scheme" text="有新的計畫可用：%s (等級 %s)"/>
+		<text name="rt_notify_ended_scheme" text="一項計畫已結束：%s"/>
+		<text name="rt_notify_expired_scheme" text="一項計畫已不再可用：%s (等級 %s)"/>
+		<text name="rt_policy_reason_evaluation" text="在政策 %s 評估期間獲得了 %s 點數"/>
+		<text name="rt_notify_scheme_payout" text="計畫 %s 已向您支付：%s"/>
+		<text name="rt_notify_policy_warning" text="您因違反政策 %s 而收到警告"/>
+		<text name="rt_notify_policy_fine" text="您因違反政策 %2$s 被罰款 %1$s"/>
+		<text name="rt_label_active_policies" text="啟用中的政策"/>
+		<text name="rt_label_tax_statement" text="稅務申報表"/>
+		<text name="rt_header_policies" text="法"/>
+		<text name="rt_header_schemes" text="計畫"/>
+		<text name="rt_header_tax" text="稅"/>
+		<text name="rt_header_eventlog" text="事件日誌"/>
+		<text name="rt_header_croprotation" text="輪作"/>
+		<text name="rt_header_croprotation_mostrecent" text="最近作物"/>
+		<text name="rt_header_croprotation_previous" text="前次"/>
+		<text name="rt_header_croprotation_previous1" text="前次 -1"/>
+		<text name="rt_header_croprotation_previous2" text="前次 -2"/>
+		<text name="rt_header_croprotation_previous3" text="前次 -3"/>
+		<text name="rt_header_croprotation_view_title" text="收穫歷史"/>
+		<text name="rt_header_croprotation_view_subtitle" text="以下數據由作物輪作政策使用。規劃下一個欄位的作物時，請確保選擇與下方顯示的「最近作物」不同的品種，以符合規範。"/>
+		<text name="rt_header_current_tier" text="當前等級：%s"/>
+		<text name="rt_header_compliance_tier" text="合規表現"/>
+		<text name="rt_header_policy_information" text="政策資訊"/>
+		<text name="rt_header_scheme_information" text="計畫資訊"/>
+		<text name="rt_header_latest_report" text="最新報告"/>
+		<text name="rt_header_no_selected_policy" text="請選擇一個啟用中的政策以查看相關資訊"/>
+		<text name="rt_header_no_report_information" text="目前沒有報告資訊。可能是沒有需要報告的事項，或者是尚未進行評估。"/>
+		<text name="rt_header_scheme_equipment" text="在計畫期間將提供以下設備："/>
+		<text name="rt_header_next_evaluation_date" text="下次評估日期：%s"/>
+		<text name="rt_header_no_tax_statement" text="目前沒有可用的稅務申報表。報表將於每年四月生成，並於九月進行扣款。"/>
+		<text name="rt_header_finalised_statement" text="前一年度結算："/>
+		<text name="rt_header_tax_estimate" text="當前年度總計："/>
+		<text name="rt_header_tax_notes" text="稅務備註："/>
+		<text name="rt_header_tax_notes_info" text="這些相關備註清單可以幫助您理解稅務申報表。"/>
+		<text name="rt_header_no_tax_notes" text="申報表中沒有稅務備註。"/>
+		<text name="rt_header_total_expenses" text="支出："/>
+		<text name="rt_header_total_taxable_income" text="應納稅收入："/>
+		<text name="rt_header_total_taxed_income" text="已課稅收入："/>
+		<text name="rt_header_total_tax_rate" text="稅率："/>
+		<text name="rt_header_total_tax_due" text="應繳稅額："/>
+		<text name="rt_header_tax_status" text="稅務狀態："/>
+		<text name="rt_header_tax_payment_info" text="稅務申報於四月計算，並於九月自動結算。"/>
+		<text name="rt_tax_statement_status_paid" text="已繳納"/>
+		<text name="rt_tax_statement_status_unpaid" text="未繳納"/>
+		<text name="rt_event_type_none" text="-"/>
+		<text name="rt_event_type_policypoints" text="政策點數"/>
+		<text name="rt_event_type_policyactivated" text="政策已啟用"/>
+		<text name="rt_event_type_policycompleted" text="政策已完成"/>
+		<text name="rt_event_type_schemeactivated" text="計畫已啟用"/>
+		<text name="rt_event_type_schemepayout" text="計畫支出"/>
+		<text name="rt_event_type_schemeexpired" text="計畫已過期"/>
+		<text name="rt_event_type_policywarning" text="政策警告"/>
+		<text name="rt_event_type_policyfine" text="政策罰款"/>
+		<text name="rt_tableheader_timestamp" text="時間戳記"/>
+		<text name="rt_tableheader_eventtype" text="事件類型"/>
+		<text name="rt_tableheader_detail" text="詳情"/>
+		<text name="rt_tableheader_name" text="名稱"/>
+		<text name="rt_tableheader_description" text="描述"/>
+		<text name="rt_tableheader_next" text="下次審核"/>
+		<text name="rt_policy_croprotation" text="作物輪作"/>
+		<text name="rt_policy_sprayviolation" text="水源污染"/>
+		<text name="rt_policy_empty_food" text="動物飼料"/>
+		<text name="rt_policy_empty_straw" text="動物墊料"/>
+		<text name="rt_policy_full_slurry" text="泥漿管理"/>
+		<text name="rt_policy_animal_productivity" text="動物狀況"/>
+		<text name="rt_policy_animal_space" text="動物空間"/>
+		<text name="rt_policy_manure_spreading" text="糞肥管理"/>
+		<text name="rt_policy_restricted_slurry" text="泥漿施灑限制"/>
+		<text name="rt_policy_sustainable_forestry" text="永續林業"/>
+		<text name="rt_policy_description_croprotation" text="要求在不同田地和季節之間輪換作物，以維持土壤肥力、打破病蟲害循環、改善養分平衡並保護長期產量。"/>
+		<text name="rt_policy_description_sprayviolation" text="禁止在距離水源 14 公尺範圍內噴灑化學物質（固體肥料、泥漿、石灰、糞肥、除草劑），以防止溢流污染損害水生生物、降解水質並危害人體健康。違規將受處罰。"/>
+		<text name="rt_policy_description_empty_food" text="要求動物隨時有充足飼料；請始終保持飼料槽填滿且易於取用，以防止飢餓並符合福利標準。"/>
+		<text name="rt_policy_description_empty_straw" text="要求為動物提供充足的草稈墊料，以確保舒適、隔熱和衛生。草稈能減少受傷和壓力，幫助維持體溫並吸收水分以保護動物福利。"/>
+		<text name="rt_policy_description_full_slurry" text="要求泥漿罐保持在容量以下以防止溢出。溢出可能會將泥漿釋放到田地和水道中，污染土壤和水源並造成環境損害。"/>
+		<text name="rt_policy_description_animal_productivity" text="鼓勵維持動物生產力，這是衡量動物福利狀況的綜合指標。"/>
+		<text name="rt_policy_description_animal_space" text="要求動物有足夠的活動、休息以及獲取食物和水的空間；防止擁擠可減少壓力、受傷和疾病傳播。若牧場只有一隻動物則不適用。幼年動物所需的空間比成年動物少。"/>
+		<text name="rt_policy_description_manure_spreading" text="不可無限期堆放糞肥。確保在 6 個月內儲存的糞肥不超過產量的 50%。如果您不生產糞肥，則不受此政策影響。報告每月更新，但完整評估與獎懲將於 5 月和 11 月進行。"/>
+		<text name="rt_policy_description_restricted_slurry" text="9 月至 12 月期間不允許施灑泥漿。每次違規都將受到處罰。"/>
+		<text name="rt_policy_description_sustainable_forestry" text="鼓勵永續林業實踐，獎勵淨植樹為正數的行為，並對整體砍伐森林進行罰款。政策適用於您擁有的土地。承包工作不會影響您的評估。報告每月更新，完整評估與獎懲於 6 月和 12 月進行。"/>
+		<text name="rt_policy_report_description_croprotation" text="報告顯示合規與不合規土地的總量。"/>
+		<text name="rt_policy_report_description_sprayviolation" text="報告顯示上個月發生的噴灑違規次數。"/>
+		<text name="rt_policy_report_description_empty_food" text="報告顯示動物圈舍中飼料耗盡的累計小時數。"/>
+		<text name="rt_policy_report_description_empty_straw" text="報告顯示動物圈舍中墊料耗盡的累計小時數。"/>
+		<text name="rt_policy_report_description_full_slurry" text="報告顯示泥漿罐處於滿載狀態的累計小時數。"/>
+		<text name="rt_policy_report_description_animal_productivity" text="報告顯示動物處於低生產力狀態的累計小時數。"/>
+		<text name="rt_policy_report_description_animal_space" text="報告顯示違規的小時數，並列出各牧場的可用空間與上月最高需求空間。"/>
+		<text name="rt_policy_report_description_manure_spreading" text="報告顯示過去 6 個月的糞肥產量、目前儲存量及最大許可儲存量。請注意，顯示的第 1 個月數據將不計入下次報告。"/>
+		<text name="rt_policy_report_description_restricted_slurry" text="報告顯示在限制月份內施灑泥漿的次數。"/>
+		<text name="rt_policy_report_description_sustainable_forestry" text="報告顯示當前半年期內種植與砍伐的樹木數量。"/>
+		<text name="rt_report_name_farmland" text="農地 %s"/>
+		<text name="rt_report_name_total_area" text="總面積"/>
+		<text name="rt_report_name_non_compliant_area" text="不合規面積"/>
+		<text name="rt_report_name_spray_violations" text="噴灑違規"/>
+		<text name="rt_report_name_empty_food" text="無飼料時數"/>
+		<text name="rt_report_name_empty_straw" text="無墊料時數"/>
+		<text name="rt_report_name_full_slurry" text="泥漿滿載時數"/>
+		<text name="rt_report_name_low_productivity_hours" text="低生產力時數"/>
+		<text name="rt_report_name_animal_space_violations" text="動物空間違規"/>
+		<text name="rt_report_name_manure_total_produced" text="糞肥總產量"/>
+		<text name="rt_report_name_manure_stored_amount" text="當前糞肥儲存量"/>
+		<text name="rt_report_name_manure_max_stored_amount" text="最大許可儲存量"/>
+		<text name="rt_report_name_restricted_slurry_violations" text="限制期泥漿違規"/>
+		<text name="rt_report_name_bale_penalty" text="草捆處罰"/>
+		<text name="rt_report_name_total_payout" text="總支付金額"/>
+		<text name="rt_report_name_animal_count" text="合資格動物數量"/>
+		<text name="rt_report_name_harvest_reward" text="收穫獎勵"/>
+		<text name="rt_report_name_natural_usage" text="天然肥料使用"/>
+		<text name="rt_report_name_other_usage" text="其他肥料使用"/>
+		<text name="rt_report_name_points" text="點數"/>
+		<text name="rt_report_name_trees_planted" text="已種植樹木"/>
+		<text name="rt_report_name_trees_cut" text="已砍伐樹木"/>
+		<text name="rt_report_name_note" text="附註："/>
+		<text name="rt_report_name_additional_tax_benefit" text="符合稅收優惠資格"/>
+		<text name="rt_report_value_true" text="是"/>
+		<text name="rt_report_value_false" text="否"/>
+		<text name="rt_report_value_not_enough_months_elapsed" text="本月跳過完整評估。"/>
+		<text name="rt_scheme_delayed_mowing" text="避開春季割草"/>
+		<text name="rt_scheme_crop_promotion" text="作物推廣"/>
+		<text name="rt_scheme_reduce_bale_wrapping" text="減少草捆包裝"/>
+		<text name="rt_scheme_tractor_demo" text="拖拉機試用示範"/>
+		<text name="rt_scheme_natural_grazing" text="自然放牧"/>
+		<text name="rt_scheme_natural_fertiliser" text="天然肥料"/>
+		<text name="rt_scheme_winter_cover_crops" text="冬季覆蓋作物"/>
+		<text name="rt_scheme_road_snow_clearing" text="道路除雪"/>
+		<text name="rt_scheme_brand_demo" text="品牌設備試用"/>
+		<text name="rt_scheme_set_aside" text="休耕"/>
+		<text name="rt_scheme_desc_delayed_mowing" text="春季（3 月至 6 月）不要割草以保護野生動物。7 月時，您將獲得未割草坪的補償。"/>
+		<text name="rt_scheme_desc_crop_promotion" text="政府透過財政激勵推廣 %s 種植的計畫。您可在計畫期間獲得設備，並在種植該作物的每塊田地獲得獎金。"/>
+		<text name="rt_scheme_desc_reduce_bale_wrapping" text="包裹草捆會消耗塑料並阻礙種子散播。本計畫會對包裹草捆進行處罰，但若您選擇製作乾草捆或使用飼料拖車，則會給予獎勵。"/>
+		<text name="rt_scheme_desc_tractor_demo" text="%s 提供您的農場試用 %s 的機會，為期 %s 個月。試用車輛的具體規格將在您加入計畫時確定。"/>
+		<text name="rt_scheme_desc_natural_grazing" text="鼓勵動物在沒有額外飼料的情況下於牧場覓食。補償金旨在彌補產量損失。您將根據動物放牧的時間獲得獎金，金額視動物類型而定。"/>
+		<text name="rt_scheme_desc_natural_fertiliser" text="鼓勵使用糞肥、泥漿和沼液等天然肥料。相比合成肥料，使用天然肥料將獲得獎金。這適用於您農場或承包合約中的所有施肥行為。"/>
+		<text name="rt_scheme_desc_winter_cover_crops" text="鼓勵在冬季種植覆蓋作物以減少水土流失和養分流失。在冬季期間於田間種植核准的覆蓋作物可獲得獎金。"/>
+		<text name="rt_scheme_desc_road_snow_clearing" text="因近期降雪，地方議會請求農民協助撒鹽除雪。請確保撒鹽時速度不超過 %s%s，以確保覆蓋均勻。"/>
+		<text name="rt_scheme_desc_brand_demo" text="%s 提供您的農場試用設備的機會，為期 %s 個月。試用車輛的具體規格將在您加入計畫時確定。"/>
+		<text name="rt_scheme_desc_set_aside" text="鼓勵讓部分農地休耕，提供土地休息機會。若田地至少休耕 %d 個月直到 12 月，將獲得獎金。若符合條件的土地超過 %s，次年所有作物銷售將享有 5%% 的優惠稅率。"/>
+		<text name="rt_scheme_report_desc_delayed_mowing" text="報告顯示農地列表以及上次評估支付的金額。"/>
+		<text name="rt_scheme_report_desc_crop_promotion" text="報告顯示農地列表以及上次評估支付的金額。"/>
+		<text name="rt_scheme_report_desc_reduce_bale_wrapping" text="報告顯示農地列表以及上次評估支付的金額。"/>
+		<text name="rt_scheme_report_desc_natural_grazing" text="報告顯示上次評估支付的總金額。"/>
+		<text name="rt_scheme_report_desc_natural_fertiliser" text="報告顯示上個月天然肥料與其他肥料的使用量。"/>
+		<text name="rt_scheme_report_desc_winter_cover_crops" text="報告顯示農地列表以及上次評估支付的金額。"/>
+		<text name="rt_scheme_report_desc_road_snow_clearing" text="此計畫沒有報告。雪季結束後，您將根據撒鹽量收到一筆支付。"/>
+		<text name="rt_scheme_report_desc_set_aside" text="報告顯示每個田地的支付情況，以及您是否符合 5% 的特殊稅率資格。"/>
+		<text name="rt_btn_select_scheme" text="選擇計畫"/>
+		<text name="rt_btn_end_scheme" text="結束計畫"/>
+		<text name="rt_btn_watch_scheme_policy" text="切換觀察"/>
+		<text name="rt_unit_meter_square" text="m²"/>
+		<text name="rt_ui_schemePayout" text="計畫支付"/>
+		<text name="finance_schemePayout" text="計畫支付"/>
+		<text name="rt_ui_policyFine" text="政策罰款"/>
+		<text name="finance_policyFine" text="政策罰款"/>
+		<text name="rt_ui_taxCost" text="稅務"/>
+		<text name="finance_taxCost" text="稅務"/>
+		<text name="rt_ui_grantReceived" text="收到補助金"/>
+		<text name="finance_grantReceived" text="收到補助金"/>
+		<text name="rt_ui_grantApplicationCost" text="補助金申請費"/>
+		<text name="finance_grantApplicationCost" text="補助金申請費"/>
+		<text name="rt_no_vehicle_room" text="沒有足夠空間交付計畫車輛。請騰出空間後重試。"/>
+		<text name="rt_info_scheme_selected" text="您已加入計畫。請前往商店領取車輛。"/>
+		<text name="rt_misc_year" text="年"/>
+		<text name="rt_misc_month" text="月"/>
+		<text name="rt_misc_month_plural_suffix" text=""/>
+		<text name="rt_misc_spreading_too_fast" text="您的撒鹽速度過快，請將速度限制在 %s%s 以內。"/>
+		<text name="rt_misc_confirm_scheme_selection" text="您確定要加入此計畫嗎？"/>
+		<text name="rt_misc_confirm_scheme_end" text="您確定要提前結束此計畫嗎？您將失去所有剩餘的福利。"/>
+		<text name="rt_notes_additional_tax_benefit" text="有效稅率"/>
+		<text name="rt_notes_loss_generated" text="年度虧損：%s (累計總虧損：%s)"/>
+		<text name="rt_notes_loss_applied" text="利潤已被前序虧損抵銷：%s (剩餘額度：%s)"/>
+		<text name="rt_help_title_red_tape" text="官僚程序 (Red Tape)"/>
+		<text name="rt_help_title_intro" text="簡介"/>
+		<text name="rt_help_title_policies" text="政策"/>
+		<text name="rt_help_title_schemes" text="計畫"/>
+		<text name="rt_help_title_tax" text="稅務"/>
+		<text name="rt_help_title_grants" text="補助金"/>
+		<text name="rt_help_intro_intro" text="Red Tape 是一個為模擬農場引入政策、計畫與稅務系統的 Mod。這些系統旨在增加農業經營的深度與挑戰，鼓勵永續實踐與戰略規劃。"/>
+		<text name="rt_help_intro_intro_2" text="所有與 Red Tape 相關的資訊都包含在主選單新增的圖標中，請尋找政府大樓圖標。"/>
+		<text name="rt_help_policies_intro" text="政策本質上是您在務農時必須遵守的法律。它們規範了動物待遇與土地的適當使用方式。"/>
+		<text name="rt_help_policies_intro_2" text="在政策分頁中，您可以看到各項政策列表及合規說明。下方顯示您的表現報告。部分政策每月檢查，部分則頻率較低。大多數情況下，政策會生成月報以便您追蹤進度。"/>
+		<text name="rt_help_policies_intro_3" text="若遵守政策，您將獲得點數提升合規等級。等級越高，計畫獎勵越好，甚至可獲得稅務減免。若違反政策，您會收到警告或罰款。收到警告時政策名稱旁會出現圖標，請及時處理以避免罰款。"/>
+		<text name="rt_help_schemes_intro" text="計畫是可選的，全年會陸續開放。加入計畫後需達成特定要求以獲得補償。獎勵金額會根據您的遊戲經濟難度設定進行縮放。"/>
+		<text name="rt_help_schemes_intro_2" text="計畫也包含情境式的機會，例如品牌試用。您的合規等級直接影響計畫的獎勵品質。D 級獎勵最低，A 級最高。"/>
+		<text name="rt_help_schemes_intro_3" text="計畫通常運行固定期限（如一年）。有些計畫僅在特定時段開放，例如作物推廣通常僅在年初可用。"/>
+		<text name="rt_help_tax_intro" text="稅務系統會將您的利潤上繳政府。稅單於每年四月結算，九月自動扣除。若餘額不足支付稅款，您的資金將變為負數。"/>
+		<text name="rt_help_tax_intro_2" text="在稅務分頁左側可查看已結算的報表，右側則顯示本年度的預估總計。您可以以此規劃支出，例如購買新設備來降低當前利潤，進而減少稅單。"/>
+		<text name="rt_help_tax_intro_3" text="稅務備註會解釋任何非標準情況。例如，某項計畫提供的未來稅務減免會標示於此，幫助您理解稅金組成。"/>
+		<text name="rt_help_tax_intro_4" text="若年度虧損，虧損額會「結轉」至未來。往後年度若有利潤，會先用先前虧損抵扣，這可能導致您雖然獲利卻無需繳稅。結轉上限為 500 萬。"/>
+		<text name="rt_help_grants_intro" text="補助金是向政府申請額外資金以興建新建築（如新牛棚）的方式。"/>
+		<text name="rt_help_grants_intro_2" text="首先在建築選單中選擇適用項目，點擊「申請補助金」按鈕並確認。"/>
+		<text name="rt_help_grants_intro_3" text="在 Red Tape 選單的補助金頁面可查看處理進度。若獲准，請直接購買該建築，隨後將獲得撥款。"/>
+		<text name="rt_help_grants_intro_4" text="您一次只能有一個活躍申請，且在成功獲得補助後有 6 個月的冷卻期。"/>
+		<text name="rt_setting_taxEnabled" text="啟用稅務"/>
+		<text name="rt_toolTip_taxEnabled" text="啟用或停用稅務系統"/>
+		<text name="rt_setting_policiesAndSchemesEnabled" text="啟用政策與計畫"/>
+		<text name="rt_toolTip_policiesAndSchemesEnabled" text="啟用或停用政策與計畫系統。停用將立即終止所有活動中的計畫。"/>
+		<text name="rt_setting_baseTaxRate" text="基礎稅率"/>
+		<text name="rt_toolTip_baseTaxRate" text="設定基礎稅率"/>
+		<text name="rt_system_disabled" text="此系統目前已停用。請檢查遊戲設定以重新啟用。" />
+		<text name="rt_setting_grantsEnabled" text="啟用補助金"/>
+		<text name="rt_toolTip_grantsEnabled" text="啟用或停用政府補助金系統"/>
+		<text name="rt_grant_button" text="申請補助金" />
+		<text name="rt_grant_application_submitted" text="您的補助金申請已提交，可在補助金分頁查看。" />
+		<text name="rt_grant_confirm_application_dialog" text="您要為此建築申請補助金嗎？申請費用為 %s。申請可能需要長達 6 個月的處理時間，批准率約為 35-45%%（受合規評分影響）。" />
+		<text name="rt_grant_existing_application" text="一次只能有一個活躍申請。現有申請處理完畢後方可再次申請。" />
+		<text name="rt_grant_approved_notification" text="您的補助金申請已獲准！購買建築後您將獲得 %s。" />
+		<text name="rt_grant_rejected_notification" text="您的補助金申請已被拒絕。" />
+		<text name="rt_grant_completed_notification" text="補助金支付款 %s 已撥付至您的農場。" />
+		<text name="rt_event_type_grantapproved" text="補助金已批准" />
+		<text name="rt_event_type_grantrejected" text="補助金已拒絕" />
+		<text name="rt_event_type_grantcompleted" text="補助金已撥付" />
+		<text name="permission_redTape_redTapeSettings" text="Red Tape 設定權限" />
+		<text name="rt_header_grants" text="補助金" />
+		<text name="rt_label_pending_grants" text="待處理申請" />
+		<text name="rt_label_approved_grants" text="已批准補助金" />
+		<text name="rt_label_historical_grants" text="補助金歷史紀錄" />
+		<text name="rt_tableheader_building" text="建築" />
+		<text name="rt_tableheader_price" text="價格" />
+		<text name="rt_tableheader_applied" text="申請日期" />
+		<text name="rt_tableheader_assessment" text="評估進度" />
+		<text name="rt_tableheader_amount" text="金額" />
+		<text name="rt_tableheader_approved" text="批准日期" />
+		<text name="rt_tableheader_status" text="狀態" />
+		<text name="rt_no_pending_grants" text="目前沒有待處理的申請" />
+		<text name="rt_no_approved_grants" text="目前沒有已批准的補助金" />
+		<text name="rt_no_historical_grants" text="沒有補助金歷史紀錄" />
+		<text name="rt_grant_status_pending" text="處理中" />
+		<text name="rt_grant_status_approved" text="已批准" />
+		<text name="rt_grant_status_rejected" text="已拒絕" />
+		<text name="rt_grant_status_completed" text="已完成" />
+		<text name="rt_grant_eligible" text="狀態：符合資格" />
+		<text name="rt_grant_not_eligible" text="狀態：不符合資格" />
+		<text name="rt_grant_eligible_description" text="申請補助金的資格受多種條件限制：您不能有待處理或已獲准但未完成的申請。且在完成一次補助（收到資金）後有 6 個月的冷卻期。注意：造價低於 80,000 的建築不適用補助金。" />
+	</texts>
+</l10n>
