@@ -739,7 +739,6 @@ function FarmGatherer:updateManureLevels()
                     if farmland ~= nil and farmland.farmId ~= nil and farmland.farmId ~= 0 then
                         local farmData = self:getFarmData(farmland.farmId)
                         farmData.currentManureLevel = farmData.currentManureLevel + fillLevel
-                        print(string.format("[RedTape] Ground manure at cell %s: %.1f liters (farm %d)", checkKey, fillLevel, farmland.farmId))
                     end
                 end
             end
