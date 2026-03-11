@@ -277,10 +277,40 @@ function RTPolicySystem:applyPoints(farmId, points, reason)
         self.points[farmId] = 0
     end
 
+    local oldTier = self:getTierForPoints(self.points[farmId])
+
     self.points[farmId] = math.max(0, self.points[farmId] + points)
     self.points[farmId] = math.min(RTPolicySystem.THRESHOLDS[RTPolicySystem.TIER.A], self.points[farmId])
+
+    local newTier = self:getTierForPoints(self.points[farmId])
+
+    if oldTier ~= newTier then
+        self:updateSchemeTiers(farmId, newTier)
+    end
+
     g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
     g_currentMission.RedTape.EventLog:addEvent(farmId, RTEventLogItem.EVENT_TYPE.POLICY_POINTS, reason, false)
+end
+
+function RTPolicySystem:getTierForPoints(points)
+    for tier = RTPolicySystem.TIER.A, RTPolicySystem.TIER.D do
+        if points >= RTPolicySystem.THRESHOLDS[tier] then
+            return tier
+        end
+    end
+    return RTPolicySystem.TIER.D
+end
+
+function RTPolicySystem:updateSchemeTiers(farmId, newTier)
+    local schemeSystem = g_currentMission.RedTape.SchemeSystem
+    local activeSchemes = schemeSystem:getActiveSchemesForFarm(farmId)
+
+    for _, scheme in pairs(activeSchemes) do
+        local schemeInfo = RTSchemes[scheme.schemeIndex]
+        if schemeInfo ~= nil and schemeInfo.autoTierTransition and schemeInfo.tiers[newTier] ~= nil then
+            scheme.tier = newTier
+        end
+    end
 end
 
 -- Called from PolicyCompletedEvent, runs on client
