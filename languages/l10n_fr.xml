@@ -204,6 +204,9 @@
 		<text name="rt_system_disabled" text="Ce système est actuellement désactivé. Vérifiez les paramètres du jeu pour le réactiver." />
 		<text name="rt_setting_grantsEnabled" text="Subventions activées"/>
 		<text name="rt_toolTip_grantsEnabled" text="Activer ou désactiver le système de subventions gouvernementales"/>
+		<text name="rt_setting_productivityRecovery" text="Récupération de productivité"/>
+		<text name="rt_toolTip_productivityRecovery" text="Accélérez la vitesse de récupération de la productivité de l'élevage après le déplacement des animaux. Instantané règle la productivité au maximum immédiatement."/>
+		<text name="rt_setting_instant" text="Instantané"/>
 		<text name="rt_grant_button" text="Demander une subvention" />
 		<text name="rt_grant_application_submitted" text="Votre demande de subvention a été soumise et peut être consultée dans l'onglet Subventions." />
 		<text name="rt_grant_confirm_application_dialog" text="Souhaitez-vous demander une subvention pour cette construction ? Il y aura des frais de demande de %s. Les demandes peuvent prendre jusqu'à 6 mois à traiter et ont une chance d'approbation de 35-45%%, qui peut être impactée par votre note de conformité." />

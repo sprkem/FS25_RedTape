@@ -5,7 +5,8 @@ RedTape.menuItems = {
     'taxEnabled',
     'policiesAndSchemesEnabled',
     'grantsEnabled',
-    'baseTaxRate'
+    'baseTaxRate',
+    'productivityRecovery'
 }
 
 RedTape.multiplayerPermissions = {
@@ -59,6 +60,21 @@ RedTape.SETTINGS.baseTaxRate = {
         "20%",
         "30%",
         "40%"
+    }
+}
+
+RedTape.SETTINGS.productivityRecovery = {
+    ['default'] = 1,
+    ['serverOnly'] = true,
+    ['permission'] = 'redTapeSettings',
+    ['values'] = { 1, 2, 4, 6, 8, 0 },
+    ['strings'] = {
+        "1x",
+        "2x",
+        "4x",
+        "6x",
+        "8x",
+        g_i18n:getText("rt_setting_instant")
     }
 }
 

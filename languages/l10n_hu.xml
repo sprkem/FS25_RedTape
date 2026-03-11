@@ -204,6 +204,9 @@
 		<text name="rt_system_disabled" text="Ez a rendszer jelenleg ki van kapcsolva. Ellenőrizd a játékbeállításokat a visszakapcsoláshoz." />
 		<text name="rt_setting_grantsEnabled" text="Támogatások engedélyezve"/>
 		<text name="rt_toolTip_grantsEnabled" text="Az állami támogatási rendszer engedélyezése vagy letiltása"/>
+		<text name="rt_setting_productivityRecovery" text="Termelékenység helyreállítása"/>
+		<text name="rt_toolTip_productivityRecovery" text="Gyorsítsa fel, milyen gyorsan áll helyre az állattartás termelékenysége az állatok áthelyezése után. Az azonnali beállítás azonnal a maximumra állítja a termelékenységet."/>
+		<text name="rt_setting_instant" text="Azonnali"/>
 		<text name="rt_grant_button" text="Támogatás igénylése" />
 		<text name="rt_grant_application_submitted" text="A támogatási kérelmedet benyújtottuk, és megtekinthető a Támogatások fülön." />
 		<text name="rt_grant_confirm_application_dialog" text="Szeretnél támogatást igényelni ehhez az építkezéshez? A kérelem díja %s. A kérelmek feldolgozása akár 6 hónapot is igénybe vehet, a jóváhagyás esélye 35–45%, amit befolyásolhat a megfelelőségi értéked." />

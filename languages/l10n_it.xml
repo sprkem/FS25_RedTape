@@ -205,6 +205,9 @@
 		<text name="rt_system_disabled" text="Questo sistema è attualmente disattivato. Controlla le Impostazioni di Gioco per riattivarlo." />
 		<text name="rt_setting_grantsEnabled" text="Contributi abilitati"/>
 		<text name="rt_toolTip_grantsEnabled" text="Abilita o disabilita il sistema dei contributi governativi"/>
+		<text name="rt_setting_productivityRecovery" text="Recupero produttività"/>
+		<text name="rt_toolTip_productivityRecovery" text="Accelera la velocità di recupero della produttività dell'allevamento dopo lo spostamento degli animali. Istantaneo imposta la produttività al massimo immediatamente."/>
+		<text name="rt_setting_instant" text="Istantaneo"/>
 		<text name="rt_grant_button" text="Richiedi contributo" />
 		<text name="rt_grant_application_submitted" text="La tua domanda di contributo è stata inviata e può essere visualizzata nella scheda Contributi." />
 		<text name="rt_grant_confirm_application_dialog" text="Vuoi richiedere un contributo per questa costruzione? Ci sarà un costo di domanda pari a %s. Le domande possono richiedere fino a 6 mesi per essere elaborate e hanno una probabilità di approvazione del 35-45%%, influenzata dal tuo livello di conformità." />

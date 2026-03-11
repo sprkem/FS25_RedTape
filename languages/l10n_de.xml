@@ -204,6 +204,9 @@
 		<text name="rt_system_disabled" text="Dieses System ist derzeit deaktiviert. Überprüfen Sie die Spieleinstellungen, um es wieder einzuschalten." />
 		<text name="rt_setting_grantsEnabled" text="Zuschüsse aktiviert"/>
 		<text name="rt_toolTip_grantsEnabled" text="Regierungszuschusssystem aktivieren oder deaktivieren"/>
+		<text name="rt_setting_productivityRecovery" text="Produktivitätserholung"/>
+		<text name="rt_toolTip_productivityRecovery" text="Beschleunigen Sie, wie schnell sich die Produktivität der Tierhaltung nach dem Umzug von Tieren erholt. Sofort setzt die Produktivität sofort auf das Maximum."/>
+		<text name="rt_setting_instant" text="Sofort"/>
 		<text name="rt_grant_button" text="Zuschuss beantragen" />
 		<text name="rt_grant_application_submitted" text="Ihr Zuschussantrag wurde eingereicht und kann im Zuschüsse-Tab eingesehen werden." />
 		<text name="rt_grant_confirm_application_dialog" text="Möchten Sie einen Zuschuss für diese Konstruktion beantragen? Es fallen Antragskosten von %s an. Anträge können bis zu 6 Monate dauern und haben eine Genehmigungswahrscheinlichkeit von 35-45%%, die durch Ihre Compliance-Bewertung beeinflusst werden kann." />

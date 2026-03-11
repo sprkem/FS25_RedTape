@@ -27,6 +27,7 @@ https://github.com/sprkem/FS25_RedTape
 Changelog:
 
 1.0.2.0 [WIP]:
+- Added a new setting to control the speed of productivity gain. This is to better support moving animals regularly without losing out.
 - You can now end schemes early through the menu.
 - Grapes and Olives no longer need to be rotated.
 - Added Hungarian translation. Thanks to  MathiasHun.
