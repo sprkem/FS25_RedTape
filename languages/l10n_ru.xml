@@ -7,6 +7,7 @@
 		<text name="rt_notify_ended_scheme" text="Срок программы закончился: %s"/>
 		<text name="rt_notify_expired_scheme" text="Программа больше не доступна: %s (Уровень %s)"/>
 		<text name="rt_policy_reason_evaluation" text="%s баллы, начисляемые при оценке выполнения политической директивы %s"/>
+		<text name="rt_policy_custom" text="Пользовательский"/>
 		<text name="rt_notify_scheme_payout" text=" %s доход от программы: %s"/>
 		<text name="rt_notify_policy_warning" text="Вы получили предупреждение за нарушение %s политической директивы"/>
 		<text name="rt_notify_policy_fine" text="Вы получили сообщение %s штраф за нарушение правил %s политической директивы"/>

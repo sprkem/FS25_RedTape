@@ -7,6 +7,7 @@
         <text name="rt_notify_ended_scheme" text="Dotační program byl ukončen: %s"/>
         <text name="rt_notify_expired_scheme" text="Dotační program již není dostupný: %s (Úroveň %s)"/>
         <text name="rt_policy_reason_evaluation" text="%s bodů uděleno při hodnocení směrnice %s"/>
+        <text name="rt_policy_custom" text="Vlastní"/>
         <text name="rt_notify_scheme_payout" text="Dotační program %s vám vyplatil: %s"/>
         <text name="rt_notify_policy_warning" text="Obdrželi jste varování za porušení směrnice %s"/>
         <text name="rt_notify_policy_fine" text="Obdrželi jste pokutu %s za porušení směrnice %s"/>

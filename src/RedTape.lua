@@ -45,6 +45,32 @@ function RedTape:loadMap()
 
     self:loadFromXMLFile()
     RedTape.injectMenu()
+
+    if g_addCheatCommands and g_currentMission:getIsServer() then
+        addConsoleCommand("rtAddPoints", "Add or remove policy points for current farm. Usage: rtAddPoints amount", "consoleCommandAddPoints", self)
+    end
+end
+
+function RedTape:delete()
+    if g_addCheatCommands then
+        removeConsoleCommand("rtAddPoints")
+    end
+end
+
+function RedTape:consoleCommandAddPoints(amount)
+    if not g_currentMission:getIsServer() then return "Server only" end
+    local numAmount = tonumber(amount)
+    if numAmount == nil then
+        return "Usage: rtAddPoints amount (e.g. rtAddPoints 100 or rtAddPoints -50)"
+    end
+    
+    local farm = g_farmManager:getFarmByUserId(g_currentMission.playerUserId)
+    if farm == nil or farm.farmId == 0 then
+        return "Error: No farm found for current player"
+    end
+
+    g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farm.farmId, numAmount, g_i18n:getText("rt_policy_custom")))
+    return string.format("Applied %d points to farm %d", numAmount, farm.farmId)
 end
 
 function RedTape:update(dt)

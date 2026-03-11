@@ -31,7 +31,8 @@ Changelog:
 - Added a new setting to control the speed of productivity gain. This is to better support moving animals regularly without losing out.
 - Long running schemes will now automatically update their tier in line with the farms progression/regression.
 - You can now end schemes early through the menu.
-- Grapes and Olives no longer need to be rotated.
+- Added console command rtAddPoints to add/remove points from the current farm.
+- Grapes and Olives no longer need to be rotated (alongside grass types).
 - Added Hungarian translation. Thanks to  MathiasHun.
 - Added Traditional Chinese translation, thanks to tony200242-ship-it.
 

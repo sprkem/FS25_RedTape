@@ -7,6 +7,7 @@
 		<text name="rt_notify_ended_scheme" text="Ein Förderprogramm ist beendet: %s"/>
 		<text name="rt_notify_expired_scheme" text="Ein Förderprogramm ist nicht mehr verfügbar: %s (Stufe %s)"/>
 		<text name="rt_policy_reason_evaluation" text="%s Punkte bei der Bewertung der Richtlinie %s vergeben"/>
+		<text name="rt_policy_custom" text="Benutzerdefiniert"/>
 		<text name="rt_notify_scheme_payout" text="Das Förderprogramm %s hat Ihnen ausgezahlt: %s"/>
 		<text name="rt_notify_policy_warning" text="Sie haben eine Verwarnung wegen Verstoßes gegen die Richtlinie %s erhalten"/>
 		<text name="rt_notify_policy_fine" text="Sie haben ein Bußgeld von %s wegen Verstoßes gegen die Richtlinie %s erhalten"/>

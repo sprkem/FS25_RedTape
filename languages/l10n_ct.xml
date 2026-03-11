@@ -7,6 +7,7 @@
 		<text name="rt_notify_ended_scheme" text="一項計畫已結束：%s"/>
 		<text name="rt_notify_expired_scheme" text="一項計畫已不再可用：%s (等級 %s)"/>
 		<text name="rt_policy_reason_evaluation" text="在政策 %s 評估期間獲得了 %s 點數"/>
+		<text name="rt_policy_custom" text="自訂"/>
 		<text name="rt_notify_scheme_payout" text="計畫 %s 已向您支付：%s"/>
 		<text name="rt_notify_policy_warning" text="您因違反政策 %s 而收到警告"/>
 		<text name="rt_notify_policy_fine" text="您因違反政策 %2$s 被罰款 %1$s"/>

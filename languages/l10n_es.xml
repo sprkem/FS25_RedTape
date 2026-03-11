@@ -7,6 +7,7 @@
 		<text name="rt_notify_ended_scheme" text="Un plan ha terminado: %s"/>
 		<text name="rt_notify_expired_scheme" text="Un plan ya no está disponible: %s (Nivel %s)"/>
 		<text name="rt_policy_reason_evaluation" text="%s puntos otorgados durante la evaluación de la política %s"/>
+		<text name="rt_policy_custom" text="Personalizado"/>
 		<text name="rt_notify_scheme_payout" text="El plan %s te ha pagado: %s"/>
 		<text name="rt_notify_policy_warning" text="Has recibido una advertencia por violar la política %s"/>
 		<text name="rt_notify_policy_fine" text="Has recibido una multa de %s por violar la política %s"/>

@@ -7,6 +7,7 @@
 		<text name="rt_notify_ended_scheme" text="Uno schema è terminato: %s"/>
 		<text name="rt_notify_expired_scheme" text="Uno schema non è più disponibile: %s (Livello %s)"/>
 		<text name="rt_policy_reason_evaluation" text="%s punti assegnati durante la valutazione della politica %s"/>
+		<text name="rt_policy_custom" text="Personalizzato"/>
 		<text name="rt_notify_scheme_payout" text="Lo schema %s ti ha pagato: %s"/>
 		<text name="rt_notify_policy_warning" text="Hai ricevuto un avviso per aver violato la politica %s"/>
 		<text name="rt_notify_policy_fine" text="Hai ricevuto una multa di %s per aver violato la politica %s"/>

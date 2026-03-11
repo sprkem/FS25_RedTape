@@ -446,7 +446,7 @@ function RTPolicySystem:getProgressForFarm(farmId)
     local nextTierPoints = RTPolicySystem.THRESHOLDS[currentTier - 1]
     local startTierPoints = RTPolicySystem.THRESHOLDS[currentTier]
     local progressPercentage = 1
-    
+
     if currentTier ~= RTPolicySystem.TIER.A then
         local tierRange = nextTierPoints - startTierPoints
         local pointsInTier = points - startTierPoints
@@ -454,7 +454,7 @@ function RTPolicySystem:getProgressForFarm(farmId)
     else
         nextTierPoints = startTierPoints
     end
-    
+
     return {
         points = points,
         tier = currentTier,

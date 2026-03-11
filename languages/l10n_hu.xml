@@ -7,6 +7,7 @@
 		<text name="rt_notify_ended_scheme" text="Egy program véget ért: %s"/>
 		<text name="rt_notify_expired_scheme" text="Egy program már nem elérhető: %s (Szint %s)"/>
 		<text name="rt_policy_reason_evaluation" text="%s pont jóváírva a(z) %s irányelv értékelése során"/>
+		<text name="rt_policy_custom" text="Egyéni"/>
 		<text name="rt_notify_scheme_payout" text="A(z) %s program kifizetése: %s"/>
 		<text name="rt_notify_policy_warning" text="Figyelmeztetést kaptál a(z) %s irányelv megsértése miatt"/>
 		<text name="rt_notify_policy_fine" text="%s bírságot kaptál a(z) %s irányelv megsértése miatt"/>
