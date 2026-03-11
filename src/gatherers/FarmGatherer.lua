@@ -13,6 +13,7 @@ function FarmGatherer.new()
     self.productivityExceptions = {}
     self.snowOnGround = false
     self.saltData = {}
+    self.manureCells = {}
 
     return self
 end
@@ -175,6 +176,29 @@ function FarmGatherer:saveToXmlFile(xmlFile, key)
         end
     end
 
+    local mc = 0
+    local gridSize = 10
+    local halfGrid = gridSize / 2
+    for cellKey, _ in pairs(self.manureCells) do
+        local gridX, gridZ = cellKey:match("^(-?%d+)_(-?%d+)$")
+        gridX = tonumber(gridX)
+        gridZ = tonumber(gridZ)
+        if gridX ~= nil and gridZ ~= nil then
+            local x0 = gridX - halfGrid
+            local z0 = gridZ - halfGrid
+            local x1 = gridX + halfGrid
+            local z1 = z0
+            local x2 = x0
+            local z2 = gridZ + halfGrid
+            local fillLevel = DensityMapHeightUtil.getFillLevelAtArea(FillType.MANURE, x0, z0, x1, z1, x2, z2)
+            if fillLevel > 0 then
+                local manureCellKey = string.format("%s.manureCells.cell(%d)", farmGathererKey, mc)
+                setXMLString(xmlFile, manureCellKey .. "#key", cellKey)
+                mc = mc + 1
+            end
+        end
+    end
+
     local i = 0
     for farmId, farmData in pairs(self.data) do
         local farmKey = string.format("%s.farms.farm(%d)", farmGathererKey, i)
@@ -271,6 +295,21 @@ function FarmGatherer:loadFromXMLFile(xmlFile, key)
         self.saltData[spline][entryKey] = true
 
         y = y + 1
+    end
+
+    local mc = 0
+    while true do
+        local manureCellKey = string.format("%s.manureCells.cell(%d)", farmGathererKey, mc)
+        if not hasXMLProperty(xmlFile, manureCellKey) then
+            break
+        end
+
+        local cellKey = getXMLString(xmlFile, manureCellKey .. "#key")
+        if cellKey ~= nil then
+            self.manureCells[cellKey] = true
+        end
+
+        mc = mc + 1
     end
 
     local i = 0
@@ -632,6 +671,7 @@ function FarmGatherer:updateManureLevels()
         farmData.currentManureLevel = 0
     end
 
+    -- Count manure in placeable manure heaps and husbandry storages
     local placeables = g_currentMission.placeableSystem.placeables
     for _, placeable in pairs(placeables) do
         if placeable.spec_manureHeap ~= nil then
@@ -657,6 +697,58 @@ function FarmGatherer:updateManureLevels()
                 end
             end
         end
+    end
+
+    -- Count manure on the ground from tracked cells
+    local gridSize = 10
+    local halfGrid = gridSize / 2
+    local checkedCells = {}
+    local cellsToRemove = {}
+
+    for cellKey, _ in pairs(self.manureCells) do
+        local gridX, gridZ = cellKey:match("^(-?%d+)_(-?%d+)$")
+        gridX = tonumber(gridX)
+        gridZ = tonumber(gridZ)
+        if gridX == nil or gridZ == nil then
+            cellsToRemove[cellKey] = true
+            continue
+        end
+
+        -- Check this cell and surrounding cells
+        for dx = -1, 1 do
+            for dz = -1, 1 do
+                local checkX = gridX + (dx * gridSize)
+                local checkZ = gridZ + (dz * gridSize)
+                local checkKey = string.format("%d_%d", checkX, checkZ)
+
+                if checkedCells[checkKey] then
+                    continue
+                end
+                checkedCells[checkKey] = true
+
+                local x0 = checkX - halfGrid
+                local z0 = checkZ - halfGrid
+                local x1 = checkX + halfGrid
+                local z1 = z0
+                local x2 = x0
+                local z2 = checkZ + halfGrid
+
+                local fillLevel = DensityMapHeightUtil.getFillLevelAtArea(FillType.MANURE, x0, z0, x1, z1, x2, z2)
+                if fillLevel > 0 then
+                    local farmland = g_farmlandManager:getFarmlandAtWorldPosition(checkX, checkZ)
+                    if farmland ~= nil and farmland.farmId ~= nil and farmland.farmId ~= 0 then
+                        local farmData = self:getFarmData(farmland.farmId)
+                        farmData.currentManureLevel = farmData.currentManureLevel + fillLevel
+                        print(string.format("[RedTape] Ground manure at cell %s: %.1f liters (farm %d)", checkKey, fillLevel, farmland.farmId))
+                    end
+                end
+            end
+        end
+    end
+
+    -- Remove invalid cells
+    for cellKey, _ in pairs(cellsToRemove) do
+        self.manureCells[cellKey] = nil
     end
 end
 
