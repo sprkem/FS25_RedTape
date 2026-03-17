@@ -46,6 +46,13 @@ function RTHarvestHistoryUpdateEvent:run(connection)
         end
     end
 
+    -- Don't record the same crop if it was already harvested within the last 2 months
+    for _, entry in ipairs(farmlandData.harvestedCropsHistory) do
+        if entry.name == self.cropName and (self.month - entry.month) < 2 then
+            return
+        end
+    end
+
     local harvestEntry = {
         name = self.cropName,
         month = self.month

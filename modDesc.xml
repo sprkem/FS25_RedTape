@@ -36,7 +36,7 @@ Changelog:
 - Added Hungarian translation. Thanks to  MathiasHun.
 - Added Traditional Chinese translation, thanks to tony200242-ship-it.
 - Add tax accounting support for the money types in FS25_Invoices
-
+- Fix to block duplicate harvest history events in consecutive months, which could happen early game.
 
 1.0.1.3:
 - Don't show grants button when the system is disabled.
@@ -126,7 +126,7 @@ https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
 
-1.0.2.0:
+1.0.2.1:
 - Auf den Boden abgeladener Mist wird nun im Rahmen der Mistmanagement-Richtlinie erfasst. Bestehende Haufen werden erst gezählt, wenn neuer Mist hinzugefügt wird.
 - Neue Einstellung zur Steuerung der Produktivitätssteigerungsgeschwindigkeit hinzugefügt. Dies unterstützt das regelmäßige Umsetzen von Tieren, ohne Produktivität zu verlieren.
 - Langfristige Programme passen ihre Stufe nun automatisch an den Fortschritt/Rückschritt des Betriebs an.
@@ -135,6 +135,8 @@ https://github.com/sprkem/FS25_RedTape
 - Trauben und Oliven müssen nicht mehr in der Fruchtfolge berücksichtigt werden (wie Grasarten).
 - Ungarische Übersetzung hinzugefügt. Danke an MathiasHun.
 - Traditionelle chinesische Übersetzung hinzugefügt, danke an tony200242-ship-it.
+- Steuerliche Unterstützung für die Geldarten in FS25_Invoices hinzugefügt.
+- Behebung doppelter Erntehistorie-Einträge in aufeinanderfolgenden Monaten, die zu Beginn des Spiels auftreten konnten.
 
 1.0.1.3:
 - Zuschuss-Schaltfläche wird nicht mehr angezeigt, wenn das System deaktiviert ist.
@@ -228,7 +230,7 @@ https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
 
-1.0.2.0:
+1.0.2.1:
 - Le fumier déversé au sol est désormais suivi dans le cadre de la politique de gestion du fumier. Les tas existants ne seront comptabilisés que lorsqu'on y ajoute du fumier.
 - Ajout d'un nouveau paramètre pour contrôler la vitesse de gain de productivité. Cela permet de mieux gérer le déplacement régulier des animaux sans perte de productivité.
 - Les programmes de longue durée mettent désormais automatiquement à jour leur niveau en fonction de la progression/régression de la ferme.
@@ -237,6 +239,8 @@ Journal des modifications:
 - Les raisins et les olives n'ont plus besoin d'être inclus dans la rotation des cultures (comme les types d'herbe).
 - Ajout de la traduction hongroise. Merci à MathiasHun.
 - Ajout de la traduction en chinois traditionnel, merci à tony200242-ship-it.
+- Ajout de la prise en charge de la comptabilité fiscale pour les types de revenus de FS25_Invoices.
+- Correction des doublons dans l'historique des récoltes lors de mois consécutifs, pouvant survenir en début de partie.
 
 1.0.1.3:
 - Le bouton de subventions n'est plus affiché lorsque le système est désactivé.
