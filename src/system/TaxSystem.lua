@@ -371,7 +371,8 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         "vehicleRunningCost",
         "propertyMaintenance",
         "productionCosts",
-        "grantApplicationCost"
+        "grantApplicationCost",
+        "invoiceExpense"
     }
 
     local incomeStats = {
@@ -388,7 +389,8 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         "incomeBga",
         "soldWood",
         "soldBales",
-        "expenses"
+        "expenses",
+        "invoiceIncome"
     }
 
     local ignoreStats = {
