@@ -412,14 +412,16 @@ RTSchemes = {
                 for i = 1, #item.categoryNames do
                     if chosenCategory == item.categoryNames[i] then
                         if not string.find(item.xmlFilename, "/pdlc/") then
-                            table.insert(options, item)
+                            local success = pcall(StoreItemUtil.loadSpecsFromXML, item)
+                            if success then
+                                table.insert(options, item)
+                            end
                         end
                     end
                 end
             end
             local harvester = options[math.random(1, #options)]
             scheme:setProp('vehicleToSpawn1', harvester.xmlFilename)
-            StoreItemUtil.loadSpecsFromXML(harvester)
 
             local skipCategories = { "WEIGHTS" }
             local spawnIndex = 2
@@ -514,7 +516,7 @@ RTSchemes = {
         availabilityProbability = 0.2,
         descriptionFunction = function(schemeInfo, scheme)
             local storeItem = g_storeManager:getItemByXMLFilename(scheme.props["vehicleToSpawn1"])
-            StoreItemUtil.loadSpecsFromXML(storeItem)
+            pcall(StoreItemUtil.loadSpecsFromXML, storeItem)
 
             local brand = g_brandManager.indexToBrand[storeItem.brandIndex].title
             local vehicleName = storeItem.name
@@ -545,7 +547,10 @@ RTSchemes = {
                 for i = 1, #item.categoryNames do
                     if chosenCategory == item.categoryNames[i] then
                         if not string.find(item.xmlFilename, "/pdlc/") then
-                            table.insert(options, item)
+                            local success = pcall(StoreItemUtil.loadSpecsFromXML, item)
+                            if success then
+                                table.insert(options, item)
+                            end
                         end
                     end
                 end
@@ -698,8 +703,8 @@ RTSchemes = {
             for _, item in pairs(g_storeManager:getItems()) do
                 for i = 1, #item.categoryNames do
                     if chosenCategory == item.categoryNames[i] then
-                        StoreItemUtil.loadSpecsFromXML(item)
-                        if item.specs and item.specs.fillTypes and item.specs.fillTypes.fillTypeNames == "roadsalt" then
+                        local success = pcall(StoreItemUtil.loadSpecsFromXML, item)
+                        if success and item.specs and item.specs.fillTypes and item.specs.fillTypes.fillTypeNames == "roadsalt" then
                             if not string.find(item.xmlFilename, "/pdlc/") then
                                 table.insert(options, item)
                             end
@@ -773,7 +778,7 @@ RTSchemes = {
         availabilityProbability = 0.1,
         descriptionFunction = function(schemeInfo, scheme)
             local storeItem = g_storeManager:getItemByXMLFilename(scheme.props["vehicleToSpawn1"])
-            StoreItemUtil.loadSpecsFromXML(storeItem)
+            pcall(StoreItemUtil.loadSpecsFromXML, storeItem)
 
             local brand = g_brandManager.indexToBrand[storeItem.brandIndex].title
             local suffix = ""
@@ -803,8 +808,8 @@ RTSchemes = {
 
             local options = {}
             for _, item in pairs(g_storeManager:getItems()) do
-                StoreItemUtil.loadSpecsFromXML(item)
-                if item.brandIndex == chosenBrandIndex then
+                local success = pcall(StoreItemUtil.loadSpecsFromXML, item)
+                if success and item.brandIndex == chosenBrandIndex then
                     local skip = false
                     for _, name in pairs(item.categoryNames) do
                         if RedTape.tableHasValue(skipCategories, name) then
