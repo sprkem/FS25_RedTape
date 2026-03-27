@@ -28,7 +28,7 @@ Changelog:
 
 1.0.2.2 [WIP]:
 - Add safety checking when selecting spawn vehicles for schemes to prevent errors.
-- For crop promotion, save by fruit name to avoid issues if fruit type indices change.
+- For crop promotion, save by fruit name to avoid issues if fruit type indices change. Also fix a bug that caused evaluation to fail.
 - Add Polish translation, thanks to sabaka1983.
 
 1.0.2.1:
