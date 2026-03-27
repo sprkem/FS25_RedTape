@@ -26,7 +26,7 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.2.2 [WIP]:
+1.0.2.2:
 - For crop promotion, save by fruit name to avoid issues if fruit type indices change. Also fix a bug that caused evaluation to fail.
 - Added safety checking when selecting spawn vehicles for schemes to prevent errors.
 - Fix a bug in sustainable forestry evaluation.
@@ -133,6 +133,13 @@ https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
 
+1.0.2.2:
+- Bei der Ernteförderung wird nun der Fruchtname gespeichert, um Probleme bei Änderungen der Fruchttyp-Indizes zu vermeiden. Außerdem wurde ein Fehler behoben, der die Auswertung fehlschlagen ließ.
+- Sicherheitsprüfung bei der Auswahl von Fahrzeugen für Programme hinzugefügt, um Fehler zu vermeiden.
+- Fehler in der Auswertung der nachhaltigen Forstwirtschaft behoben.
+- Verschiedene Sicherheitsprüfungen hinzugefügt.
+- Polnische Übersetzung hinzugefügt, danke an sabaka1983.
+
 1.0.2.1:
 - Auf den Boden abgeladener Mist wird nun im Rahmen der Mistmanagement-Richtlinie erfasst. Bestehende Haufen werden erst gezählt, wenn neuer Mist hinzugefügt wird.
 - Neue Einstellung zur Steuerung der Produktivitätssteigerungsgeschwindigkeit hinzugefügt. Dies unterstützt das regelmäßige Umsetzen von Tieren, ohne Produktivität zu verlieren.
@@ -236,6 +243,13 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.2.2:
+- Pour la promotion des cultures, sauvegarde désormais par nom de fruit afin d'éviter les problèmes en cas de changement des indices de type de fruit. Correction d'un bug qui empêchait l'évaluation de fonctionner.
+- Ajout d'une vérification de sécurité lors de la sélection des véhicules pour les programmes afin d'éviter les erreurs.
+- Correction d'un bug dans l'évaluation de la foresterie durable.
+- Ajout de diverses vérifications de sécurité.
+- Ajout de la traduction polonaise, merci à sabaka1983.
 
 1.0.2.1:
 - Le fumier déversé au sol est désormais suivi dans le cadre de la politique de gestion du fumier. Les tas existants ne seront comptabilisés que lorsqu'on y ajoute du fumier.
