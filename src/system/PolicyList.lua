@@ -607,7 +607,7 @@ RTPolicies = {
                 else
                     if netTrees < 0 then
                         reward = policyInfo.penaltyPointsPerTree * math.abs(netTrees)
-                        local fine = policyInfo.excessCutPenaltyPerTree * math.abs(netTrees)
+                        local fine = policyInfo.excessCutFinePerTree * math.abs(netTrees)
                         local skipWarning = true
                         g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fine, skipWarning)
                     elseif netTrees > 0 then
