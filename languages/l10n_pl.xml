@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+	<translationContributors/>
+	<texts>
+<text name="rt_notify_active_policy" text="Aktywowano nową politykę: %s"/>
+<text name="rt_notify_active_scheme" text="Dostępny jest nowy program: %s (Poziom %s)"/>
+<text name="rt_notify_ended_scheme" text="Program zakończył się: %s"/>
+<text name="rt_notify_expired_scheme" text="Program nie jest już dostępny: %s (Poziom %s)"/>
+<text name="rt_policy_reason_evaluation" text="Przyznano %s pkt. podczas oceny polityki %s"/>
+<text name="rt_policy_custom" text="Niestandardowa"/>
+<text name="rt_notify_scheme_payout" text="Program %s wypłacił ci: %s"/>
+<text name="rt_notify_policy_warning" text="Otrzymałeś ostrzeżenie za naruszenie polityki: %s"/>
+<text name="rt_notify_policy_fine" text="Otrzymałeś grzywnę w wysokości %s za naruszenie polityki: %s"/>
+<text name="rt_label_active_policies" text="Aktywne polityki"/>
+<text name="rt_label_tax_statement" text="Deklaracja podatkowa"/>
+<text name="rt_header_policies" text="Polityki"/>
+<text name="rt_header_schemes" text="Programy"/>
+<text name="rt_header_tax" text="Podatki"/>
+<text name="rt_header_eventlog" text="Dziennik zdarzeń"/>
+<text name="rt_header_croprotation" text="Płodozmian"/>
+<text name="rt_header_croprotation_mostrecent" text="Ostatnie"/>
+<text name="rt_header_croprotation_previous" text="Poprzednie"/>
+<text name="rt_header_croprotation_previous1" text="Poprzednie -1"/>
+<text name="rt_header_croprotation_previous2" text="Poprzednie -2"/>
+<text name="rt_header_croprotation_previous3" text="Poprzednie -3"/>
+<text name="rt_header_croprotation_view_title" text="Historia zbiorów"/>
+<text name="rt_header_croprotation_view_subtitle" text="Poniższe dane są wykorzystywane przez politykę Płodozmianu. Planując kolejną uprawę na danym polu, upewnij się, że wybierasz inną niż ta oznaczona poniżej jako 'Ostatnie', aby zachować zgodność."/>
+<text name="rt_header_current_tier" text="Obecny poziom: %s"/>
+<text name="rt_header_compliance_tier" text="Wskaźnik zgodności"/>
+<text name="rt_header_policy_information" text="Informacje o polityce"/>
+<text name="rt_header_scheme_information" text="Informacje o programie"/>
+<text name="rt_header_latest_report" text="Najnowszy raport"/>
+<text name="rt_header_no_selected_policy" text="Wybierz aktywną politykę, aby zobaczyć istotne informacje"/>
+<text name="rt_header_no_report_information" text="Brak dostępnych informacji do raportu. Albo nie ma nic do zgłoszenia, albo nie przeprowadzono jeszcze oceny."/>
+<text name="rt_header_scheme_equipment" text="Poniższy sprzęt zostanie udostępniony na czas trwania programu:"/>
+<text name="rt_header_next_evaluation_date" text="Data kolejnej oceny: %s"/>
+<text name="rt_header_no_tax_statement" text="Obecnie nie ma dostępnej deklaracji podatkowej. Deklaracje podatkowe są generowane corocznie w kwietniu, a płatność pobierana jest we wrześniu."/>
+<text name="rt_header_finalised_statement" text="Rozliczenie za poprzedni rok:"/>
+<text name="rt_header_tax_estimate" text="Sumy bieżącego roku:"/>
+<text name="rt_header_tax_notes" text="Notatki podatkowe:"/>
+<text name="rt_header_tax_notes_info" text="Lista odpowiednich adnotacji, które mogą pomóc w zrozumieniu twojej deklaracji podatkowej."/>
+<text name="rt_header_no_tax_notes" text="Deklaracja nie zawiera żadnych notatek podatkowych."/>
+<text name="rt_header_total_expenses" text="Wydatki:"/>
+<text name="rt_header_total_taxable_income" text="Dochód do opodatkowania:"/>
+<text name="rt_header_total_taxed_income" text="Opodatkowany dochód:"/>
+<text name="rt_header_total_tax_rate" text="Stawka podatku:"/>
+<text name="rt_header_total_tax_due" text="Podatek do zapłaty:"/>
+<text name="rt_header_tax_status" text="Status podatkowy:"/>
+<text name="rt_header_tax_payment_info" text="Deklaracje podatkowe są obliczane w kwietniu, a płatność pobierana jest we wrześniu."/>
+<text name="rt_tax_statement_status_paid" text="Zapłacono"/>
+<text name="rt_tax_statement_status_unpaid" text="Niezapłacone"/>
+<text name="rt_event_type_none" text="-"/>
+<text name="rt_event_type_policypoints" text="Punkty polityki"/>
+<text name="rt_event_type_policyactivated" text="Aktywowano politykę"/>
+<text name="rt_event_type_policycompleted" text="Zakończono politykę"/>
+<text name="rt_event_type_schemeactivated" text="Aktywowano program"/>
+<text name="rt_event_type_schemepayout" text="Wypłata z programu"/>
+<text name="rt_event_type_schemeexpired" text="Program wygasł"/>
+<text name="rt_event_type_policywarning" text="Ostrzeżenie (Polityka)"/>
+<text name="rt_event_type_policyfine" text="Grzywna (Polityka)"/>
+<text name="rt_tableheader_timestamp" text="Znacznik czasu"/>
+<text name="rt_tableheader_eventtype" text="Typ zdarzenia"/>
+<text name="rt_tableheader_detail" text="Szczegóły"/>
+<text name="rt_tableheader_name" text="Nazwa"/>
+<text name="rt_tableheader_description" text="Opis"/>
+<text name="rt_tableheader_next" text="Następne sprawdzenie"/>
+<text name="rt_policy_croprotation" text="Płodozmian"/>
+<text name="rt_policy_sprayviolation" text="Zanieczyszczenie wód"/>
+<text name="rt_policy_empty_food" text="Pasza dla zwierząt"/>
+<text name="rt_policy_empty_straw" text="Ściółka dla zwierząt"/>
+<text name="rt_policy_full_slurry" text="Zarządzanie gnojowicą"/>
+<text name="rt_policy_animal_productivity" text="Warunki zwierząt"/>
+<text name="rt_policy_animal_space" text="Przestrzeń dla zwierząt"/>
+<text name="rt_policy_manure_spreading" text="Zarządzanie obornikiem"/>
+<text name="rt_policy_restricted_slurry" text="Ograniczenia w rozlewaniu gnojowicy"/>
+<text name="rt_policy_sustainable_forestry" text="Zrównoważone leśnictwo"/>
+<text name="rt_policy_description_croprotation" text="Wymaga rotacji upraw na polach i między sezonami w celu utrzymania żyzności gleby, przerywania cykli szkodników i chorób, poprawy bilansu składników odżywczych oraz ochrony długoterminowych plonów."/>
+<text name="rt_policy_description_sprayviolation" text="Zabrania rozpylania środków chemicznych (nawóz stały, gnojowica, wapno, obornik, herbicyd) w 14-metrowych strefach buforowych wokół zbiorników wodnych, aby zapobiec spływom i zanieczyszczeniom, które mogą szkodzić organizmom wodnym, obniżać jakość wody i zagrażać zdrowiu ludzkiemu. Naruszenia są karane."/>
+<text name="rt_policy_description_empty_food" text="Wymaga, aby zwierzęta zawsze miały dostęp do wystarczającej ilości paszy; utrzymuj koryta napełnione i łatwo dostępne przez cały czas, aby zapobiec głodowi i spełnić normy dobrostanu."/>
+<text name="rt_policy_description_empty_straw" text="Wymaga zapewnienia zwierzętom odpowiedniej ilości słomy na ściółkę, aby zapewnić im komfort, izolację i higienę. Słoma zmniejsza ryzyko obrażeń i stres, pomaga utrzymać temperaturę ciała i wchłania wilgoć w trosce o dobrostan zwierząt."/>
+<text name="rt_policy_description_full_slurry" text="Wymaga utrzymywania zbiorników na gnojowicę poniżej ich maksymalnej pojemności, aby zapobiegać przepełnieniom i wyciekom. Przepełnienia mogą uwalniać gnojowicę na pola i do dróg wodnych, zanieczyszczając glebę i wodę oraz powodując szkody w środowisku."/>
+<text name="rt_policy_description_animal_productivity" text="Zachęca do utrzymywania produktywności zwierząt, co jest ogólnym wskaźnikiem dobrego dobrostanu."/>
+<text name="rt_policy_description_animal_space" text="Wymaga, aby zwierzęta miały wystarczająco dużo przestrzeni do poruszania się, odpoczynku i dostępu do jedzenia oraz wody; zapobieganie przeludnieniu zmniejsza stres, obrażenia i rozprzestrzenianie się chorób. Nie dotyczy, jeśli hodowla ma tylko jedno zwierzę. Młodsze zwierzęta wymagają mniej przestrzeni niż dorosłe."/>
+<text name="rt_policy_description_manure_spreading" text="Nie powinieneś pozwalać, aby obornik leżał bezczynnie w nieskończoność. Upewnij się, że nie przechowujesz więcej niż 50% produkowanego obornika w okresie 6 miesięcy. Jeśli nie produkujesz obornika, ta polityka cię nie dotyczy. Raport będzie aktualizowany co miesiąc, jednak pełna ocena, wypłaty lub grzywny będą miały miejsce w maju i listopadzie."/>
+<text name="rt_policy_description_restricted_slurry" text="Nie wolno ci rozlewać gnojowicy w miesiącach od września do grudnia. Zostaniesz ukarany za każde naruszenie."/>
+<text name="rt_policy_description_sustainable_forestry" text="Zachęca do zrównoważonych praktyk leśnych, nagradzając za dodatni bilans sadzenia drzew i karząc za ogólne wylesianie. Polityka dotyczy tylko twojej własnej ziemi. Wykonywanie prac kontraktowych nie wpłynie na twoją ocenę. Raport będzie aktualizowany co miesiąc i zliczał wartości półroczne, jednak pełna ocena, wypłaty lub grzywny będą miały miejsce w czerwcu i grudniu."/>
+<text name="rt_policy_report_description_croprotation" text="Raport przedstawia sumy dla ziemi zgodnej i niezgodnej z przepisami."/>
+<text name="rt_policy_report_description_sprayviolation" text="Raport pokazuje, ile naruszeń dotyczących oprysków miało miejsce w ostatnim miesiącu."/>
+<text name="rt_policy_report_description_empty_food" text="Raport pokazuje, przez ile łącznie godzin brakowało jedzenia w zagrodach dla zwierząt."/>
+<text name="rt_policy_report_description_empty_straw" text="Raport pokazuje, przez ile łącznie godzin brakowało słomy w zagrodach dla zwierząt."/>
+<text name="rt_policy_report_description_full_slurry" text="Raport pokazuje, przez ile łącznie godzin zbiorniki na gnojowicę były pełne."/>
+<text name="rt_policy_report_description_animal_productivity" text="Raport pokazuje, przez ile łącznie godzin zwierzęta były nieproduktywne."/>
+<text name="rt_policy_report_description_animal_space" text="Raport najpierw pokazuje, ile odnotowano godzin naruszeń. Następnie dla każdej hodowli pokazuje dostępną przestrzeń oraz największą wymaganą przestrzeń w poprzednim miesiącu."/>
+<text name="rt_policy_report_description_manure_spreading" text="Raport pokazuje ilość wyprodukowanego obornika w ciągu ostatnich 6 miesięcy. Pokazuje również łączną produkcję oraz maksymalną dozwoloną ilość przechowywanego obornika w ciągu ostatnich 6 miesięcy. Pamiętaj, że wyświetlane dane za miesiąc 1 nie zostaną uwzględnione w następnym raporcie, a każdy obornik wyprodukowany w bieżącym miesiącu będzie musiał zostać rozliczony."/>
+<text name="rt_policy_report_description_restricted_slurry" text="Raport pokazuje, ile razy rozlewano gnojowicę w miesiącach z ograniczeniami."/>
+<text name="rt_policy_report_description_sustainable_forestry" text="Raport pokazuje, ile drzew zasadzono i wycięto w bieżącym okresie półrocznym."/>
+<text name="rt_report_name_farmland" text="Działka %s"/>
+<text name="rt_report_name_total_area" text="Całkowita powierzchnia"/>
+<text name="rt_report_name_non_compliant_area" text="Obszar niezgodny z przepisami"/>
+<text name="rt_report_name_spray_violations" text="Naruszenia oprysków"/>
+<text name="rt_report_name_empty_food" text="Godziny bez paszy"/>
+<text name="rt_report_name_empty_straw" text="Godziny bez słomy"/>
+<text name="rt_report_name_full_slurry" text="Godziny z pełną gnojowicą"/>
+<text name="rt_report_name_low_productivity_hours" text="Godziny z niską produktywnością"/>
+<text name="rt_report_name_animal_space_violations" text="Naruszenia przestrzeni zwierząt"/>
+<text name="rt_report_name_manure_total_produced" text="Łącznie wyprodukowany obornik"/>
+<text name="rt_report_name_manure_stored_amount" text="Obecnie przechowywany obornik"/>
+<text name="rt_report_name_manure_max_stored_amount" text="Maks. dozwolone przechowywanie"/>
+<text name="rt_report_name_restricted_slurry_violations" text="Naruszenia zakazu gnojowicy"/>
+<text name="rt_report_name_bale_penalty" text="Kara za bele"/>
+<text name="rt_report_name_total_payout" text="Łączna kwota wypłacona"/>
+<text name="rt_report_name_animal_count" text="Kwalifikująca się liczba zwierząt"/>
+<text name="rt_report_name_harvest_reward" text="Nagroda za zbiory"/>
+<text name="rt_report_name_natural_usage" text="Zużycie nawozu naturalnego"/>
+<text name="rt_report_name_other_usage" text="Zużycie innych nawozów"/>
+<text name="rt_report_name_points" text="Punkty"/>
+<text name="rt_report_name_trees_planted" text="Posadzone drzewa"/>
+<text name="rt_report_name_trees_cut" text="Wycięte drzewa"/>
+<text name="rt_report_name_note" text="Uwaga:"/>
+<text name="rt_report_name_additional_tax_benefit" text="Zakwalifikowano do ulgi podatkowej"/>
+<text name="rt_report_value_true" text="Prawda"/>
+<text name="rt_report_value_false" text="Fałsz"/>
+<text name="rt_report_value_not_enough_months_elapsed" text="W tym miesiącu pominięto pełną ocenę."/>
+<text name="rt_scheme_delayed_mowing" text="Unikaj koszenia wiosną"/>
+<text name="rt_scheme_crop_promotion" text="Promowanie upraw"/>
+<text name="rt_scheme_reduce_bale_wrapping" text="Ograniczone owijanie bel"/>
+<text name="rt_scheme_tractor_demo" text="Testowanie ciągnika"/>
+<text name="rt_scheme_natural_grazing" text="Naturalny wypas"/>
+<text name="rt_scheme_natural_fertiliser" text="Naturalny nawóz"/>
+<text name="rt_scheme_winter_cover_crops" text="Zimowe międzyplony"/>
+<text name="rt_scheme_road_snow_clearing" text="Odśnieżanie dróg"/>
+<text name="rt_scheme_brand_demo" text="Testowanie maszyn marki"/>
+<text name="rt_scheme_set_aside" text="Ugorowanie"/>
+<text name="rt_scheme_desc_delayed_mowing" text="Nie koś trawy w miesiącach wiosennych (od marca do czerwca), aby chronić dziką przyrodę. W lipcu otrzymasz rekompensatę za każdą nieskoszoną trawę."/>
+<text name="rt_scheme_desc_crop_promotion" text="Inicjatywa rządowa mająca na celu promowanie uprawy %s poprzez zachęty finansowe. Możesz otrzymać sprzęt na czas trwania inicjatywy oraz premię finansową za każde pole, na którym zasiejesz tę uprawę."/>
+<text name="rt_scheme_desc_reduce_bale_wrapping" text="Owijanie bel zużywa plastik i zapobiega rozsiewaniu nasion podczas transportu. Ten program nakłada karę za owijanie bel, ale nagradza cię, gdy wybierzesz alternatywę, taką jak robienie bel siana lub korzystanie z przyczepy zbierającej."/>
+<text name="rt_scheme_desc_tractor_demo" text="Firma %s oferuje twojej farmie możliwość przetestowania ciągnika %s przez %s miesiąc/miesiące. Dokładna specyfikacja pojazdu demonstracyjnego jest określana w momencie zapisania się do programu."/>
+<text name="rt_scheme_desc_natural_grazing" text="Program zachęcający do wypasania zwierząt na pastwisku bez dodatkowej paszy. Płatność ma na celu wyrównanie ewentualnej utraty dochodów. Otrzymasz premię za czas, jaki twoje zwierzęta spędzą na wypasie. Kwota premii jest zmienna w zależności od rodzaju zwierząt."/>
+<text name="rt_scheme_desc_natural_fertiliser" text="Program zachęcający do stosowania naturalnych nawozów, takich jak obornik, gnojowica i poferment. Otrzymasz premię za ilość użytego nawozu naturalnego w porównaniu do syntetycznych odpowiedników. Dotyczy to wszystkich rozrzucanych nawozów, czy to na własnej farmie, czy w ramach kontraktu."/>
+<text name="rt_scheme_desc_winter_cover_crops" text="Zachęca do sadzenia międzyplonów (roślin okrywowych) w miesiącach zimowych w celu zmniejszenia erozji gleby i wypłukiwania składników odżywczych. Otrzymasz premię za każde pole, na którym zasadzisz zatwierdzony międzyplon w sezonie zimowym."/>
+<text name="rt_scheme_desc_road_snow_clearing" text="W związku z niedawnymi opadami śniegu, lokalna rada prosi rolników o rozsypywanie soli, aby pomóc utrzymać przejezdność i bezpieczeństwo dróg. Upewnij się, że podczas posypywania twoja prędkość nie przekracza %s%s, aby zapewnić odpowiednie pokrycie."/>
+<text name="rt_scheme_desc_brand_demo" text="Firma %s oferuje twojej farmie możliwość przetestowania pewnego sprzętu przez %s miesiąc/miesiące. Dokładna specyfikacja pojazdu demonstracyjnego jest określana w momencie zapisania się do programu."/>
+<text name="rt_scheme_desc_set_aside" text="Zachęca do wydzielenia części gruntów ornych na ugór, zapewniając im odpoczynek od ciągłej pracy. Otrzymasz premię za grunty pozostawione bez upraw przez co najmniej %d miesięcy do grudnia. Jeśli zakwalifikuje się ponad %s, wszystkie uprawy sprzedane w kolejnym roku podatkowym zostaną objęte 5%% stawką podatku."/>
+<text name="rt_scheme_report_desc_delayed_mowing" text="Raport przedstawia listę działek oraz kwotę wypłaconą podczas ostatniej oceny."/>
+<text name="rt_scheme_report_desc_crop_promotion" text="Raport przedstawia listę działek oraz kwotę wypłaconą podczas ostatniej oceny."/>
+<text name="rt_scheme_report_desc_reduce_bale_wrapping" text="Raport przedstawia listę działek oraz kwotę wypłaconą podczas ostatniej oceny."/>
+<text name="rt_scheme_report_desc_natural_grazing" text="Raport przedstawia łączną kwotę wypłaconą podczas ostatniej oceny."/>
+<text name="rt_scheme_report_desc_natural_fertiliser" text="Raport przedstawia zużycie naturalnych i innych nawozów w ciągu ostatniego miesiąca."/>
+<text name="rt_scheme_report_desc_winter_cover_crops" text="Raport przedstawia listę działek oraz kwotę wypłaconą podczas ostatniej oceny."/>
+<text name="rt_scheme_report_desc_road_snow_clearing" text="Brak raportu dla tego programu. Gdy opady śniegu ustaną, otrzymasz wypłatę proporcjonalną do ilości rozsypanej soli."/>
+<text name="rt_scheme_report_desc_set_aside" text="Raport przedstawia wypłatę dla każdego z twoich pól. Pokazuje również, czy zakwalifikowałeś się do specjalnej 5% stawki podatkowej."/>
+<text name="rt_btn_select_scheme" text="Wybierz program"/>
+<text name="rt_btn_end_scheme" text="Zakończ program"/>
+<text name="rt_btn_watch_scheme_policy" text="Śledź / Przestań śledzić"/>
+<text name="rt_unit_meter_square" text="m²"/>
+<text name="rt_ui_schemePayout" text="Wypłata z programu"/>
+<text name="finance_schemePayout" text="Wypłata z programu"/>
+<text name="rt_ui_policyFine" text="Grzywna z polityki"/>
+<text name="finance_policyFine" text="Grzywna z polityki"/>
+<text name="rt_ui_taxCost" text="Podatek"/>
+<text name="finance_taxCost" text="Podatek"/>
+<text name="rt_ui_grantReceived" text="Otrzymana dotacja"/>
+<text name="finance_grantReceived" text="Otrzymana dotacja"/>
+<text name="rt_ui_grantApplicationCost" text="Opłata za wniosek o dotację"/>
+<text name="finance_grantApplicationCost" text="Opłata za wniosek o dotację"/>
+<text name="rt_no_vehicle_room" text="Za mało miejsca na dostarczenie pojazdów do tego programu. Zrób trochę miejsca w sklepie i spróbuj ponownie."/>
+<text name="rt_info_scheme_selected" text="Zapisałeś się do programu. Odbierz wszelkie pojazdy ze sklepu."/>
+<text name="rt_misc_year" text="Rok"/>
+<text name="rt_misc_month" text="Miesiąc"/>
+<text name="rt_misc_month_plural_suffix" text=""/>
+<text name="rt_misc_spreading_too_fast" text="Jedziesz za szybko, by skutecznie rozsypywać sól. Ogranicz prędkość do %s%s."/>
+<text name="rt_misc_confirm_scheme_selection" text="Czy na pewno chcesz się zapisać do tego programu?"/>
+<text name="rt_misc_confirm_scheme_end" text="Czy na pewno chcesz zakończyć ten program wcześniej? Stracisz wszelkie pozostałe korzyści."/>
+<text name="rt_notes_additional_tax_benefit" text="Efektywna stawka podatkowa"/>
+<text name="rt_notes_loss_generated" text="Straty z danego roku: %s (Całkowite straty przeniesione: %s)"/>
+<text name="rt_notes_loss_applied" text="Zysk pomniejszony o poprzednie straty: %s (Pozostało: %s)"/>
+<text name="rt_help_title_red_tape" text="Red Tape (Biurokracja)"/>
+<text name="rt_help_title_intro" text="Wprowadzenie"/>
+<text name="rt_help_title_policies" text="Polityki"/>
+<text name="rt_help_title_schemes" text="Programy"/>
+<text name="rt_help_title_tax" text="Podatki"/>
+<text name="rt_help_title_grants" text="Dotacje"/>
+<text name="rt_help_intro_intro" text="Red Tape (Biurokracja) to mod, który wprowadza do Farming Simulator Polityki, Programy oraz system Podatkowy. Te systemy mają na celu dodanie głębi i wyzwań do twoich rolniczych doświadczeń, zachęcając do zrównoważonych praktyk i strategicznego planowania."/>
+<text name="rt_help_intro_intro_2" text="Wszystkie informacje związane z Red Tape znajdują się w nowym menu dodanym do głównego menu gry. Szukaj ikony budynku rządowego."/>
+<text name="rt_help_policies_intro" text="Polityki to w zasadzie prawa, których musisz przestrzegać prowadząc gospodarstwo. Regulują one kwestie takie jak traktowanie zwierząt czy odpowiednie użytkowanie gruntów."/>
+<text name="rt_help_policies_intro_2" text="W zakładce Polityki zobaczysz ich listę. Wybierz każdą, aby przeczytać opis, jak ich przestrzegać. Poniżej zobaczysz raport z twoimi wynikami. Niektóre polityki sprawdzają wszystko co miesiąc, podczas gdy inne robią to rzadziej. Zazwyczaj polityka wygeneruje raport co miesiąc, abyś mógł śledzić swoje postępy."/>
+<text name="rt_help_policies_intro_3" text="Jeśli przestrzegasz polityki, zdobędziesz punkty, które budują twój wskaźnik zgodności. Wyższe poziomy zgodności prowadzą do korzyści, takich jak lepsze nagrody z Programów i ewentualne ulgi podatkowe. W przypadku naruszenia polityki możesz otrzymać ostrzeżenia lub grzywny, w zależności od wagi naruszenia. Jeśli otrzymałeś ostrzeżenie, obok nazwy polityki pojawi się ikona, a ty otrzymasz powiadomienie w grze. Rozwiąż problem, aby uniknąć przyszłej grzywny."/>
+<text name="rt_help_schemes_intro" text="Programy są opcjonalne i stają się dostępne w ciągu roku. Możesz zapisać się do tych, do których zechcesz. Programy zazwyczaj wymagają spełnienia określonych warunków, by zakwalifikować się i otrzymać proporcjonalne korzyści. Podobnie jak w Politykach, generowane są raporty wyjaśniające twoje wyniki. Wszystkie nagrody skalują się w zależności od twojego poziomu trudności ekonomicznej."/>
+<text name="rt_help_schemes_intro_2" text="Programy mogą być również sytuacyjne, na przykład marka organizująca wersję demo, z której możesz darmowo korzystać ze sprzętu przez pewien czas. We wszystkich przypadkach twój poziom zgodności z Politykami bezpośrednio wpływa na dostępne dla ciebie nagrody z Programów. Programy z poziomu D dają najniższe nagrody, a programy z poziomu A najwyższe."/>
+<text name="rt_help_schemes_intro_3" text="Programy zwykle trwają przez określony czas, często rok lub przez kilka ocen. Programy z czasem staną się ponownie dostępne, ale musisz się zapisać ponownie, jeśli będziesz chciał. Niektóre z nich mają wąskie okno, w którym można do nich dołączyć. Na przykład, program Promowania Upraw jest dostępny tylko w pierwszych miesiącach roku."/>
+<text name="rt_help_tax_intro" text="Podatek to system, który oddaje część twoich zysków państwu. Deklaracja podatkowa jest finalizowana w kwietniu każdego roku, a ty automatycznie zapłacisz należny podatek we wrześniu. Jeśli nie będziesz miał wystarczająco dużo pieniędzy, by opłacić rachunek podatkowy, twoje saldo stanie się ujemne."/>
+<text name="rt_help_tax_intro_2" text="W zakładce Podatki możesz zobaczyć ostateczne rozliczenie po lewej stronie ekranu. Po prawej stronie widać bieżące sumy dla obecnego roku finansowego. Możesz to wykorzystać do planowania i zmniejszania kwoty podatku. Jeśli na przykład widzisz, że twoje zyski są wysokie w tym roku, możesz zdecydować się na zakup nowego sprzętu, aby zmniejszyć zysk, a tym samym podatek."/>
+<text name="rt_help_tax_intro_3" text="Czasami zobaczysz Notatki podatkowe. Informują cię one o tym, kiedy twoja deklaracja jest modyfikowana przez nietypowe warunki. Na przykład Program może zaoferować ci przyszłą ulgę podatkową. Zostanie to oznaczone w Notatkach podatkowych, by pomóc ci zrozumieć twój rachunek."/>
+<text name="rt_help_tax_intro_4" text="Jeśli wygenerujesz stratę w jednym roku finansowym, zobaczysz, że ta strata 'przechodzi' na kolejne lata. Jeśli w następnym roku osiągniesz zysk, poprzednie straty zostaną użyte do zmniejszenia twojego obciążenia podatkowego. Może to skutkować brakiem konieczności płacenia podatku mimo osiągnięcia zysków. Poprzednie straty się kumulują i mają limit do 5 milionów."/>
+<text name="rt_help_grants_intro" text="Dotacje to sposób, w jaki możesz ubiegać się u rządu o dodatkowe dofinansowanie do nowych konstrukcji, np. nowej obory."/>
+<text name="rt_help_grants_intro_2" text="Aby zacząć, otwórz menu budowy dla kwalifikujących się elementów, tam znajdziesz przycisk 'Złóż wniosek o dotację'. Wybierz go, potwierdź i twój proces aplikacji zostanie rozpoczęty."/>
+<text name="rt_help_grants_intro_3" text="Sprawdź zakładkę Dotacje w menu Red Tape – powie ci ona, kiedy twój wniosek zostanie przetworzony. Może on zostać zatwierdzony lub odrzucony. Jeśli zostanie zatwierdzony, użyj menu budowy do postawienia budynku, a otrzymasz przyznane środki."/>
+<text name="rt_help_grants_intro_4" text="Możesz mieć jeden aktywny wniosek w danym momencie, a po pozytywnym przetworzeniu dotacji obowiązuje 6-miesięczny okres przerwy (tzw. cooldown)."/>
+<text name="rt_setting_taxEnabled" text="Włączone podatki"/>
+<text name="rt_toolTip_taxEnabled" text="Włącz lub wyłącz system podatkowy"/>
+<text name="rt_setting_policiesAndSchemesEnabled" text="Włączone Polityki/Programy"/>
+<text name="rt_toolTip_policiesAndSchemesEnabled" text="Włącz lub wyłącz system Polityk i Programów. Wyłączenie tej opcji natychmiastowo zakończy wszystkie aktywne Programy."/>
+<text name="rt_setting_baseTaxRate" text="Podstawowa stawka podatku"/>
+<text name="rt_toolTip_baseTaxRate" text="Ustaw podstawową stawkę podatkową"/>
+<text name="rt_system_disabled" text="Ten system jest obecnie wyłączony. Sprawdź Ustawienia gry, aby go włączyć z powrotem." />
+<text name="rt_setting_grantsEnabled" text="Włączone dotacje"/>
+<text name="rt_toolTip_grantsEnabled" text="Włącz lub wyłącz system dotacji rządowych"/>
+<text name="rt_setting_productivityRecovery" text="Odzyskiwanie produktywności"/>
+<text name="rt_toolTip_productivityRecovery" text="Przyspiesza powrót produktywności hodowli po przeniesieniu zwierząt. Opcja 'Natychmiastowe' od razu przywraca produktywność do maksimum."/>
+<text name="rt_setting_instant" text="Natychmiastowe"/>
+<text name="rt_grant_button" text="Złóż wniosek o dotację" />
+<text name="rt_grant_application_submitted" text="Twój wniosek o dotację został przesłany i można go zobaczyć w zakładce Dotacje." />
+<text name="rt_grant_confirm_application_dialog" text="Czy chcesz złożyć wniosek o dotację na tę konstrukcję? Będzie to kosztowało %s za aplikację. Rozpatrzenie wniosku może zająć do 6 miesięcy, a szansa na zatwierdzenie wynosi 35-45%%, co może zostać zmienione przez twój wskaźnik zgodności z przepisami." />
+<text name="rt_grant_existing_application" text="Dołączony może być tylko jeden wniosek jednocześnie. Możesz aplikować ponownie po tym, jak twój obecny wniosek zostanie przetworzony." />
+<text name="rt_grant_approved_notification" text="Twój wniosek o dotację został zatwierdzony! Otrzymasz %s przy zakupie tego budynku." />
+<text name="rt_grant_rejected_notification" text="Twój wniosek o dotację został odrzucony." />
+<text name="rt_grant_completed_notification" text="Płatność dotacji w wysokości %s została przekazana twojej farmie." />
+<text name="rt_event_type_grantapproved" text="Dotacja zatwierdzona" />
+<text name="rt_event_type_grantrejected" text="Dotacja odrzucona" />
+<text name="rt_event_type_grantcompleted" text="Dotacja ukończona" />
+<text name="permission_redTape_redTapeSettings" text="Ustawienia Red Tape" />
+<text name="rt_header_grants" text="Dotacje" />
+<text name="rt_label_pending_grants" text="Oczekujące wnioski" />
+<text name="rt_label_approved_grants" text="Zatwierdzone dotacje" />
+<text name="rt_label_historical_grants" text="Historia dotacji" />
+<text name="rt_tableheader_building" text="Budynek" />
+<text name="rt_tableheader_price" text="Cena" />
+<text name="rt_tableheader_applied" text="Złożono" />
+<text name="rt_tableheader_assessment" text="Ocena" />
+<text name="rt_tableheader_amount" text="Kwota" />
+<text name="rt_tableheader_approved" text="Zatwierdzono" />
+<text name="rt_tableheader_status" text="Status" />
+<text name="rt_no_pending_grants" text="Brak oczekujących wniosków o dotację" />
+<text name="rt_no_approved_grants" text="Brak zatwierdzonych dotacji" />
+<text name="rt_no_historical_grants" text="Brak historii dotacji" />
+<text name="rt_grant_status_pending" text="Oczekująca" />
+<text name="rt_grant_status_approved" text="Zatwierdzona" />
+<text name="rt_grant_status_rejected" text="Odrzucona" />
+<text name="rt_grant_status_completed" text="Ukończona" />
+<text name="rt_grant_eligible" text="STATUS: KWALIFIKUJE SIĘ" />
+<text name="rt_grant_not_eligible" text="STATUS: NIE KWALIFIKUJE SIĘ" />
+<text name="rt_grant_eligible_description" text="Kwalifikowalność do ubiegania się o nowe dotacje zależy od licznych warunków. Nie możesz złożyć wniosku, jeśli masz aktualnie oczekującą aplikację lub zatwierdzoną, która czeka na sfinalizowanie. Występuje również 6-miesięczny okres przerwy (cooldown) po zrealizowaniu dotacji (tzn. od otrzymania funduszy). Pamiętaj, że dotacje nie są dostępne dla konstrukcji o koszcie poniżej 80,000." />
+		</texts>
+</l10n>
