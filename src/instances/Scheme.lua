@@ -156,6 +156,14 @@ function RTScheme:loadFromXMLFile(xmlFile, key)
         end
         local propKeyName = getXMLString(xmlFile, propKey .. "#key")
         local propValue = getXMLString(xmlFile, propKey .. "#value")
+
+        if propKeyName == "fruitType" and tonumber(propValue) ~= nil then
+            local fruit = g_fruitTypeManager:getFruitTypeByIndex(tonumber(propValue))
+            if fruit ~= nil then
+                propValue = fruit.name
+            end
+        end
+
         self.props[propKeyName] = propValue
         j = j + 1
     end

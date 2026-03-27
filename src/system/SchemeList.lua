@@ -376,8 +376,8 @@ RTSchemes = {
         selectionProbability = 1,
         availabilityProbability = 1,
         descriptionFunction = function(schemeInfo, scheme)
-            local fruitType = tonumber(scheme.props['fruitType'])
-            local title = g_fruitTypeManager.fruitTypes[fruitType].fillType.title
+            local fruit = g_fruitTypeManager.nameToFruitType[scheme.props['fruitType']]
+            local title = fruit.fillType.title
             return string.format(g_i18n:getText("rt_scheme_desc_crop_promotion"), title)
         end,
         getNextEvaluationMonth = function(schemeInfo, scheme)
@@ -400,7 +400,8 @@ RTSchemes = {
             local i = 1
             for fruitType, category in pairs(fruitTypes) do
                 if i == chosenIndex then
-                    scheme:setProp('fruitType', fruitType)
+                    local fruit = g_fruitTypeManager:getFruitTypeByIndex(fruitType)
+                    scheme:setProp('fruitType', fruit.name)
                     chosenCategory = category
                     break
                 end
@@ -459,14 +460,14 @@ RTSchemes = {
                 return
             end
 
-            local fruitType = tonumber(scheme.props['fruitType'])
+            local fruit = g_fruitTypeManager.nameToFruitType[scheme.props['fruitType']]
 
             local report = {}
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId and farmland.field ~= nil then
                     local farmlandData = gatherer:getFarmlandData(farmland.id)
                     local wasFruitPresent = gatherer:wasFruitPresent(farmland.id, cumulativeMonth - 12,
-                        cumulativeMonth, fruitType)
+                        cumulativeMonth, fruit.index)
                     if wasFruitPresent then
                         local bonusPerHa = schemeInfo.tiers[tier].bonusPerHa
                         local payout = farmlandData.areaHa * bonusPerHa * EconomyManager.getPriceMultiplier()

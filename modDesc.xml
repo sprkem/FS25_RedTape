@@ -28,6 +28,7 @@ Changelog:
 
 1.0.2.2 [WIP]:
 - Add safety checking when selecting spawn vehicles for schemes to prevent errors.
+- For crop promotion, save by fruit name to avoid issues if fruit type indices change.
 
 1.0.2.1:
 - Manure dumped to the ground is now tracked as part of the manure management policy. Existing piles will not be counted unless they are added to.
