@@ -173,7 +173,7 @@ RTSchemes = {
                         })
                     end
 
-                    if farmlandData.lastGrassHarvest == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
+                    if lastMonthFruit ~= nil and farmlandData.lastGrassHarvest == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
                         local reward = farmlandData.areaHa * tierInfo.maxPayoutPerHa
                         payout = payout + reward
 
@@ -454,6 +454,7 @@ RTSchemes = {
             -- As we eval in december, we can end if the year has advanced
             if currentYear > evaluationYear then
                 g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, farmId))
+                return
             end
 
             if currentMonth ~= 12 then
@@ -534,7 +535,8 @@ RTSchemes = {
                 suffix)
         end,
         getNextEvaluationMonth = function(schemeInfo, scheme)
-            return tonumber(scheme.props['endMonth']) % 12
+            local m = tonumber(scheme.props['endMonth']) % 12
+            return m == 0 and 12 or m
         end,
         getExpiryMonth = function(schemeInfo, scheme)
             return tonumber(scheme.props['expiryMonth'])
@@ -794,7 +796,8 @@ RTSchemes = {
                 suffix)
         end,
         getNextEvaluationMonth = function(schemeInfo, scheme)
-            return tonumber(scheme.props['endMonth']) % 12
+            local m = tonumber(scheme.props['endMonth']) % 12
+            return m == 0 and 12 or m
         end,
         getExpiryMonth = function(schemeInfo, scheme)
             return tonumber(scheme.props['expiryMonth'])
@@ -824,17 +827,13 @@ RTSchemes = {
             end
 
             local pickedItems = {}
-            for i = 1, maxItems do
+            for i = 1, math.min(maxItems, #options) do
                 local pickedItem
                 while true do
                     pickedItem = options[math.random(1, #options)]
                     if not RedTape.tableHasValue(pickedItems, pickedItem) then
                         table.insert(pickedItems, pickedItem)
                         scheme:setProp('vehicleToSpawn' .. i, pickedItem.xmlFilename)
-                        break
-                    end
-
-                    if #pickedItems >= #options then
                         break
                     end
                 end

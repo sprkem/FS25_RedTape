@@ -27,10 +27,11 @@ https://github.com/sprkem/FS25_RedTape
 Changelog:
 
 1.0.2.2 [WIP]:
-- Add safety checking when selecting spawn vehicles for schemes to prevent errors.
 - For crop promotion, save by fruit name to avoid issues if fruit type indices change. Also fix a bug that caused evaluation to fail.
-- Fix a bug in sustainable forestry evaluation
-- Add Polish translation, thanks to sabaka1983.
+- Added safety checking when selecting spawn vehicles for schemes to prevent errors.
+- Fix a bug in sustainable forestry evaluation.
+- Added miscellaneous safety checks.
+- Added Polish translation, thanks to sabaka1983.
 
 1.0.2.1:
 - Manure dumped to the ground is now tracked as part of the manure management policy. Existing piles will not be counted unless they are added to.
