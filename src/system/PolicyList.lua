@@ -28,8 +28,8 @@ RTPolicies = {
             local ig = g_currentMission.RedTape.InfoGatherer
             local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
             local fruitsToSkip = {
-                g_fruitTypeManager:getFruitTypeByIndex(FillType.GRAPE).name,
-                g_fruitTypeManager:getFruitTypeByIndex(FillType.OLIVE).name,
+                g_fruitTypeManager:getFruitTypeByIndex(FruitType.GRAPE).name,
+                g_fruitTypeManager:getFruitTypeByIndex(FruitType.OLIVE).name,
             }
             local grassTypes = RedTape.getGrassTypes()
             for _, f in pairs(grassTypes) do
