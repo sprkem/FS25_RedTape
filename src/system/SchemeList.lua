@@ -592,16 +592,16 @@ RTSchemes = {
         autoTierTransition = true,
         tiers = {
             [RTPolicySystem.TIER.A] = {
-                bonusPerHa = 3000,
+                bonusPerHa = 800,
             },
             [RTPolicySystem.TIER.B] = {
-                bonusPerHa = 2500,
+                bonusPerHa = 650,
             },
             [RTPolicySystem.TIER.C] = {
-                bonusPerHa = 2000,
+                bonusPerHa = 500,
             },
             [RTPolicySystem.TIER.D] = {
-                bonusPerHa = 1500,
+                bonusPerHa = 400,
             },
         },
         selectionProbability = 1,

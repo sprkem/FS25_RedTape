@@ -30,6 +30,7 @@ Changelog:
 - All scheme and policy evals are wrapped in an error check to avoid issues such as animals not growing in the case of an error.
 - Negative policy scores are floored now to prevent reports showing a -0 score.
 - 'Other' income and expenses are now included in the tax system. This includes some things like certain objects and soil information with PF.
+- Significantly reduced the reward for the winter cover crop scheme.
 
 
 1.0.2.2:
