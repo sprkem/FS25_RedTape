@@ -346,9 +346,8 @@ function RTTaxSystem:getTaxedAmount(lineItem, taxStatement)
 end
 
 function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
-    if lineItem.statistic == "other" then
-        return
-    end
+    local otherExpense = lineItem.statistic == "other" and lineItem.amount < 0
+    local otherIncome = lineItem.statistic == "other" and lineItem.amount > 0
 
     local expenseStats = {
         "newVehiclesCost",
@@ -407,9 +406,9 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         table.insert(expenseStats, "monitorSubscriptions")
     end
 
-    if RedTape.tableHasValue(expenseStats, lineItem.statistic) then
+    if otherExpense or RedTape.tableHasValue(expenseStats, lineItem.statistic) then
         taxStatement.totalExpenses = taxStatement.totalExpenses + math.abs(lineItem.amount)
-    elseif RedTape.tableHasValue(incomeStats, lineItem.statistic) then
+    elseif otherIncome or RedTape.tableHasValue(incomeStats, lineItem.statistic) then
         taxStatement.totalTaxableIncome = taxStatement.totalTaxableIncome + math.abs(lineItem.amount)
         taxStatement.totalTaxedIncome = taxStatement.totalTaxedIncome + self:getTaxedAmount(lineItem, taxStatement)
     else

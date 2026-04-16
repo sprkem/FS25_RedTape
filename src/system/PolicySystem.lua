@@ -192,7 +192,12 @@ function RTPolicySystem:periodChanged()
     local policySystem = g_currentMission.RedTape.PolicySystem
 
     for _, policy in ipairs(policySystem.policies) do
-        policy:evaluate()
+        local ok, err = pcall(policy.evaluate, policy)
+        if not ok then
+            local policyInfo = RTPolicies[policy.policyIndex]
+            local policyName = policyInfo and policyInfo.name or ("index=" .. tostring(policy.policyIndex))
+            print("RedTape Error: policy evaluate failed for '" .. policyName .. "' (id=" .. tostring(policy.id) .. "): " .. tostring(err))
+        end
     end
 
     policySystem:generatePolicies()

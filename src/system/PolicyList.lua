@@ -86,7 +86,11 @@ RTPolicies = {
                 reward = policyInfo.periodicPenalty * nonCompliantProportion
             end
 
-            reward = math.ceil(reward)
+            if reward < 0 then
+                reward = math.floor(reward)
+            else
+                reward = math.ceil(reward)
+            end
 
             local report = {}
             table.insert(report,
@@ -187,7 +191,11 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
-            reward = math.ceil(reward)
+            if reward < 0 then
+                reward = math.floor(reward)
+            else
+                reward = math.ceil(reward)
+            end
 
             local report = {}
             table.insert(report, { cell1 = g_i18n:getText("rt_report_name_empty_straw"), cell2 = monthlyEmptyStrawCount })
@@ -236,7 +244,11 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
-            reward = math.ceil(reward)
+            if reward < 0 then
+                reward = math.floor(reward)
+            else
+                reward = math.ceil(reward)
+            end
 
             local report = {}
             table.insert(report, { cell1 = g_i18n:getText("rt_report_name_full_slurry"), cell2 = monthlyFullSlurryCount })
@@ -285,7 +297,11 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
-            reward = math.ceil(reward)
+            if reward < 0 then
+                reward = math.floor(reward)
+            else
+                reward = math.ceil(reward)
+            end
 
             local report = {}
             table.insert(report, { cell1 = g_i18n:getText("rt_report_name_empty_food"), cell2 = monthlyEmptyFoodCount })
@@ -338,7 +354,11 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
-            reward = math.ceil(reward)
+            if reward < 0 then
+                reward = math.floor(reward)
+            else
+                reward = math.ceil(reward)
+            end
 
             local report = {}
             table.insert(report,
@@ -398,7 +418,11 @@ RTPolicies = {
                 g_client:getServerConnection():sendEvent(RTPolicyClearWarningsEvent.new(farmId, policy.policyIndex))
             end
 
-            reward = math.ceil(reward)
+            if reward < 0 then
+                reward = math.floor(reward)
+            else
+                reward = math.ceil(reward)
+            end
 
             local report = {}
             table.insert(report,

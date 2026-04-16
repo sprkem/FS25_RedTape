@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="107">
     <author>Ozz</author>
-    <version>1.0.2.2</version>
+    <version>1.0.2.3</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,12 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.2.3:
+- All scheme and policy evals are wrapped in an error check to avoid issues such as animals not growing in the case of an error.
+- Negative policy scores are floored now to prevent reports showing a -0 score.
+- 'Other' income and expenses are now included in the tax system. This includes some things like certain objects and soil information with PF.
+
 
 1.0.2.2:
 - For crop promotion, save by fruit name to avoid issues if fruit type indices change. Also fix a bug that caused evaluation to fail.

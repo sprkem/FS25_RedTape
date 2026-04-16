@@ -148,7 +148,12 @@ function RTSchemeSystem:periodChanged()
 
     for farm, schemes in pairs(schemeSystem.activeSchemesByFarm) do
         for _, scheme in pairs(schemes) do
-            scheme:evaluate()
+            local ok, err = pcall(scheme.evaluate, scheme)
+            if not ok then
+                local schemeInfo = RTSchemes[scheme.schemeIndex]
+                local schemeName = schemeInfo and schemeInfo.name or ("index=" .. tostring(scheme.schemeIndex))
+                print("RedTape Error: scheme evaluate failed for '" .. schemeName .. "' (id=" .. tostring(scheme.id) .. ", farm=" .. tostring(farm) .. "): " .. tostring(err))
+            end
         end
     end
 
