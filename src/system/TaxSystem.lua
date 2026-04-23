@@ -371,7 +371,8 @@ function RTTaxSystem:categoriseLineItem(lineItem, taxStatement)
         "propertyMaintenance",
         "productionCosts",
         "grantApplicationCost",
-        "invoiceExpense"
+        "invoiceExpense",
+        "bankLoanInterest"
     }
 
     local incomeStats = {
