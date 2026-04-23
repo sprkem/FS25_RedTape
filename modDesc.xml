@@ -27,6 +27,8 @@ https://github.com/sprkem/FS25_RedTape
 Changelog:
 
 1.0.2.3:
+- Equipment demo schemes now have an 'Action' button to allow players to purchase the demo equipment at a discount.
+- Equipment demo schemes will now generate equipment with less usage.
 - Add safety guard to detect errors when detecting water when spraying.
 - Reduced bale wrapping scheme now detects other grass types.
 - All scheme and policy evals are wrapped in an error check to avoid issues such as animals not growing in the case of an error.
