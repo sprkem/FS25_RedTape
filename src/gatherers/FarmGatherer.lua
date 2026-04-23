@@ -521,22 +521,25 @@ function FarmGatherer:checkCreekByOverlap(sprayer, workingWidth)
                 isCreek = true
             end
 
-            if not isCreek then
-                local name = getName(hitObjectId)
-                if name ~= nil and string.find(name, "creek") then
+            if not isCreek and hitObjectId ~= 0 then
+                local ok, name = pcall(getName, hitObjectId)
+                if ok and name ~= nil and string.find(name, "creek") then
                     isCreek = true
                     self.knownCreeks[originalHitObjectId] = true
                 end
             end
 
-            if not isCreek then
+            if not isCreek and hitObjectId ~= 0 then
                 local maxTraverse = 3
                 for i = 1, maxTraverse, 1 do
-                    hitObjectId = getParent(hitObjectId)
-                    local name = getName(hitObjectId)
-                    if name ~= nil and string.find(name, "creek") then
+                    local ok, parentId = pcall(getParent, hitObjectId)
+                    if not ok or parentId == nil or parentId == 0 then break end
+                    hitObjectId = parentId
+                    local ok2, name = pcall(getName, hitObjectId)
+                    if ok2 and name ~= nil and string.find(name, "creek") then
                         isCreek = true
                         ig.knownCreeks[originalHitObjectId] = true
+                        break
                     end
                 end
             end

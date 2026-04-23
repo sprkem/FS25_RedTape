@@ -155,7 +155,13 @@ RTSchemes = {
             for _, farmland in pairs(g_farmlandManager.farmlands) do
                 if farmland.farmId == farmId then
                     local farmlandData = gatherer:getFarmlandData(farmland.id)
-                    local grassName = g_fruitTypeManager:getFruitTypeByIndex(FruitType.GRASS).name
+                    local grassNames = {}
+                    for _, fruitTypeIndex in ipairs(RedTape.getGrassTypes()) do
+                        local fruitType = g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndex)
+                        if fruitType ~= nil then
+                            grassNames[fruitType.name] = true
+                        end
+                    end
                     local lastMonthFruit = farmlandData.fruitHistory[cumulativeMonth - 1]
                     local tierInfo = schemeInfo.tiers[tier]
 
@@ -173,7 +179,7 @@ RTSchemes = {
                         })
                     end
 
-                    if lastMonthFruit ~= nil and farmlandData.lastGrassHarvest == cumulativeMonth - 1 and lastMonthFruit.name == grassName then
+                    if lastMonthFruit ~= nil and farmlandData.lastGrassHarvest == cumulativeMonth - 1 and grassNames[lastMonthFruit.name] then
                         local reward = farmlandData.areaHa * tierInfo.maxPayoutPerHa
                         payout = payout + reward
 

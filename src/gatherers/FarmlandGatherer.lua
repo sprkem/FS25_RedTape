@@ -257,7 +257,7 @@ function FarmlandGatherer:checkHarvestedState()
                         currentFruit.name, RedTape.getCumulativeMonth()))
                 end
 
-                if currentFruit and fruitTypeIndexPos == FruitType.GRASS and growthState == currentFruit.cutState then
+                if currentFruit and RedTape.tableHasValue(RedTape.getGrassTypes(), fruitTypeIndexPos) and growthState == currentFruit.cutState then
                     farmlandData.lastGrassHarvest = RedTape.getCumulativeMonth()
                 end
             end
