@@ -459,12 +459,15 @@ end
 
 function RTScheme.expireMatchingAvailableScheme(activeScheme)
     local schemeSystem = g_currentMission.RedTape.SchemeSystem
+    local toRemove = {}
     for _, schemes in pairs(schemeSystem.availableSchemes) do
         for _, available in pairs(schemes) do
             if available.schemeIndex == activeScheme.schemeIndex then
-                g_client:getServerConnection():sendEvent(RTSchemeNoLongerAvailableEvent.new(available.id))
-                return
+                table.insert(toRemove, available.id)
             end
         end
+    end
+    for _, id in ipairs(toRemove) do
+        schemeSystem:removeAvailableScheme(id)
     end
 end
