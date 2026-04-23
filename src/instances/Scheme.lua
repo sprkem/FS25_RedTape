@@ -396,8 +396,8 @@ function RTScheme:onSpawnedVehicle(vehicles, vehicleLoadState, loadingInfo)
         return
     elseif vehicleLoadState == VehicleLoadingState.OK then
         for _, vehicle in pairs(vehicles) do
-            vehicle:addWearAmount(math.random() * 0.3 + 0.1)
-            vehicle:setOperatingTime(3600000 * (math.random() * 40 + 30))
+            vehicle:addWearAmount(math.random() * 0.10 + 0.05)
+            vehicle:setOperatingTime(3600000 * (math.random() * 7 + 5))
             table.insert(self.vehicles, vehicle)
         end
     else
@@ -455,4 +455,16 @@ function RTScheme:isSchemeVehicle(vehicle)
         end
     end
     return false
+end
+
+function RTScheme.expireMatchingAvailableScheme(activeScheme)
+    local schemeSystem = g_currentMission.RedTape.SchemeSystem
+    for _, schemes in pairs(schemeSystem.availableSchemes) do
+        for _, available in pairs(schemes) do
+            if available.schemeIndex == activeScheme.schemeIndex then
+                g_client:getServerConnection():sendEvent(RTSchemeNoLongerAvailableEvent.new(available.id))
+                return
+            end
+        end
+    end
 end

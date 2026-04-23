@@ -140,6 +140,7 @@ function MenuRedTape:displaySelectedScheme()
             self.noSelectedSchemeText:setVisible(true)
         end
     end
+    self:updateSchemeActionButton()
 end
 
 function MenuRedTape:updateSchemeEquipmentBox(scheme)
@@ -287,12 +288,22 @@ function MenuRedTape:initialize()
         end
     }
 
+    self.btnSchemeAction = {
+        inputAction = InputAction.MENU_EXTRA_1,
+        text = g_i18n:getText("rt_btn_scheme_action"),
+        callback = function()
+            self:onSchemeAction()
+        end,
+        disabled = true
+    }
+
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.SCHEMES] = {
-        self.btnWatchSchemeOrPolicy,
-        self.btnSelectSchemeForFarm,
         self.btnBack,
         self.btnNextPage,
-        self.btnPrevPage
+        self.btnPrevPage,
+        self.btnSchemeAction,
+        self.btnWatchSchemeOrPolicy,
+        self.btnSelectSchemeForFarm,
     }
 
     self.menuButtonInfo[MenuRedTape.SUB_CATEGORY.POLICIES] = {
@@ -397,6 +408,7 @@ function MenuRedTape:onSwitchSchemeDisplay()
 
     self.btnWatchSchemeOrPolicy.disabled = self.schemeDisplaySwitcher:getState() ~=
         MenuRedTape.SCHEME_LIST_TYPE.ACTIVE
+    self:updateSchemeActionButton()
     self:setMenuButtonInfoDirty()
 end
 
@@ -707,6 +719,48 @@ function MenuRedTape:onSelectOrEndScheme()
             end, self,
             g_i18n:getText("rt_misc_confirm_scheme_selection"))
     end
+end
+
+function MenuRedTape:updateSchemeActionButton()
+    local enabled = false
+    if self.schemeDisplaySwitcher:getState() == MenuRedTape.SCHEME_LIST_TYPE.ACTIVE then
+        local index = self.schemesTable.selectedIndex
+        if index ~= nil and index ~= -1 then
+            local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.ACTIVE][index]
+            if scheme ~= nil then
+                local schemeInfo = RTSchemes[scheme.schemeIndex]
+                if schemeInfo ~= nil and schemeInfo.action ~= nil then
+                    enabled = true
+                end
+            end
+        end
+    end
+    self.btnSchemeAction.disabled = not enabled
+    self:setMenuButtonInfoDirty()
+end
+
+function MenuRedTape:onSchemeAction()
+    if self.schemesRenderer.selectedRow == -1 then return end
+    if self.schemeDisplaySwitcher:getState() ~= MenuRedTape.SCHEME_LIST_TYPE.ACTIVE then return end
+
+    local scheme = self.schemesRenderer.data[MenuRedTape.SCHEME_LIST_TYPE.ACTIVE][self.schemesRenderer.selectedRow]
+    if scheme == nil then return end
+
+    local schemeInfo = RTSchemes[scheme.schemeIndex]
+    if schemeInfo == nil or schemeInfo.action == nil then return end
+
+    local text = schemeInfo.action.description(schemeInfo, scheme)
+    if text == nil then return end
+
+    local price = tonumber(scheme.props['buyPrice']) or 0
+    YesNoDialog.show(
+        function(self, clickOk)
+            if clickOk then
+                local farmId = g_currentMission:getFarmId()
+                g_client:getServerConnection():sendEvent(RTSchemeBuyVehiclesEvent.new(scheme.id, farmId, price))
+            end
+        end, self,
+        text)
 end
 
 function MenuRedTape:onToggleWatch()

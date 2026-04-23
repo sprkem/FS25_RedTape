@@ -585,7 +585,38 @@ RTSchemes = {
                 g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
             end
             return {}
-        end
+        end,
+        action = {
+            description = function(schemeInfo, scheme)
+                if #scheme.vehicles == 0 then return nil end
+                local totalPrice = 0
+                for _, vehicle in pairs(scheme.vehicles) do
+                    totalPrice = totalPrice + vehicle:getPrice()
+                end
+                local discountedPrice = math.floor(totalPrice * (0.75 + math.random() * 0.10))
+                scheme:setProp('buyPrice', discountedPrice)
+                return string.format(g_i18n:getText("rt_action_buy_demo_vehicle"),
+                    g_i18n:formatMoney(discountedPrice, 0, true, true))
+            end,
+            confirm = function(schemeInfo, scheme, price)
+                if price <= 0 or #scheme.vehicles == 0 then return end
+
+                if g_currentMission:getIsServer() then
+                    g_currentMission:addMoneyChange(-price, scheme.farmId, MoneyType.SHOP_VEHICLE_BUY, true)
+                end
+                g_farmManager:getFarmById(scheme.farmId):changeBalance(-price, MoneyType.SHOP_VEHICLE_BUY)
+
+                for _, vehicle in pairs(scheme.vehicles) do
+                    vehicle.propertyState = VehiclePropertyState.OWNED
+                    vehicle:setOwnerFarmId(scheme.farmId)
+                end
+                scheme.vehicles = {}
+                scheme.spawnedVehicles = false
+
+                RTScheme.expireMatchingAvailableScheme(scheme)
+                g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
+            end,
+        },
     },
 
     [RTSchemeIds.WINTER_COVER_CROPS] = {
@@ -862,7 +893,40 @@ RTSchemes = {
                 g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
             end
             return {}
-        end
+        end,
+        action = {
+            description = function(schemeInfo, scheme)
+                if #scheme.vehicles == 0 then return nil end
+                local totalPrice = 0
+                for _, vehicle in pairs(scheme.vehicles) do
+                    totalPrice = totalPrice + vehicle:getPrice()
+                end
+                local discountedPrice = math.floor(totalPrice * (0.75 + math.random() * 0.10))
+                scheme:setProp('buyPrice', discountedPrice)
+                local vehicleCount = #scheme.vehicles
+                local key = vehicleCount == 1 and "rt_action_buy_demo_vehicle" or "rt_action_buy_demo_vehicles"
+                return string.format(g_i18n:getText(key),
+                    g_i18n:formatMoney(discountedPrice, 0, true, true))
+            end,
+            confirm = function(schemeInfo, scheme, price)
+                if price <= 0 or #scheme.vehicles == 0 then return end
+
+                if g_currentMission:getIsServer() then
+                    g_currentMission:addMoneyChange(-price, scheme.farmId, MoneyType.SHOP_VEHICLE_BUY, true)
+                end
+                g_farmManager:getFarmById(scheme.farmId):changeBalance(-price, MoneyType.SHOP_VEHICLE_BUY)
+
+                for _, vehicle in pairs(scheme.vehicles) do
+                    vehicle.propertyState = VehiclePropertyState.OWNED
+                    vehicle:setOwnerFarmId(scheme.farmId)
+                end
+                scheme.vehicles = {}
+                scheme.spawnedVehicles = false
+
+                RTScheme.expireMatchingAvailableScheme(scheme)
+                g_client:getServerConnection():sendEvent(RTSchemeEndedEvent.new(scheme.id, scheme.farmId))
+            end,
+        },
     },
 
     [RTSchemeIds.SET_ASIDE] = {

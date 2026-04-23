@@ -48,12 +48,14 @@ function RedTape:loadMap()
 
     if g_addCheatCommands and g_currentMission:getIsServer() then
         addConsoleCommand("rtAddPoints", "Add or remove policy points for current farm. Usage: rtAddPoints amount", "consoleCommandAddPoints", self)
+        addConsoleCommand("rtTriggerDemo", "Make a demo scheme available for current farm. Usage: rtTriggerDemo [tractor|brand]", "consoleCommandTriggerDemo", self)
     end
 end
 
 function RedTape:delete()
     if g_addCheatCommands then
         removeConsoleCommand("rtAddPoints")
+        removeConsoleCommand("rtTriggerDemo")
     end
 end
 
@@ -71,6 +73,36 @@ function RedTape:consoleCommandAddPoints(amount)
 
     g_client:getServerConnection():sendEvent(RTPolicyPointsEvent.new(farm.farmId, numAmount, g_i18n:getText("rt_policy_custom")))
     return string.format("Applied %d points to farm %d", numAmount, farm.farmId)
+end
+
+function RedTape:consoleCommandTriggerDemo(demoType)
+    if not g_currentMission:getIsServer() then return "Server only" end
+
+    demoType = (demoType or "tractor"):lower()
+    local schemeIndex
+    if demoType == "tractor" then
+        schemeIndex = RTSchemeIds.TRACTOR_DEMO
+    elseif demoType == "brand" then
+        schemeIndex = RTSchemeIds.BRAND_DEMO
+    else
+        return "Usage: rtTriggerDemo [tractor|brand]"
+    end
+
+    local farm = g_farmManager:getFarmByUserId(g_currentMission.playerUserId)
+    if farm == nil or farm.farmId == 0 then
+        return "Error: No farm found for current player"
+    end
+
+    local policySystem = g_currentMission.RedTape.PolicySystem
+    local farmTier = policySystem:getProgressForCurrentFarm().tier
+
+    local scheme = RTScheme.new()
+    scheme.tier = farmTier
+    scheme.schemeIndex = schemeIndex
+    scheme:initialise()
+
+    g_client:getServerConnection():sendEvent(RTSchemeActivatedEvent.new(scheme))
+    return string.format("Created %s demo scheme at tier %s", demoType, RTPolicySystem.TIER_NAMES[farmTier])
 end
 
 function RedTape:update(dt)

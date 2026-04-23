@@ -362,6 +362,7 @@ Journal des modifications:
         <sourceFile filename="src/events/PolicyWatchToggleEvent.lua"/>
         <sourceFile filename="src/events/RedTapeSettingsEvent.lua"/>
         <sourceFile filename="src/events/SchemeActivatedEvent.lua"/>
+        <sourceFile filename="src/events/SchemeBuyVehiclesEvent.lua"/>
         <sourceFile filename="src/events/SchemeEndedEvent.lua"/>
         <sourceFile filename="src/events/SchemeNoLongerAvailableEvent.lua"/>
         <sourceFile filename="src/events/SchemePayoutEvent.lua"/>
