@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="107">
+<modDesc descVersion="108">
     <author>Ozz</author>
-    <version>1.0.2.3</version>
+    <version>1.0.2.4</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,10 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.2.4:
+- Revised inclusion of 'other' money types in tax calculations to only include certain types, e.g. Precision Farming soil information purchases.
+- Add support for Witcombe rabbits in Animal Spacing. Also reduced space requirements slightly for some other animals.
 
 1.0.2.3:
 - Equipment demo schemes now have an 'Action' button to allow players to purchase the demo equipment at a discount.
@@ -144,6 +148,20 @@ https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
 
+1.0.2.4:
+- Überarbeitung der Einbeziehung „sonstiger" Geldarten in die Steuerberechnung, sodass nur bestimmte Arten berücksichtigt werden, z. B. Bodeninformationskäufe von Precision Farming.
+- Unterstützung für Witcombe-Kaninchen im Tierhaltungsabstand hinzugefügt. Außerdem wurden die Platzanforderungen für einige andere Tiere leicht reduziert.
+
+1.0.2.3:
+- Ausrüstungs-Demo-Programme haben jetzt eine „Aktion"-Schaltfläche, mit der Spieler die Demo-Ausrüstung vergünstigt kaufen können.
+- Ausrüstungs-Demo-Programme erzeugen jetzt Ausrüstung mit geringerer Nutzung.
+- Sicherheitsprüfung zur Fehlererkennung bei der Wassererkennung beim Sprühen hinzugefügt.
+- Das Programm zur reduzierten Ballenwicklung erkennt jetzt auch andere Grasarten.
+- Alle Programm- und Richtlinienauswertungen sind in eine Fehlerprüfung eingebettet, um Probleme wie z. B. nicht wachsende Tiere im Fehlerfall zu vermeiden.
+- Negative Richtlinienbewertungen werden jetzt auf Null begrenzt, um die Anzeige von -0 in Berichten zu verhindern.
+- „Sonstige" Einnahmen und Ausgaben sind jetzt im Steuersystem enthalten. Dies umfasst bestimmte Objekte und Bodeninformationen mit PF.
+- Die Belohnung für das Winterzwischenfrucht-Programm wurde deutlich reduziert.
+
 1.0.2.2:
 - Bei der Ernteförderung wird nun der Fruchtname gespeichert, um Probleme bei Änderungen der Fruchttyp-Indizes zu vermeiden. Außerdem wurde ein Fehler behoben, der die Auswertung fehlschlagen ließ.
 - Sicherheitsprüfung bei der Auswahl von Fahrzeugen für Programme hinzugefügt, um Fehler zu vermeiden.
@@ -254,6 +272,20 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.2.4:
+- Révision de l'inclusion des types de revenus « autres » dans les calculs fiscaux afin de n'inclure que certains types, par ex. les achats d'informations sur les sols de Precision Farming.
+- Ajout de la prise en charge des lapins Witcombe dans l'espacement des animaux. Réduction légère des exigences d'espace pour certains autres animaux.
+
+1.0.2.3:
+- Les programmes de démonstration d'équipement disposent désormais d'un bouton « Action » permettant aux joueurs d'acheter l'équipement de démonstration à prix réduit.
+- Les programmes de démonstration d'équipement génèrent désormais des équipements avec moins d'usure.
+- Ajout d'une protection de sécurité pour détecter les erreurs lors de la détection de l'eau pendant la pulvérisation.
+- Le programme de réduction d'enrubannage des balles détecte désormais d'autres types d'herbe.
+- Toutes les évaluations de programmes et de politiques sont intégrées dans une vérification d'erreurs afin d'éviter des problèmes tels que les animaux qui ne grandissent pas en cas d'erreur.
+- Les scores négatifs des politiques sont désormais limités à zéro pour éviter l'affichage de -0 dans les rapports.
+- Les revenus et dépenses « autres » sont désormais inclus dans le système fiscal. Cela comprend certains objets et les informations sur les sols avec PF.
+- La récompense pour le programme de cultures de couverture hivernales a été considérablement réduite.
 
 1.0.2.2:
 - Pour la promotion des cultures, sauvegarde désormais par nom de fruit afin d'éviter les problèmes en cas de changement des indices de type de fruit. Correction d'un bug qui empêchait l'évaluation de fonctionner.

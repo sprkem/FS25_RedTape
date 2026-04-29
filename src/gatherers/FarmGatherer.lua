@@ -633,12 +633,16 @@ end
 
 function FarmGatherer:getDesirableSpace(animalType, age)
     local animalSpaceConfig = {
-        [AnimalType.CHICKEN] = { minSpace = 0.3, fullSizeSpace = 0.75, fullSizeAge = 4 },
-        [AnimalType.COW] = { minSpace = 2, fullSizeSpace = 7, fullSizeAge = 24 },
-        [AnimalType.HORSE] = { minSpace = 5, fullSizeSpace = 17, fullSizeAge = 24 },
+        [AnimalType.CHICKEN] = { minSpace = 0.15, fullSizeSpace = 0.5, fullSizeAge = 4 },
+        [AnimalType.COW] = { minSpace = 2, fullSizeSpace = 6, fullSizeAge = 24 },
+        [AnimalType.HORSE] = { minSpace = 5, fullSizeSpace = 16, fullSizeAge = 24 },
         [AnimalType.PIG] = { minSpace = 0.5, fullSizeSpace = 2, fullSizeAge = 12 },
-        [AnimalType.SHEEP] = { minSpace = 1.2, fullSizeSpace = 3, fullSizeAge = 12 }
+        [AnimalType.SHEEP] = { minSpace = 1, fullSizeSpace = 2.5, fullSizeAge = 12 }
     }
+
+    if AnimalType.RABBIT ~= nil then
+        animalSpaceConfig[AnimalType.RABBIT] = { minSpace = 0.15, fullSizeSpace = 0.3, fullSizeAge = 1 }
+    end
 
     local config = animalSpaceConfig[animalType]
     if config == nil then
