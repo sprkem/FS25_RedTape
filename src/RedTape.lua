@@ -505,9 +505,23 @@ function RedTape:playerFarmChanged()
     g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
 end
 
+function RedTape.installSaveHook()
+    if RedTape.saveHookInstalled then
+        return
+    end
+
+    local target = FSBaseMission
+    if Mission00 ~= nil and Mission00.saveSavegame ~= nil then
+        target = Mission00
+    end
+
+    target.saveSavegame = Utils.appendedFunction(target.saveSavegame, RedTape.saveToXmlFile)
+    RedTape.saveHookInstalled = true
+end
+
 FSBaseMission.sendInitialClientState = Utils.appendedFunction(FSBaseMission.sendInitialClientState,
     RedTape.sendInitialClientState)
-FSBaseMission.saveSavegame = Utils.appendedFunction(FSBaseMission.saveSavegame, RedTape.saveToXmlFile)
+RedTape.installSaveHook()
 FSBaseMission.onStartMission = Utils.prependedFunction(FSBaseMission.onStartMission, RedTape.onStartMission)
 
 addModEventListener(RedTape)
