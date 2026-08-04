@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<modDesc descVersion="110">
+<modDesc descVersion="111">
     <author>Ozz</author>
     <version>1.0.2.9</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
@@ -26,7 +26,7 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.2.9 [WIP]:
+1.0.2.9:
 - Update save hook for resiliency against mod conflicts.
 
 1.0.2.8:
