@@ -510,8 +510,15 @@ function RedTape.installSaveHook()
         return
     end
 
+    -- Mission00.saveSavegame is inherited from FSBaseMission via metatable, so it is
+    -- ALWAYS non-nil even when Mission00 has no override of its own. Checking it directly
+    -- (without rawget) would make us always shadow Mission00, permanently orphaning any
+    -- mod that later hooks FSBaseMission.saveSavegame (the standard convention most mods
+    -- use, e.g. inside FSBaseMission.onStartMission). Only target Mission00 if another mod
+    -- has already put its own property there — otherwise stay on FSBaseMission so we remain
+    -- part of the shared chain.
     local target = FSBaseMission
-    if Mission00 ~= nil and Mission00.saveSavegame ~= nil then
+    if Mission00 ~= nil and rawget(Mission00, "saveSavegame") ~= nil then
         target = Mission00
     end
 
