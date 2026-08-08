@@ -175,6 +175,9 @@ https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
 
+1.0.2.10:
+- Speicher-Hook aktualisiert, um Konflikte mit anderen Mods besser abzufangen.
+
 1.0.2.8:
 - Eine neue Einstellung wurde hinzugefügt, um zu steuern, ob das Steuersystem aktuell Ausgaben/Einnahmen erfasst. Dies ermöglicht es Spielern, die Steuererfassung vorübergehend zu deaktivieren, z.B. während der Spieleinrichtung.
 - Das Deaktivieren des Steuersystems über die ursprüngliche Einstellung löscht nun den Steuerverlauf.
@@ -324,6 +327,9 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.2.10:
+- Mise à jour du hook de sauvegarde pour une meilleure résistance aux conflits entre mods.
 
 1.0.2.8:
 - Ajout d'un nouveau paramètre pour contrôler si le système fiscal enregistre actuellement les dépenses/revenus. Cela permet aux joueurs de désactiver temporairement l'enregistrement fiscal, par exemple lors de la configuration du jeu.
