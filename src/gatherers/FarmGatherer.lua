@@ -605,6 +605,10 @@ function FarmGatherer:getHusbandryStats()
 
         local conditionInfos = husbandry:getConditionInfos()
         for i, conditionInfo in pairs(conditionInfos) do
+            -- badly configured maps can return non-table entries here, skip them
+            if type(conditionInfo) ~= "table" or conditionInfo.title == nil then
+                continue
+            end
             if animalType ~= AnimalType.HORSE and animalType ~= AnimalType.PIG and i == 1 then
                 stats.productivity = conditionInfo.value
             end
