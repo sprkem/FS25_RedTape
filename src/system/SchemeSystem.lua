@@ -311,7 +311,8 @@ function RTSchemeSystem:endActiveScheme(id, farmId)
         if scheme.id == id then
             scheme:endScheme()
             table.remove(self.activeSchemesByFarm[farmId], i)
-            g_currentMission.RedTape.EventLog:addEvent(nil, RTEventLogItem.EVENT_TYPE.SCHEME_ACTIVATED,
+            -- The scheme ended for a single farm, so only that farm should see the entry
+            g_currentMission.RedTape.EventLog:addEvent(farmId, RTEventLogItem.EVENT_TYPE.SCHEME_ACTIVATED,
                 string.format(g_i18n:getText("rt_notify_ended_scheme"), scheme:getName()), farmId == currentFarmId)
             return
         end

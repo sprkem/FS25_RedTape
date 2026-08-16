@@ -33,7 +33,10 @@ function RTEventLog:addEvent(farmId, eventType, detail, sendNotification)
     event.year = RedTape.getActualYear()
     table.insert(self.events, event)
 
-    if sendNotification then
+    -- Farm scoped events are broadcast to every client so each one keeps a full log,
+    -- but only the farm the event belongs to should be notified about it.
+    local currentFarmId = g_currentMission:getFarmId()
+    if sendNotification and (event.farmId == -1 or event.farmId == currentFarmId) then
         g_currentMission:addIngameNotification(FSBaseMission.INGAME_NOTIFICATION_CRITICAL, detail)
     end
     g_messageCenter:publish(MessageType.RT_DATA_UPDATED)
