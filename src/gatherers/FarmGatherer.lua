@@ -717,12 +717,34 @@ function FarmGatherer:updateManureLevels()
     local halfGrid = gridSize / 2
     local checkedCells = {}
     local cellsToRemove = {}
+    -- Manure heaps store their manure in the same terrain height map as manure tipped
+    -- on open ground, so any cell overlapping a heap would be counted twice
+    local heapAreas = RedTape.getManureHeapAreas()
+
+    local function cellOverlapsHeap(centerX, centerZ)
+        local x0 = centerX - halfGrid
+        local z0 = centerZ - halfGrid
+        for _, area in ipairs(heapAreas) do
+            if x0 <= area.maxX and x0 + gridSize >= area.minX
+                and z0 <= area.maxZ and z0 + gridSize >= area.minZ then
+                return true
+            end
+        end
+        return false
+    end
 
     for cellKey, _ in pairs(self.manureCells) do
         local gridX, gridZ = cellKey:match("^(-?%d+)_(-?%d+)$")
         gridX = tonumber(gridX)
         gridZ = tonumber(gridZ)
         if gridX == nil or gridZ == nil then
+            cellsToRemove[cellKey] = true
+            continue
+        end
+
+        -- Tipping into a heap registers a cell that can never contribute anything,
+        -- so stop tracking it rather than rescanning it every period
+        if cellOverlapsHeap(gridX, gridZ) then
             cellsToRemove[cellKey] = true
             continue
         end
@@ -738,6 +760,10 @@ function FarmGatherer:updateManureLevels()
                     continue
                 end
                 checkedCells[checkKey] = true
+
+                if cellOverlapsHeap(checkX, checkZ) then
+                    continue
+                end
 
                 local x0 = checkX - halfGrid
                 local z0 = checkZ - halfGrid

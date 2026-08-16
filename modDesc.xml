@@ -30,6 +30,7 @@ Changelog:
 - Added safety check for edge cases with husbandries that cause errors.
 - All scheme issued vehicles are properly excluded from the Advanced Damage System mod. Previously they were excluded initially but this did not survive game sessions.
 - The event log should now be more specific to the player farm in multiplayer, and not show other farms events.
+- Fixed a bug where manure manually placed into a normal manure bunker was counted twice for the manure management policy.
 
 1.0.2.10:
 - Update save hook for resiliency against mod conflicts.

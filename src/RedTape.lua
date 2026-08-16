@@ -443,6 +443,40 @@ function RedTape.getGridPosition(x, y, z, gridSize)
     return gridX, gridY, gridZ
 end
 
+--- Collect the world space bounding boxes of every placeable manure heap area.
+--- A manure heap holds its manure in the terrain height density map, exactly like
+--- manure tipped on open ground, so anything inside these boxes is already counted
+--- through the heap's own fill level and must not be counted again by the ground scan.
+function RedTape.getManureHeapAreas()
+    local areas = {}
+
+    local placeableSystem = g_currentMission and g_currentMission.placeableSystem
+    if placeableSystem == nil then
+        return areas
+    end
+
+    for _, placeable in pairs(placeableSystem.placeables) do
+        local spec = placeable.spec_manureHeap
+        local heap = spec ~= nil and spec.manureHeap or nil
+        if heap ~= nil and heap.area ~= nil and heap.area.isAvailable then
+            local sx, _, sz = getWorldTranslation(heap.area.start)
+            local wx, _, wz = getWorldTranslation(heap.area.width)
+            local hx, _, hz = getWorldTranslation(heap.area.height)
+            -- The area is a parallelogram defined by three corners, the fourth is implied
+            local ox, oz = wx + hx - sx, wz + hz - sz
+
+            table.insert(areas, {
+                minX = math.min(sx, wx, hx, ox),
+                maxX = math.max(sx, wx, hx, ox),
+                minZ = math.min(sz, wz, hz, oz),
+                maxZ = math.max(sz, wz, hz, oz)
+            })
+        end
+    end
+
+    return areas
+end
+
 --- Exclude a vehicle from FS25_AdvancedDamageSystem processing. Scheme vehicles are
 --- not owned by the player, so they cannot be repaired or serviced when ADS drains
 --- their battery or breaks them down.
