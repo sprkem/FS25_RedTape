@@ -31,6 +31,9 @@ function RTScheme:checkPendingVehicles()
             local vehicle = g_currentMission.vehicleSystem:getVehicleByUniqueId(uniqueId)
             if vehicle ~= nil then
                 table.remove(self.pendingVehicleUniqueIds, i)
+                -- the player does not own scheme vehicles and so cannot repair them,
+                -- re-apply the ADS exclusion that was set when they were spawned
+                RedTape.setADSExcluded(vehicle, true)
                 table.insert(self.vehicles, vehicle)
             end
         end
@@ -428,6 +431,8 @@ end
 
 function RTScheme:onVehicleReset(oldVehicle, newVehicle)
     if g_currentMission:getIsServer() and table.removeElement(self.vehicles, oldVehicle) then
+        -- the reset vehicle is a fresh instance, so it needs excluding again
+        RedTape.setADSExcluded(newVehicle, true)
         table.addElement(self.vehicles, newVehicle)
     end
 end

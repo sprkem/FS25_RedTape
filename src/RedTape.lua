@@ -443,11 +443,24 @@ function RedTape.getGridPosition(x, y, z, gridSize)
     return gridX, gridY, gridZ
 end
 
+--- Exclude a vehicle from FS25_AdvancedDamageSystem processing. Scheme vehicles are
+--- not owned by the player, so they cannot be repaired or serviced when ADS drains
+--- their battery or breaks them down.
 function RedTape.setADSExcluded(vehicle, excluded)
     local spec = vehicle.spec_AdvancedDamageSystem
-    if spec ~= nil then
-        spec.isExcludedVehicle = excluded
+    if spec == nil then
+        return
     end
+
+    -- Preferred path: ADS' own setter also syncs to clients and persists the flag
+    -- in the savegame, so the exclusion survives a save/load round trip.
+    if vehicle.setADSUserExcluded ~= nil then
+        vehicle:setADSUserExcluded(excluded)
+        return
+    end
+
+    -- Fallback for older ADS versions without the setter.
+    spec.isExcludedVehicle = excluded
 end
 
 function RedTape.getGrassTypes()
