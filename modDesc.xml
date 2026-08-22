@@ -185,6 +185,9 @@ https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
 
+1.0.3.1:
+- Fehler behoben, bei dem die Fruchtfolge-Richtlinie in verschiedenen Fällen nicht korrekt ausgewertet wurde.
+
 1.0.3.0:
 - Sicherheitsprüfung für Sonderfälle bei Tierhaltungen hinzugefügt, die Fehler verursacht haben.
 - Alle von Programmen bereitgestellten Fahrzeuge werden nun dauerhaft vom Advanced Damage System Mod ausgeschlossen. Zuvor wurden sie zwar anfangs ausgeschlossen, dies blieb jedoch über Spielsitzungen hinweg nicht erhalten.
@@ -344,6 +347,9 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.3.1:
+- Correction de divers cas où la politique de rotation des cultures n'était pas correctement évaluée.
 
 1.0.3.0:
 - Ajout d'une vérification de sécurité pour les cas particuliers d'élevages provoquant des erreurs.
