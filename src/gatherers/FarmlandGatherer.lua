@@ -28,7 +28,15 @@ function FarmlandGatherer:periodChanged()
             if currentFruit == nil then
                 farmlandData.fallowMonths = farmlandData.fallowMonths + 1
             else
-                farmlandData.fallowMonths = 0
+                -- Stubble left behind by a harvest still reports its fruit type, so a field
+                -- that has been harvested and not replanted must count as fallow. Otherwise
+                -- fallowMonths can never grow and the "left bare" exemption never applies.
+                if growthState == currentFruit.cutState then
+                    farmlandData.fallowMonths = farmlandData.fallowMonths + 1
+                else
+                    farmlandData.fallowMonths = 0
+                end
+
                 farmlandData.fruitHistory[cumulativeMonth] = {
                     name = currentFruit.name or "",
                     growthState = growthState
@@ -40,6 +48,15 @@ function FarmlandGatherer:periodChanged()
             for month, _ in pairs(farmlandData.fruitHistory) do
                 if month < oldestHistoryMonth then
                     farmlandData.fruitHistory[month] = nil
+                end
+            end
+
+            -- Harvest history has the same 24 month horizon. Without this an ancient entry
+            -- (or one left over from the map's starting crops) keeps being compared against
+            -- the latest harvest forever.
+            for i = #farmlandData.harvestedCropsHistory, 1, -1 do
+                if farmlandData.harvestedCropsHistory[i].month < oldestHistoryMonth then
+                    table.remove(farmlandData.harvestedCropsHistory, i)
                 end
             end
         end
@@ -64,6 +81,8 @@ function FarmlandGatherer:getFarmlandData(farmlandId)
             monthlyWrappedBales = 0,
             fruitHistory = {},
             isHarvested = false,
+            harvestPrimed = false,
+            sawGrowingCrop = false,
             harvestedCropsHistory = {},
             rotationExceptions = 0
         }
@@ -79,10 +98,11 @@ function FarmlandGatherer:saveToXmlFile(xmlFile, key)
         local farmlandKey = string.format("%s.farmlands.farmland(%d)", farmlandGathererKey, i)
         setXMLInt(xmlFile, farmlandKey .. "#id", farmlandId)
         setXMLInt(xmlFile, farmlandKey .. "#fallowMonths", farmlandData.fallowMonths)
-        setXMLInt(xmlFile, farmlandKey .. "#areaHa", farmlandData.areaHa)
+        setXMLFloat(xmlFile, farmlandKey .. "#areaHa", farmlandData.areaHa)
         setXMLInt(xmlFile, farmlandKey .. "#lastGrassHarvest", farmlandData.lastGrassHarvest)
         setXMLInt(xmlFile, farmlandKey .. "#monthlyWrappedBales", farmlandData.monthlyWrappedBales)
         setXMLBool(xmlFile, farmlandKey .. "#isHarvested", farmlandData.isHarvested)
+        setXMLBool(xmlFile, farmlandKey .. "#sawGrowingCrop", farmlandData.sawGrowingCrop)
         setXMLInt(xmlFile, farmlandKey .. "#rotationExceptions", farmlandData.rotationExceptions)
 
         local j = 0
@@ -95,7 +115,7 @@ function FarmlandGatherer:saveToXmlFile(xmlFile, key)
         end
 
         local k = 0
-        for _, harvestEntry in pairs(farmlandData.harvestedCropsHistory) do
+        for _, harvestEntry in ipairs(farmlandData.harvestedCropsHistory) do
             local harvestKey = string.format("%s.harvestedCropsHistory.harvest(%d)", farmlandKey, k)
             setXMLString(xmlFile, harvestKey .. "#name", harvestEntry.name)
             setXMLInt(xmlFile, harvestKey .. "#month", harvestEntry.month)
@@ -119,11 +139,15 @@ function FarmlandGatherer:loadFromXMLFile(xmlFile, key)
         local farmlandId = getXMLInt(xmlFile, farmlandKey .. "#id")
         self.data[farmlandId] = {
             fallowMonths = getXMLInt(xmlFile, farmlandKey .. "#fallowMonths") or 0,
-            areaHa = getXMLInt(xmlFile, farmlandKey .. "#areaHa") or 0,
+            areaHa = getXMLFloat(xmlFile, farmlandKey .. "#areaHa") or 0,
             lastGrassHarvest = getXMLInt(xmlFile, farmlandKey .. "#lastGrassHarvest") or
                 getXMLInt(xmlFile, farmlandKey .. "#lastHarvestMonth") or 0,
             monthlyWrappedBales = getXMLInt(xmlFile, farmlandKey .. "#monthlyWrappedBales") or 0,
             isHarvested = getXMLBool(xmlFile, farmlandKey .. "#isHarvested") or false,
+            -- Deliberately not persisted: every session re-primes from the world before it
+            -- is allowed to record a harvest.
+            harvestPrimed = false,
+            sawGrowingCrop = getXMLBool(xmlFile, farmlandKey .. "#sawGrowingCrop") or false,
             rotationExceptions = getXMLInt(xmlFile, farmlandKey .. "#rotationExceptions") or 0,
             harvestedCropsHistory = {}
         }
@@ -210,7 +234,12 @@ function FarmlandGatherer:buildHarvestHistory()
                             (fruitEntry.growthState >= fruit.minHarvestingGrowthState and
                                 fruitEntry.growthState <= fruit.maxHarvestingGrowthState)
 
-                        if lastCropName == fruitEntry.name and fruitEntry.growthState < fruit.minHarvestingGrowthState then
+                        -- Re-arm only when the crop is genuinely growing again. A run of
+                        -- consecutive cut months is one harvest, not one per month, even for
+                        -- fruits whose cut state sorts below the harvestable range.
+                        if lastCropName == fruitEntry.name
+                            and fruitEntry.growthState ~= fruit.cutState
+                            and fruitEntry.growthState < fruit.minHarvestingGrowthState then
                             lastHarvestedCropName = nil
                         end
 
@@ -248,11 +277,23 @@ function FarmlandGatherer:checkHarvestedState()
 
             if currentFruit == nil then
                 farmlandData.isHarvested = false
+                farmlandData.harvestPrimed = true
             else
                 local wasHarvested = farmlandData.isHarvested
+                local wasPrimed = farmlandData.harvestPrimed
                 farmlandData.isHarvested = (growthState == currentFruit.cutState)
+                farmlandData.harvestPrimed = true
 
-                if farmlandData.isHarvested and not wasHarvested then
+                -- A field is only credited with a harvest once we have actually watched the
+                -- crop standing on it. Without this, stubble that was already there when the
+                -- session started (the map's own starting crops, or a field left uncultivated
+                -- across a save/load) reads as a brand new harvest.
+                if not farmlandData.isHarvested then
+                    farmlandData.sawGrowingCrop = true
+                end
+
+                if farmlandData.isHarvested and not wasHarvested and wasPrimed and farmlandData.sawGrowingCrop then
+                    farmlandData.sawGrowingCrop = false
                     g_client:getServerConnection():sendEvent(RTHarvestHistoryUpdateEvent.new(farmland.id,
                         currentFruit.name, RedTape.getCumulativeMonth()))
                 end

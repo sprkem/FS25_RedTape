@@ -27,14 +27,25 @@ RTPolicies = {
         evaluate = function(policyInfo, policy, farmId, currentTier)
             local ig = g_currentMission.RedTape.InfoGatherer
             local gatherer = ig.gatherers[INFO_KEYS.FARMLANDS]
-            local fruitsToSkip = {
-                g_fruitTypeManager:getFruitTypeByIndex(FruitType.GRAPE).name,
-                g_fruitTypeManager:getFruitTypeByIndex(FruitType.OLIVE).name,
-            }
-            local grassTypes = RedTape.getGrassTypes()
-            for _, f in pairs(grassTypes) do
-                table.insert(fruitsToSkip, g_fruitTypeManager:getFruitTypeByIndex(f).name)
+            local fruitsToSkip = {}
+
+            -- Every one of these can be nil on a map that removes the fruit, so never index
+            -- the result without checking.
+            local skipIndices = { FruitType.GRAPE, FruitType.OLIVE }
+            for _, f in pairs(RedTape.getGrassTypes()) do
+                table.insert(skipIndices, f)
             end
+
+            for _, fruitTypeIndex in pairs(skipIndices) do
+                local fruit = fruitTypeIndex ~= nil and g_fruitTypeManager:getFruitTypeByIndex(fruitTypeIndex) or nil
+                if fruit ~= nil then
+                    table.insert(fruitsToSkip, fruit.name)
+                end
+            end
+
+            -- Harvests recorded in the month the mod started tracking come from whatever the
+            -- map itself put on the fields, not from anything the player grew.
+            local firstTrackedMonth = g_currentMission.RedTape.monthStarted or 0
 
             local totalHa = 0
             local nonCompliantHa = 0
@@ -52,21 +63,28 @@ RTPolicies = {
                         continue
                     end
 
-                    if #farmLandData.harvestedCropsHistory == 0 then
+                    local history = {}
+                    for _, harvestEntry in ipairs(farmLandData.harvestedCropsHistory) do
+                        if harvestEntry.month > firstTrackedMonth then
+                            table.insert(history, harvestEntry)
+                        end
+                    end
+
+                    if #history == 0 then
                         continue
                     end
 
-                    local mostRecentHarvest = farmLandData.harvestedCropsHistory[1]
+                    local mostRecentHarvest = history[1]
 
                     if RedTape.tableHasValue(fruitsToSkip, mostRecentHarvest.name) then
                         continue
                     end
 
-                    if #farmLandData.harvestedCropsHistory < 2 then
+                    if #history < 2 then
                         continue
                     end
 
-                    local previousHarvest = farmLandData.harvestedCropsHistory[2]
+                    local previousHarvest = history[2]
 
                     totalHa = totalHa + farmLandData.areaHa
 

@@ -497,15 +497,67 @@ function RedTape.setADSExcluded(vehicle, excluded)
     spec.isExcludedVehicle = excluded
 end
 
-function RedTape.getGrassTypes()
-    local result = { FruitType.GRASS, FruitType.MEADOW }
+-- Fill types that a tedder can convert into something else are, by definition, grass-like
+-- forage lying on the ground (grass, meadow, alfalfa, clover and any map specific variant
+-- such as FIELDGRASS). Deriving the list from the converter keeps us map agnostic instead
+-- of relying on a hardcoded list of base game FruitType constants.
+function RedTape.getGrassFillTypes()
+    if RedTape.grassFillTypeCache ~= nil then
+        return RedTape.grassFillTypeCache
+    end
 
-    if FruitType.ALFALFA ~= nil then
-        table.insert(result, FruitType.ALFALFA)
+    local cache = {}
+    local converter = g_fillTypeManager:getConverterDataByName("TEDDER")
+    if converter ~= nil then
+        for fromFillType, to in pairs(converter) do
+            if to.targetFillTypeIndex ~= nil and to.targetFillTypeIndex ~= fromFillType then
+                cache[fromFillType] = true
+            end
+        end
     end
-    if FruitType.CLOVER ~= nil then
-        table.insert(result, FruitType.CLOVER)
+
+    RedTape.grassFillTypeCache = cache
+    return cache
+end
+
+-- Returns the fruit type indices that count as grass/forage. Grass is exempt from crop
+-- rotation rules because mowing the same ley several times a year is not a monoculture.
+function RedTape.getGrassTypes()
+    if RedTape.grassFruitTypeCache ~= nil then
+        return RedTape.grassFruitTypeCache
     end
+
+    local result = {}
+    local seen = {}
+
+    local function add(fruitTypeIndex)
+        if fruitTypeIndex ~= nil and not seen[fruitTypeIndex] then
+            seen[fruitTypeIndex] = true
+            table.insert(result, fruitTypeIndex)
+        end
+    end
+
+    local grassFillTypes = RedTape.getGrassFillTypes()
+    local fruitTypes = g_fruitTypeManager.fruitTypes
+    if fruitTypes == nil and g_fruitTypeManager.getFruitTypes ~= nil then
+        fruitTypes = g_fruitTypeManager:getFruitTypes()
+    end
+
+    for _, fruitType in pairs(fruitTypes or {}) do
+        local fillType = g_fruitTypeManager:getFillTypeByFruitTypeIndex(fruitType.index)
+        if fillType ~= nil and grassFillTypes[fillType.index] then
+            add(fruitType.index)
+        end
+    end
+
+    -- Safety net in case the TEDDER converter is missing or a grass fruit does not use a
+    -- tedderable fill type. These are nil on maps that remove them, hence the nil check.
+    add(FruitType.GRASS)
+    add(FruitType.MEADOW)
+    add(FruitType.ALFALFA)
+    add(FruitType.CLOVER)
+
+    RedTape.grassFruitTypeCache = result
     return result
 end
 
@@ -513,6 +565,10 @@ function RedTape:onStartMission()
     MissionManager.getIsMissionWorkAllowed = Utils.overwrittenFunction(MissionManager.getIsMissionWorkAllowed,
         RTMissionManagerExtension.getIsMissionWorkAllowed)
     Farm.changeBalance = Utils.appendedFunction(Farm.changeBalance, RTFarmExtension.changeBalance)
+
+    -- Fruit and fill types are map specific, so drop any cache built for a previous map.
+    RedTape.grassFillTypeCache = nil
+    RedTape.grassFruitTypeCache = nil
 
     local rt = g_currentMission.RedTape
     rt.missionStarted = true

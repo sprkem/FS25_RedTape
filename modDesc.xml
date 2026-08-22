@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="111">
     <author>Ozz</author>
-    <version>1.0.3.0</version>
+    <version>1.0.3.1</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -26,7 +26,10 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.3.0:
+1.0.3.1:
+- Fix for various scenarios where the Crop Rotation policy was not correctly evaluating.
+
+1.0.3.0: 
 - Added safety check for edge cases with husbandries that cause errors.
 - All scheme issued vehicles are properly excluded from the Advanced Damage System mod. Previously they were excluded initially but this did not survive game sessions.
 - The event log should now be more specific to the player farm in multiplayer, and not show other farms events.

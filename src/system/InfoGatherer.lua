@@ -48,6 +48,12 @@ function RTInfoGatherer:runConstantChecks()
 end
 
 function RTInfoGatherer:runInfrequentChecks()
+    -- Server only. Harvest history is authoritative on the server and reaches clients via
+    -- the initial client state and RTHarvestHistoryUpdateEvent. Letting clients run this
+    -- made every joining player re-report any field still sitting in stubble as a fresh
+    -- harvest, which showed up as a bogus monoculture in the crop rotation policy.
+    if not g_currentMission:getIsServer() then return end
+
     self.gatherers[INFO_KEYS.FARMLANDS]:checkHarvestedState()
 end
 
