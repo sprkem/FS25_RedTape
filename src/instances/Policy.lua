@@ -228,6 +228,14 @@ function RTPolicy:evaluate()
         return
     end
 
+    -- Not enforced: no report, no points, no warnings and no fines. The window still rolls
+    -- forward so that switching the policy back on starts a fresh evaluation period rather than
+    -- immediately judging the months it spent switched off.
+    if not RedTape.isPolicyEnforced(self.policyIndex) then
+        self.nextEvaluationMonth = cumulativeMonth + policyInfo.evaluationInterval
+        return
+    end
+
     for _, farm in pairs(g_farmManager.farmIdToFarm) do
         local progress = rt.PolicySystem:getProgressForFarm(farm.farmId)
 

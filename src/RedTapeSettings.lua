@@ -12,6 +12,13 @@ RedTape.menuItems = {
     'slurryRestrictionStart'
 }
 
+-- Everything above is a core setting. The per policy enforcement toggles built further down are
+-- appended to menuItems (so saving, loading and syncing pick them up automatically) but are also
+-- tracked on their own so the settings menu can group them under their own header.
+RedTape.coreMenuItems = { table.unpack(RedTape.menuItems) }
+RedTape.policyMenuItems = {}
+RedTape.policySettingIdByPolicyId = {}
+
 RedTape.multiplayerPermissions = {
     'redTapeSettings'
 }
@@ -130,7 +137,66 @@ RedTape.SETTINGS.manureStorageLimit = {
     }
 }
 
+--- PER POLICY ENFORCEMENT TOGGLES
+-- One on/off setting per entry in RTPolicies so a server can pick which rules it actually wants
+-- to enforce. Generated rather than hand written, so adding a policy to RTPolicies is all that is
+-- needed to get a setting for it. They share a single tooltip translation, formatted with the
+-- policy name, and use the policy name itself as their label.
+do
+    local policyKeysById = {}
+    for key, policyId in pairs(RTPolicyIds) do
+        policyKeysById[policyId] = key
+    end
 
+    -- Sorted by policy id so both the menu order and the multiplayer stream order are stable
+    local sortedPolicyIds = {}
+    for policyId in pairs(RTPolicies) do
+        table.insert(sortedPolicyIds, policyId)
+    end
+    table.sort(sortedPolicyIds)
+
+    for _, policyId in ipairs(sortedPolicyIds) do
+        local policyInfo = RTPolicies[policyId]
+        local settingId = 'policyEnabled_' .. (policyKeysById[policyId] or tostring(policyId))
+        local policyName = g_i18n:getText(policyInfo.name)
+
+        RedTape.SETTINGS[settingId] = {
+            ['default'] = 1,
+            ['serverOnly'] = true,
+            ['permission'] = 'redTapeSettings',
+            ['values'] = { true, false },
+            ['strings'] = {
+                g_i18n:getText("ui_on"),
+                g_i18n:getText("ui_off")
+            },
+            -- Policy toggles have no translations of their own, so the label and tooltip are
+            -- supplied here instead of being looked up from rt_setting_/rt_toolTip_ keys
+            ['title'] = policyName,
+            ['toolTip'] = string.format(g_i18n:getText("rt_toolTip_policyEnabled"), policyName),
+            ['policyId'] = policyId
+        }
+
+        RedTape.policySettingIdByPolicyId[policyId] = settingId
+        table.insert(RedTape.policyMenuItems, settingId)
+        table.insert(RedTape.menuItems, settingId)
+    end
+end
+
+--- Whether a policy is currently enforced. A policy with no setting (or with a setting that has
+--- not been read yet) counts as enforced, so a missing value can never silently switch a rule off.
+function RedTape.isPolicyEnforced(policyId)
+    local settingId = RedTape.policySettingIdByPolicyId[policyId]
+    if settingId == nil then
+        return true
+    end
+
+    local value = g_currentMission.RedTape.settings[settingId]
+    if value == nil then
+        return true
+    end
+
+    return value
+end
 
 function RedTape.SETTINGS.writeToStream(streamId)
     local settings = g_currentMission.RedTape.settings
@@ -142,6 +208,10 @@ function RedTape.SETTINGS.writeToStream(streamId)
     streamWriteInt32(streamId, settings.productivityRecovery)
     streamWriteInt32(streamId, settings.manureStorageLimit)
     streamWriteInt32(streamId, settings.slurryRestrictionStart)
+
+    for _, id in ipairs(RedTape.policyMenuItems) do
+        streamWriteBool(streamId, settings[id] ~= false)
+    end
 end
 
 function RedTape.SETTINGS.readFromStream(streamId)
@@ -154,6 +224,10 @@ function RedTape.SETTINGS.readFromStream(streamId)
     settings.productivityRecovery = streamReadInt32(streamId)
     settings.manureStorageLimit = streamReadInt32(streamId)
     settings.slurryRestrictionStart = streamReadInt32(streamId)
+
+    for _, id in ipairs(RedTape.policyMenuItems) do
+        settings[id] = streamReadBool(streamId)
+    end
 end
 
 function RedTape.getStateIndex(id, value)
@@ -178,6 +252,16 @@ function RedTape.getStateIndex(id, value)
         end
     end
     return RedTape.SETTINGS[id].default
+end
+
+--- Settings that carry their own label and tooltip (the generated policy toggles) use those;
+--- everything else falls back to its rt_setting_/rt_toolTip_ translation keys.
+function RedTape.getSettingTitle(id)
+    return RedTape.SETTINGS[id].title or g_i18n:getText("rt_setting_" .. id)
+end
+
+function RedTape.getSettingToolTip(id)
+    return RedTape.SETTINGS[id].toolTip or g_i18n:getText("rt_toolTip_" .. id)
 end
 
 RedTapeControls = {}
@@ -211,8 +295,8 @@ function RedTape.injectMenu()
 
     function RedTape.addBinaryMenuOption(id)
         local callback = "onMenuOptionChanged"
-        local i18n_title = "rt_setting_" .. id
-        local i18n_tooltip = "rt_toolTip_" .. id
+        local titleText = RedTape.getSettingTitle(id)
+        local toolTipText = RedTape.getSettingToolTip(id)
         local options = RedTape.SETTINGS[id].strings
 
         local originalBox = settingsPage.checkWoodHarvesterAutoCutBox
@@ -230,10 +314,10 @@ function RedTape.injectMenu()
 
 
         local toolTip = menuBinaryOption.elements[1]
-        toolTip:setText(g_i18n:getText(i18n_tooltip))
+        toolTip:setText(toolTipText)
 
         local setting = menuOptionBox.elements[2]
-        setting:setText(g_i18n:getText(i18n_title))
+        setting:setText(titleText)
 
         menuBinaryOption:setTexts({ table.unpack(options) })
         menuBinaryOption:setState(RedTape.getStateIndex(id))
@@ -248,8 +332,8 @@ function RedTape.injectMenu()
 
     function RedTape.addMultiMenuOption(id)
         local callback = "onMenuOptionChanged"
-        local i18n_title = "rt_setting_" .. id
-        local i18n_tooltip = "rt_toolTip_" .. id
+        local titleText = RedTape.getSettingTitle(id)
+        local toolTipText = RedTape.getSettingToolTip(id)
         local options = RedTape.SETTINGS[id].strings
 
         local originalBox = settingsPage.multiVolumeVoiceBox
@@ -267,10 +351,10 @@ function RedTape.injectMenu()
 
 
         local toolTip = menuMultiOption.elements[1]
-        toolTip:setText(g_i18n:getText(i18n_tooltip))
+        toolTip:setText(toolTipText)
 
         local setting = menuOptionBox.elements[2]
-        setting:setText(g_i18n:getText(i18n_title))
+        setting:setText(titleText)
 
         menuMultiOption:setTexts({ table.unpack(options) })
         menuMultiOption:setState(RedTape.getStateIndex(id))
@@ -283,37 +367,52 @@ function RedTape.injectMenu()
         return menuOptionBox
     end
 
-    -- Add section
-    local sectionTitle = nil
-    for idx, elem in ipairs(settingsPage.gameSettingsLayout.elements) do
-        if elem.name == "sectionHeader" then
-            sectionTitle = elem:clone(settingsPage.gameSettingsLayout)
-            break
+    -- Add section. controlKey has to be unique per header, otherwise a later header would
+    -- replace an earlier one in RedTape.CONTROLS and never reach the focus manager.
+    local function addSectionTitle(text, controlKey)
+        local sectionTitle = nil
+        for idx, elem in ipairs(settingsPage.gameSettingsLayout.elements) do
+            if elem.name == "sectionHeader" then
+                sectionTitle = elem:clone(settingsPage.gameSettingsLayout)
+                break
+            end
         end
+
+        if sectionTitle == nil then
+            sectionTitle = TextElement.new()
+            sectionTitle:applyProfile("fs25_settingsSectionHeader", true)
+            sectionTitle.name = "sectionHeader"
+            settingsPage.gameSettingsLayout:addElement(sectionTitle)
+        end
+
+        sectionTitle:setText(text)
+        -- Apply a new focus ID in either case - either the element doesn't have one right now, or it has an already used one
+        -- This is required for proper keyboard/controller navigation in the menu
+        sectionTitle.focusId = FocusManager:serveAutoFocusId()
+        table.insert(settingsPage.controlsList, sectionTitle)
+        -- The title needs to be passed to the focus manager later on, otherwise skipping over the section title with up/down keys will fail
+        RedTape.CONTROLS[controlKey] = sectionTitle
     end
 
-    if sectionTitle then
-        sectionTitle:setText(g_i18n:getText("rt_help_title_red_tape"))
-    else
-        sectionTitle = TextElement.new()
-        sectionTitle:applyProfile("fs25_settingsSectionHeader", true)
-        sectionTitle:setText(g_i18n:getText("rt_help_title_red_tape"))
-        sectionTitle.name = "sectionHeader"
-        settingsPage.gameSettingsLayout:addElement(sectionTitle)
-    end
-    -- Apply a new focus ID in either case - either the element doesn't have one right now, or it has an already used one
-    -- This is required for proper keyboard/controller navigation in the menu
-    sectionTitle.focusId = FocusManager:serveAutoFocusId()
-    table.insert(settingsPage.controlsList, sectionTitle)
-    -- The title needs to be passed to the focus manager later on, otherwise skipping over the section title with up/down keys will fail
-    RedTape.CONTROLS[sectionTitle.name] = sectionTitle
-
-    for _, id in pairs(RedTape.menuItems) do
+    local function addMenuOption(id)
         if #RedTape.SETTINGS[id].values == 2 then
             RedTape.addBinaryMenuOption(id)
         else
             RedTape.addMultiMenuOption(id)
         end
+    end
+
+    addSectionTitle(g_i18n:getText("rt_help_title_red_tape"), "rtSectionHeader")
+
+    for _, id in ipairs(RedTape.coreMenuItems) do
+        addMenuOption(id)
+    end
+
+    -- The per policy toggles get their own header, as the policy name alone is the label
+    addSectionTitle(g_i18n:getText("rt_header_policies"), "rtPolicySectionHeader")
+
+    for _, id in ipairs(RedTape.policyMenuItems) do
+        addMenuOption(id)
     end
 
     settingsPage.gameSettingsLayout:invalidateLayout()

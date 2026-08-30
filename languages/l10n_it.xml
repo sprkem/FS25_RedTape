@@ -219,6 +219,7 @@
 		<text name="rt_toolTip_manureStorageLimit" text="La quantità minima di letame (in litri) che puoi immagazzinare senza ricevere una multa dalla politica sullo stoccaggio del letame."/>
 		<text name="rt_setting_slurryRestrictionStart" text="Inizio restrizione liquami"/>
 		<text name="rt_toolTip_slurryRestrictionStart" text="Il mese in cui inizia il periodo di divieto di spandimento dei liquami. Il periodo dura sempre 4 mesi. Predefinito: settembre (regole del Regno Unito)."/>
+		<text name="rt_toolTip_policyEnabled" text="Attiva o disattiva l'applicazione della normativa %s. Se disattivata, la normativa non viene mai assegnata e non genera rapporti, punti, avvertimenti o multe."/>
 		<text name="rt_grant_button" text="Richiedi contributo" />
 		<text name="rt_grant_application_submitted" text="La tua domanda di contributo è stata inviata e può essere visualizzata nella scheda Contributi." />
 		<text name="rt_grant_confirm_application_dialog" text="Vuoi richiedere un contributo per questa costruzione? Ci sarà un costo di domanda pari a %s. Le domande possono richiedere fino a 6 mesi per essere elaborate e hanno una probabilità di approvazione del 50-60%%, influenzata dal tuo livello di conformità." />

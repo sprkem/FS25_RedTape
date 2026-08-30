@@ -218,6 +218,7 @@
 		<text name="rt_toolTip_manureStorageLimit" text="La cantidad mínima de estiércol (en litros) que puedes almacenar sin recibir una multa por la política de almacenamiento de estiércol."/>
 		<text name="rt_setting_slurryRestrictionStart" text="Inicio de la restricción de purín"/>
 		<text name="rt_toolTip_slurryRestrictionStart" text="El mes en que comienza el periodo restringido de aplicación de purín. El periodo dura siempre 4 meses. Por defecto, septiembre (normas del Reino Unido)."/>
+		<text name="rt_toolTip_policyEnabled" text="Activa o desactiva la aplicación de la normativa %s. Si está desactivada, la normativa nunca se asigna y no genera informes, puntos, avisos ni multas."/>
 		<text name="rt_grant_button" text="Solicitar subvención" />
 		<text name="rt_grant_application_submitted" text="Tu solicitud de subvención ha sido enviada y puede verse en la pestaña Subvenciones." />
 		<text name="rt_grant_confirm_application_dialog" text="¿Deseas solicitar una subvención para esta construcción? Habrá un costo de solicitud de %s. Las solicitudes pueden tardar hasta 6 meses en procesarse y tienen una probabilidad de aprobación del 50-60%%, que puede verse afectada por tu calificación de cumplimiento." />

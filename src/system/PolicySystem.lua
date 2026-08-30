@@ -232,7 +232,7 @@ function RTPolicySystem:getNextPolicyIndex()
 
     local availablePolicies = {}
     for id, policy in pairs(RTPolicies) do
-        if not inUse[id] then
+        if not inUse[id] and RedTape.isPolicyEnforced(id) then
             table.insert(availablePolicies, policy)
         end
     end
@@ -411,6 +411,20 @@ function RTPolicySystem:WarnAndFine(policyInfo, policy, farmId, fineIfDue, skipW
     if (maxWarningsReached or skipWarning) and fineIfDue > 0 then
         g_client:getServerConnection():sendEvent(RTPolicyFineEvent.new(farmId, policy.policyIndex, fineIfDue))
     end
+end
+
+--- The active policies that are currently enforced. A policy switched off in the settings keeps
+--- its record - including its reports and warnings - so switching it back on resumes where it left
+--- off, but it is hidden from the menu and never evaluated while it is off.
+function RTPolicySystem:getEnforcedPolicies()
+    local result = {}
+    for _, policy in ipairs(self.policies) do
+        if RedTape.isPolicyEnforced(policy.policyIndex) then
+            table.insert(result, policy)
+        end
+    end
+
+    return result
 end
 
 function RTPolicySystem:getWarningCountForFarmPolicy(farmId, policyIndex)

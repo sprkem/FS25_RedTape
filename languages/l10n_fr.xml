@@ -218,6 +218,7 @@
 		<text name="rt_toolTip_manureStorageLimit" text="La quantité minimale de fumier (en litres) que vous pouvez stocker sans recevoir d'amende liée à la politique de stockage du fumier."/>
 		<text name="rt_setting_slurryRestrictionStart" text="Début de la restriction du lisier"/>
 		<text name="rt_toolTip_slurryRestrictionStart" text="Le mois où commence la période d'interdiction d'épandage du lisier. La période dure toujours 4 mois. Par défaut, septembre (règles du Royaume-Uni)."/>
+		<text name="rt_toolTip_policyEnabled" text="Active ou désactive l'application de la réglementation %s. Désactivée, elle n'est jamais attribuée et n'entraîne ni rapports, ni points, ni avertissements, ni amendes."/>
 		<text name="rt_grant_button" text="Demander une subvention" />
 		<text name="rt_grant_application_submitted" text="Votre demande de subvention a été soumise et peut être consultée dans l'onglet Subventions." />
 		<text name="rt_grant_confirm_application_dialog" text="Souhaitez-vous demander une subvention pour cette construction ? Il y aura des frais de demande de %s. Les demandes peuvent prendre jusqu'à 6 mois à traiter et ont une chance d'approbation de 50-60%%, qui peut être impactée par votre note de conformité." />

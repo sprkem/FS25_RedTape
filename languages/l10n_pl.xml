@@ -218,6 +218,7 @@
 <text name="rt_toolTip_manureStorageLimit" text="Minimalna ilość obornika (w litrach), którą możesz przechowywać bez kary wynikającej z polityki przechowywania obornika."/>
 <text name="rt_setting_slurryRestrictionStart" text="Początek ograniczenia gnojowicy"/>
 <text name="rt_toolTip_slurryRestrictionStart" text="Miesiąc, w którym zaczyna się okres zakazu rozlewania gnojowicy. Okres zawsze trwa 4 miesiące. Domyślnie wrzesień (przepisy Wielkiej Brytanii)."/>
+		<text name="rt_toolTip_policyEnabled" text="Włącza lub wyłącza egzekwowanie przepisu %s. Gdy jest wyłączony, przepis nigdy nie zostaje przydzielony i nie powoduje raportów, punktów, ostrzeżeń ani kar."/>
 <text name="rt_grant_button" text="Złóż wniosek o dotację" />
 <text name="rt_grant_application_submitted" text="Twój wniosek o dotację został przesłany i można go zobaczyć w zakładce Dotacje." />
 <text name="rt_grant_confirm_application_dialog" text="Czy chcesz złożyć wniosek o dotację na tę konstrukcję? Opłata za złożenie wniosku wynosi %s. Rozpatrzenie wniosku może zająć do 6 miesięcy, a szansa na zatwierdzenie wynosi 50-60%%, na co może wpłynąć twój wskaźnik zgodności z przepisami." />

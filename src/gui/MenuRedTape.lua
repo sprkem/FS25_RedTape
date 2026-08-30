@@ -433,7 +433,7 @@ function MenuRedTape:updateContent()
         self.policySystemEnabledInfo:setVisible(true)
 
         local policySystem = g_currentMission.RedTape.PolicySystem
-        local activePolicies = policySystem.policies
+        local activePolicies = policySystem:getEnforcedPolicies()
         local progress = policySystem:getProgressForCurrentFarm()
 
         if progress == nil then

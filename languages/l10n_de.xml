@@ -218,6 +218,7 @@
 		<text name="rt_toolTip_manureStorageLimit" text="Die Mindestmenge an Gülle (in Litern), die Sie lagern können, ohne eine Strafe durch die Güllelagervorschrift zu erhalten."/>
 		<text name="rt_setting_slurryRestrictionStart" text="Beginn der Güllesperrfrist"/>
 		<text name="rt_toolTip_slurryRestrictionStart" text="Der Monat, in dem die Sperrfrist für das Ausbringen von Gülle beginnt. Die Sperrfrist dauert immer 4 Monate. Standard ist September (Regeln des Vereinigten Königreichs)."/>
+		<text name="rt_toolTip_policyEnabled" text="Aktiviert oder deaktiviert die Durchsetzung der Richtlinie %s. Ist sie aus, wird die Richtlinie nie vergeben und es gibt dafür keine Berichte, Punkte, Verwarnungen oder Bußgelder."/>
 		<text name="rt_grant_button" text="Zuschuss beantragen" />
 		<text name="rt_grant_application_submitted" text="Ihr Zuschussantrag wurde eingereicht und kann im Zuschüsse-Tab eingesehen werden." />
 		<text name="rt_grant_confirm_application_dialog" text="Möchten Sie einen Zuschuss für diese Konstruktion beantragen? Es fallen Antragskosten von %s an. Anträge können bis zu 6 Monate dauern und haben eine Genehmigungswahrscheinlichkeit von 50-60%%, die durch Ihre Compliance-Bewertung beeinflusst werden kann." />

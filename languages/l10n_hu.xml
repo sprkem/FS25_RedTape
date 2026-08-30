@@ -218,6 +218,7 @@
 		<text name="rt_toolTip_manureStorageLimit" text="A trágya minimális mennyisége (literben), amelyet bírság nélkül tárolhat a trágyatárolási előírás szerint."/>
 		<text name="rt_setting_slurryRestrictionStart" text="Hígtrágya-korlátozás kezdete"/>
 		<text name="rt_toolTip_slurryRestrictionStart" text="Az a hónap, amikor a hígtrágya-kijuttatás tilalmi időszaka kezdődik. Az időszak mindig 4 hónapig tart. Alapértelmezés: szeptember (brit szabályok)."/>
+		<text name="rt_toolTip_policyEnabled" text="Be- vagy kikapcsolja a(z) %s előírás érvényesítését. Kikapcsolva az előírás soha nem kerül kiosztásra, és nem jár érte jelentés, pont, figyelmeztetés vagy bírság."/>
 		<text name="rt_grant_button" text="Támogatás igénylése" />
 		<text name="rt_grant_application_submitted" text="A támogatási kérelmedet benyújtottuk, és megtekinthető a Támogatások fülön." />
 		<text name="rt_grant_confirm_application_dialog" text="Szeretnél támogatást igényelni ehhez az építkezéshez? A kérelem díja %s. A kérelmek feldolgozása akár 6 hónapot is igénybe vehet, a jóváhagyás esélye 35–45%, amit befolyásolhat a megfelelőségi értéked." />

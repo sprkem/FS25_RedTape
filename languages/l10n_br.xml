@@ -218,6 +218,7 @@
 		<text name="rt_toolTip_manureStorageLimit" text="A quantidade mínima de esterco (em litros) que você pode armazenar sem receber multa pela política de armazenamento de esterco."/>
 		<text name="rt_setting_slurryRestrictionStart" text="Início da restrição de chorume"/>
 		<text name="rt_toolTip_slurryRestrictionStart" text="O mês em que a janela restrita de aplicação de chorume começa. A janela dura sempre 4 meses. O padrão é Setembro (regras do Reino Unido)."/>
+		<text name="rt_toolTip_policyEnabled" text="Ativa ou desativa a aplicação da política %s. Quando desativada, a política nunca é atribuída e não gera relatórios, pontos, avisos ou multas."/>
 		<text name="rt_grant_button" text="Solicitar subsídio" />
 		<text name="rt_grant_application_submitted" text="Sua solicitação de subsídio foi enviada e pode ser visualizada na aba Subsídios." />
 		<text name="rt_grant_confirm_application_dialog" text="Deseja solicitar um subsídio para esta construção? Haverá custos de solicitação de %s. As solicitações podem levar até 6 meses para serem processadas e têm uma chance de aprovação de 50-60%%, que pode ser afetada pela sua classificação de conformidade." />

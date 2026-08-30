@@ -28,6 +28,7 @@ Changelog:
 
 1.0.3.2:
 - Players can now choose the start month for the Restricted Slurry Policy to match their region.
+- All Policies can now be disabled in the settings, allowing players to tune the mod to their liking.
 - Add helper command rtResetCropRotation to reset crop rotation history. Useful in edge cases which cause incorrect policy evaluation.
 
 1.0.3.1:
@@ -188,6 +189,11 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.3.2:
+- Spieler können nun den Startmonat für die Richtlinie "Eingeschränkte Gülleausbringung" passend zu ihrer Region wählen.
+- Alle Richtlinien können nun in den Einstellungen deaktiviert werden, sodass Spieler den Mod nach ihren Wünschen anpassen können.
+- Hilfsbefehl rtResetCropRotation hinzugefügt, um den Fruchtfolgeverlauf zurückzusetzen. Nützlich in Sonderfällen, die zu einer fehlerhaften Auswertung der Richtlinie führen.
 
 1.0.3.1:
 - Fehler behoben, bei dem die Fruchtfolge-Richtlinie in verschiedenen Fällen nicht korrekt ausgewertet wurde.
@@ -351,6 +357,11 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.3.2:
+- Les joueurs peuvent désormais choisir le mois de début de la politique « Application restreinte du lisier » afin de correspondre à leur région.
+- Toutes les politiques peuvent désormais être désactivées dans les paramètres, permettant aux joueurs d'adapter le mod à leurs préférences.
+- Ajout de la commande d'aide rtResetCropRotation pour réinitialiser l'historique de rotation des cultures. Utile dans les cas particuliers provoquant une évaluation incorrecte de la politique.
 
 1.0.3.1:
 - Correction de divers cas où la politique de rotation des cultures n'était pas correctement évaluée.
