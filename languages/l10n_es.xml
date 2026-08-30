@@ -83,7 +83,7 @@
 		<text name="rt_policy_description_animal_productivity" text="Fomenta el mantenimiento de la productividad animal, que es un indicador general de buen bienestar animal."/>
 		<text name="rt_policy_description_animal_space" text="Requiere que los animales tengan suficiente espacio para moverse, descansar y acceder a comida y agua; prevenir el hacinamiento reduce el estrés, lesiones y propagación de enfermedades. No aplica si una ganadería solo tiene un animal. Los animales jóvenes requieren menos espacio que los adultos."/>
 		<text name="rt_policy_description_manure_spreading" text="No debes dejar el estiércol inactivo indefinidamente. Asegúrate de no almacenar más del 50% del estiércol que produces en un período de 6 meses. Si no produces estiércol, no te afectará esta política. El informe se actualizará mensualmente, sin embargo, la evaluación completa y el pago o multas ocurrirán en mayo y noviembre."/>
-		<text name="rt_policy_description_restricted_slurry" text="No está permitido aplicar purín durante los meses de septiembre a diciembre. Serás penalizado por cada violación."/>
+		<text name="rt_policy_description_restricted_slurry" text="No está permitido aplicar purín durante los meses de %s a %s. Serás penalizado por cada violación."/>
 		<text name="rt_policy_description_sustainable_forestry" text="Fomenta prácticas forestales sostenibles, recompensando la plantación neta positiva de árboles y multando por la deforestación general. La política se aplica a tu propia tierra. Hacer trabajo por contrato no afectará tu evaluación. El informe se actualizará mensualmente con totales semestrales, sin embargo, la evaluación completa y el pago o multas ocurrirán en junio y diciembre."/>
 		<text name="rt_policy_report_description_croprotation" text="El informe muestra totales de tierra cumpliente y no cumpliente."/>
 		<text name="rt_policy_report_description_sprayviolation" text="El informe muestra cuántas violaciones de fumigación ocurrieron en el último mes."/>
@@ -216,6 +216,8 @@
 		<text name="rt_setting_instant" text="Instantáneo"/>
 		<text name="rt_setting_manureStorageLimit" text="Límite de almacenamiento de estiércol"/>
 		<text name="rt_toolTip_manureStorageLimit" text="La cantidad mínima de estiércol (en litros) que puedes almacenar sin recibir una multa por la política de almacenamiento de estiércol."/>
+		<text name="rt_setting_slurryRestrictionStart" text="Inicio de la restricción de purín"/>
+		<text name="rt_toolTip_slurryRestrictionStart" text="El mes en que comienza el periodo restringido de aplicación de purín. El periodo dura siempre 4 meses. Por defecto, septiembre (normas del Reino Unido)."/>
 		<text name="rt_grant_button" text="Solicitar subvención" />
 		<text name="rt_grant_application_submitted" text="Tu solicitud de subvención ha sido enviada y puede verse en la pestaña Subvenciones." />
 		<text name="rt_grant_confirm_application_dialog" text="¿Deseas solicitar una subvención para esta construcción? Habrá un costo de solicitud de %s. Las solicitudes pueden tardar hasta 6 meses en procesarse y tienen una probabilidad de aprobación del 50-60%%, que puede verse afectada por tu calificación de cumplimiento." />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="111">
     <author>Ozz</author>
-    <version>1.0.3.1</version>
+    <version>1.0.3.2</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -25,6 +25,10 @@ See the help menu in game for more information.
 https://github.com/sprkem/FS25_RedTape
 
 Changelog:
+
+1.0.3.2:
+- Players can now choose the start month for the Restricted Slurry Policy to match their region.
+- Add helper command rtResetCropRotation to reset crop rotation history. Useful in edge cases which cause incorrect policy evaluation.
 
 1.0.3.1:
 - Fix for various scenarios where the Crop Rotation policy was not correctly evaluating.
@@ -497,6 +501,7 @@ Journal des modifications:
         <sourceFile filename="src/events/SaltSchemeHUDUpdateEvent.lua"/>
         <sourceFile filename="src/hud/SaltSchemeHUD.lua"/>
         <sourceFile filename="src/events/HarvestHistoryUpdateEvent.lua"/>
+        <sourceFile filename="src/events/CropRotationResetEvent.lua"/>
         <sourceFile filename="src/events/InitialClientStateEvent.lua"/>
         <sourceFile filename="src/events/GrantApplicationEvent.lua"/>
         <sourceFile filename="src/events/GrantStatusUpdateEvent.lua"/>

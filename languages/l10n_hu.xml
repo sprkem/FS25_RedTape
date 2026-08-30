@@ -83,7 +83,7 @@
 		<text name="rt_policy_description_animal_productivity" text="Bátorítja az állatok termelékenységének fenntartását, ami az állatjólét általános mutatója."/>
 		<text name="rt_policy_description_animal_space" text="Megköveteli, hogy az állatoknak elegendő hely legyen a mozgáshoz, pihenéshez és ételhez/vízhez való hozzáféréshez. A túlzsúfoltság stresszt, sérüléseket és betegségek terjedését okozhat. Egyetlen állat esetén nem alkalmazandó."/>
 		<text name="rt_policy_description_manure_spreading" text="Ne hagyd a trágyát állandóan tárolva. Legfeljebb a termelt trágya 50%-át tárold 6 hónapon belül. Ha nem termelsz trágyát, nem érint ez az irányelv. A jelentés havonta frissül, a teljes értékelés és kifizetés/bírság májusban és novemberben történik."/>
-		<text name="rt_policy_description_restricted_slurry" text="Szeptember és december között nem alkalmazhatsz trágyát. Minden szabályszegésért büntetést kapsz."/>
+		<text name="rt_policy_description_restricted_slurry" text="%s és %s között nem alkalmazhatsz trágyát. Minden szabályszegésért büntetést kapsz."/>
 		<text name="rt_policy_description_sustainable_forestry" text="Bátorítja a fenntartható erdőgazdálkodást, jutalmazza a fák ültetését és bünteti az erdőirtást. Az irányelv a saját földedre vonatkozik; szerződéses munka nem befolyásolja az értékelést. A jelentés havonta frissül, a teljes értékelés és kifizetés/bírság júniusban és decemberben történik."/>
 		<text name="rt_policy_report_description_croprotation" text="A jelentés összesíti a szabálykövető és nem szabálykövető területeket."/>
 		<text name="rt_policy_report_description_sprayviolation" text="A jelentés mutatja, hány permetezési szabálysértés történt az elmúlt hónapban."/>
@@ -216,6 +216,8 @@
 		<text name="rt_setting_instant" text="Azonnali"/>
 		<text name="rt_setting_manureStorageLimit" text="Trágyatárolási limit"/>
 		<text name="rt_toolTip_manureStorageLimit" text="A trágya minimális mennyisége (literben), amelyet bírság nélkül tárolhat a trágyatárolási előírás szerint."/>
+		<text name="rt_setting_slurryRestrictionStart" text="Hígtrágya-korlátozás kezdete"/>
+		<text name="rt_toolTip_slurryRestrictionStart" text="Az a hónap, amikor a hígtrágya-kijuttatás tilalmi időszaka kezdődik. Az időszak mindig 4 hónapig tart. Alapértelmezés: szeptember (brit szabályok)."/>
 		<text name="rt_grant_button" text="Támogatás igénylése" />
 		<text name="rt_grant_application_submitted" text="A támogatási kérelmedet benyújtottuk, és megtekinthető a Támogatások fülön." />
 		<text name="rt_grant_confirm_application_dialog" text="Szeretnél támogatást igényelni ehhez az építkezéshez? A kérelem díja %s. A kérelmek feldolgozása akár 6 hónapot is igénybe vehet, a jóváhagyás esélye 35–45%, amit befolyásolhat a megfelelőségi értéked." />

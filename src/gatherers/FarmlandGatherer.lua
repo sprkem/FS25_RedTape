@@ -6,6 +6,9 @@ function FarmlandGatherer.new()
     setmetatable(self, FarmlandGatherer_mt)
 
     self.data = {}
+    -- Set once the one-off migration from fruitHistory has run (or been deliberately
+    -- skipped by a reset), so it can never rebuild history a second time.
+    self.harvestHistoryBuilt = false
 
     return self
 end
@@ -92,6 +95,7 @@ end
 
 function FarmlandGatherer:saveToXmlFile(xmlFile, key)
     local farmlandGathererKey = string.format("%s.farmlandGatherer", key)
+    setXMLBool(xmlFile, farmlandGathererKey .. "#harvestHistoryBuilt", self.harvestHistoryBuilt)
 
     local i = 0
     for farmlandId, farmlandData in pairs(self.data) do
@@ -128,6 +132,7 @@ end
 
 function FarmlandGatherer:loadFromXMLFile(xmlFile, key)
     local farmlandGathererKey = string.format("%s.farmlandGatherer", key)
+    self.harvestHistoryBuilt = getXMLBool(xmlFile, farmlandGathererKey .. "#harvestHistoryBuilt") or false
 
     local i = 0
     while true do
@@ -192,6 +197,10 @@ function FarmlandGatherer:loadFromXMLFile(xmlFile, key)
 end
 
 function FarmlandGatherer:buildHarvestHistory()
+    if self.harvestHistoryBuilt then
+        return
+    end
+
     -- First check if any farmland already has valid harvest history loaded
     local hasExistingHistory = false
     for _, farmlandData in pairs(self.data) do
@@ -203,6 +212,7 @@ function FarmlandGatherer:buildHarvestHistory()
 
     -- If we have existing harvest history, exit early
     if hasExistingHistory then
+        self.harvestHistoryBuilt = true
         return
     end
 
@@ -264,6 +274,34 @@ function FarmlandGatherer:buildHarvestHistory()
             end
         end
     end
+
+    self.harvestHistoryBuilt = true
+end
+
+-- Wipes everything the crop rotation policy looks at, so the next evaluation starts from a
+-- clean slate and cannot penalise any field. Recovery hatch for savegames that recorded
+-- bogus harvests before the detection fixes landed.
+function FarmlandGatherer:resetCropRotationHistory()
+    local cleared = 0
+
+    for _, farmlandData in pairs(self.data) do
+        if #farmlandData.harvestedCropsHistory > 0 then
+            cleared = cleared + 1
+        end
+
+        farmlandData.harvestedCropsHistory = {}
+        farmlandData.fallowMonths = 0
+        -- Force a fresh prime pass: the next check re-reads the world without recording it.
+        farmlandData.isHarvested = false
+        farmlandData.harvestPrimed = false
+        farmlandData.sawGrowingCrop = false
+    end
+
+    -- fruitHistory is left alone (the schemes still need it), so the migration must be
+    -- blocked from rebuilding the harvest history we just cleared.
+    self.harvestHistoryBuilt = true
+
+    return cleared
 end
 
 function FarmlandGatherer:checkHarvestedState()

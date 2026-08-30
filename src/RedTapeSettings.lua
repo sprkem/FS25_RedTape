@@ -8,7 +8,8 @@ RedTape.menuItems = {
     'grantsEnabled',
     'baseTaxRate',
     'productivityRecovery',
-    'manureStorageLimit'
+    'manureStorageLimit',
+    'slurryRestrictionStart'
 }
 
 RedTape.multiplayerPermissions = {
@@ -91,6 +92,30 @@ RedTape.SETTINGS.productivityRecovery = {
     }
 }
 
+-- The restricted slurry window is a UK-style closed period. Other countries run the same
+-- kind of ban but start it in a different month, so the start is configurable and the window
+-- length stays fixed.
+RedTape.SETTINGS.slurryRestrictionStart = {
+    ['default'] = 9,
+    ['serverOnly'] = true,
+    ['permission'] = 'redTapeSettings',
+    ['values'] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+    ['strings'] = {
+        g_i18n:getText("ui_month1"),
+        g_i18n:getText("ui_month2"),
+        g_i18n:getText("ui_month3"),
+        g_i18n:getText("ui_month4"),
+        g_i18n:getText("ui_month5"),
+        g_i18n:getText("ui_month6"),
+        g_i18n:getText("ui_month7"),
+        g_i18n:getText("ui_month8"),
+        g_i18n:getText("ui_month9"),
+        g_i18n:getText("ui_month10"),
+        g_i18n:getText("ui_month11"),
+        g_i18n:getText("ui_month12")
+    }
+}
+
 RedTape.SETTINGS.manureStorageLimit = {
     ['default'] = 1,
     ['serverOnly'] = true,
@@ -116,6 +141,7 @@ function RedTape.SETTINGS.writeToStream(streamId)
     streamWriteFloat32(streamId, settings.baseTaxRate)
     streamWriteInt32(streamId, settings.productivityRecovery)
     streamWriteInt32(streamId, settings.manureStorageLimit)
+    streamWriteInt32(streamId, settings.slurryRestrictionStart)
 end
 
 function RedTape.SETTINGS.readFromStream(streamId)
@@ -127,6 +153,7 @@ function RedTape.SETTINGS.readFromStream(streamId)
     settings.baseTaxRate = streamReadFloat32(streamId)
     settings.productivityRecovery = streamReadInt32(streamId)
     settings.manureStorageLimit = streamReadInt32(streamId)
+    settings.slurryRestrictionStart = streamReadInt32(streamId)
 end
 
 function RedTape.getStateIndex(id, value)

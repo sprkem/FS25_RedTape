@@ -83,7 +83,7 @@
 		<text name="rt_policy_description_animal_productivity" text="Fördert die Aufrechterhaltung der Tierproduktivität, die ein allgemeiner Indikator für gutes Tierwohl ist."/>
 		<text name="rt_policy_description_animal_space" text="Erfordert, dass Tiere genügend Platz haben, um sich zu bewegen, zu ruhen und Zugang zu Futter/Wasser zu haben; die Vermeidung von Überbelegung reduziert Stress, Verletzungen und Krankheitsausbreitung und unterstützt bessere Gesundheit und Produktivität. Gilt nicht, wenn eine Tierhaltung nur ein Tier hat. Jüngere Tiere benötigen weniger Platz als erwachsene Tiere."/>
 		<text name="rt_policy_description_manure_spreading" text="Sie sollten Mist nicht unbegrenzt liegen lassen. Stellen Sie sicher, dass Sie nicht mehr als 50% des von Ihnen produzierten Mistes in einem Zeitraum von 6 Monaten lagern. Wenn Sie keinen Mist produzieren, sind Sie von dieser Richtlinie nicht betroffen. Der Bericht wird monatlich aktualisiert, jedoch erfolgt die vollständige Bewertung und Auszahlung oder Bußgelder im Mai und November."/>
-		<text name="rt_policy_description_restricted_slurry" text="Sie dürfen in den Monaten September bis Dezember keine Gülle ausbringen. Sie werden für jeden Verstoß bestraft."/>
+		<text name="rt_policy_description_restricted_slurry" text="Sie dürfen in den Monaten %s bis %s keine Gülle ausbringen. Sie werden für jeden Verstoß bestraft."/>
 		<text name="rt_policy_description_sustainable_forestry" text="Fördert nachhaltige Forstwirtschaftspraktiken, belohnt netto positive Baumpflanzungen und bestraft Gesamtabholzung. Die Richtlinie gilt für Ihr eigenes Land. Auftragsarbeiten wirken sich nicht auf Ihre Bewertung aus. Der Bericht wird monatlich mit halbjährlichen Summen aktualisiert, jedoch erfolgt die vollständige Bewertung und Auszahlung oder Bußgelder im Juni und Dezember."/>
 		<text name="rt_policy_report_description_croprotation" text="Der Bericht zeigt Summen für konforme und nicht konforme Flächen."/>
 		<text name="rt_policy_report_description_sprayviolation" text="Der Bericht zeigt, wie viele Sprühverstöße im letzten Monat aufgetreten sind."/>
@@ -216,6 +216,8 @@
 		<text name="rt_setting_instant" text="Sofort"/>
 		<text name="rt_setting_manureStorageLimit" text="Güllelagergrenze"/>
 		<text name="rt_toolTip_manureStorageLimit" text="Die Mindestmenge an Gülle (in Litern), die Sie lagern können, ohne eine Strafe durch die Güllelagervorschrift zu erhalten."/>
+		<text name="rt_setting_slurryRestrictionStart" text="Beginn der Güllesperrfrist"/>
+		<text name="rt_toolTip_slurryRestrictionStart" text="Der Monat, in dem die Sperrfrist für das Ausbringen von Gülle beginnt. Die Sperrfrist dauert immer 4 Monate. Standard ist September (Regeln des Vereinigten Königreichs)."/>
 		<text name="rt_grant_button" text="Zuschuss beantragen" />
 		<text name="rt_grant_application_submitted" text="Ihr Zuschussantrag wurde eingereicht und kann im Zuschüsse-Tab eingesehen werden." />
 		<text name="rt_grant_confirm_application_dialog" text="Möchten Sie einen Zuschuss für diese Konstruktion beantragen? Es fallen Antragskosten von %s an. Anträge können bis zu 6 Monate dauern und haben eine Genehmigungswahrscheinlichkeit von 50-60%%, die durch Ihre Compliance-Bewertung beeinflusst werden kann." />

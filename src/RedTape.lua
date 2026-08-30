@@ -49,6 +49,14 @@ function RedTape:loadMap()
     self:loadFromXMLFile()
     RedTape.injectMenu()
 
+    if g_currentMission:getIsServer() then
+        -- Not gated behind cheat commands: this is the recovery hatch for savegames whose
+        -- crop rotation history was polluted by the old harvest detection.
+        addConsoleCommand("rtResetCropRotation",
+            "Clear all recorded crop rotation history so the next evaluation cannot penalise any field. Usage: rtResetCropRotation",
+            "consoleCommandResetCropRotation", self)
+    end
+
     if g_addCheatCommands and g_currentMission:getIsServer() then
         addConsoleCommand("rtAddPoints", "Add or remove policy points for current farm. Usage: rtAddPoints amount", "consoleCommandAddPoints", self)
         addConsoleCommand("rtTriggerDemo", "Make a demo scheme available for current farm. Usage: rtTriggerDemo [tractor|brand]", "consoleCommandTriggerDemo", self)
@@ -56,10 +64,31 @@ function RedTape:loadMap()
 end
 
 function RedTape:delete()
+    removeConsoleCommand("rtResetCropRotation")
+
     if g_addCheatCommands then
         removeConsoleCommand("rtAddPoints")
         removeConsoleCommand("rtTriggerDemo")
     end
+end
+
+function RedTape:consoleCommandResetCropRotation()
+    if not g_currentMission:getIsServer() then return "Server only" end
+
+    local gatherer = g_currentMission.RedTape.InfoGatherer.gatherers[INFO_KEYS.FARMLANDS]
+
+    local cleared = 0
+    for _, farmlandData in pairs(gatherer.data) do
+        if #farmlandData.harvestedCropsHistory > 0 then
+            cleared = cleared + 1
+        end
+    end
+
+    g_client:getServerConnection():sendEvent(RTCropRotationResetEvent.new())
+
+    return string.format(
+        "Cleared crop rotation history for %d farmland(s). The next crop rotation evaluation will not penalise any field.",
+        cleared)
 end
 
 function RedTape:consoleCommandAddPoints(amount)

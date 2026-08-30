@@ -83,7 +83,7 @@
 		<text name="rt_policy_description_animal_productivity" text="Incentiva a manutenção da produtividade animal, que é um indicador geral de bom bem-estar animal."/>
 		<text name="rt_policy_description_animal_space" text="Exige que os animais tenham espaço suficiente para se mover, descansar e acessar comida/água; evitar superlotação reduz estresse, lesões e disseminação de doenças, além de permitir melhor saúde e produtividade. Não se aplica se um criadouro tiver apenas um animal. Animais mais jovens requerem menos espaço do que adultos."/>
 		<text name="rt_policy_description_manure_spreading" text="Você não deve deixar o estrume parado indefinidamente. Garanta que não armazena mais de 50% do estrume que produz em um período de 6 meses. Se você não produz estrume, não será afetado por esta política. O relatório será atualizado mensalmente; entretanto, a avaliação completa e o pagamento ou multas ocorrerão em Maio e Novembro."/>
-		<text name="rt_policy_description_restricted_slurry" text="Não é permitido aplicar chorume nos meses de Setembro a Dezembro. Você será penalizado por cada violação."/>
+		<text name="rt_policy_description_restricted_slurry" text="Não é permitido aplicar chorume nos meses de %s a %s. Você será penalizado por cada violação."/>
 		<text name="rt_policy_description_sustainable_forestry" text="Incentiva práticas florestais sustentáveis, recompensando o plantio líquido de árvores e multando o desmatamento geral. A política se aplica às suas próprias terras. Trabalho por contrato não afetará sua avaliação. O relatório será atualizado mensalmente com totais semestrais; entretanto, a avaliação completa e o pagamento ou multas ocorrerão em Junho e Dezembro."/>
 		<text name="rt_policy_report_description_croprotation" text="O relatório mostra totais para áreas conformes e não conformes."/>
 		<text name="rt_policy_report_description_sprayviolation" text="O relatório mostra quantas violações de pulverização ocorreram no último mês."/>
@@ -216,6 +216,8 @@
 		<text name="rt_setting_instant" text="Instantâneo"/>
 		<text name="rt_setting_manureStorageLimit" text="Limite de armazenamento de esterco"/>
 		<text name="rt_toolTip_manureStorageLimit" text="A quantidade mínima de esterco (em litros) que você pode armazenar sem receber multa pela política de armazenamento de esterco."/>
+		<text name="rt_setting_slurryRestrictionStart" text="Início da restrição de chorume"/>
+		<text name="rt_toolTip_slurryRestrictionStart" text="O mês em que a janela restrita de aplicação de chorume começa. A janela dura sempre 4 meses. O padrão é Setembro (regras do Reino Unido)."/>
 		<text name="rt_grant_button" text="Solicitar subsídio" />
 		<text name="rt_grant_application_submitted" text="Sua solicitação de subsídio foi enviada e pode ser visualizada na aba Subsídios." />
 		<text name="rt_grant_confirm_application_dialog" text="Deseja solicitar um subsídio para esta construção? Haverá custos de solicitação de %s. As solicitações podem levar até 6 meses para serem processadas e têm uma chance de aprovação de 50-60%%, que pode ser afetada pela sua classificação de conformidade." />

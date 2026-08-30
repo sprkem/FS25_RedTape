@@ -568,8 +568,38 @@ RTPolicies = {
         finePerViolation = 5,
         warningThreshold = 50,
         maxWarnings = 1,
-        restrictedMonths = { 9, 10, 11, 12 },
-        rewardMonths = { 10, 11, 12, 1 },
+        restrictedMonthCount = 4,
+        defaultStartMonth = 9,
+        -- The closed period is UK based by default, but the start month is a setting so it can
+        -- be shifted to match other countries' rules. The window length never changes.
+        getStartMonth = function(policyInfo)
+            local settings = g_currentMission.RedTape.settings
+            return (settings ~= nil and settings.slurryRestrictionStart) or policyInfo.defaultStartMonth
+        end,
+        -- The months slurry may not be applied in.
+        getRestrictedMonths = function(policyInfo)
+            local startMonth = policyInfo.getStartMonth(policyInfo)
+            local months = {}
+            for i = 0, policyInfo.restrictedMonthCount - 1 do
+                table.insert(months, (startMonth - 1 + i) % 12 + 1)
+            end
+            return months
+        end,
+        -- Each restricted month is evaluated in the month that follows it, so the months a clean
+        -- record earns points in are the restricted months shifted forward by one.
+        getRewardMonths = function(policyInfo)
+            local months = {}
+            for _, month in pairs(policyInfo.getRestrictedMonths(policyInfo)) do
+                table.insert(months, month % 12 + 1)
+            end
+            return months
+        end,
+        getDescription = function(policyInfo)
+            local restrictedMonths = policyInfo.getRestrictedMonths(policyInfo)
+            return string.format(g_i18n:getText(policyInfo.description),
+                RedTape.monthToString(restrictedMonths[1]),
+                RedTape.monthToString(restrictedMonths[#restrictedMonths]))
+        end,
         activate = function(policyInfo, policy, farmId)
         end,
         evaluate = function(policyInfo, policy, farmId, currentTier)
@@ -587,7 +617,7 @@ RTPolicies = {
                 local skipWarning = pendingViolations > policyInfo.warningThreshold
                 g_currentMission.RedTape.PolicySystem:WarnAndFine(policyInfo, policy, farmId, fineAmount, skipWarning)
             else
-                if RedTape.tableHasValue(policyInfo.rewardMonths, currentMonth) then
+                if RedTape.tableHasValue(policyInfo.getRewardMonths(policyInfo), currentMonth) then
                     if farmData.monthlyAnimalHours > 0 or currentTier == RTPolicySystem.TIER.D then
                         reward = policyInfo.periodicReward
                     end

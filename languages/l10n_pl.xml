@@ -83,7 +83,7 @@
 <text name="rt_policy_description_animal_productivity" text="Zachęca do utrzymywania produktywności zwierząt, co jest ogólnym wskaźnikiem dobrego dobrostanu."/>
 <text name="rt_policy_description_animal_space" text="Wymaga, aby zwierzęta miały wystarczająco dużo przestrzeni do poruszania się, odpoczynku i dostępu do jedzenia oraz wody; zapobieganie przeludnieniu zmniejsza stres, obrażenia i rozprzestrzenianie się chorób. Nie dotyczy, jeśli hodowla ma tylko jedno zwierzę. Młodsze zwierzęta wymagają mniej przestrzeni niż dorosłe."/>
 <text name="rt_policy_description_manure_spreading" text="Nie powinieneś pozwalać, aby obornik leżał bezczynnie w nieskończoność. Upewnij się, że nie przechowujesz więcej niż 50% produkowanego obornika w okresie 6 miesięcy. Jeśli nie produkujesz obornika, ta polityka cię nie dotyczy. Raport będzie aktualizowany co miesiąc, jednak pełna ocena, wypłaty lub grzywny będą miały miejsce w maju i listopadzie."/>
-<text name="rt_policy_description_restricted_slurry" text="Nie wolno ci rozlewać gnojowicy w miesiącach od września do grudnia. Zostaniesz ukarany za każde naruszenie."/>
+<text name="rt_policy_description_restricted_slurry" text="Nie wolno ci rozlewać gnojowicy w miesiącach od %s do %s. Zostaniesz ukarany za każde naruszenie."/>
 <text name="rt_policy_description_sustainable_forestry" text="Zachęca do zrównoważonych praktyk leśnych, nagradzając za dodatni bilans sadzenia drzew i karząc za ogólne wylesianie. Polityka dotyczy tylko twojej własnej ziemi. Wykonywanie prac kontraktowych nie wpłynie na twoją ocenę. Raport będzie aktualizowany co miesiąc i zliczał wartości półroczne, jednak pełna ocena, wypłaty lub grzywny będą miały miejsce w czerwcu i grudniu."/>
 <text name="rt_policy_report_description_croprotation" text="Raport przedstawia sumy dla ziemi zgodnej i niezgodnej z przepisami."/>
 <text name="rt_policy_report_description_sprayviolation" text="Raport pokazuje, ile naruszeń dotyczących oprysków miało miejsce w ostatnim miesiącu."/>
@@ -216,6 +216,8 @@
 <text name="rt_setting_instant" text="Natychmiastowe"/>
 <text name="rt_setting_manureStorageLimit" text="Limit przechowywania obornika"/>
 <text name="rt_toolTip_manureStorageLimit" text="Minimalna ilość obornika (w litrach), którą możesz przechowywać bez kary wynikającej z polityki przechowywania obornika."/>
+<text name="rt_setting_slurryRestrictionStart" text="Początek ograniczenia gnojowicy"/>
+<text name="rt_toolTip_slurryRestrictionStart" text="Miesiąc, w którym zaczyna się okres zakazu rozlewania gnojowicy. Okres zawsze trwa 4 miesiące. Domyślnie wrzesień (przepisy Wielkiej Brytanii)."/>
 <text name="rt_grant_button" text="Złóż wniosek o dotację" />
 <text name="rt_grant_application_submitted" text="Twój wniosek o dotację został przesłany i można go zobaczyć w zakładce Dotacje." />
 <text name="rt_grant_confirm_application_dialog" text="Czy chcesz złożyć wniosek o dotację na tę konstrukcję? Opłata za złożenie wniosku wynosi %s. Rozpatrzenie wniosku może zająć do 6 miesięcy, a szansa na zatwierdzenie wynosi 50-60%%, na co może wpłynąć twój wskaźnik zgodności z przepisami." />

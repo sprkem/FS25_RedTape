@@ -83,7 +83,7 @@
         <text name="rt_policy_description_animal_productivity" text="Podporuje udržování produktivity zvířat, což je obecný indikátor dobrých životních podmínek zvířat."/>
         <text name="rt_policy_description_animal_space" text="Vyžaduje, aby zvířata měla dostatek prostoru k pohybu, odpočinku a přístupu k potravě/vodě; zamezení přeplnění snižuje stres, zranění a šíření nemocí a podporuje lepší zdraví a produktivitu. Neplatí, pokud má chov pouze jedno zvíře. Mladší zvířata potřebují méně místa než dospělá zvířata."/>
         <text name="rt_policy_description_manure_spreading" text="Neměli byste hnůj nechávat neomezeně ležet. Zajistěte, abyste neskladovali více než 50 % hnoje, který vyprodukujete, v období 6 měsíců. Pokud neprodukujete žádný hnůj, tato směrnice se vás netýká. Zpráva je aktualizována měsíčně, avšak úplné hodnocení a výplata nebo pokuta probíhají v květnu a listopadu."/>
-        <text name="rt_policy_description_restricted_slurry" text="V měsících září až prosinec nesmíte rozmetávat kejdu. Za každé porušení budete pokutováni."/>
+        <text name="rt_policy_description_restricted_slurry" text="V měsících %s až %s nesmíte rozmetávat kejdu. Za každé porušení budete pokutováni."/>
         <text name="rt_policy_description_sustainable_forestry" text="Podporuje udržitelné postupy v lesnictví, odměňuje čistou pozitivní výsadbu stromů a trestá celkové odlesňování. Směrnice se vztahuje na vaši vlastní půdu. Zakázkové práce neovlivní vaše hodnocení. Zpráva je aktualizována měsíčně s pololetními součty, avšak úplné hodnocení a výplata nebo pokuta probíhají v červnu a prosinci."/>
         <text name="rt_policy_report_description_croprotation" text="Zpráva ukazuje součty pro vyhovující a nevyhovující plochy."/>
         <text name="rt_policy_report_description_sprayviolation" text="Zpráva ukazuje, kolik porušení postřikem nastalo v minulém měsíci."/>
@@ -216,6 +216,8 @@
 		<text name="rt_setting_instant" text="Okamžitě"/>
 		<text name="rt_setting_manureStorageLimit" text="Limit skladování hnoje"/>
 		<text name="rt_toolTip_manureStorageLimit" text="Minimální množství hnoje (v litrech), které můžete skladovat bez pokuty dle předpisu o skladování hnoje."/>
+		<text name="rt_setting_slurryRestrictionStart" text="Začátek omezení kejdy"/>
+		<text name="rt_toolTip_slurryRestrictionStart" text="Měsíc, kterým začíná období zákazu rozmetání kejdy. Období trvá vždy 4 měsíce. Výchozí je září (pravidla Spojeného království)."/>
 		<text name="rt_grant_button" text="Požádat o dotaci" />
 		<text name="rt_grant_application_submitted" text="Vaše žádost o dotaci byla podána a lze ji zobrazit na kartě Dotace." />
 		<text name="rt_grant_confirm_application_dialog" text="Chcete požádat o dotaci na tuto stavbu? Budou účtovány poplatky za žádost ve výši %s. Zpracování žádostí může trvat až 6 měsíců a mají šanci na schválení 50-60%%, která může být ovlivněna vaším hodnocením dodržování předpisů." />

@@ -83,7 +83,7 @@
 		<text name="rt_policy_description_animal_productivity" text="Incoraggia il mantenimento della produttività animale, un indicatore generale di buon benessere."/>
 		<text name="rt_policy_description_animal_space" text="Richiede che gli animali abbiano spazio sufficiente per muoversi, riposare e accedere a cibo e acqua; prevenire il sovraffollamento riduce stress, lesioni e diffusione di malattie. Non si applica se l’allevamento ha un solo animale. Gli animali giovani richiedono meno spazio degli adulti."/>
 		<text name="rt_policy_description_manure_spreading" text="Non dovresti lasciare il letame inutilizzato indefinitamente. Assicurati di non immagazzinare più del 50% del letame prodotto in un periodo di 6 mesi. Se non produci letame, questa politica non ti riguarda. Il rapporto si aggiorna mensilmente, mentre valutazione completa e pagamenti o multe avverranno a maggio e novembre."/>
-		<text name="rt_policy_description_restricted_slurry" text="Non è consentito applicare liquami nei mesi da settembre a dicembre. Ogni violazione sarà penalizzata."/>
+		<text name="rt_policy_description_restricted_slurry" text="Non è consentito applicare liquami nei mesi da %s a %s. Ogni violazione sarà penalizzata."/>
 		<text name="rt_policy_description_sustainable_forestry" text="Incoraggia pratiche forestali sostenibili, premiando la piantumazione netta positiva e multando la deforestazione complessiva. La politica si applica ai tuoi terreni. Il lavoro in conto terzi non influisce sulla valutazione. Il rapporto si aggiorna mensilmente con totali semestrali, mentre valutazione completa e pagamenti o multe avverranno a giugno e dicembre."/>
 		<text name="rt_policy_report_description_croprotation" text="Il rapporto mostra i totali delle superfici conformi e non conformi."/>
 		<text name="rt_policy_report_description_sprayviolation" text="Il rapporto mostra quante violazioni di irrorazione sono avvenute nell’ultimo mese."/>
@@ -217,6 +217,8 @@
 		<text name="rt_setting_instant" text="Istantaneo"/>
 		<text name="rt_setting_manureStorageLimit" text="Limite stoccaggio letame"/>
 		<text name="rt_toolTip_manureStorageLimit" text="La quantità minima di letame (in litri) che puoi immagazzinare senza ricevere una multa dalla politica sullo stoccaggio del letame."/>
+		<text name="rt_setting_slurryRestrictionStart" text="Inizio restrizione liquami"/>
+		<text name="rt_toolTip_slurryRestrictionStart" text="Il mese in cui inizia il periodo di divieto di spandimento dei liquami. Il periodo dura sempre 4 mesi. Predefinito: settembre (regole del Regno Unito)."/>
 		<text name="rt_grant_button" text="Richiedi contributo" />
 		<text name="rt_grant_application_submitted" text="La tua domanda di contributo è stata inviata e può essere visualizzata nella scheda Contributi." />
 		<text name="rt_grant_confirm_application_dialog" text="Vuoi richiedere un contributo per questa costruzione? Ci sarà un costo di domanda pari a %s. Le domande possono richiedere fino a 6 mesi per essere elaborate e hanno una probabilità di approvazione del 50-60%%, influenzata dal tuo livello di conformità." />

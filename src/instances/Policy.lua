@@ -168,6 +168,11 @@ function RTPolicy:getDescription()
 
     local policyInfo = RTPolicies[self.policyIndex]
 
+    -- Policies whose text depends on a setting build their own description
+    if policyInfo.getDescription ~= nil then
+        return policyInfo.getDescription(policyInfo)
+    end
+
     return g_i18n:getText(policyInfo.description)
 end
 

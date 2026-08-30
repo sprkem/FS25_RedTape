@@ -421,7 +421,8 @@ end
 function FarmGatherer:checkSprayers()
     local checkFillTypes = { FillType.FERTILIZER, FillType.LIQUIDMANURE, FillType.LIME, FillType.MANURE, FillType
         .HERBICIDE }
-    local restrictedSlurryMonths = RTPolicies[RTPolicyIds.RESTRICTED_SLURRY].restrictedMonths
+    local restrictedSlurryPolicy = RTPolicies[RTPolicyIds.RESTRICTED_SLURRY]
+    local restrictedSlurryMonths = restrictedSlurryPolicy.getRestrictedMonths(restrictedSlurryPolicy)
 
     for uniqueId, sprayer in pairs(self.turnedOnSprayers) do
         local sprayerFarmId = sprayer:getOwnerFarmId()
