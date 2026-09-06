@@ -248,6 +248,7 @@
 <text name="rt_grant_status_approved" text="Zatwierdzona" />
 <text name="rt_grant_status_rejected" text="Odrzucona" />
 <text name="rt_grant_status_completed" text="Ukończona" />
+<text name="rt_grant_unknown_building" text="Nieznany budynek" />
 <text name="rt_grant_eligible" text="STATUS: KWALIFIKUJE SIĘ" />
 <text name="rt_grant_not_eligible" text="STATUS: NIE KWALIFIKUJE SIĘ" />
 <text name="rt_grant_eligible_description" text="Kwalifikowalność do ubiegania się o nowe dotacje zależy od licznych warunków. Nie możesz złożyć wniosku, jeśli masz aktualnie oczekującą aplikację lub zatwierdzoną, która czeka na sfinalizowanie. Występuje również 6-miesięczny okres przerwy (cooldown) po zrealizowaniu dotacji (tzn. od otrzymania funduszy). Pamiętaj, że dotacje nie są dostępne dla konstrukcji o koszcie poniżej 80,000." />

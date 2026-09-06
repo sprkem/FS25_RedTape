@@ -248,6 +248,7 @@
 		<text name="rt_grant_status_approved" text="已批准" />
 		<text name="rt_grant_status_rejected" text="已拒絕" />
 		<text name="rt_grant_status_completed" text="已完成" />
+		<text name="rt_grant_unknown_building" text="未知建築" />
 		<text name="rt_grant_eligible" text="狀態：符合資格" />
 		<text name="rt_grant_not_eligible" text="狀態：不符合資格" />
 		<text name="rt_grant_eligible_description" text="申請補助金的資格受多種條件限制：您不能有待處理或已獲准但未完成的申請。且在完成一次補助（收到資金）後有 6 個月的冷卻期。注意：造價低於 80,000 的建築不適用補助金。" />

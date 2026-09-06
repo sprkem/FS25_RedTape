@@ -49,7 +49,9 @@ function MenuRedTape.new(i18n, messageCenter)
     self.taxNotesRenderer = RTTaxNotesRenderer.new()
     self.currentYearTaxNotesRenderer = RTTaxNotesRenderer.new()
     self.cropRotationRenderer = RTCropRotationRenderer.new()
-    self.grantsRenderer = RTGrantsRenderer.new()
+    self.pendingGrantsRenderer = RTGrantsRenderer.new("pending")
+    self.approvedGrantsRenderer = RTGrantsRenderer.new("approved")
+    self.historicalGrantsRenderer = RTGrantsRenderer.new("historical")
 
     self.vehicleElements = {}
 
@@ -224,14 +226,14 @@ function MenuRedTape:onGuiSetupFinished()
     self.cropHistoryTable:setDataSource(self.cropRotationRenderer)
     self.cropHistoryTable:setDelegate(self.cropRotationRenderer)
 
-    self.pendingGrantsTable:setDataSource(self.grantsRenderer)
-    self.pendingGrantsTable:setDelegate(self.grantsRenderer)
+    self.pendingGrantsTable:setDataSource(self.pendingGrantsRenderer)
+    self.pendingGrantsTable:setDelegate(self.pendingGrantsRenderer)
 
-    self.approvedGrantsTable:setDataSource(self.grantsRenderer)
-    self.approvedGrantsTable:setDelegate(self.grantsRenderer)
+    self.approvedGrantsTable:setDataSource(self.approvedGrantsRenderer)
+    self.approvedGrantsTable:setDelegate(self.approvedGrantsRenderer)
 
-    self.historicalGrantsTable:setDataSource(self.grantsRenderer)
-    self.historicalGrantsTable:setDelegate(self.grantsRenderer)
+    self.historicalGrantsTable:setDataSource(self.historicalGrantsRenderer)
+    self.historicalGrantsTable:setDelegate(self.historicalGrantsRenderer)
 end
 
 function MenuRedTape:initialize()
@@ -634,29 +636,32 @@ function MenuRedTape:updateContent()
             end
         end
 
-        self.grantsRenderer:setCurrentSection("pending")
-        self.grantsRenderer:setData(grantsData)
-        self.pendingGrantsTable:reloadData()
-
+        -- Visibility is applied before the lists are rebuilt, and each rebuild is isolated, so a
+        -- single unrenderable grant can never leave the page half updated.
         local hasPendingGrants = #grantsData.pending > 0
         self.pendingGrantsContainer:setVisible(hasPendingGrants)
         self.noPendingGrantsContainer:setVisible(not hasPendingGrants)
-
-        self.grantsRenderer:setCurrentSection("approved")
-        self.grantsRenderer:setData(grantsData)
-        self.approvedGrantsTable:reloadData()
 
         local hasApprovedGrants = #grantsData.approved > 0
         self.approvedGrantsContainer:setVisible(hasApprovedGrants)
         self.noApprovedGrantsContainer:setVisible(not hasApprovedGrants)
 
-        self.grantsRenderer:setCurrentSection("historical")
-        self.grantsRenderer:setData(grantsData)
-        self.historicalGrantsTable:reloadData()
-
         local hasHistoricalGrants = #grantsData.historical > 0
         self.historicalGrantsContainer:setVisible(hasHistoricalGrants)
         self.noHistoricalGrantsContainer:setVisible(not hasHistoricalGrants)
+
+        self.pendingGrantsRenderer:setData(grantsData)
+        self.approvedGrantsRenderer:setData(grantsData)
+        self.historicalGrantsRenderer:setData(grantsData)
+
+        for _, grantsTable in pairs({ self.pendingGrantsTable, self.approvedGrantsTable, self.historicalGrantsTable }) do
+            local ok, err = pcall(function()
+                grantsTable:reloadData()
+            end)
+            if not ok then
+                print("RedTape Error: failed to populate grants table: " .. tostring(err))
+            end
+        end
     end
 
     self:updateMenuButtons()

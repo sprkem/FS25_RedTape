@@ -331,6 +331,9 @@
                             <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="assessment"/>
                         </ListItem>
                     </SmoothList>
+                    <ThreePartBitmap profile="rt_slider_box_left" position="810px -30px" size="6px 100px">
+                        <Slider profile="fs25_listSlider" dataElementId="pendingGrantsTable" />
+                    </ThreePartBitmap>
                 </GuiElement>
                 <GuiElement id="noPendingGrantsContainer">
                     <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_pending_grants" position="40px -130px" width="750px" />
@@ -353,6 +356,9 @@
                             <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="approved"/>
                         </ListItem>
                     </SmoothList>
+                    <ThreePartBitmap profile="rt_slider_box_left" position="810px -30px" size="6px 100px">
+                        <Slider profile="fs25_listSlider" dataElementId="approvedGrantsTable" />
+                    </ThreePartBitmap>
                 </GuiElement>
                 <GuiElement id="noApprovedGrantsContainer">
                     <Text profile="rt_scheme_policy_info" text="$l10n_rt_no_approved_grants" position="40px -310px" width="750px" />
@@ -367,7 +373,7 @@
                         <Button profile="rtTableHeader" position="450px 0px" text="$l10n_rt_tableheader_amount" handleFocus="false" />
                         <Button profile="rtTableHeader" position="600px 0px" text="$l10n_rt_tableheader_status" handleFocus="false" />
                     </GuiElement>
-                    <SmoothList id="historicalGrantsTable" profile="rt_table" position="40px -30px" size="750px 300px">
+                    <SmoothList id="historicalGrantsTable" profile="rt_table" position="40px -30px" size="750px 200px">
                         <ListItem profile="rtTableListItem">
                             <Text profile="rtListRowCellLeft" position="20px 0px" size="280px 32px" name="building"/>
                             <Text profile="rtListRowCellLeft" position="300px 0px" size="150px 32px" name="price"/>
@@ -375,7 +381,7 @@
                             <Text profile="rtListRowCellLeft" position="600px 0px" size="150px 32px" name="status"/>
                         </ListItem>
                     </SmoothList>
-                    <ThreePartBitmap profile="rt_slider_box_left" position="810px -30px" size="6px 300px">
+                    <ThreePartBitmap profile="rt_slider_box_left" position="810px -30px" size="6px 200px">
                         <Slider profile="fs25_listSlider" dataElementId="historicalGrantsTable" />
                     </ThreePartBitmap>
                 </GuiElement>

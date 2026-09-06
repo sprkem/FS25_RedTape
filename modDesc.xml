@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="111">
     <author>Ozz</author>
-    <version>1.0.3.2</version>
+    <version>1.0.3.3</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -26,10 +26,14 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
+1.0.3.3:
+- Bugfix for grants screen where previous grants failed to render correctly.
+
 1.0.3.2:
 - Players can now choose the start month for the Restricted Slurry Policy to match their region.
 - All Policies can now be disabled in the settings, allowing players to tune the mod to their liking.
 - Add helper command rtResetCropRotation to reset crop rotation history. Useful in edge cases which cause incorrect policy evaluation.
+- Fixed the Grants screen breaking (overlapping text, no scrolling, missing grants) when a grant was made for a building whose store item is no longer available, such as a map placeable or a removed mod.
 
 1.0.3.1:
 - Fix for various scenarios where the Crop Rotation policy was not correctly evaluating.
@@ -189,6 +193,9 @@ Weitere Informationen finden Sie im Hilfemenü des Spiels.
 https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
+
+1.0.3.3:
+- Fehler behoben, bei dem im Zuschuss-Bildschirm frühere Zuschüsse nicht korrekt angezeigt wurden.
 
 1.0.3.2:
 - Spieler können nun den Startmonat für die Richtlinie "Eingeschränkte Gülleausbringung" passend zu ihrer Region wählen.
@@ -357,6 +364,9 @@ Consultez le menu d'aide du jeu pour plus d'informations.
 https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
+
+1.0.3.3:
+- Correction d'un bug sur l'écran des subventions où les subventions précédentes ne s'affichaient pas correctement.
 
 1.0.3.2:
 - Les joueurs peuvent désormais choisir le mois de début de la politique « Application restreinte du lisier » afin de correspondre à leur région.
