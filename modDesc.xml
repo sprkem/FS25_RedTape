@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="111">
     <author>Ozz</author>
-    <version>1.0.3.3</version>
+    <version>1.0.3.4</version>
     <iconFilename>icon_RedTape.dds</iconFilename>
     <title>
         <en>Red Tape</en>
@@ -26,7 +26,8 @@ https://github.com/sprkem/FS25_RedTape
 
 Changelog:
 
-1.0.3.3:
+1.0.3.4:
+- Fixed the Productivity Recovery setting breaking animal feeding and production when used alongside other husbandry mods such as Realistic Livestock. Any value other than 1x stopped those mods running their hourly animal update, so animals no longer ate or produced.
 - Bugfix for grants screen where previous grants failed to render correctly.
 
 1.0.3.2:
@@ -194,7 +195,8 @@ https://github.com/sprkem/FS25_RedTape
 
 Änderungsliste:
 
-1.0.3.3:
+1.0.3.4:
+- Fehler behoben, bei dem die Einstellung „Produktivitätserholung" die Fütterung und Produktion von Tieren beeinträchtigte, wenn sie zusammen mit anderen Tierhaltungs-Mods wie Realistic Livestock verwendet wurde. Jeder Wert außer 1x verhinderte, dass diese Mods ihr stündliches Tier-Update ausführten, wodurch Tiere nicht mehr fraßen oder produzierten.
 - Fehler behoben, bei dem im Zuschuss-Bildschirm frühere Zuschüsse nicht korrekt angezeigt wurden.
 
 1.0.3.2:
@@ -365,7 +367,8 @@ https://github.com/sprkem/FS25_RedTape
 
 Journal des modifications:
 
-1.0.3.3:
+1.0.3.4:
+- Correction d'un bug où le paramètre « Récupération de productivité » empêchait l'alimentation et la production des animaux lorsqu'il était utilisé avec d'autres mods d'élevage tels que Realistic Livestock. Toute valeur autre que 1x empêchait ces mods d'exécuter leur mise à jour horaire des animaux, de sorte que les animaux ne mangeaient plus ni ne produisaient.
 - Correction d'un bug sur l'écran des subventions où les subventions précédentes ne s'affichaient pas correctement.
 
 1.0.3.2:

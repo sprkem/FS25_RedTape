@@ -27,6 +27,12 @@ PlaceableHusbandry.addHusbandryFillLevelFromTool = Utils.overwrittenFunction(
     PlaceableHusbandry.addHusbandryFillLevelFromTool,
     RTPlaceableHusbandryExtension.addHusbandryFillLevelFromTool)
 
+--- Speeds up how fast a husbandry recovers its productivity, controlled by the
+--- productivityRecovery setting. The base game logic (and anything else hooked into
+--- the hour tick, such as Realistic Livestock, which does all of its feeding and
+--- production work there) always runs first, and only the resulting increase in
+--- globalProductionFactor is scaled. Never reimplement the tick here: skipping
+--- superFunc stops other mods' animals eating and producing entirely.
 function RTPlaceableHusbandryExtension:onHourChanged(superFunc, currentHour)
     if not self.isServer then
         return superFunc(self, currentHour)
@@ -41,33 +47,26 @@ function RTPlaceableHusbandryExtension:onHourChanged(superFunc, currentHour)
     end
 
     local spec = self.spec_husbandry
-    local foodFactor = self:updateFeeding()
-    SpecializationUtil.raiseEvent(self, "onFinishedFeeding")
-    local productionFactor = self:updateProduction(foodFactor)
+    local before = spec.globalProductionFactor
+    local result = superFunc(self, currentHour)
+    local delta = spec.globalProductionFactor - before
 
     if multiplier == 0 then
         -- Instant: set globalProductionFactor to 1 so displayed productivity
         -- (globalProductionFactor * productionFactor) matches the current food level
         spec.globalProductionFactor = 1
-    else
-        local factor, changePerHour
-        if spec.productionThreshold < productionFactor then
-            factor = (productionFactor - spec.productionThreshold) / (1 - spec.productionThreshold)
-            changePerHour = spec.productionChangePerHourIncrease
-            -- Apply the multiplier only to the increase
-            local delta = changePerHour * factor * multiplier
-            spec.globalProductionFactor = math.clamp(spec.globalProductionFactor + delta, 0, 1)
-        else
-            -- Decreasing: no multiplier applied, use base game behavior
-            factor = productionFactor / spec.productionThreshold - 1
-            changePerHour = spec.productionChangePerHourDecrease
-            local delta = changePerHour * factor
-            spec.globalProductionFactor = math.clamp(spec.globalProductionFactor + delta, 0, 1)
-        end
+    elseif delta > 0 then
+        -- Apply the multiplier only to the increase, decreases keep base game behaviour.
+        -- The output for this hour has already been produced with the pre-boost factor,
+        -- so the boost takes effect from the next hour on.
+        spec.globalProductionFactor = math.clamp(before + delta * multiplier, 0, 1)
     end
 
-    self:updateOutput(foodFactor, productionFactor, spec.globalProductionFactor)
-    self:raiseDirtyFlags(spec.dirtyFlag)
+    if spec.globalProductionFactor ~= before + delta then
+        self:raiseDirtyFlags(spec.dirtyFlag)
+    end
+
+    return result
 end
 
 PlaceableHusbandry.onHourChanged = Utils.overwrittenFunction(
